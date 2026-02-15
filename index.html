@@ -375,6 +375,83 @@
       line-height: 1.7;
     }
 
+    .course-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+      font-weight: 600;
+      margin: 2.5rem 0 1rem;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .course-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 1.8rem 2rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    .course-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(139, 35, 50, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .course-card .course-code {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .course-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .course-card .course-desc {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+      margin-bottom: 0.8rem;
+    }
+
+    .course-card .course-arrow {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap 0.2s ease;
+    }
+
+    .course-card:hover .course-arrow {
+      gap: 0.6rem;
+    }
+
+    .course-card .course-tags {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+    }
+
     footer {
       max-width: 980px;
       margin: 0 auto;
@@ -422,7 +499,7 @@
       .hero-intro { font-size: 1.05rem; }
       .section { padding: 3rem 1.5rem; }
       .section-title { font-size: 1.7rem; }
-      .card-grid, .interest-row, .edu-grid { grid-template-columns: 1fr; }
+      .card-grid, .interest-row, .edu-grid, .course-grid { grid-template-columns: 1fr; }
       .exp-item { grid-template-columns: 1fr; gap: 0.3rem; }
       .question-block { padding: 1.8rem 2rem; }
       .question-block p { font-size: 1.15rem; }
@@ -570,6 +647,20 @@
         <div class="edu-date">Graduated</div>
         <p>Moody College Dean's List Honors (FA22, SP23, FA23, SP24, FA25). Texas Immersive Institution, Texas Undergraduate Sales Organization.</p>
       </div>
+    </div>
+
+    <div class="course-label">Coursework</div>
+    <div class="course-grid fade-up">
+      <a href="/adv382j-guide/" class="course-card">
+        <div class="course-code">ADV 382J</div>
+        <h4>Persuasion Theory</h4>
+        <div class="course-desc">Attitudes, behavior change, ELM, TPB, attitude functions, and Morrison et al. Interactive study guide with progress tracking and search.</div>
+        <div class="course-tags">
+          <span class="tag">Spring 2026</span>
+          <span class="tag">Exam 1</span>
+        </div>
+        <div class="course-arrow">Open Study Guide →</div>
+      </a>
     </div>
   </div>
 
