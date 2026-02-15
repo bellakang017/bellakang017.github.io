@@ -562,6 +562,113 @@
         padding: 2rem 1.5rem;
       }
     }
+
+    /* Email Modal */
+    .email-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .email-modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .email-modal-card {
+      background: var(--white);
+      padding: 2.5rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--rule);
+      text-align: center;
+      transform: translateY(10px) scale(0.98);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      max-width: 90%;
+      width: 420px;
+    }
+
+    .email-modal-overlay.active .email-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .email-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .email-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .email-address {
+      font-size: 1.1rem;
+      color: var(--text-mid);
+      background: var(--chalk);
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1.8rem 0 0.8rem;
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 500;
+      border: 1px dashed var(--stone);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .email-address:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-wash);
+    }
+
+    .email-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-soft);
+      padding: 0.5rem;
+      line-height: 1;
+    }
+
+    .email-close:hover {
+      color: var(--accent);
+    }
+
+    .copy-hint {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-bottom: 0.5rem;
+      opacity: 0.8;
+      transition: color 0.2s;
+    }
+
+    @media (max-width: 768px) {
+      .email-modal-card {
+        width: 90%;
+        padding: 2rem 1.5rem;
+      }
+    }
   </style>
 </head>
 
@@ -771,7 +878,7 @@
   <footer>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/bellakang017" target="_blank">LinkedIn</a>
-      <a href="mailto:bellakang017@gmail.com">Email</a>
+      <a href="#" id="emailLink">Email</a>
     </div>
     <span class="footer-copy">© 2026 Bella Kang</span>
   </footer>
@@ -783,7 +890,69 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Email Modal Logic
+    const modal = document.getElementById('emailModal');
+    const emailLink = document.getElementById('emailLink');
+    const copyHint = document.getElementById('copyHint');
+    const emailText = document.getElementById('emailText');
+
+    if (emailLink) {
+      emailLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+      });
+    }
+
+    function closeEmailModal() {
+      modal.classList.remove('active');
+      setTimeout(() => {
+        copyHint.textContent = "Click to copy";
+        copyHint.style.color = "var(--text-soft)";
+        copyHint.style.fontWeight = "400";
+      }, 300);
+    }
+
+    function copyEmail() {
+      const email = emailText.innerText.trim();
+      navigator.clipboard.writeText(email).then(() => {
+        copyHint.innerHTML = "Copied to clipboard! <span style='color:var(--accent)'>✓</span>";
+        copyHint.style.color = "var(--accent)";
+        copyHint.style.fontWeight = "600";
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+    // Close on outside click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeEmailModal();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeEmailModal();
+      }
+    });
   </script>
+
+  <!-- Email Modal HTML -->
+  <div class="email-modal-overlay" id="emailModal">
+    <div class="email-modal-card">
+      <button class="email-close" onclick="closeEmailModal()">✕</button>
+      <div class="email-icon">💌</div>
+      <h3 class="email-title">Get in touch</h3>
+      <p style="color:var(--text-mid); font-size:0.95rem; line-height:1.6; max-width: 320px; margin: 0 auto;">
+        Always happy to chat about health communication, design, or research.
+      </p>
+
+      <div class="email-address" onclick="copyEmail()" id="emailText">
+        bellakang@utexas.edu
+      </div>
+      <div class="copy-hint" id="copyHint">Click to copy</div>
+    </div>
+  </div>
 
 </body>
 
