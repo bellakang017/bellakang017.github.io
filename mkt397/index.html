@@ -1,1 +1,292 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MKT 397: PhD Quantitative Marketing — Academic Log</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:#FFFFFF;--chalk:#F7F5F0;--piano:#F0EDE5;--linen:#E8E3D9;--stone:#D4CFC4;
+      --text:#1C1C1C;--text-mid:#4A4A4A;--text-soft:#7A7A7A;
+      --accent:#8B2332;--accent-light:#A73344;--accent-wash:rgba(139,35,50,0.06);
+      --rule:#DDD8CE;--sage:#6B7B5E;--sage-wash:rgba(107,123,94,0.07);
+      --blue:#2D5A7B;--blue-wash:rgba(45,90,123,0.06);
+      --mono:'JetBrains Mono',monospace;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--white);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased}
+    ::selection{background:var(--accent);color:var(--white)}
 
+    /* ─── NAV ─── */
+    .sub-nav{position:fixed;top:0;width:100%;padding:1rem 0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule)}
+    .sub-nav-inner{max-width:860px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
+    .sub-nav-back{text-decoration:none;color:var(--text-soft);font-size:0.84rem;font-weight:500;display:flex;align-items:center;gap:0.4rem;transition:color 0.25s}
+    .sub-nav-back:hover{color:var(--accent)}
+    .sub-nav-right{display:flex;align-items:center;gap:1.5rem}
+    .sub-nav-title{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:var(--text)}
+    .lab-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.6rem;border-radius:4px;background:var(--accent-wash);color:var(--accent)}
+
+    /* ─── HERO ─── */
+    .log-hero{max-width:860px;margin:0 auto;padding:7rem 2rem 2.5rem}
+    .log-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+    .log-badge::before{content:'';width:18px;height:1.5px;background:var(--accent)}
+    .log-hero h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:400;line-height:1.25;color:var(--text);margin-bottom:0.6rem;letter-spacing:-0.02em}
+    .log-hero h1 em{font-style:italic;color:var(--accent)}
+    .log-meta{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.5rem}
+    .log-meta-item{font-size:0.85rem;color:var(--text-mid)}
+    .log-meta-item strong{color:var(--text);font-weight:600}
+    .log-intro{font-size:1rem;color:var(--text-mid);line-height:1.8;max-width:640px;padding-top:1.5rem;border-top:1px solid var(--rule)}
+
+    /* ─── WEEK NAV ─── */
+    .week-nav{max-width:860px;margin:0 auto;padding:0 2rem}
+    .week-nav-inner{display:flex;gap:0;border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .week-tab{padding:0.7rem 1.2rem;font-size:0.78rem;font-weight:500;color:var(--text-soft);cursor:pointer;position:relative;white-space:nowrap;transition:color 0.25s;user-select:none}
+    .week-tab:hover{color:var(--text)}
+    .week-tab.active{color:var(--accent);font-weight:600}
+    .week-tab::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.3s cubic-bezier(0.25,1,0.5,1)}
+    .week-tab.active::after{transform:scaleX(1)}
+
+    /* ─── CONTENT ─── */
+    .log-content{max-width:860px;margin:0 auto;padding:2.5rem 2rem 4rem}
+
+    .week-panel{display:none;animation:panelIn 0.4s ease}
+    .week-panel.active{display:block}
+    @keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    .week-header{margin-bottom:2.5rem}
+    .week-number{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--accent);font-weight:600;margin-bottom:0.3rem}
+    .week-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;color:var(--text);margin-bottom:0.3rem}
+    .week-date{font-size:0.8rem;color:var(--text-soft)}
+
+    /* ─── SYNTHESIS FLOW: Reading → Interpretation → Gap ─── */
+    .synthesis-flow{display:flex;flex-direction:column;gap:0}
+
+    .synth-step{position:relative;padding:1.8rem 2rem;border:1px solid var(--rule);background:var(--white)}
+    .synth-step:first-child{border-radius:10px 10px 0 0}
+    .synth-step:last-child{border-radius:0 0 10px 10px;border-top:none}
+    .synth-step:not(:first-child):not(:last-child){border-top:none}
+
+    .synth-phase{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.8rem}
+    .synth-phase-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0}
+    .phase-read .synth-phase-num{background:var(--blue-wash);color:var(--blue)}
+    .phase-interpret .synth-phase-num{background:var(--accent-wash);color:var(--accent)}
+    .phase-gap .synth-phase-num{background:var(--sage-wash);color:var(--sage)}
+
+    .synth-phase-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;font-weight:600}
+    .phase-read .synth-phase-label{color:var(--blue)}
+    .phase-interpret .synth-phase-label{color:var(--accent)}
+    .phase-gap .synth-phase-label{color:var(--sage)}
+
+    /* Arrow connector between steps */
+    .synth-connector{display:flex;justify-content:center;margin:-1px 0;position:relative;z-index:1}
+    .synth-connector span{font-size:0.7rem;color:var(--text-soft);background:var(--white);padding:0 0.5rem}
+
+    .synth-step h4{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:0.5rem}
+    .synth-step p{font-size:0.88rem;color:var(--text-mid);line-height:1.75}
+
+    /* Reading list inside step 1 */
+    .reading-list{list-style:none;margin-top:0.8rem}
+    .reading-list li{font-size:0.85rem;color:var(--text-mid);padding:0.5rem 0;border-bottom:1px solid var(--chalk);display:flex;gap:0.5rem;line-height:1.6}
+    .reading-list li:last-child{border-bottom:none}
+    .reading-list .read-icon{color:var(--blue);font-size:0.75rem;flex-shrink:0;margin-top:0.25rem}
+    .reading-list cite{font-style:normal;font-weight:500;color:var(--text)}
+    .reading-list .read-note{font-size:0.8rem;color:var(--text-soft);margin-left:0.3rem}
+
+    /* ─── GLOSSARY TOOLTIPS ─── */
+    .term{position:relative;border-bottom:1px dashed var(--accent);color:var(--accent);cursor:help;font-weight:500}
+    .term .tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--text);color:var(--white);padding:0.6rem 0.9rem;border-radius:8px;font-size:0.78rem;font-weight:400;line-height:1.5;white-space:normal;width:260px;opacity:0;pointer-events:none;transition:opacity 0.25s,transform 0.25s;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,0.15)}
+    .term .tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--text)}
+    .term:hover .tooltip{opacity:1;transform:translateX(-50%) translateY(-2px);pointer-events:auto}
+
+    /* ─── VISUAL SCAFFOLD ─── */
+    .visual-box{background:var(--chalk);border:1px solid var(--rule);border-radius:10px;padding:1.5rem 2rem;margin-top:1.5rem}
+    .visual-box-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-soft);font-weight:600;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
+    .visual-box-label::before{content:'◈';color:var(--accent);font-size:0.7rem}
+    .visual-formula{font-family:var(--mono);font-size:0.88rem;color:var(--text);background:var(--white);padding:1rem 1.2rem;border-radius:8px;border:1px solid var(--rule);line-height:1.8;overflow-x:auto}
+    .visual-caption{font-size:0.8rem;color:var(--text-soft);margin-top:0.6rem;font-style:italic}
+
+    /* Mermaid placeholder */
+    .mermaid-placeholder{background:var(--white);border:1px dashed var(--stone);border-radius:8px;padding:2rem;text-align:center;margin-top:1rem}
+    .mermaid-placeholder p{font-size:0.82rem;color:var(--text-soft)}
+
+    /* ─── KEY TAKEAWAY ─── */
+    .takeaway{background:var(--accent-wash);border-left:3px solid var(--accent);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin-top:1.5rem}
+    .takeaway p{font-size:0.9rem;color:var(--text);line-height:1.7}
+    .takeaway strong{color:var(--accent)}
+
+    /* ─── FOOTER ─── */
+    .sub-footer{max-width:860px;margin:0 auto;padding:2rem 2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+    .sub-footer a{font-size:0.85rem;color:var(--text-mid);text-decoration:none;font-weight:500;transition:color 0.2s}
+    .sub-footer a:hover{color:var(--accent)}
+    .sub-footer span{font-size:0.78rem;color:var(--text-soft)}
+
+    @media(max-width:768px){
+      .log-hero{padding:6rem 1.5rem 2rem}
+      .log-hero h1{font-size:1.8rem}
+      .log-content{padding:2rem 1.5rem 3rem}
+      .synth-step{padding:1.4rem 1.5rem}
+      .sub-footer{flex-direction:column;gap:0.8rem;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="sub-nav">
+    <div class="sub-nav-inner">
+      <a href="/" class="sub-nav-back">← Portfolio</a>
+      <div class="sub-nav-right">
+        <span class="sub-nav-title">MKT 397</span>
+        <span class="lab-badge">Lab Notebook</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="log-hero">
+    <div class="log-badge">Open Academic Log</div>
+    <h1>PhD Quantitative <em>Marketing</em></h1>
+    <div class="log-meta">
+      <div class="log-meta-item"><strong>MKT 397</strong> · McCombs School of Business</div>
+      <div class="log-meta-item"><strong>Prof. Rex Du</strong></div>
+      <div class="log-meta-item">Spring 2026</div>
+    </div>
+    <p class="log-intro">A weekly research synthesis log. Each entry follows a three-part structure: what I read, how I interpret it, and what questions or gaps emerge. This is less a summary and more a thinking-in-progress document — an open-source lab notebook for anyone navigating quantitative marketing research.</p>
+  </div>
+
+  <!-- WEEK NAVIGATION -->
+  <div class="week-nav">
+    <div class="week-nav-inner">
+      <div class="week-tab active" data-week="1">Week 1</div>
+      <div class="week-tab" data-week="2">Week 2</div>
+      <div class="week-tab" data-week="3">Week 3</div>
+      <div class="week-tab" data-week="4">Week 4</div>
+      <div class="week-tab" data-week="5">Week 5</div>
+      <div class="week-tab" data-week="6">Week 6</div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="log-content">
+
+    <!-- ═══ WEEK 1 (EXAMPLE) ═══ -->
+    <div class="week-panel active" id="week-1">
+      <div class="week-header">
+        <div class="week-number">Week 1</div>
+        <h2 class="week-title">Empirics-First Methodology & Causal Inference</h2>
+        <div class="week-date">January 2026</div>
+      </div>
+
+      <!-- SYNTHESIS FLOW -->
+      <div class="synthesis-flow">
+
+        <!-- STEP 1: Reading -->
+        <div class="synth-step phase-read">
+          <div class="synth-phase">
+            <div class="synth-phase-num">1</div>
+            <span class="synth-phase-label">This Week's Reading</span>
+          </div>
+          <h4>Foundations of Causal Identification</h4>
+          <ul class="reading-list">
+            <li><span class="read-icon">◇</span><div><cite>Angrist & Pischke (2009), Ch. 1–2</cite><span class="read-note">— "Mostly Harmless Econometrics": selection bias and the fundamental problem of causal inference</span></div></li>
+            <li><span class="read-icon">◇</span><div><cite>Rubin (1974)</cite><span class="read-note">— Potential outcomes framework; counterfactual reasoning</span></div></li>
+            <li><span class="read-icon">◇</span><div><cite>Du, R. (Lecture Notes)</cite><span class="read-note">— Empirics-first approach: start with data patterns, then build theory</span></div></li>
+          </ul>
+        </div>
+
+        <div class="synth-connector"><span>↓</span></div>
+
+        <!-- STEP 2: Interpretation -->
+        <div class="synth-step phase-interpret">
+          <div class="synth-phase">
+            <div class="synth-phase-num">2</div>
+            <span class="synth-phase-label">My Interpretation</span>
+          </div>
+          <h4>What the empirics-first lens changes</h4>
+          <p>Prof. Du's methodology inverts the typical research flow. Instead of "theory → hypothesis → test," we begin with <span class="term">empirical regularities<span class="tooltip">Patterns consistently observed in data before any theoretical explanation is offered. The starting point in empirics-first research.</span></span> — patterns in real data — and let them guide theoretical development.</p>
+          <p>This resonates deeply with my health communication work. In studying Korean American women's help-seeking behavior, the <em>patterns</em> (low utilization despite high need) preceded my theoretical framework. The data spoke first.</p>
+          <p>The <span class="term">Rubin Causal Model<span class="tooltip">Framework where causal effects are defined as the difference between potential outcomes under treatment vs. control. The "fundamental problem" is that we can only observe one outcome per unit.</span></span> formalizes something health communicators often struggle with: we can't observe the counterfactual. What <em>would</em> have happened to message recipients if they hadn't received the intervention?</p>
+        </div>
+
+        <div class="synth-connector"><span>↓</span></div>
+
+        <!-- STEP 3: Research Gap / Idea -->
+        <div class="synth-step phase-gap">
+          <div class="synth-phase">
+            <div class="synth-phase-num">3</div>
+            <span class="synth-phase-label">Research Gap / Emerging Question</span>
+          </div>
+          <h4>Where this connects to health communication</h4>
+          <p>Most health communication studies rely on <span class="term">self-report measures<span class="tooltip">Data collected by asking participants to report their own behaviors, attitudes, or experiences. Subject to recall bias and social desirability bias.</span></span> with limited causal identification. What if we applied the empirics-first methodology to health message evaluation — starting with behavioral data (search patterns, clinic visits, prescription fills) rather than attitudinal surveys?</p>
+          <p><strong>Emerging question:</strong> Can we identify <span class="term">natural experiments<span class="tooltip">Situations where treatment assignment occurs "as if" randomly due to external circumstances (policy changes, geographic boundaries, timing variations), enabling causal inference without a designed experiment.</span></span> in health communication contexts — policy changes, media events, cultural shifts — that allow causal identification of message effects on behavior?</p>
+        </div>
+      </div>
+
+      <!-- VISUAL SCAFFOLDING -->
+      <div class="visual-box">
+        <div class="visual-box-label">Visual Scaffold — Causal Inference Logic</div>
+        <div class="visual-formula">
+          <strong>Causal Effect</strong> = E[Y₁ᵢ] − E[Y₀ᵢ]<br><br>
+          where Y₁ᵢ = outcome if unit i receives treatment<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y₀ᵢ = outcome if unit i does not<br><br>
+          <strong>Problem:</strong> We observe Y₁ᵢ OR Y₀ᵢ, never both.<br>
+          <strong>Solution:</strong> Identify a credible comparison group.
+        </div>
+        <div class="visual-caption">The fundamental problem of causal inference — we can never observe the counterfactual for the same individual.</div>
+      </div>
+
+      <!-- KEY TAKEAWAY -->
+      <div class="takeaway">
+        <p><strong>Week 1 Takeaway:</strong> "Empirics first" isn't anti-theory — it's a commitment to letting data patterns discipline our theorizing. For health communication research, this means starting with observed behavioral gaps (who isn't seeking help, and when?) before constructing explanations.</p>
+      </div>
+    </div>
+
+    <!-- ═══ WEEK 2 (PLACEHOLDER) ═══ -->
+    <div class="week-panel" id="week-2">
+      <div class="week-header">
+        <div class="week-number">Week 2</div>
+        <h2 class="week-title">Coming Soon</h2>
+        <div class="week-date">January 2026</div>
+      </div>
+      <div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center;">
+        <p style="font-size:0.95rem;color:var(--text-soft);font-style:italic;">This week's synthesis is in progress. Check back soon.</p>
+      </div>
+    </div>
+
+    <!-- Weeks 3-6 placeholders -->
+    <div class="week-panel" id="week-3"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center;margin-top:2rem;"><p style="font-size:0.95rem;color:var(--text-soft);font-style:italic;">Week 3 — Coming soon.</p></div></div>
+    <div class="week-panel" id="week-4"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center;margin-top:2rem;"><p style="font-size:0.95rem;color:var(--text-soft);font-style:italic;">Week 4 — Coming soon.</p></div></div>
+    <div class="week-panel" id="week-5"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center;margin-top:2rem;"><p style="font-size:0.95rem;color:var(--text-soft);font-style:italic;">Week 5 — Coming soon.</p></div></div>
+    <div class="week-panel" id="week-6"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center;margin-top:2rem;"><p style="font-size:0.95rem;color:var(--text-soft);font-style:italic;">Week 6 — Coming soon.</p></div></div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="sub-footer">
+    <a href="/">← Back to Portfolio</a>
+    <span>Bella Kang · MKT 397 · Spring 2026</span>
+  </div>
+
+  <script>
+    // Week Tab Navigation
+    const tabs=document.querySelectorAll('.week-tab');
+    const panels=document.querySelectorAll('.week-panel');
+    tabs.forEach(tab=>{
+      tab.addEventListener('click',()=>{
+        const w=tab.dataset.week;
+        tabs.forEach(t=>t.classList.remove('active'));
+        tab.classList.add('active');
+        panels.forEach(p=>p.classList.remove('active'));
+        const target=document.getElementById('week-'+w);
+        if(target)target.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
