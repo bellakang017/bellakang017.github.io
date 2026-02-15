@@ -1,0 +1,324 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HDF 342: Developmental Psychopathology — Bella Kang</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:#FFFFFF;--chalk:#F7F5F0;--piano:#F0EDE5;--linen:#E8E3D9;--stone:#D4CFC4;
+      --text:#1C1C1C;--text-mid:#4A4A4A;--text-soft:#7A7A7A;
+      --accent:#8B2332;--accent-light:#A73344;--accent-wash:rgba(139,35,50,0.06);
+      --rule:#DDD8CE;--sage:#6B7B5E;--sage-wash:rgba(107,123,94,0.07);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--white);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased}
+    ::selection{background:var(--accent);color:var(--white)}
+
+    /* ─── NAV ─── */
+    .sub-nav{position:fixed;top:0;width:100%;padding:1rem 0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--rule)}
+    .sub-nav-inner{max-width:780px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
+    .sub-nav-back{text-decoration:none;color:var(--text-soft);font-size:0.84rem;font-weight:500;display:flex;align-items:center;gap:0.4rem;transition:color 0.25s}
+    .sub-nav-back:hover{color:var(--accent)}
+    .sub-nav-title{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:var(--text)}
+
+    /* ─── HERO ─── */
+    .course-hero{max-width:780px;margin:0 auto;padding:7.5rem 2rem 3rem}
+    .course-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+    .course-badge::before{content:'';width:18px;height:1.5px;background:var(--accent)}
+    .course-hero h1{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:400;line-height:1.25;color:var(--text);margin-bottom:0.8rem;letter-spacing:-0.02em}
+    .course-hero h1 em{font-style:italic;color:var(--accent)}
+    .course-meta{font-size:0.88rem;color:var(--text-mid);margin-bottom:0.3rem}
+    .course-meta-row{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:2rem}
+    .course-meta strong{color:var(--text);font-weight:600}
+
+    .hero-summary{font-size:1.05rem;color:var(--text-mid);line-height:1.8;max-width:640px;padding-top:1.5rem;border-top:1px solid var(--rule)}
+
+    /* ─── SECTIONS ─── */
+    .content{max-width:780px;margin:0 auto;padding:0 2rem}
+    .sec{padding:3.5rem 0;border-top:1px solid var(--rule)}
+    .sec-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--accent);font-weight:600;margin-bottom:0.5rem}
+    .sec-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;color:var(--text);margin-bottom:1.5rem;line-height:1.35}
+    .sec p{font-size:0.95rem;color:var(--text-mid);line-height:1.8;margin-bottom:1rem;max-width:640px}
+    .sec p:last-child{margin-bottom:0}
+
+    /* ─── CONCEPT CARDS ─── */
+    .concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:0.5rem}
+
+    .concept-card{background:var(--white);border:1px solid var(--rule);border-radius:10px;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s}
+    .concept-card:hover{border-color:var(--stone);box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+
+    .concept-header{padding:1.5rem 1.8rem;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;user-select:none}
+    .concept-header:hover{background:var(--chalk)}
+
+    .concept-num{font-family:'Playfair Display',serif;font-size:0.8rem;color:var(--accent);font-weight:600;margin-bottom:0.3rem}
+    .concept-header h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:0.3rem}
+    .concept-brief{font-size:0.82rem;color:var(--text-soft);line-height:1.5}
+
+    .concept-toggle{font-size:1rem;color:var(--text-soft);transition:transform 0.3s;flex-shrink:0;margin-top:0.2rem}
+    .concept-card.open .concept-toggle{transform:rotate(45deg);color:var(--accent)}
+
+    .concept-body{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.25,1,0.5,1)}
+    .concept-card.open .concept-body{max-height:600px}
+
+    .concept-inner{padding:0 1.8rem 1.5rem;border-top:1px solid var(--rule)}
+    .concept-inner p{font-size:0.88rem;color:var(--text-mid);line-height:1.75;margin-top:1rem}
+    .concept-inner strong{color:var(--text);font-weight:600}
+
+    .concept-tag{display:inline-block;font-size:0.65rem;font-weight:600;padding:0.2rem 0.5rem;border-radius:3px;margin-top:0.8rem}
+    .concept-tag-accent{background:var(--accent-wash);color:var(--accent)}
+    .concept-tag-sage{background:var(--sage-wash);color:var(--sage)}
+
+    /* ─── BRIDGE TABLE ─── */
+    .bridge{margin-top:0.5rem}
+    .bridge-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--rule)}
+    .bridge-row:last-child{border-bottom:none}
+    .bridge-head{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-soft);font-weight:600;padding:0.8rem 1rem;background:var(--chalk)}
+    .bridge-cell{font-size:0.88rem;color:var(--text-mid);padding:1rem;line-height:1.6;border-right:1px solid var(--rule)}
+    .bridge-cell:last-child{border-right:none}
+    .bridge-cell strong{color:var(--text);font-weight:600}
+
+    /* ─── APPLICATION ─── */
+    .app-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:0.5rem}
+    .app-card{background:var(--chalk);border-radius:10px;padding:1.6rem 1.8rem}
+    .app-card h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:0.5rem}
+    .app-card p{font-size:0.88rem;color:var(--text-mid);line-height:1.7}
+
+    /* ─── QUOTE ─── */
+    .closing-quote{background:var(--chalk);border-left:3px solid var(--accent);padding:2rem 2.5rem;margin:2.5rem 0 0;border-radius:0 8px 8px 0}
+    .closing-quote p{font-family:'Playfair Display',serif;font-size:1.15rem;font-style:italic;color:var(--text);line-height:1.65;max-width:600px}
+    .closing-quote .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:0.82rem;font-style:normal;color:var(--text-soft);margin-top:0.8rem;font-weight:500}
+
+    /* ─── FOOTER ─── */
+    .sub-footer{max-width:780px;margin:0 auto;padding:2.5rem 2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+    .sub-footer a{font-size:0.85rem;color:var(--text-mid);text-decoration:none;font-weight:500;transition:color 0.2s}
+    .sub-footer a:hover{color:var(--accent)}
+    .sub-footer span{font-size:0.78rem;color:var(--text-soft)}
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:768px){
+      .course-hero{padding:6.5rem 1.5rem 2.5rem}
+      .course-hero h1{font-size:1.9rem}
+      .content{padding:0 1.5rem}
+      .concept-grid,.app-cards{grid-template-columns:1fr}
+      .bridge-row{grid-template-columns:1fr;gap:0}
+      .bridge-cell{border-right:none;border-bottom:1px solid var(--rule);padding:0.8rem 1rem}
+      .sub-footer{flex-direction:column;gap:0.8rem;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="sub-nav">
+    <div class="sub-nav-inner">
+      <a href="/" class="sub-nav-back">← Portfolio</a>
+      <span class="sub-nav-title">HDF 342</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="course-hero">
+    <div class="course-badge">Course Synthesis</div>
+    <h1>Developmental <em>Psychopathology</em></h1>
+    <div class="course-meta-row">
+      <div class="course-meta"><strong>HDF 342</strong> · UT Austin</div>
+      <div class="course-meta"><strong>Fall 2025</strong></div>
+      <div class="course-meta">Human Development & Family Sciences</div>
+    </div>
+    <p class="hero-summary">This course reshaped how I think about health communication. Understanding how development goes awry — through attachment disruption, trauma, and neurodevelopmental difference — gives me the mechanistic foundation to design interventions that meet people where they actually are, not where we assume them to be.</p>
+  </div>
+
+  <!-- COURSE RATIONALE -->
+  <div class="content">
+    <div class="sec fade-up">
+      <div class="sec-label">Course Rationale</div>
+      <h2 class="sec-title">Why a communication researcher studies psychopathology</h2>
+      <p>Effective health messaging requires more than persuasion theory. It demands an understanding of the psychological substrate — the developmental processes, attachment patterns, and neurobiological mechanisms that shape how people receive and respond to information about their own well-being.</p>
+      <p>This course bridges two fields that rarely speak directly to each other: developmental science and communication strategy. The goal isn't to diagnose — it's to understand the conditions under which messages fail, and to design around those conditions with greater precision.</p>
+    </div>
+
+    <!-- CORE CONCEPTS -->
+    <div class="sec fade-up">
+      <div class="sec-label">Core Concepts</div>
+      <h2 class="sec-title">Frameworks that changed my thinking</h2>
+
+      <div class="concept-grid">
+        <!-- Card 1 -->
+        <div class="concept-card">
+          <div class="concept-header" onclick="toggleCard(this)">
+            <div>
+              <div class="concept-num">01</div>
+              <h3>Transactional Development</h3>
+              <div class="concept-brief">Child ↔ environment as reciprocal system</div>
+            </div>
+            <span class="concept-toggle">+</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-inner">
+              <p>Sameroff's transactional model reframes development as a continuous, bidirectional exchange between the individual and their context. A child's behavior shapes caregiver responses, which in turn shape the child's subsequent development.</p>
+              <p><strong>Communication insight:</strong> Health messages don't land in a vacuum. They interact with existing belief systems, relational dynamics, and life history. Effective intervention design must account for this feedback loop.</p>
+              <span class="concept-tag concept-tag-accent">Sameroff, 2009</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="concept-card">
+          <div class="concept-header" onclick="toggleCard(this)">
+            <div>
+              <div class="concept-num">02</div>
+              <h3>Attachment Theory</h3>
+              <div class="concept-brief">Internal working models of trust and help-seeking</div>
+            </div>
+            <span class="concept-toggle">+</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-inner">
+              <p>Bowlby and Ainsworth's attachment framework shows how early relational experiences create internal working models — cognitive-affective templates that shape how people seek help, trust information sources, and respond to vulnerability.</p>
+              <p><strong>Communication insight:</strong> Insecure attachment patterns may predict resistance to health messages that require vulnerability (e.g., mental health screening, therapy referrals). Understanding attachment style helps tailor message framing.</p>
+              <span class="concept-tag concept-tag-accent">Bowlby, 1969</span>
+              <span class="concept-tag concept-tag-sage" style="margin-left:0.3rem">Ainsworth, 1978</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="concept-card">
+          <div class="concept-header" onclick="toggleCard(this)">
+            <div>
+              <div class="concept-num">03</div>
+              <h3>Neurodevelopmental Disorders</h3>
+              <div class="concept-brief">ASD, ADHD, and information processing differences</div>
+            </div>
+            <span class="concept-toggle">+</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-inner">
+              <p>Studying ASD and ADHD as neurodevelopmental variation (not simply deficit) reveals how differences in sensory processing, executive function, and social cognition affect how health information is received and acted upon.</p>
+              <p><strong>Communication insight:</strong> "One-size-fits-all" health messaging systematically excludes neurodivergent populations. Accessible communication design must account for processing differences — not just language barriers.</p>
+              <span class="concept-tag concept-tag-sage">Inclusive Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="concept-card">
+          <div class="concept-header" onclick="toggleCard(this)">
+            <div>
+              <div class="concept-num">04</div>
+              <h3>Resilience & Protective Factors</h3>
+              <div class="concept-brief">What enables thriving despite adversity</div>
+            </div>
+            <span class="concept-toggle">+</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-inner">
+              <p>Masten's "ordinary magic" framework identifies resilience not as an exceptional trait but as the product of fundamental adaptive systems — attachment relationships, self-regulation, agency, and community support.</p>
+              <p><strong>Communication insight:</strong> Interventions framed around deficit ("fix what's broken") consistently underperform those framed around growth and existing strengths. This aligns directly with Yeager's wise intervention principles.</p>
+              <span class="concept-tag concept-tag-accent">Masten, 2001</span>
+              <span class="concept-tag concept-tag-sage" style="margin-left:0.3rem">Yeager & Walton</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THEORETICAL BRIDGE -->
+    <div class="sec fade-up">
+      <div class="sec-label">Theoretical Bridge</div>
+      <h2 class="sec-title">Connecting developmental science to my research</h2>
+
+      <div class="bridge" style="border:1px solid var(--rule);border-radius:10px;overflow:hidden">
+        <div class="bridge-row">
+          <div class="bridge-head">Dev Psych Concept</div>
+          <div class="bridge-head">Communication Bridge</div>
+          <div class="bridge-head">Scholar Connection</div>
+        </div>
+        <div class="bridge-row">
+          <div class="bridge-cell"><strong>Attachment insecurity</strong></div>
+          <div class="bridge-cell">Predicts avoidance of vulnerability-requiring health behaviors</div>
+          <div class="bridge-cell">Falk — self-relevant neural processing predicts message uptake</div>
+        </div>
+        <div class="bridge-row">
+          <div class="bridge-cell"><strong>Trauma & stress reactivity</strong></div>
+          <div class="bridge-cell">Shapes physiological response to health messaging contexts</div>
+          <div class="bridge-cell">Crum — beliefs about stress alter physiological outcomes</div>
+        </div>
+        <div class="bridge-row">
+          <div class="bridge-cell"><strong>Resilience framing</strong></div>
+          <div class="bridge-cell">Growth-oriented messages outperform deficit-oriented ones</div>
+          <div class="bridge-cell">Yeager — wise interventions leverage existing adaptive capacity</div>
+        </div>
+        <div class="bridge-row">
+          <div class="bridge-cell"><strong>Neurodevelopmental variation</strong></div>
+          <div class="bridge-cell">Processing differences require adaptive communication design</div>
+          <div class="bridge-cell">Millán — shared human–machine adaptation, cognitive load</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESEARCH APPLICATION -->
+    <div class="sec fade-up">
+      <div class="sec-label">Research Application</div>
+      <h2 class="sec-title">How this shapes my thesis work</h2>
+
+      <p>My research examines self-silencing and help-seeking among Korean American midlife women. This course gave me the developmental vocabulary to understand <em>why</em> these patterns exist — not just <em>that</em> they exist.</p>
+
+      <div class="app-cards">
+        <div class="app-card">
+          <h4>Self-Silencing as Attachment Strategy</h4>
+          <p>Korean cultural norms around emotional restraint (참다, <em>chamda</em>) may function as learned attachment behavior — suppressing needs to maintain relational harmony. This is not simply "cultural difference" but a developmentally embedded communication pattern.</p>
+        </div>
+        <div class="app-card">
+          <h4>Help-Seeking as Vulnerability Exposure</h4>
+          <p>Seeking professional help requires tolerating vulnerability — a capacity shaped by attachment history. For women whose internal working models discourage trust in external support, the barrier is developmental, not informational.</p>
+        </div>
+        <div class="app-card">
+          <h4>Intervention Design Implications</h4>
+          <p>Messages that acknowledge the relational cost of help-seeking (rather than simply promoting "awareness") may be more effective. The developmental lens suggests meeting people at their attachment style, not at our assumptions about rational decision-making.</p>
+        </div>
+        <div class="app-card">
+          <h4>Health Equity Through Developmental Justice</h4>
+          <p>When we ignore developmental context in health communication, we reproduce inequity. Culturally informed intervention design must integrate both the sociocultural <em>and</em> the developmental — they are not separate systems.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLOSING QUOTE -->
+    <div class="sec fade-up">
+      <div class="closing-quote">
+        <p>The question is not whether development shapes communication — it clearly does. The question is whether we, as communicators, are willing to design with that complexity rather than around it.</p>
+        <div class="quote-attr">— Reflection, Fall 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="sub-footer">
+    <a href="/">← Back to Portfolio</a>
+    <span>Bella Kang · HDF 342 · Fall 2025</span>
+  </div>
+
+  <script>
+    // Expand/collapse
+    function toggleCard(header){
+      const card=header.closest('.concept-card');
+      card.classList.toggle('open');
+    }
+
+    // Fade observer
+    const observer=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add('visible')})},{threshold:0.1});
+    document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
