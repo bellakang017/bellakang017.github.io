@@ -7,863 +7,144 @@
   <title>Bella Kang — Research & Design Portfolio</title>
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --white: #FFFFFF;
-      --chalk: #F7F5F0;
-      --piano: #F0EDE5;
-      --linen: #E8E3D9;
-      --stone: #D4CFC4;
-      --text: #1C1C1C;
-      --text-mid: #4A4A4A;
-      --text-soft: #7A7A7A;
-      --accent: #8B2332;
-      --accent-light: #A73344;
-      --accent-wash: rgba(139, 35, 50, 0.06);
-      --rule: #DDD8CE;
-      --sage: #6B7B5E;
-      --sage-wash: rgba(107, 123, 94, 0.07);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Source Sans 3', -apple-system, sans-serif;
-      background: var(--white);
-      color: var(--text);
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    ::selection {
-      background: var(--accent);
-      color: var(--white);
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1.2rem 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .nav-inner {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-soft);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      transition: color 0.25s;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .hero {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 10rem 2rem 5rem;
-    }
-
-    .hero-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .hero-label::before {
-      content: '';
-      width: 24px;
-      height: 1.5px;
-      background: var(--accent);
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.4rem;
-      font-weight: 400;
-      line-height: 1.2;
-      color: var(--text);
-      margin-bottom: 2rem;
-      letter-spacing: -0.02em;
-      max-width: 700px;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero-intro {
-      font-size: 1.15rem;
-      font-weight: 300;
-      color: var(--text-mid);
-      max-width: 580px;
-      line-height: 1.85;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-pills {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      font-size: 0.78rem;
-      font-weight: 500;
-      padding: 0.45rem 1.1rem;
-      border: 1px solid var(--rule);
-      border-radius: 100px;
-      color: var(--text-mid);
-      background: var(--chalk);
-    }
-
-    .pill-accent {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-wash);
-    }
-
-    .divider {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .divider hr {
-      border: none;
-      height: 1px;
-      background: var(--rule);
-    }
-
-    .section {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-    }
-
-    .section-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 400;
-      color: var(--text);
-      letter-spacing: -0.015em;
-      line-height: 1.3;
-    }
-
-    .section-header {
-      margin-bottom: 3rem;
-    }
-
-    .question-block {
-      background: var(--chalk);
-      border-left: 3px solid var(--accent);
-      padding: 2.5rem 3rem;
-      margin: 3rem 0;
-      border-radius: 0 8px 8px 0;
-    }
-
-    .question-block p {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      font-weight: 400;
-      line-height: 1.6;
-      color: var(--text);
-      font-style: italic;
-    }
-
-    .question-block p strong {
-      font-style: normal;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      padding: 2rem 2.2rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      border-color: var(--stone);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-    }
-
-    .card-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.85rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-
-    .card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.6rem;
-    }
-
-    .card p {
-      font-size: 0.92rem;
-      color: var(--text-mid);
-      line-height: 1.75;
-    }
-
-    .exp-item {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 2.5rem;
-      padding: 2.2rem 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .exp-item:last-child {
-      border-bottom: none;
-    }
-
-    .exp-date {
-      font-size: 0.82rem;
-      color: var(--text-soft);
-      padding-top: 0.25rem;
-      line-height: 1.5;
-    }
-
-    .exp-role {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-    }
-
-    .exp-org {
-      font-size: 0.9rem;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 0.8rem;
-    }
-
-    .exp-desc {
-      font-size: 0.92rem;
-      color: var(--text-mid);
-      line-height: 1.75;
-    }
-
-    .exp-tags {
-      display: flex;
-      gap: 0.4rem;
-      margin-top: 0.8rem;
-      flex-wrap: wrap;
-    }
-
-    .tag {
-      font-size: 0.72rem;
-      padding: 0.3rem 0.7rem;
-      background: var(--accent-wash);
-      color: var(--accent);
-      border-radius: 4px;
-      font-weight: 500;
-    }
-
-    .interest-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .interest-item {
-      background: var(--chalk);
-      border-radius: 8px;
-      padding: 2rem 2.2rem;
-    }
-
-    .interest-item h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
-    .interest-item p {
-      font-size: 0.92rem;
-      color: var(--text-mid);
-      line-height: 1.75;
-    }
-
-    /* ═══════════════════════════════════════════
-       EDUCATION — Redesigned Section
-       ═══════════════════════════════════════════ */
-
-    .edu-nav {
-      display: flex;
-      gap: 0;
-      margin-bottom: 3rem;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .edu-nav-item {
-      padding: 0.8rem 1.6rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-soft);
-      cursor: pointer;
-      position: relative;
-      transition: color 0.25s ease;
-      user-select: none;
-      letter-spacing: 0.02em;
-    }
-
-    .edu-nav-item:hover { color: var(--text); }
-
-    .edu-nav-item.active {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .edu-nav-item::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .edu-nav-item.active::after { transform: scaleX(1); }
-
-    .edu-panel {
-      display: none;
-      animation: panelFade 0.4s ease;
-    }
-
-    .edu-panel.active { display: block; }
-
-    @keyframes panelFade {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .degree-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .degree-card {
-      position: relative;
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      padding: 2.2rem 2.4rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .degree-card:hover {
-      border-color: var(--stone);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-    }
-
-    .degree-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 24px;
-      right: 24px;
-      height: 2px;
-      border-radius: 0 0 2px 2px;
-    }
-
-    .degree-card-ma::before { background: var(--accent); }
-    .degree-card-bs::before { background: var(--sage); }
-
-    .degree-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-
-    .degree-badge {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 0.3rem 0.65rem;
-      border-radius: 4px;
-    }
-
-    .badge-ma { background: var(--accent); color: var(--white); }
-
-    .badge-bs {
-      background: var(--sage-wash);
-      color: var(--sage);
-      border: 1px solid rgba(107, 123, 94, 0.12);
-    }
-
-    .degree-status {
-      font-size: 0.68rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .degree-status-active { color: var(--sage); }
-    .degree-status-done { color: var(--text-soft); }
-
-    .status-indicator {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-    }
-
-    .status-indicator-active {
-      background: var(--sage);
-      box-shadow: 0 0 0 3px rgba(107, 123, 94, 0.15);
-    }
-
-    .status-indicator-done { background: var(--stone); }
-
-    .degree-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.25rem;
-      line-height: 1.35;
-    }
-
-    .degree-school {
-      font-size: 0.85rem;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 0.15rem;
-    }
-
-    .degree-date {
-      font-size: 0.78rem;
-      color: var(--text-soft);
-      margin-bottom: 1rem;
-    }
-
-    .degree-desc {
-      font-size: 0.88rem;
-      color: var(--text-mid);
-      line-height: 1.75;
-    }
-
-    .cw-intro {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--text-mid);
-      margin-bottom: 2.5rem;
-      max-width: 600px;
-      line-height: 1.7;
-    }
-
-    .cw-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .cw-card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      padding: 2rem 2.2rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .cw-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 6px 28px rgba(139, 35, 50, 0.06);
-      transform: translateY(-2px);
-    }
-
-    .cw-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 0;
-      background: linear-gradient(180deg, transparent, #FFFCF8);
-      transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .cw-card:hover::after { height: 45%; }
-    .cw-card > * { position: relative; z-index: 1; }
-
-    .cw-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
-
-    .cw-code {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .cw-semester {
-      font-size: 0.72rem;
-      color: var(--text-soft);
-    }
-
-    .cw-card h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-      line-height: 1.35;
-    }
-
-    .cw-desc {
-      font-size: 0.85rem;
-      color: var(--text-mid);
-      line-height: 1.7;
-      margin-bottom: 1.2rem;
-    }
-
-    .cw-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .cw-tags {
-      display: flex;
-      gap: 0.35rem;
-      flex-wrap: wrap;
-    }
-
-    .cw-tag {
-      font-size: 0.68rem;
-      font-weight: 500;
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-    }
-
-    .cw-tag-accent { background: var(--accent-wash); color: var(--accent); }
-    .cw-tag-sage { background: var(--sage-wash); color: var(--sage); }
-
-    .cw-arrow {
-      font-size: 0.78rem;
-      color: var(--accent);
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      white-space: nowrap;
-      transition: gap 0.25s ease;
-    }
-
-    .cw-card:hover .cw-arrow { gap: 0.6rem; }
-
-    /* ═══ End Education ═══ */
-
-    footer {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      font-size: 0.88rem;
-      color: var(--text-mid);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.25s;
-    }
-
-    .footer-links a:hover {
-      color: var(--accent);
-    }
-
-    .footer-copy {
-      font-size: 0.78rem;
-      color: var(--text-soft);
-    }
-
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Email Modal */
-    .email-modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(4px);
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .email-modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .email-modal-card {
-      background: var(--white);
-      padding: 2.5rem 3rem;
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--rule);
-      text-align: center;
-      transform: translateY(10px) scale(0.98);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      max-width: 90%;
-      width: 420px;
-    }
-
-    .email-modal-overlay.active .email-modal-card {
-      transform: translateY(0) scale(1);
-    }
-
-    .email-icon {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .email-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
-    .email-address {
-      font-size: 1.1rem;
-      color: var(--text-mid);
-      background: var(--chalk);
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1.8rem 0 0.8rem;
-      font-family: 'Source Sans 3', sans-serif;
-      font-weight: 500;
-      border: 1px dashed var(--stone);
-      cursor: pointer;
-      transition: all 0.2s;
-      position: relative;
-    }
-
-    .email-address:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-wash);
-    }
-
-    .email-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: var(--text-soft);
-      padding: 0.5rem;
-      line-height: 1;
-    }
-
-    .email-close:hover {
-      color: var(--accent);
-    }
-
-    .copy-hint {
-      font-size: 0.8rem;
-      color: var(--text-soft);
-      margin-bottom: 0.5rem;
-      opacity: 0.8;
-      transition: color 0.2s;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        padding: 7rem 1.5rem 3rem;
-      }
-
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-
-      .hero-intro {
-        font-size: 1.05rem;
-      }
-
-      .section {
-        padding: 3rem 1.5rem;
-      }
-
-      .section-title {
-        font-size: 1.7rem;
-      }
-
-      .card-grid,
-      .interest-row {
-        grid-template-columns: 1fr;
-      }
-
-      .exp-item {
-        grid-template-columns: 1fr;
-        gap: 0.3rem;
-      }
-
-      .question-block {
-        padding: 1.8rem 2rem;
-      }
-
-      .question-block p {
-        font-size: 1.15rem;
-      }
-
-      .degree-grid,
-      .cw-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .degree-card { padding: 1.8rem 1.6rem; }
-      .cw-card { padding: 1.6rem 1.5rem; }
-
-      .edu-nav {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .edu-nav-item {
-        padding: 0.7rem 1.2rem;
-        font-size: 0.8rem;
-        white-space: nowrap;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-        padding: 2rem 1.5rem;
-      }
-
-      .email-modal-card {
-        width: 90%;
-        padding: 2rem 1.5rem;
-      }
+      --white:#FFFFFF;--chalk:#F7F5F0;--piano:#F0EDE5;--linen:#E8E3D9;--stone:#D4CFC4;
+      --text:#1C1C1C;--text-mid:#4A4A4A;--text-soft:#7A7A7A;
+      --accent:#8B2332;--accent-light:#A73344;--accent-wash:rgba(139,35,50,0.06);
+      --rule:#DDD8CE;--sage:#6B7B5E;--sage-wash:rgba(107,123,94,0.07);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--white);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased}
+    ::selection{background:var(--accent);color:var(--white)}
+
+    nav{position:fixed;top:0;width:100%;padding:1.2rem 0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--rule)}
+    .nav-inner{max-width:980px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
+    .nav-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--text);text-decoration:none}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--text-soft);font-size:0.85rem;font-weight:500;letter-spacing:0.04em;transition:color 0.25s}
+    .nav-links a:hover{color:var(--accent)}
+
+    .hero{max-width:980px;margin:0 auto;padding:9rem 2rem 4rem}
+    .hero-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.6rem}
+    .hero-label::before{content:'';width:24px;height:1.5px;background:var(--accent)}
+    .hero h1{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:400;line-height:1.2;color:var(--text);margin-bottom:1.5rem;letter-spacing:-0.02em;max-width:700px}
+    .hero h1 em{font-style:italic;color:var(--accent)}
+    .hero-intro{font-size:1.1rem;font-weight:300;color:var(--text-mid);max-width:560px;line-height:1.8;margin-bottom:2rem}
+    .hero-pills{display:flex;gap:0.5rem;flex-wrap:wrap}
+    .pill{font-size:0.75rem;font-weight:500;padding:0.4rem 1rem;border:1px solid var(--rule);border-radius:100px;color:var(--text-mid);background:var(--chalk)}
+    .pill-accent{border-color:var(--accent);color:var(--accent);background:var(--accent-wash)}
+
+    .divider{max-width:980px;margin:0 auto;padding:0 2rem}
+    .divider hr{border:none;height:1px;background:var(--rule)}
+    .section{max-width:980px;margin:0 auto;padding:4rem 2rem}
+    .section-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:0.5rem}
+    .section-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:var(--text);letter-spacing:-0.015em;line-height:1.3}
+    .section-header{margin-bottom:2.5rem}
+
+    .question-block{background:var(--chalk);border-left:3px solid var(--accent);padding:2rem 2.5rem;margin:2.5rem 0;border-radius:0 8px 8px 0}
+    .question-block p{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:400;line-height:1.6;color:var(--text);font-style:italic}
+    .question-block p strong{font-style:normal;color:var(--accent);font-weight:600}
+
+    .card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .card{background:var(--white);border:1px solid var(--rule);border-radius:8px;padding:1.8rem 2rem;transition:border-color 0.3s,box-shadow 0.3s}
+    .card:hover{border-color:var(--stone);box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+    .card-number{font-family:'Playfair Display',serif;font-size:0.85rem;color:var(--accent);font-weight:600;margin-bottom:0.6rem}
+    .card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.5rem}
+    .card p{font-size:0.9rem;color:var(--text-mid);line-height:1.7}
+
+    .exp-item{display:grid;grid-template-columns:130px 1fr;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--rule)}
+    .exp-item:last-child{border-bottom:none}
+    .exp-date{font-size:0.8rem;color:var(--text-soft);padding-top:0.25rem;line-height:1.5}
+    .exp-role{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--text);margin-bottom:0.2rem}
+    .exp-org{font-size:0.88rem;color:var(--accent);font-weight:500;margin-bottom:0.6rem}
+    .exp-desc{font-size:0.9rem;color:var(--text-mid);line-height:1.7}
+    .exp-tags{display:flex;gap:0.4rem;margin-top:0.7rem;flex-wrap:wrap}
+    .tag{font-size:0.7rem;padding:0.25rem 0.65rem;background:var(--accent-wash);color:var(--accent);border-radius:4px;font-weight:500}
+
+    /* ─── EDUCATION ─── */
+    .degree-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:3rem}
+    .deg{position:relative;background:var(--white);border:1px solid var(--rule);border-radius:10px;padding:1.8rem 2rem;transition:border-color 0.3s,box-shadow 0.3s}
+    .deg:hover{border-color:var(--stone);box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+    .deg::before{content:'';position:absolute;top:0;left:20px;right:20px;height:2px;border-radius:0 0 2px 2px}
+    .deg-ma::before{background:var(--accent)}.deg-bs::before{background:var(--sage)}
+    .deg-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8rem}
+    .deg-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.08em;padding:0.25rem 0.55rem;border-radius:4px}
+    .deg-badge-ma{background:var(--accent);color:var(--white)}
+    .deg-badge-bs{background:var(--sage-wash);color:var(--sage);border:1px solid rgba(107,123,94,0.12)}
+    .deg-status{font-size:0.65rem;font-weight:500;display:flex;align-items:center;gap:0.3rem}
+    .deg-status-on{color:var(--sage)}.deg-status-off{color:var(--text-soft)}
+    .deg-dot{width:5px;height:5px;border-radius:50%}
+    .deg-dot-on{background:var(--sage);box-shadow:0 0 0 3px rgba(107,123,94,0.15)}.deg-dot-off{background:var(--stone)}
+    .deg h3{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:600;color:var(--text);margin-bottom:0.2rem;line-height:1.3}
+    .deg-school{font-size:0.82rem;color:var(--accent);font-weight:500;margin-bottom:0.1rem}
+    .deg-date{font-size:0.75rem;color:var(--text-soft);margin-bottom:0.7rem}
+    .deg-desc{font-size:0.85rem;color:var(--text-mid);line-height:1.7}
+
+    .cw-divider{display:flex;align-items:center;gap:1rem;margin-bottom:0.6rem}
+    .cw-divider-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--text-soft);font-weight:600;white-space:nowrap}
+    .cw-divider-line{flex:1;height:1px;background:var(--rule)}
+    .cw-subtitle{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:400;font-style:italic;color:var(--text-mid);margin-bottom:1.5rem;line-height:1.6}
+
+    .cw-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .cw-card{display:block;text-decoration:none;color:inherit;background:var(--white);border:1px solid var(--rule);border-radius:10px;padding:1.6rem 1.8rem;position:relative;overflow:hidden;transition:all 0.3s cubic-bezier(0.25,1,0.5,1)}
+    .cw-card:hover{border-color:var(--accent);box-shadow:0 6px 24px rgba(139,35,50,0.06);transform:translateY(-2px)}
+    .cw-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:0;background:linear-gradient(180deg,transparent,#FFFCF8);transition:height 0.4s cubic-bezier(0.25,1,0.5,1);pointer-events:none;z-index:0}
+    .cw-card:hover::after{height:45%}
+    .cw-card>*{position:relative;z-index:1}
+    .cw-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.6rem}
+    .cw-code{font-size:0.66rem;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:var(--accent)}
+    .cw-sem{font-size:0.7rem;color:var(--text-soft)}
+    .cw-card h4{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:0.4rem;line-height:1.3}
+    .cw-desc{font-size:0.83rem;color:var(--text-mid);line-height:1.65;margin-bottom:1rem}
+    .cw-foot{display:flex;align-items:center;justify-content:space-between}
+    .cw-tags{display:flex;gap:0.3rem;flex-wrap:wrap}
+    .cw-tag{font-size:0.65rem;font-weight:500;padding:0.22rem 0.55rem;border-radius:4px}
+    .cw-tag-a{background:var(--accent-wash);color:var(--accent)}.cw-tag-s{background:var(--sage-wash);color:var(--sage)}
+    .cw-arrow{font-size:0.75rem;color:var(--accent);font-weight:500;display:flex;align-items:center;gap:0.3rem;white-space:nowrap;transition:gap 0.25s}
+    .cw-card:hover .cw-arrow{gap:0.55rem}
+
+    .interest-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .interest-item{background:var(--chalk);border-radius:8px;padding:1.8rem 2rem}
+    .interest-item h3{font-family:'Playfair Display',serif;font-size:1.02rem;font-weight:600;color:var(--text);margin-bottom:0.4rem}
+    .interest-item p{font-size:0.9rem;color:var(--text-mid);line-height:1.7}
+
+    footer{max-width:980px;margin:0 auto;padding:2.5rem 2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:0.88rem;color:var(--text-mid);text-decoration:none;font-weight:500;transition:color 0.25s}
+    .footer-links a:hover{color:var(--accent)}
+    .footer-copy{font-size:0.78rem;color:var(--text-soft)}
+
+    .fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+
+    .email-modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.85);backdrop-filter:blur(4px);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
+    .email-modal-overlay.active{opacity:1;pointer-events:auto}
+    .email-modal-card{background:var(--white);padding:2.5rem 3rem;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.05);border:1px solid var(--rule);text-align:center;transform:translateY(10px) scale(0.98);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);position:relative;max-width:90%;width:420px}
+    .email-modal-overlay.active .email-modal-card{transform:translateY(0) scale(1)}
+    .email-icon{font-size:2.2rem;margin-bottom:1rem;display:block}
+    .email-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--text);margin-bottom:0.5rem}
+    .email-address{font-size:1.1rem;color:var(--text-mid);background:var(--chalk);padding:1rem;border-radius:8px;margin:1.8rem 0 0.8rem;font-family:'Source Sans 3',sans-serif;font-weight:500;border:1px dashed var(--stone);cursor:pointer;transition:all 0.2s}
+    .email-address:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-wash)}
+    .email-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--text-soft);padding:0.5rem;line-height:1}
+    .email-close:hover{color:var(--accent)}
+    .copy-hint{font-size:0.8rem;color:var(--text-soft);margin-bottom:0.5rem;opacity:0.8}
+
+    @media(max-width:768px){
+      .hero{padding:7rem 1.5rem 3rem}.hero h1{font-size:2.1rem}
+      .section{padding:3rem 1.5rem}.section-title{font-size:1.6rem}
+      .card-grid,.interest-row,.degree-row,.cw-row{grid-template-columns:1fr}
+      .exp-item{grid-template-columns:1fr;gap:0.3rem}
+      .question-block{padding:1.5rem 1.8rem}.question-block p{font-size:1.1rem}
+      footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+      .email-modal-card{width:90%;padding:2rem 1.5rem}
     }
   </style>
 </head>
 
 <body>
-
   <nav>
     <div class="nav-inner">
       <a href="#" class="nav-name">Bella Kang</a>
@@ -879,11 +160,7 @@
   <div class="hero">
     <div class="hero-label">Research &amp; Design Portfolio</div>
     <h1>I study why health messages <em>reach</em> some people and miss others.</h1>
-    <p class="hero-intro">
-      And what culturally embedded beliefs have to do with that gap.
-      My work sits at the intersection of health communication, behavioral science,
-      and intervention design — translating research into messages that actually move people.
-    </p>
+    <p class="hero-intro">And what culturally embedded beliefs have to do with that gap. My work sits at the intersection of health communication, behavioral science, and intervention design — translating research into messages that actually move people.</p>
     <div class="hero-pills">
       <span class="pill pill-accent">Health Communication</span>
       <span class="pill">Behavior Change</span>
@@ -893,75 +170,39 @@
     </div>
   </div>
 
-  <div class="divider">
-    <hr>
-  </div>
+  <div class="divider"><hr></div>
 
   <div class="section" id="about">
     <div class="section-header">
       <div class="section-label">About</div>
       <h2 class="section-title">How I think about health &amp; communication</h2>
     </div>
-
     <div class="card-grid fade-up">
-      <div class="card">
-        <div class="card-number">01</div>
-        <h3>Research Focus</h3>
-        <p>Communication patterns — especially self-silencing and help-seeking — among Korean American midlife women.
-          How culturally specific styles interact with stress, coping, and access to care.</p>
-      </div>
-      <div class="card">
-        <div class="card-number">02</div>
-        <h3>Methods</h3>
-        <p>Mixed methods (qualitative + quantitative) to bridge lived experience and measurable outcomes. Full-cycle:
-          field observation → theory → experimentation → back to the field.</p>
-      </div>
-      <div class="card">
-        <div class="card-number">03</div>
-        <h3>Intervention Philosophy</h3>
-        <p>Grounded in psychologically wise interventions — small shifts in how people interpret their circumstances can
-          redirect self-defeating patterns into self-enhancing ones.</p>
-      </div>
-      <div class="card">
-        <div class="card-number">04</div>
-        <h3>What's Next</h3>
-        <p>Preparing for a PhD program (Fall 2027) in health communication, developmental science, or educational
-          psychology. Moving from evidence to implementation.</p>
-      </div>
+      <div class="card"><div class="card-number">01</div><h3>Research Focus</h3><p>Communication patterns — especially self-silencing and help-seeking — among Korean American midlife women. How culturally specific styles interact with stress, coping, and access to care.</p></div>
+      <div class="card"><div class="card-number">02</div><h3>Methods</h3><p>Mixed methods (qualitative + quantitative) to bridge lived experience and measurable outcomes. Full-cycle: field observation → theory → experimentation → back to the field.</p></div>
+      <div class="card"><div class="card-number">03</div><h3>Intervention Philosophy</h3><p>Grounded in psychologically wise interventions — small shifts in how people interpret their circumstances can redirect self-defeating patterns into self-enhancing ones.</p></div>
+      <div class="card"><div class="card-number">04</div><h3>What's Next</h3><p>Preparing for a PhD program (Fall 2027) in health communication, developmental science, or educational psychology. Moving from evidence to implementation.</p></div>
     </div>
-
     <div class="question-block fade-up">
-      <p>How do we design messages that work <strong>with</strong> — not against — the cognitive and cultural contexts
-        people actually inhabit?</p>
+      <p>How do we design messages that work <strong>with</strong> — not against — the cognitive and cultural contexts people actually inhabit?</p>
     </div>
   </div>
 
-  <div class="divider">
-    <hr>
-  </div>
+  <div class="divider"><hr></div>
 
   <div class="section" id="experience">
     <div class="section-header">
       <div class="section-label">Experience</div>
       <h2 class="section-title">Where I've worked</h2>
     </div>
-
     <div class="fade-up">
       <div class="exp-item">
         <div class="exp-date">Dec 2025 –<br>Present</div>
         <div>
-          <a href="https://bellakang017.github.io/bk17/workshop/2025/12/15/gigc-life-design-workshop.html"
-            class="exp-role" style="text-decoration:none; display:block;">Global Impact Graduate Consultant <span
-              style="font-size:0.75rem; color:var(--accent); font-family:'Source Sans 3',sans-serif; font-weight:500;">↗</span></a>
+          <a href="https://bellakang017.github.io/bk17/workshop/2025/12/15/gigc-life-design-workshop.html" class="exp-role" style="text-decoration:none;display:block;">Global Impact Graduate Consultant <span style="font-size:0.75rem;color:var(--accent);font-family:'Source Sans 3',sans-serif;font-weight:500;">↗</span></a>
           <div class="exp-org">UT Austin · Office of Career &amp; Life Design</div>
-          <p class="exp-desc">Operationalized Stanford's Life Design framework into a 12-week cohort model. Designed
-            evidence-based onboarding for international students. Built a career readiness ecosystem — weekly newsletter
-            (300+ subscribers), interview guides, visa navigation tools, and cohort accountability structures.</p>
-          <div class="exp-tags">
-            <span class="tag">Workshop Design</span>
-            <span class="tag">Behavioral Intervention</span>
-            <span class="tag">Curriculum Development</span>
-          </div>
+          <p class="exp-desc">Operationalized Stanford's Life Design framework into a 12-week cohort model. Designed evidence-based onboarding for international students. Built a career readiness ecosystem — weekly newsletter (300+ subscribers), interview guides, visa navigation tools, and cohort accountability structures.</p>
+          <div class="exp-tags"><span class="tag">Workshop Design</span><span class="tag">Behavioral Intervention</span><span class="tag">Curriculum Development</span></div>
         </div>
       </div>
       <div class="exp-item">
@@ -969,253 +210,104 @@
         <div>
           <div class="exp-role">Global Marketing Intern</div>
           <div class="exp-org">Dasique · Seoul, South Korea</div>
-          <p class="exp-desc">Localized product pages for Olive Young Global, contributing to a 20% increase in
-            international engagement. Conducted competitor and influencer research supporting North America go-to-market
-            planning. Streamlined inventory tracking for 100+ SKUs through data-driven analysis.</p>
-          <div class="exp-tags">
-            <span class="tag">Global Marketing</span>
-            <span class="tag">Market Research</span>
-            <span class="tag">Localization</span>
-          </div>
+          <p class="exp-desc">Localized product pages for Olive Young Global, contributing to a 20% increase in international engagement. Conducted competitor and influencer research supporting North America go-to-market planning. Streamlined inventory tracking for 100+ SKUs through data-driven analysis.</p>
+          <div class="exp-tags"><span class="tag">Global Marketing</span><span class="tag">Market Research</span><span class="tag">Localization</span></div>
         </div>
       </div>
-
       <div class="exp-item">
         <div class="exp-date">Dec 2023 –<br>May 2025</div>
         <div>
           <div class="exp-role">Research Assistant</div>
           <div class="exp-org">UT Austin School of Nursing</div>
-          <p class="exp-desc">Supported studies on AI-based pain management, lifestyle interventions, and depressive
-            symptom reduction in Asian American women, including cancer survivors and Alzheimer's caregivers. Managed
-            recruitment, data collection, and outreach coordination across multiple research teams.</p>
-          <div class="exp-tags">
-            <span class="tag">Health Research</span>
-            <span class="tag">Data Collection</span>
-            <span class="tag">Participant Recruitment</span>
-          </div>
+          <p class="exp-desc">Supported studies on AI-based pain management, lifestyle interventions, and depressive symptom reduction in Asian American women, including cancer survivors and Alzheimer's caregivers. Managed recruitment, data collection, and outreach coordination across multiple research teams.</p>
+          <div class="exp-tags"><span class="tag">Health Research</span><span class="tag">Data Collection</span><span class="tag">Participant Recruitment</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="divider">
-    <hr>
-  </div>
+  <div class="divider"><hr></div>
 
-  <!-- ═══════════════════════════════════════════
-       EDUCATION — Redesigned
-       ═══════════════════════════════════════════ -->
   <div class="section" id="education">
     <div class="section-header">
       <div class="section-label">Education</div>
       <h2 class="section-title">Where I've studied</h2>
     </div>
 
-    <nav class="edu-nav">
-      <div class="edu-nav-item active" data-tab="degrees">Degrees</div>
-      <div class="edu-nav-item" data-tab="coursework">Coursework</div>
-    </nav>
-
-    <!-- Degrees Panel -->
-    <div class="edu-panel active" id="panel-degrees">
-      <div class="degree-grid fade-up">
-        <div class="degree-card degree-card-ma">
-          <div class="degree-top">
-            <span class="degree-badge badge-ma">MA</span>
-            <span class="degree-status degree-status-active">
-              <span class="status-indicator status-indicator-active"></span>
-              In Progress
-            </span>
-          </div>
-          <h3>Advertising (Thesis Track)</h3>
-          <div class="degree-school">Moody College of Communication · UT Austin</div>
-          <div class="degree-date">Aug 2025 – May 2027</div>
-          <p class="degree-desc">Health communication, behavioral science, intervention design. PhD-level coursework in marketing research, persuasion theory, and educational psychology.</p>
-        </div>
-
-        <div class="degree-card degree-card-bs">
-          <div class="degree-top">
-            <span class="degree-badge badge-bs">BS</span>
-            <span class="degree-status degree-status-done">
-              <span class="status-indicator status-indicator-done"></span>
-              Completed
-            </span>
-          </div>
-          <h3>Advertising</h3>
-          <div class="degree-school">UT Austin · GPA 3.88 / 4.0</div>
-          <div class="degree-date">Graduated</div>
-          <p class="degree-desc">Moody College Dean's List Honors (FA22, SP23, FA23, SP24, FA25). Texas Immersive Institution, Texas Undergraduate Sales Organization.</p>
-        </div>
+    <div class="degree-row fade-up">
+      <div class="deg deg-ma">
+        <div class="deg-head"><span class="deg-badge deg-badge-ma">MA</span><span class="deg-status deg-status-on"><span class="deg-dot deg-dot-on"></span> In Progress</span></div>
+        <h3>Advertising (Thesis Track)</h3>
+        <div class="deg-school">Moody College of Communication · UT Austin</div>
+        <div class="deg-date">Aug 2025 – May 2027</div>
+        <p class="deg-desc">Health communication, behavioral science, intervention design. PhD-level coursework in marketing research, persuasion theory, and educational psychology.</p>
+      </div>
+      <div class="deg deg-bs">
+        <div class="deg-head"><span class="deg-badge deg-badge-bs">BS</span><span class="deg-status deg-status-off"><span class="deg-dot deg-dot-off"></span> Completed</span></div>
+        <h3>Advertising</h3>
+        <div class="deg-school">UT Austin · GPA 3.88 / 4.0</div>
+        <div class="deg-date">Graduated</div>
+        <p class="deg-desc">Moody College Dean's List Honors (FA22, SP23, FA23, SP24, FA25). Texas Immersive Institution, Texas Undergraduate Sales Organization.</p>
       </div>
     </div>
 
-    <!-- Coursework Panel -->
-    <div class="edu-panel" id="panel-coursework">
-      <p class="cw-intro">Each course deepens how I think about health, communication, and change.</p>
+    <div class="cw-divider"><span class="cw-divider-label">Coursework</span><div class="cw-divider-line"></div></div>
+    <p class="cw-subtitle">Each course deepens how I think about health, communication, and change.</p>
 
-      <div class="cw-grid fade-up">
-        <a href="/adv382j-guide/" class="cw-card">
-          <div class="cw-card-top">
-            <span class="cw-code">ADV 382J</span>
-            <span class="cw-semester">Spring 2026</span>
-          </div>
-          <h4>Persuasion Theory</h4>
-          <p class="cw-desc">Attitudes, behavior change, ELM, TPB, attitude functions, and Morrison et al. Interactive study guide with progress tracking and search.</p>
-          <div class="cw-bottom">
-            <div class="cw-tags">
-              <span class="cw-tag cw-tag-accent">Exam 1</span>
-              <span class="cw-tag cw-tag-sage">Advertising</span>
-            </div>
-            <span class="cw-arrow">Open Guide →</span>
-          </div>
-        </a>
-
-        <a href="/hdf342/" class="cw-card">
-          <div class="cw-card-top">
-            <span class="cw-code">HDF 342</span>
-            <span class="cw-semester">Fall 2025</span>
-          </div>
-          <h4>Developmental Psychopathology</h4>
-          <p class="cw-desc">Attachment theory, transactional development, resilience, and neurodevelopmental disorders — the psychological substrate for health intervention design.</p>
-          <div class="cw-bottom">
-            <div class="cw-tags">
-              <span class="cw-tag cw-tag-accent">Health Equity</span>
-              <span class="cw-tag cw-tag-sage">HDF</span>
-            </div>
-            <span class="cw-arrow">View Page →</span>
-          </div>
-        </a>
-      </div>
+    <div class="cw-row fade-up">
+      <a href="/adv382j-guide/" class="cw-card">
+        <div class="cw-top"><span class="cw-code">ADV 382J</span><span class="cw-sem">Spring 2026</span></div>
+        <h4>Persuasion Theory</h4>
+        <p class="cw-desc">Attitudes, behavior change, ELM, TPB, attitude functions, and Morrison et al. Interactive study guide with progress tracking and search.</p>
+        <div class="cw-foot"><div class="cw-tags"><span class="cw-tag cw-tag-a">Exam 1</span><span class="cw-tag cw-tag-s">Advertising</span></div><span class="cw-arrow">Open Guide →</span></div>
+      </a>
+      <a href="/hdf342/" class="cw-card">
+        <div class="cw-top"><span class="cw-code">HDF 342</span><span class="cw-sem">Fall 2025</span></div>
+        <h4>Developmental Psychopathology</h4>
+        <p class="cw-desc">Attachment theory, transactional development, resilience, and neurodevelopmental disorders — the psychological substrate for health intervention design.</p>
+        <div class="cw-foot"><div class="cw-tags"><span class="cw-tag cw-tag-a">Health Equity</span><span class="cw-tag cw-tag-s">HDF</span></div><span class="cw-arrow">View Page →</span></div>
+      </a>
     </div>
   </div>
 
-  <div class="divider">
-    <hr>
-  </div>
+  <div class="divider"><hr></div>
 
   <div class="section" id="interests">
     <div class="section-header">
       <div class="section-label">Beyond Research</div>
       <h2 class="section-title">Other things I care about</h2>
     </div>
-
     <div class="interest-row fade-up">
-      <div class="interest-item">
-        <h3>Saturday Reading Group</h3>
-        <p>I lead a weekly reading group exploring the mind–body connection. Currently reading <em>Core Awareness</em>
-          by Liz Koch — investigating how embodied practice informs the science of behavior change.</p>
-      </div>
-      <div class="interest-item">
-        <h3>Certified Pilates Instructor</h3>
-        <p>An ongoing exploration of how embodied practice shapes our understanding of cognition, stress, and
-          well-being. The body isn't separate from the research — it's part of it.</p>
-      </div>
+      <div class="interest-item"><h3>Saturday Reading Group</h3><p>I lead a weekly reading group exploring the mind–body connection. Currently reading <em>Core Awareness</em> by Liz Koch — investigating how embodied practice informs the science of behavior change.</p></div>
+      <div class="interest-item"><h3>Certified Pilates Instructor</h3><p>An ongoing exploration of how embodied practice shapes our understanding of cognition, stress, and well-being. The body isn't separate from the research — it's part of it.</p></div>
     </div>
   </div>
 
   <footer>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/bellakang017" target="_blank">LinkedIn</a>
-      <a href="#" id="emailLink">Email</a>
-    </div>
+    <div class="footer-links"><a href="https://www.linkedin.com/in/bellakang017" target="_blank">LinkedIn</a><a href="#" id="emailLink">Email</a></div>
     <span class="footer-copy">© 2026 Bella Kang</span>
   </footer>
 
   <script>
-    // Scroll fade-up observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // Education Tab Navigation
-    const eduNavItems = document.querySelectorAll('.edu-nav-item');
-    const eduPanels = document.querySelectorAll('.edu-panel');
-
-    eduNavItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const target = item.dataset.tab;
-
-        eduNavItems.forEach(n => n.classList.remove('active'));
-        item.classList.add('active');
-
-        eduPanels.forEach(p => p.classList.remove('active'));
-        const targetPanel = document.getElementById('panel-' + target);
-        if (targetPanel) {
-          targetPanel.classList.add('active');
-          const fadeEls = targetPanel.querySelectorAll('.fade-up');
-          fadeEls.forEach(el => {
-            el.classList.remove('visible');
-            requestAnimationFrame(() => {
-              requestAnimationFrame(() => { el.classList.add('visible'); });
-            });
-          });
-        }
-      });
-    });
-
-    // Email Modal Logic
-    const modal = document.getElementById('emailModal');
-    const emailLink = document.getElementById('emailLink');
-    const copyHint = document.getElementById('copyHint');
-    const emailText = document.getElementById('emailText');
-
-    if (emailLink) {
-      emailLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        modal.classList.add('active');
-      });
-    }
-
-    function closeEmailModal() {
-      modal.classList.remove('active');
-      setTimeout(() => {
-        copyHint.textContent = "Click to copy";
-        copyHint.style.color = "var(--text-soft)";
-        copyHint.style.fontWeight = "400";
-      }, 300);
-    }
-
-    function copyEmail() {
-      const email = emailText.innerText.trim();
-      navigator.clipboard.writeText(email).then(() => {
-        copyHint.innerHTML = "Copied to clipboard! <span style='color:var(--accent)'>✓</span>";
-        copyHint.style.color = "var(--accent)";
-        copyHint.style.fontWeight = "600";
-      }).catch(err => {
-        console.error('Failed to copy: ', err);
-      });
-    }
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeEmailModal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeEmailModal();
-      }
-    });
+    const observer=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add('visible')})},{threshold:0.1});
+    document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+    const modal=document.getElementById('emailModal'),emailLink=document.getElementById('emailLink'),copyHint=document.getElementById('copyHint'),emailText=document.getElementById('emailText');
+    emailLink&&emailLink.addEventListener('click',e=>{e.preventDefault();modal.classList.add('active')});
+    function closeEmailModal(){modal.classList.remove('active');setTimeout(()=>{copyHint.textContent="Click to copy";copyHint.style.color="var(--text-soft)";copyHint.style.fontWeight="400"},300)}
+    function copyEmail(){navigator.clipboard.writeText(emailText.innerText.trim()).then(()=>{copyHint.innerHTML="Copied to clipboard! <span style='color:var(--accent)'>✓</span>";copyHint.style.color="var(--accent)";copyHint.style.fontWeight="600"})}
+    modal.addEventListener('click',e=>{if(e.target===modal)closeEmailModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('active'))closeEmailModal()});
   </script>
 
-  <!-- Email Modal HTML -->
   <div class="email-modal-overlay" id="emailModal">
     <div class="email-modal-card">
       <button class="email-close" onclick="closeEmailModal()">✕</button>
       <div class="email-icon">💌</div>
       <h3 class="email-title">Get in touch</h3>
-      <p style="color:var(--text-mid); font-size:0.95rem; line-height:1.6; max-width: 320px; margin: 0 auto;">
-        Always happy to chat about health communication, design, or research.
-      </p>
-      <div class="email-address" onclick="copyEmail()" id="emailText">
-        bellakang@utexas.edu
-      </div>
+      <p style="color:var(--text-mid);font-size:0.95rem;line-height:1.6;max-width:320px;margin:0 auto;">Always happy to chat about health communication, design, or research.</p>
+      <div class="email-address" onclick="copyEmail()" id="emailText">bellakang@utexas.edu</div>
       <div class="copy-hint" id="copyHint">Click to copy</div>
     </div>
   </div>
-
 </body>
-
 </html>
