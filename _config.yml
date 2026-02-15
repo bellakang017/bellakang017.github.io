@@ -1,0 +1,46 @@
+title: Bella Kang
+email: bellakang017@gmail.com
+description: >
+  Research & design portfolio. I build small tools and interventions that
+  bridge theory and practice in communication and behavior change.
+
+baseurl: ""
+url: "https://bellakang017.github.io"
+
+permalink: /:year-:month/:title
+timezone: America/Chicago
+
+favicon: /assets/img/favicon.ico
+
+google_analytics:
+disqus_shortname:
+cusdis:
+  app_id:
+
+user:
+  name: Bella Kang
+  pic: /assets/img/cat.jpg
+  picAlt: "Bella Kang"
+  job: Research & Design Portfolio
+  aboutme: true
+
+exclude:
+  - README.md
+  - LICENSE
+  - github
+
+defaults:
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: post
+      comment: false
+
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+markdown: kramdown
+
+show_drafts: null
+limit_posts: 0
+future: false
+unpublished: false
