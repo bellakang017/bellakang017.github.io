@@ -878,8 +878,7 @@
   <footer>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/bellakang017" target="_blank">LinkedIn</a>
-      <a href="#" id="emailLink"
-        onclick="try{window.openEmailModal()}catch(e){console.error(e)}; return false;">Email</a>
+      <a href="#" id="emailLink" onclick="window.openEmailModal(event); return false;">Email</a>
     </div>
     <span class="footer-copy">© 2026 Bella Kang</span>
   </footer>
@@ -897,8 +896,17 @@
     const copyHint = document.getElementById('copyHint');
     const emailText = document.getElementById('emailText');
 
-    function openEmailModal() {
-      if (modal) modal.classList.add('active');
+    function openEmailModal(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      if (modal) {
+        modal.classList.add('active');
+        // Force style just in case
+        modal.style.opacity = '1';
+        modal.style.pointerEvents = 'auto';
+      }
     }
 
     // Expose to global scope for onclick
