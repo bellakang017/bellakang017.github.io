@@ -64,9 +64,8 @@ layout: null
     .week-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;color:var(--text);margin-bottom:0.3rem}
     .week-date{font-size:0.8rem;color:var(--text-soft)}
 
-    /* ─── SYNTHESIS FLOW: Reading → Interpretation → Gap ─── */
+    /* ─── SYNTHESIS FLOW ─── */
     .synthesis-flow{display:flex;flex-direction:column;gap:0}
-
     .synth-step{position:relative;padding:1.8rem 2rem;border:1px solid var(--rule);background:var(--white)}
     .synth-step:first-child{border-radius:10px 10px 0 0}
     .synth-step:last-child{border-radius:0 0 10px 10px;border-top:none}
@@ -83,7 +82,6 @@ layout: null
     .phase-interpret .synth-phase-label{color:var(--accent)}
     .phase-gap .synth-phase-label{color:var(--sage)}
 
-    /* Arrow connector between steps */
     .synth-connector{display:flex;justify-content:center;margin:-1px 0;position:relative;z-index:1}
     .synth-connector span{font-size:0.7rem;color:var(--text-soft);background:var(--white);padding:0 0.5rem}
 
@@ -91,7 +89,6 @@ layout: null
     .synth-step p{font-size:0.88rem;color:var(--text-mid);line-height:1.75;margin-bottom:0.6rem}
     .synth-step p:last-child{margin-bottom:0}
 
-    /* Reading list inside step 1 */
     .reading-list{list-style:none;margin-top:0.8rem}
     .reading-list li{font-size:0.85rem;color:var(--text-mid);padding:0.5rem 0;border-bottom:1px solid var(--chalk);display:flex;gap:0.5rem;line-height:1.6}
     .reading-list li:last-child{border-bottom:none}
@@ -112,14 +109,14 @@ layout: null
     .visual-formula{font-family:var(--mono);font-size:0.88rem;color:var(--text);background:var(--white);padding:1rem 1.2rem;border-radius:8px;border:1px solid var(--rule);line-height:1.8;overflow-x:auto}
     .visual-caption{font-size:0.8rem;color:var(--text-soft);margin-top:0.6rem;font-style:italic}
 
-    /* Mermaid placeholder */
-    .mermaid-placeholder{background:var(--white);border:1px dashed var(--stone);border-radius:8px;padding:2rem;text-align:center;margin-top:1rem}
-    .mermaid-placeholder p{font-size:0.82rem;color:var(--text-soft)}
-
     /* ─── KEY TAKEAWAY ─── */
     .takeaway{background:var(--accent-wash);border-left:3px solid var(--accent);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin-top:1.5rem}
     .takeaway p{font-size:0.9rem;color:var(--text);line-height:1.7}
     .takeaway strong{color:var(--accent)}
+
+    /* ─── STUDY GUIDE LINK ─── */
+    .study-guide-link{display:inline-block;margin-top:0.8rem;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:0.4rem 1rem;border:1px solid rgba(139,35,50,0.25);border-radius:6px;transition:all 0.25s}
+    .study-guide-link:hover{background:var(--accent);color:var(--white)}
 
     /* ─── FOOTER ─── */
     .sub-footer{max-width:860px;margin:0 auto;padding:2rem 2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
@@ -264,12 +261,13 @@ layout: null
     <!-- ═══════════════════════════════════════════════════════ -->
     <!-- ═══ WEEK 7: DOING RESEARCH WITH SURVEYS ═══ -->
     <!-- ═══════════════════════════════════════════════════════ -->
- <div class="week-header">
-  <div class="week-number">Week 7</div>
-  <h2 class="week-title">Doing Research with Surveys</h2>
-  <div class="week-date">February 2026</div>
-  <a href="/mkt397/week7-study-guide.html" style="display:inline-block;margin-top:0.8rem;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8B2332;text-decoration:none;padding:0.4rem 1rem;border:1px solid rgba(139,35,50,0.25);border-radius:6px;transition:all 0.25s;">한국어 Study Guide →</a>
-</div>
+    <div class="week-panel" id="week-7">
+      <div class="week-header">
+        <div class="week-number">Week 7</div>
+        <h2 class="week-title">Doing Research with Surveys</h2>
+        <div class="week-date">February 2026</div>
+        <a href="/mkt397/week7-study-guide.html" class="study-guide-link">한국어 Study Guide →</a>
+      </div>
 
       <div class="synthesis-flow">
 
