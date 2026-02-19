@@ -118,6 +118,29 @@ layout: null
     .study-guide-link{display:inline-block;margin-top:0.8rem;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:0.4rem 1rem;border:1px solid rgba(139,35,50,0.25);border-radius:6px;transition:all 0.25s}
     .study-guide-link:hover{background:var(--accent);color:var(--white)}
 
+    /* ─── LEARNING RESOURCES SECTION ─── */
+    .resources-section{max-width:860px;margin:0 auto;padding:0 2rem 3rem}
+    .resources-divider{border:none;border-top:1px solid var(--rule);margin-bottom:2rem}
+    .resources-header{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.4rem}
+    .resources-header h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;color:var(--text)}
+    .resources-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:4px;background:var(--blue-wash);color:var(--blue)}
+    .resources-desc{font-size:0.85rem;color:var(--text-soft);margin-bottom:1.5rem;line-height:1.6}
+    .resource-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.75rem}
+    .resource-card{display:block;text-decoration:none;color:var(--text);background:var(--chalk);border:1px solid var(--rule);border-radius:8px;padding:1.2rem 1.4rem;transition:all 0.25s;position:relative}
+    .resource-card:hover{border-color:var(--stone);box-shadow:0 2px 12px rgba(28,28,28,0.05);transform:translateY(-1px)}
+    .resource-card-label{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.4rem}
+    .resource-card-label::before{content:'';width:6px;height:6px;border-radius:2px;flex-shrink:0}
+    .resource-card[data-type="seminar-map"] .resource-card-label{color:var(--blue)}
+    .resource-card[data-type="seminar-map"] .resource-card-label::before{background:var(--blue)}
+    .resource-card[data-type="study-guide"] .resource-card-label{color:var(--accent)}
+    .resource-card[data-type="study-guide"] .resource-card-label::before{background:var(--accent)}
+    .resource-card[data-type="external"] .resource-card-label{color:var(--sage)}
+    .resource-card[data-type="external"] .resource-card-label::before{background:var(--sage)}
+    .resource-card h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem;line-height:1.35}
+    .resource-card p{font-size:0.8rem;color:var(--text-soft);line-height:1.5}
+    .resource-card .arrow{position:absolute;top:1.2rem;right:1.2rem;font-size:0.75rem;color:var(--stone);transition:color 0.2s}
+    .resource-card:hover .arrow{color:var(--accent)}
+
     /* ─── FOOTER ─── */
     .sub-footer{max-width:860px;margin:0 auto;padding:2rem 2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
     .sub-footer a{font-size:0.85rem;color:var(--text-mid);text-decoration:none;font-weight:500;transition:color 0.2s}
@@ -129,6 +152,8 @@ layout: null
       .log-hero h1{font-size:1.8rem}
       .log-content{padding:2rem 1.5rem 3rem}
       .synth-step{padding:1.4rem 1.5rem}
+      .resources-section{padding:0 1.5rem 2.5rem}
+      .resource-cards{grid-template-columns:1fr}
       .sub-footer{flex-direction:column;gap:0.8rem;text-align:center}
     }
   </style>
@@ -363,6 +388,38 @@ layout: null
       </div>
     </div>
 
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- ═══ LEARNING RESOURCES ═══ -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="resources-section">
+    <hr class="resources-divider">
+    <div class="resources-header">
+      <h2>Learning Resources</h2>
+      <span class="resources-badge">Reference</span>
+    </div>
+    <p class="resources-desc">Curated statistical methods references and study materials for this course.</p>
+    <div class="resource-cards">
+      <a href="/mkt397/ucla-oarc-seminar-map.html" class="resource-card" data-type="seminar-map">
+        <span class="arrow">→</span>
+        <div class="resource-card-label">Statistical Methods</div>
+        <h3>UCLA OARC Seminar Map</h3>
+        <p>60+ free seminars — R, Stata, SAS, SPSS, Mplus. Searchable & filterable, with course-relevant picks marked.</p>
+      </a>
+      <a href="/mkt397/week7-study-guide.html" class="resource-card" data-type="study-guide">
+        <span class="arrow">→</span>
+        <div class="resource-card-label">Study Guide</div>
+        <h3>Week 7 한국어 가이드</h3>
+        <p>Survey research & construct measurement — Vomberg & Klarmann, Hohenberg & Taylor 핵심 정리.</p>
+      </a>
+      <a href="https://stats.oarc.ucla.edu/other/mult-pkg/whatstat/" target="_blank" class="resource-card" data-type="external">
+        <span class="arrow">↗</span>
+        <div class="resource-card-label">External</div>
+        <h3>Which Statistical Test?</h3>
+        <p>UCLA OARC decision guide — choose the right analysis for your data type and research question.</p>
+      </a>
+    </div>
   </div>
 
   <!-- FOOTER -->
