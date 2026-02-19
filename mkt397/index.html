@@ -10,438 +10,177 @@ layout: null
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --white:#FFFFFF;--chalk:#F7F5F0;--piano:#F0EDE5;--linen:#E8E3D9;--stone:#D4CFC4;
-      --text:#1C1C1C;--text-mid:#4A4A4A;--text-soft:#7A7A7A;
-      --accent:#8B2332;--accent-light:#A73344;--accent-wash:rgba(139,35,50,0.06);
-      --rule:#DDD8CE;--sage:#6B7B5E;--sage-wash:rgba(107,123,94,0.07);
-      --blue:#2D5A7B;--blue-wash:rgba(45,90,123,0.06);
-      --mono:'JetBrains Mono',monospace;
-    }
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--white);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased}
-    ::selection{background:var(--accent);color:var(--white)}
+    :root{--white:#FFFFFF;--chalk:#F7F5F0;--piano:#F0EDE5;--linen:#E8E3D9;--stone:#D4CFC4;--text:#1C1C1C;--text-mid:#4A4A4A;--text-soft:#7A7A7A;--accent:#8B2332;--accent-light:#A73344;--accent-wash:rgba(139,35,50,0.06);--rule:#DDD8CE;--sage:#6B7B5E;--sage-wash:rgba(107,123,94,0.07);--blue:#2D5A7B;--blue-wash:rgba(45,90,123,0.06);--mono:'JetBrains Mono',monospace;--sidebar-w:220px}
+    *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--white);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased}::selection{background:var(--accent);color:var(--white)}
 
-    /* ─── NAV ─── */
-    .sub-nav{position:fixed;top:0;width:100%;padding:1rem 0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule)}
-    .sub-nav-inner{max-width:860px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
-    .sub-nav-back{text-decoration:none;color:var(--text-soft);font-size:0.84rem;font-weight:500;display:flex;align-items:center;gap:0.4rem;transition:color 0.25s}
-    .sub-nav-back:hover{color:var(--accent)}
-    .sub-nav-right{display:flex;align-items:center;gap:1.5rem}
-    .sub-nav-title{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:var(--text)}
-    .lab-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.6rem;border-radius:4px;background:var(--accent-wash);color:var(--accent)}
+    /* TOP NAV */
+    .top-nav{position:fixed;top:0;left:0;right:0;height:52px;padding:0 2rem;z-index:200;background:rgba(255,255,255,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between}
+    .top-nav-back{text-decoration:none;color:var(--text-soft);font-size:.84rem;font-weight:500;display:flex;align-items:center;gap:.4rem;transition:color .25s}.top-nav-back:hover{color:var(--accent)}
+    .top-nav-right{display:flex;align-items:center;gap:1.2rem}
+    .top-nav-title{font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--text)}
+    .lab-badge{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .55rem;border-radius:4px;background:var(--accent-wash);color:var(--accent)}
 
-    /* ─── HERO ─── */
-    .log-hero{max-width:860px;margin:0 auto;padding:7rem 2rem 2.5rem}
-    .log-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+    /* SIDEBAR */
+    .sidebar{position:fixed;top:52px;left:0;bottom:0;width:var(--sidebar-w);background:var(--chalk);border-right:1px solid var(--rule);z-index:100;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch}
+    .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:var(--stone);border-radius:3px}
+    .sb-section{padding:1.4rem 1.2rem .6rem}
+    .sb-label{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-soft);margin-bottom:.6rem}
+    .sb-week{display:block;padding:.4rem .7rem;margin-bottom:.15rem;border-radius:5px;font-size:.82rem;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .2s;text-decoration:none}
+    .sb-week:hover{background:var(--piano);color:var(--text)}
+    .sb-week.active{background:var(--white);color:var(--accent);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+    .sb-week .sb-week-sub{display:block;font-size:.7rem;font-weight:400;color:var(--text-soft);margin-top:.1rem;line-height:1.3}
+    .sb-week.active .sb-week-sub{color:var(--accent);opacity:.7}
+    .sb-week.placeholder{opacity:.45}
+    .sb-divider{height:1px;background:var(--rule);margin:.8rem 1.2rem}
+    .sb-resource{display:flex;align-items:flex-start;gap:.5rem;padding:.5rem .7rem;margin-bottom:.15rem;border-radius:5px;font-size:.8rem;font-weight:500;color:var(--text-mid);text-decoration:none;transition:all .2s;line-height:1.35}
+    .sb-resource:hover{background:var(--piano);color:var(--text)}
+    .sb-resource-dot{width:6px;height:6px;border-radius:2px;flex-shrink:0;margin-top:.4rem}
+    .sb-resource-dot.blue{background:var(--blue)}.sb-resource-dot.accent{background:var(--accent)}.sb-resource-dot.sage{background:var(--sage)}
+    .sb-resource-text{display:flex;flex-direction:column}
+    .sb-resource-sub{font-size:.68rem;font-weight:400;color:var(--text-soft)}.sb-resource:hover .sb-resource-sub{color:var(--text-mid)}
+    .sb-footer{margin-top:auto;padding:1rem 1.2rem;border-top:1px solid var(--rule)}
+    .sb-footer-text{font-size:.68rem;color:var(--stone);line-height:1.4}
+
+    /* MAIN */
+    .main-wrap{margin-left:var(--sidebar-w);padding-top:52px}
+    .log-hero{max-width:780px;margin:0 auto;padding:3rem 2.5rem 2rem}
+    .log-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem}
     .log-badge::before{content:'';width:18px;height:1.5px;background:var(--accent)}
-    .log-hero h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:400;line-height:1.25;color:var(--text);margin-bottom:0.6rem;letter-spacing:-0.02em}
+    .log-hero h1{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:400;line-height:1.25;color:var(--text);margin-bottom:.5rem;letter-spacing:-.02em}
     .log-hero h1 em{font-style:italic;color:var(--accent)}
-    .log-meta{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.5rem}
-    .log-meta-item{font-size:0.85rem;color:var(--text-mid)}
-    .log-meta-item strong{color:var(--text);font-weight:600}
-    .log-intro{font-size:1rem;color:var(--text-mid);line-height:1.8;max-width:640px;padding-top:1.5rem;border-top:1px solid var(--rule)}
-
-    /* ─── WEEK NAV ─── */
-    .week-nav{max-width:860px;margin:0 auto;padding:0 2rem}
-    .week-nav-inner{display:flex;gap:0;border-bottom:1px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch}
-    .week-tab{padding:0.7rem 1.2rem;font-size:0.78rem;font-weight:500;color:var(--text-soft);cursor:pointer;position:relative;white-space:nowrap;transition:color 0.25s;user-select:none}
-    .week-tab:hover{color:var(--text)}
-    .week-tab.active{color:var(--accent);font-weight:600}
-    .week-tab::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.3s cubic-bezier(0.25,1,0.5,1)}
-    .week-tab.active::after{transform:scaleX(1)}
-
-    /* ─── CONTENT ─── */
-    .log-content{max-width:860px;margin:0 auto;padding:2.5rem 2rem 4rem}
-
-    .week-panel{display:none;animation:panelIn 0.4s ease}
-    .week-panel.active{display:block}
-    @keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
-    .week-header{margin-bottom:2.5rem}
-    .week-number{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--accent);font-weight:600;margin-bottom:0.3rem}
-    .week-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;color:var(--text);margin-bottom:0.3rem}
-    .week-date{font-size:0.8rem;color:var(--text-soft)}
-
-    /* ─── SYNTHESIS FLOW ─── */
+    .log-meta{display:flex;gap:1.8rem;flex-wrap:wrap;margin-bottom:1.2rem}
+    .log-meta-item{font-size:.84rem;color:var(--text-mid)}.log-meta-item strong{color:var(--text);font-weight:600}
+    .log-intro{font-size:.95rem;color:var(--text-mid);line-height:1.8;max-width:600px;padding-top:1.2rem;border-top:1px solid var(--rule)}
+    .log-content{max-width:780px;margin:0 auto;padding:0 2.5rem 4rem}
+    .week-panel{display:none;animation:panelIn .35s ease}.week-panel.active{display:block}
+    @keyframes panelIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+    .week-header{margin-bottom:2rem}
+    .week-number{font-size:.68rem;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-weight:600;margin-bottom:.3rem}
+    .week-title{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:400;color:var(--text);margin-bottom:.3rem}
+    .week-date{font-size:.8rem;color:var(--text-soft)}
     .synthesis-flow{display:flex;flex-direction:column;gap:0}
-    .synth-step{position:relative;padding:1.8rem 2rem;border:1px solid var(--rule);background:var(--white)}
-    .synth-step:first-child{border-radius:10px 10px 0 0}
-    .synth-step:last-child{border-radius:0 0 10px 10px;border-top:none}
-    .synth-step:not(:first-child):not(:last-child){border-top:none}
-
-    .synth-phase{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.8rem}
-    .synth-phase-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0}
-    .phase-read .synth-phase-num{background:var(--blue-wash);color:var(--blue)}
-    .phase-interpret .synth-phase-num{background:var(--accent-wash);color:var(--accent)}
-    .phase-gap .synth-phase-num{background:var(--sage-wash);color:var(--sage)}
-
-    .synth-phase-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;font-weight:600}
-    .phase-read .synth-phase-label{color:var(--blue)}
-    .phase-interpret .synth-phase-label{color:var(--accent)}
-    .phase-gap .synth-phase-label{color:var(--sage)}
-
-    .synth-connector{display:flex;justify-content:center;margin:-1px 0;position:relative;z-index:1}
-    .synth-connector span{font-size:0.7rem;color:var(--text-soft);background:var(--white);padding:0 0.5rem}
-
-    .synth-step h4{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:0.5rem}
-    .synth-step p{font-size:0.88rem;color:var(--text-mid);line-height:1.75;margin-bottom:0.6rem}
-    .synth-step p:last-child{margin-bottom:0}
-
-    .reading-list{list-style:none;margin-top:0.8rem}
-    .reading-list li{font-size:0.85rem;color:var(--text-mid);padding:0.5rem 0;border-bottom:1px solid var(--chalk);display:flex;gap:0.5rem;line-height:1.6}
-    .reading-list li:last-child{border-bottom:none}
-    .reading-list .read-icon{color:var(--blue);font-size:0.75rem;flex-shrink:0;margin-top:0.25rem}
-    .reading-list cite{font-style:normal;font-weight:500;color:var(--text)}
-    .reading-list .read-note{font-size:0.8rem;color:var(--text-soft);margin-left:0.3rem}
-
-    /* ─── GLOSSARY TOOLTIPS ─── */
+    .synth-step{position:relative;padding:1.6rem 1.8rem;border:1px solid var(--rule);background:var(--white)}
+    .synth-step:first-child{border-radius:10px 10px 0 0}.synth-step:last-child{border-radius:0 0 10px 10px;border-top:none}.synth-step:not(:first-child):not(:last-child){border-top:none}
+    .synth-phase{display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem}
+    .synth-phase-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;flex-shrink:0}
+    .phase-read .synth-phase-num{background:var(--blue-wash);color:var(--blue)}.phase-interpret .synth-phase-num{background:var(--accent-wash);color:var(--accent)}.phase-gap .synth-phase-num{background:var(--sage-wash);color:var(--sage)}
+    .synth-phase-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;font-weight:600}
+    .phase-read .synth-phase-label{color:var(--blue)}.phase-interpret .synth-phase-label{color:var(--accent)}.phase-gap .synth-phase-label{color:var(--sage)}
+    .synth-connector{display:flex;justify-content:center;margin:-1px 0;position:relative;z-index:1}.synth-connector span{font-size:.7rem;color:var(--text-soft);background:var(--white);padding:0 .5rem}
+    .synth-step h4{font-family:'Playfair Display',serif;font-size:1.02rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+    .synth-step p{font-size:.87rem;color:var(--text-mid);line-height:1.75;margin-bottom:.6rem}.synth-step p:last-child{margin-bottom:0}
+    .reading-list{list-style:none;margin-top:.8rem}
+    .reading-list li{font-size:.84rem;color:var(--text-mid);padding:.45rem 0;border-bottom:1px solid var(--chalk);display:flex;gap:.5rem;line-height:1.6}.reading-list li:last-child{border-bottom:none}
+    .reading-list .read-icon{color:var(--blue);font-size:.75rem;flex-shrink:0;margin-top:.25rem}
+    .reading-list cite{font-style:normal;font-weight:500;color:var(--text)}.reading-list .read-note{font-size:.8rem;color:var(--text-soft);margin-left:.3rem}
     .term{position:relative;border-bottom:1px dashed var(--accent);color:var(--accent);cursor:help;font-weight:500}
-    .term .tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--text);color:var(--white);padding:0.6rem 0.9rem;border-radius:8px;font-size:0.78rem;font-weight:400;line-height:1.5;white-space:normal;width:260px;opacity:0;pointer-events:none;transition:opacity 0.25s,transform 0.25s;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,0.15)}
+    .term .tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--text);color:var(--white);padding:.6rem .9rem;border-radius:8px;font-size:.78rem;font-weight:400;line-height:1.5;white-space:normal;width:260px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,.15)}
     .term .tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--text)}
     .term:hover .tooltip{opacity:1;transform:translateX(-50%) translateY(-2px);pointer-events:auto}
-
-    /* ─── VISUAL SCAFFOLD ─── */
-    .visual-box{background:var(--chalk);border:1px solid var(--rule);border-radius:10px;padding:1.5rem 2rem;margin-top:1.5rem}
-    .visual-box-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-soft);font-weight:600;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
-    .visual-box-label::before{content:'◈';color:var(--accent);font-size:0.7rem}
-    .visual-formula{font-family:var(--mono);font-size:0.88rem;color:var(--text);background:var(--white);padding:1rem 1.2rem;border-radius:8px;border:1px solid var(--rule);line-height:1.8;overflow-x:auto}
-    .visual-caption{font-size:0.8rem;color:var(--text-soft);margin-top:0.6rem;font-style:italic}
-
-    /* ─── KEY TAKEAWAY ─── */
-    .takeaway{background:var(--accent-wash);border-left:3px solid var(--accent);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin-top:1.5rem}
-    .takeaway p{font-size:0.9rem;color:var(--text);line-height:1.7}
-    .takeaway strong{color:var(--accent)}
-
-    /* ─── STUDY GUIDE LINK ─── */
-    .study-guide-link{display:inline-block;margin-top:0.8rem;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:0.4rem 1rem;border:1px solid rgba(139,35,50,0.25);border-radius:6px;transition:all 0.25s}
-    .study-guide-link:hover{background:var(--accent);color:var(--white)}
-
-    /* ─── LEARNING RESOURCES SECTION ─── */
-    .resources-section{max-width:860px;margin:0 auto;padding:0 2rem 3rem}
-    .resources-divider{border:none;border-top:1px solid var(--rule);margin-bottom:2rem}
-    .resources-header{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.4rem}
-    .resources-header h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;color:var(--text)}
-    .resources-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:4px;background:var(--blue-wash);color:var(--blue)}
-    .resources-desc{font-size:0.85rem;color:var(--text-soft);margin-bottom:1.5rem;line-height:1.6}
-    .resource-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.75rem}
-    .resource-card{display:block;text-decoration:none;color:var(--text);background:var(--chalk);border:1px solid var(--rule);border-radius:8px;padding:1.2rem 1.4rem;transition:all 0.25s;position:relative}
-    .resource-card:hover{border-color:var(--stone);box-shadow:0 2px 12px rgba(28,28,28,0.05);transform:translateY(-1px)}
-    .resource-card-label{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.4rem}
-    .resource-card-label::before{content:'';width:6px;height:6px;border-radius:2px;flex-shrink:0}
-    .resource-card[data-type="seminar-map"] .resource-card-label{color:var(--blue)}
-    .resource-card[data-type="seminar-map"] .resource-card-label::before{background:var(--blue)}
-    .resource-card[data-type="study-guide"] .resource-card-label{color:var(--accent)}
-    .resource-card[data-type="study-guide"] .resource-card-label::before{background:var(--accent)}
-    .resource-card[data-type="external"] .resource-card-label{color:var(--sage)}
-    .resource-card[data-type="external"] .resource-card-label::before{background:var(--sage)}
-    .resource-card h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem;line-height:1.35}
-    .resource-card p{font-size:0.8rem;color:var(--text-soft);line-height:1.5}
-    .resource-card .arrow{position:absolute;top:1.2rem;right:1.2rem;font-size:0.75rem;color:var(--stone);transition:color 0.2s}
-    .resource-card:hover .arrow{color:var(--accent)}
-
-    /* ─── FOOTER ─── */
-    .sub-footer{max-width:860px;margin:0 auto;padding:2rem 2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
-    .sub-footer a{font-size:0.85rem;color:var(--text-mid);text-decoration:none;font-weight:500;transition:color 0.2s}
-    .sub-footer a:hover{color:var(--accent)}
-    .sub-footer span{font-size:0.78rem;color:var(--text-soft)}
-
-    @media(max-width:768px){
-      .log-hero{padding:6rem 1.5rem 2rem}
-      .log-hero h1{font-size:1.8rem}
-      .log-content{padding:2rem 1.5rem 3rem}
-      .synth-step{padding:1.4rem 1.5rem}
-      .resources-section{padding:0 1.5rem 2.5rem}
-      .resource-cards{grid-template-columns:1fr}
-      .sub-footer{flex-direction:column;gap:0.8rem;text-align:center}
-    }
+    .visual-box{background:var(--chalk);border:1px solid var(--rule);border-radius:10px;padding:1.4rem 1.8rem;margin-top:1.5rem}
+    .visual-box-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--text-soft);font-weight:600;margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}.visual-box-label::before{content:'◈';color:var(--accent);font-size:.7rem}
+    .visual-formula{font-family:var(--mono);font-size:.85rem;color:var(--text);background:var(--white);padding:1rem 1.2rem;border-radius:8px;border:1px solid var(--rule);line-height:1.8;overflow-x:auto}
+    .visual-caption{font-size:.8rem;color:var(--text-soft);margin-top:.6rem;font-style:italic}
+    .takeaway{background:var(--accent-wash);border-left:3px solid var(--accent);padding:1.1rem 1.4rem;border-radius:0 8px 8px 0;margin-top:1.5rem}
+    .takeaway p{font-size:.88rem;color:var(--text);line-height:1.7}.takeaway strong{color:var(--accent)}
+    .study-guide-link{display:inline-block;margin-top:.8rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:.4rem 1rem;border:1px solid rgba(139,35,50,.25);border-radius:6px;transition:all .25s}.study-guide-link:hover{background:var(--accent);color:var(--white)}
+    .sub-footer{max-width:780px;margin:0 auto;padding:2rem 2.5rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+    .sub-footer a{font-size:.84rem;color:var(--text-mid);text-decoration:none;font-weight:500;transition:color .2s}.sub-footer a:hover{color:var(--accent)}
+    .sub-footer span{font-size:.78rem;color:var(--text-soft)}
+    .mobile-toggle{display:none;position:fixed;bottom:1.2rem;left:1.2rem;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--text);color:var(--white);border:none;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.15);transition:transform .2s}.mobile-toggle:active{transform:scale(.92)}
+    .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:99}.sidebar-overlay.show{display:block}
+    @media(max-width:900px){.sidebar{transform:translateX(-100%);transition:transform .3s cubic-bezier(.25,1,.5,1);box-shadow:none}.sidebar.open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.08)}.main-wrap{margin-left:0}.mobile-toggle{display:flex;align-items:center;justify-content:center}.log-hero{padding:2.5rem 1.5rem 1.5rem}.log-hero h1{font-size:1.7rem}.log-content{padding:0 1.5rem 3rem}.synth-step{padding:1.2rem 1.3rem}.sub-footer{flex-direction:column;gap:.8rem;text-align:center;padding:2rem 1.5rem}}
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <div class="sub-nav">
-    <div class="sub-nav-inner">
-      <a href="/" class="sub-nav-back">← Portfolio</a>
-      <div class="sub-nav-right">
-        <span class="sub-nav-title">MKT 397</span>
-        <span class="lab-badge">Lab Notebook</span>
-      </div>
-    </div>
+  <div class="top-nav">
+    <a href="/" class="top-nav-back">← Portfolio</a>
+    <div class="top-nav-right"><span class="top-nav-title">MKT 397</span><span class="lab-badge">Lab Notebook</span></div>
   </div>
 
-  <!-- HERO -->
-  <div class="log-hero">
-    <div class="log-badge">Open Academic Log</div>
-    <h1>PhD Quantitative <em>Marketing</em></h1>
-    <div class="log-meta">
-      <div class="log-meta-item"><strong>MKT 397</strong> · McCombs School of Business</div>
-      <div class="log-meta-item"><strong>Prof. Rex Du</strong></div>
-      <div class="log-meta-item">Spring 2026</div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-section">
+      <div class="sb-label">Weekly Log</div>
+      <a class="sb-week active" data-week="1">Week 1<span class="sb-week-sub">Empirics-First & Causal Inference</span></a>
+      <a class="sb-week placeholder" data-week="2">Week 2</a>
+      <a class="sb-week placeholder" data-week="3">Week 3</a>
+      <a class="sb-week placeholder" data-week="4">Week 4</a>
+      <a class="sb-week placeholder" data-week="5">Week 5</a>
+      <a class="sb-week placeholder" data-week="6">Week 6</a>
+      <a class="sb-week" data-week="7">Week 7<span class="sb-week-sub">Survey Research & Measurement</span></a>
     </div>
-    <p class="log-intro">A weekly research synthesis log. Each entry follows a three-part structure: what I read, how I interpret it, and what questions or gaps emerge. This is less a summary and more a thinking-in-progress document — an open-source lab notebook for anyone navigating quantitative marketing research.</p>
-  </div>
-
-  <!-- WEEK NAVIGATION -->
-  <div class="week-nav">
-    <div class="week-nav-inner">
-      <div class="week-tab active" data-week="1">Week 1</div>
-      <div class="week-tab" data-week="2">Week 2</div>
-      <div class="week-tab" data-week="3">Week 3</div>
-      <div class="week-tab" data-week="4">Week 4</div>
-      <div class="week-tab" data-week="5">Week 5</div>
-      <div class="week-tab" data-week="6">Week 6</div>
-      <div class="week-tab" data-week="7">Week 7</div>
+    <div class="sb-divider"></div>
+    <div class="sb-section">
+      <div class="sb-label">Learning Resources</div>
+      <a href="/mkt397/ucla-oarc-seminar-map.html" class="sb-resource"><div class="sb-resource-dot blue"></div><div class="sb-resource-text">UCLA OARC Seminar Map<span class="sb-resource-sub">60+ statistical seminars</span></div></a>
+      <a href="/mkt397/week7-study-guide.html" class="sb-resource"><div class="sb-resource-dot accent"></div><div class="sb-resource-text">Week 7 한국어 가이드<span class="sb-resource-sub">Survey & measurement</span></div></a>
+      <a href="https://stats.oarc.ucla.edu/other/mult-pkg/whatstat/" target="_blank" class="sb-resource"><div class="sb-resource-dot sage"></div><div class="sb-resource-text">Which Statistical Test?<span class="sb-resource-sub">UCLA decision guide ↗</span></div></a>
+      <a href="https://stats.oarc.ucla.edu/other/dae/" target="_blank" class="sb-resource"><div class="sb-resource-dot sage"></div><div class="sb-resource-text">Data Analysis Examples<span class="sb-resource-sub">UCLA worked examples ↗</span></div></a>
     </div>
-  </div>
+    <div class="sb-footer"><div class="sb-footer-text">Bella Kang<br>McCombs · Spring 2026</div></div>
+  </aside>
 
-  <!-- CONTENT -->
-  <div class="log-content">
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle sidebar">☰</button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- ═══ WEEK 1 ═══ -->
-    <div class="week-panel active" id="week-1">
-      <div class="week-header">
-        <div class="week-number">Week 1</div>
-        <h2 class="week-title">Empirics-First Methodology & Causal Inference</h2>
-        <div class="week-date">January 2026</div>
+  <div class="main-wrap">
+    <div class="log-hero">
+      <div class="log-badge">Open Academic Log</div>
+      <h1>PhD Quantitative <em>Marketing</em></h1>
+      <div class="log-meta">
+        <div class="log-meta-item"><strong>MKT 397</strong> · McCombs School of Business</div>
+        <div class="log-meta-item"><strong>Prof. Rex Du</strong></div>
+        <div class="log-meta-item">Spring 2026</div>
+      </div>
+      <p class="log-intro">A weekly research synthesis log. Each entry follows a three-part structure: what I read, how I interpret it, and what questions or gaps emerge. This is less a summary and more a thinking-in-progress document — an open-source lab notebook for anyone navigating quantitative marketing research.</p>
+    </div>
+
+    <div class="log-content">
+      <!-- WEEK 1 -->
+      <div class="week-panel active" id="week-1">
+        <div class="week-header"><div class="week-number">Week 1</div><h2 class="week-title">Empirics-First Methodology & Causal Inference</h2><div class="week-date">January 2026</div></div>
+        <div class="synthesis-flow">
+          <div class="synth-step phase-read"><div class="synth-phase"><div class="synth-phase-num">1</div><span class="synth-phase-label">This Week's Reading</span></div><h4>Foundations of Causal Identification</h4><ul class="reading-list"><li><span class="read-icon">◇</span><div><cite>Angrist & Pischke (2009), Ch. 1–2</cite><span class="read-note">— "Mostly Harmless Econometrics": selection bias and the fundamental problem of causal inference</span></div></li><li><span class="read-icon">◇</span><div><cite>Rubin (1974)</cite><span class="read-note">— Potential outcomes framework; counterfactual reasoning</span></div></li><li><span class="read-icon">◇</span><div><cite>Du, R. (Lecture Notes)</cite><span class="read-note">— Empirics-first approach: start with data patterns, then build theory</span></div></li></ul></div>
+          <div class="synth-connector"><span>↓</span></div>
+          <div class="synth-step phase-interpret"><div class="synth-phase"><div class="synth-phase-num">2</div><span class="synth-phase-label">My Interpretation</span></div><h4>What the empirics-first lens changes</h4><p>Prof. Du's methodology inverts the typical research flow. Instead of "theory → hypothesis → test," we begin with <span class="term">empirical regularities<span class="tooltip">Patterns consistently observed in data before any theoretical explanation is offered.</span></span> — patterns in real data — and let them guide theoretical development.</p><p>This resonates deeply with my health communication work. In studying Korean American women's help-seeking behavior, the <em>patterns</em> (low utilization despite high need) preceded my theoretical framework. The data spoke first.</p><p>The <span class="term">Rubin Causal Model<span class="tooltip">Framework where causal effects are defined as the difference between potential outcomes under treatment vs. control. The "fundamental problem" is that we can only observe one outcome per unit.</span></span> formalizes something health communicators often struggle with: we can't observe the counterfactual.</p></div>
+          <div class="synth-connector"><span>↓</span></div>
+          <div class="synth-step phase-gap"><div class="synth-phase"><div class="synth-phase-num">3</div><span class="synth-phase-label">Research Gap / Emerging Question</span></div><h4>Where this connects to health communication</h4><p>Most health communication studies rely on <span class="term">self-report measures<span class="tooltip">Data collected by asking participants to report their own behaviors or attitudes. Subject to recall bias and social desirability bias.</span></span> with limited causal identification. What if we applied empirics-first methodology to health message evaluation — starting with behavioral data rather than attitudinal surveys?</p><p><strong>Emerging question:</strong> Can we identify <span class="term">natural experiments<span class="tooltip">Situations where treatment assignment occurs "as if" randomly due to external circumstances, enabling causal inference without a designed experiment.</span></span> in health communication contexts that allow causal identification of message effects on behavior?</p></div>
+        </div>
+        <div class="visual-box"><div class="visual-box-label">Visual Scaffold — Causal Inference Logic</div><div class="visual-formula"><strong>Causal Effect</strong> = E[Y₁ᵢ] − E[Y₀ᵢ]<br><br>where Y₁ᵢ = outcome if unit i receives treatment<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y₀ᵢ = outcome if unit i does not<br><br><strong>Problem:</strong> We observe Y₁ᵢ OR Y₀ᵢ, never both.<br><strong>Solution:</strong> Identify a credible comparison group.</div><div class="visual-caption">The fundamental problem of causal inference — we can never observe the counterfactual for the same individual.</div></div>
+        <div class="takeaway"><p><strong>Week 1 Takeaway:</strong> "Empirics first" isn't anti-theory — it's a commitment to letting data patterns discipline our theorizing. For health communication research, this means starting with observed behavioral gaps before constructing explanations.</p></div>
       </div>
 
-      <div class="synthesis-flow">
-        <div class="synth-step phase-read">
-          <div class="synth-phase">
-            <div class="synth-phase-num">1</div>
-            <span class="synth-phase-label">This Week's Reading</span>
-          </div>
-          <h4>Foundations of Causal Identification</h4>
-          <ul class="reading-list">
-            <li><span class="read-icon">◇</span><div><cite>Angrist & Pischke (2009), Ch. 1–2</cite><span class="read-note">— "Mostly Harmless Econometrics": selection bias and the fundamental problem of causal inference</span></div></li>
-            <li><span class="read-icon">◇</span><div><cite>Rubin (1974)</cite><span class="read-note">— Potential outcomes framework; counterfactual reasoning</span></div></li>
-            <li><span class="read-icon">◇</span><div><cite>Du, R. (Lecture Notes)</cite><span class="read-note">— Empirics-first approach: start with data patterns, then build theory</span></div></li>
-          </ul>
+      <!-- WEEK 2–6 -->
+      <div class="week-panel" id="week-2"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center"><p style="font-size:.95rem;color:var(--text-soft);font-style:italic">Week 2 — Coming soon.</p></div></div>
+      <div class="week-panel" id="week-3"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center"><p style="font-size:.95rem;color:var(--text-soft);font-style:italic">Week 3 — Coming soon.</p></div></div>
+      <div class="week-panel" id="week-4"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center"><p style="font-size:.95rem;color:var(--text-soft);font-style:italic">Week 4 — Coming soon.</p></div></div>
+      <div class="week-panel" id="week-5"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center"><p style="font-size:.95rem;color:var(--text-soft);font-style:italic">Week 5 — Coming soon.</p></div></div>
+      <div class="week-panel" id="week-6"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center"><p style="font-size:.95rem;color:var(--text-soft);font-style:italic">Week 6 — Coming soon.</p></div></div>
+
+      <!-- WEEK 7 -->
+      <div class="week-panel" id="week-7">
+        <div class="week-header"><div class="week-number">Week 7</div><h2 class="week-title">Doing Research with Surveys</h2><div class="week-date">February 2026</div><a href="/mkt397/week7-study-guide.html" class="study-guide-link">한국어 Study Guide →</a></div>
+        <div class="synthesis-flow">
+          <div class="synth-step phase-read"><div class="synth-phase"><div class="synth-phase-num">1</div><span class="synth-phase-label">This Week's Reading</span></div><h4>Survey Design & Construct Measurement</h4><ul class="reading-list"><li><span class="read-icon">◇</span><div><cite>Vomberg & Klarmann (2021)</cite><span class="read-note">— "Crafting Survey Research": systematic process from questionnaire design to data quality control</span></div></li><li><span class="read-icon">◇</span><div><cite>Hohenberg & Taylor (2020)</cite><span class="read-note">— "Measuring Customer Satisfaction and Customer Loyalty": operationalization, scales, and measurement systems</span></div></li></ul></div>
+          <div class="synth-connector"><span>↓</span></div>
+          <div class="synth-step phase-interpret"><div class="synth-phase"><div class="synth-phase-num">2</div><span class="synth-phase-label">My Interpretation</span></div><h4>The measurement chain: tool → construct → decision</h4><p>These two papers form a logical pair. <strong>Vomberg & Klarmann</strong> teach how to build the instrument. <strong>Hohenberg & Taylor</strong> show what to build it for — measuring satisfaction and loyalty.</p><p>The deeper lesson: <em>cascading measurement error</em>. Poorly designed surveys distort satisfaction scores, which distort loyalty predictions, which misallocate resources. Error propagates through the entire <span class="term">CRM-Outcome Chain<span class="tooltip">Marketing Activities → Customer Attitudes + Factual Reasons → Loyalty Intentions → Loyalty Behavior → Economic Outcomes.</span></span>.</p><p><strong>Reliability vs. Validity.</strong> <span class="term">Reliability<span class="tooltip">Consistency of measurement. Cronbach's Alpha ≥ 0.7 and Composite Reliability ≥ 0.7 are standard.</span></span> is necessary but not sufficient. A scale can be perfectly consistent while measuring the wrong thing.</p><p><strong>Common Method Bias.</strong> Measuring IV and DV in the same survey inflates correlations — not because the relationship is strong, but because of shared <span class="term">measurement method<span class="tooltip">CMB: artificial inflation when IVs and DVs share the same survey, time point, and respondent.</span></span>.</p><p><strong>Intentions ≠ Behavior.</strong> Stated behavioral intentions are weak predictors of actual behavior (Sheppard et al. 1988). The chapter advocates dual measurement: surveys for intentions, objective databases for behavior.</p><p><strong>Satisfaction–Loyalty Disconnect.</strong> Satisfaction explains &lt;25% of loyalty variance. Over 60% of satisfied customers still defect. Trust, commitment, and <span class="term">switching costs<span class="tooltip">Financial, psychological, and procedural costs of changing providers.</span></span> matter enormously.</p><p><strong>NPS.</strong> Efficient but limited. Keiningham et al. (2007) found no support for NPS as the single best growth predictor.</p><p><strong>Self-Selection & Heckman.</strong> Loyalty program members <span class="term">self-select<span class="tooltip">Self-selection bias: participation correlates with the outcome of interest.</span></span>. The Heckman two-stage correction estimates enrollment probability first, then purges selection bias via the inverse Mills ratio.</p></div>
+          <div class="synth-connector"><span>↓</span></div>
+          <div class="synth-step phase-gap"><div class="synth-phase"><div class="synth-phase-num">3</div><span class="synth-phase-label">Research Gap / Emerging Question</span></div><h4>Applying measurement principles to health communication</h4><p>Most health communication interventions rely on self-reported attitude change. These readings expose that fragility: CMB inflates effects, intentions don't predict behavior, message satisfaction doesn't guarantee adherence.</p><p>What if we adopted the dual measurement framework? Surveys for message reception, objective data (EHR records, pharmacy fills, clinic visits) for actual behavior.</p><p>The <span class="term">Confirmation-Disconfirmation Paradigm<span class="tooltip">Oliver (1980): Satisfaction = Perceived Performance vs. Expected Performance.</span></span> has untapped potential — message effectiveness may depend on the gap between patient expectations and experience.</p><p><strong>Emerging question:</strong> Can we combine survey-based assessment with objective behavioral data and use the <span class="term">Heckman correction<span class="tooltip">Two-stage method to purge self-selection bias via the inverse Mills ratio.</span></span> to address self-selection into health programs?</p></div>
         </div>
-
-        <div class="synth-connector"><span>↓</span></div>
-
-        <div class="synth-step phase-interpret">
-          <div class="synth-phase">
-            <div class="synth-phase-num">2</div>
-            <span class="synth-phase-label">My Interpretation</span>
-          </div>
-          <h4>What the empirics-first lens changes</h4>
-          <p>Prof. Du's methodology inverts the typical research flow. Instead of "theory → hypothesis → test," we begin with <span class="term">empirical regularities<span class="tooltip">Patterns consistently observed in data before any theoretical explanation is offered. The starting point in empirics-first research.</span></span> — patterns in real data — and let them guide theoretical development.</p>
-          <p>This resonates deeply with my health communication work. In studying Korean American women's help-seeking behavior, the <em>patterns</em> (low utilization despite high need) preceded my theoretical framework. The data spoke first.</p>
-          <p>The <span class="term">Rubin Causal Model<span class="tooltip">Framework where causal effects are defined as the difference between potential outcomes under treatment vs. control. The "fundamental problem" is that we can only observe one outcome per unit.</span></span> formalizes something health communicators often struggle with: we can't observe the counterfactual. What <em>would</em> have happened to message recipients if they hadn't received the intervention?</p>
-        </div>
-
-        <div class="synth-connector"><span>↓</span></div>
-
-        <div class="synth-step phase-gap">
-          <div class="synth-phase">
-            <div class="synth-phase-num">3</div>
-            <span class="synth-phase-label">Research Gap / Emerging Question</span>
-          </div>
-          <h4>Where this connects to health communication</h4>
-          <p>Most health communication studies rely on <span class="term">self-report measures<span class="tooltip">Data collected by asking participants to report their own behaviors, attitudes, or experiences. Subject to recall bias and social desirability bias.</span></span> with limited causal identification. What if we applied the empirics-first methodology to health message evaluation — starting with behavioral data (search patterns, clinic visits, prescription fills) rather than attitudinal surveys?</p>
-          <p><strong>Emerging question:</strong> Can we identify <span class="term">natural experiments<span class="tooltip">Situations where treatment assignment occurs "as if" randomly due to external circumstances (policy changes, geographic boundaries, timing variations), enabling causal inference without a designed experiment.</span></span> in health communication contexts — policy changes, media events, cultural shifts — that allow causal identification of message effects on behavior?</p>
-        </div>
-      </div>
-
-      <div class="visual-box">
-        <div class="visual-box-label">Visual Scaffold — Causal Inference Logic</div>
-        <div class="visual-formula">
-          <strong>Causal Effect</strong> = E[Y₁ᵢ] − E[Y₀ᵢ]<br><br>
-          where Y₁ᵢ = outcome if unit i receives treatment<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y₀ᵢ = outcome if unit i does not<br><br>
-          <strong>Problem:</strong> We observe Y₁ᵢ OR Y₀ᵢ, never both.<br>
-          <strong>Solution:</strong> Identify a credible comparison group.
-        </div>
-        <div class="visual-caption">The fundamental problem of causal inference — we can never observe the counterfactual for the same individual.</div>
-      </div>
-
-      <div class="takeaway">
-        <p><strong>Week 1 Takeaway:</strong> "Empirics first" isn't anti-theory — it's a commitment to letting data patterns discipline our theorizing. For health communication research, this means starting with observed behavioral gaps (who isn't seeking help, and when?) before constructing explanations.</p>
+        <div class="visual-box"><div class="visual-box-label">Visual Scaffold — Confirmation-Disconfirmation</div><div class="visual-formula"><strong>Oliver (1980)</strong><br><br>P > E → Positive Disconfirmation → <strong>Satisfaction</strong><br>P = E → Confirmation → <strong>Satisfaction</strong><br>P &lt; E → Negative Disconfirmation → <strong>Dissatisfaction</strong></div><div class="visual-caption">Satisfaction is about the gap between expectation and experience.</div></div>
+        <div class="visual-box" style="margin-top:1rem"><div class="visual-box-label">Visual Scaffold — Heckman Two-Stage</div><div class="visual-formula"><strong>Stage 1:</strong> y₁* = X₁β₁ + e₁ → Probit<br><strong>Stage 2:</strong> E[y₂ | y₁*>0] = X₂β₂ + ρλ(X₁β₁)<br><br>λ(z) = ϕ(z)/Φ(z)<br><br>ρ significant → selection bias → correction needed</div><div class="visual-caption">The inverse Mills ratio purges selection bias from the outcome equation.</div></div>
+        <div class="takeaway"><p><strong>Week 7 Takeaway:</strong> "What you measure shapes what you manage." Without validity checks, CMB controls, and behavioral triangulation, surveys create a measurement mirage — precise numbers pointing in the wrong direction.</p></div>
       </div>
     </div>
 
-    <!-- ═══ WEEK 2 ═══ -->
-    <div class="week-panel" id="week-2">
-      <div class="week-header">
-        <div class="week-number">Week 2</div>
-        <h2 class="week-title">Coming Soon</h2>
-        <div class="week-date">January 2026</div>
-      </div>
-      <div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center;">
-        <p style="font-size:0.95rem;color:var(--text-soft);font-style:italic;">This week's synthesis is in progress. Check back soon.</p>
-      </div>
-    </div>
-
-    <!-- Weeks 3–6 placeholders -->
-    <div class="week-panel" id="week-3"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center;margin-top:2rem;"><p style="font-size:0.95rem;color:var(--text-soft);font-style:italic;">Week 3 — Coming soon.</p></div></div>
-    <div class="week-panel" id="week-4"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center;margin-top:2rem;"><p style="font-size:0.95rem;color:var(--text-soft);font-style:italic;">Week 4 — Coming soon.</p></div></div>
-    <div class="week-panel" id="week-5"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center;margin-top:2rem;"><p style="font-size:0.95rem;color:var(--text-soft);font-style:italic;">Week 5 — Coming soon.</p></div></div>
-    <div class="week-panel" id="week-6"><div style="background:var(--chalk);border-radius:10px;padding:3rem;text-align:center;margin-top:2rem;"><p style="font-size:0.95rem;color:var(--text-soft);font-style:italic;">Week 6 — Coming soon.</p></div></div>
-
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- ═══ WEEK 7: DOING RESEARCH WITH SURVEYS ═══ -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <div class="week-panel" id="week-7">
-      <div class="week-header">
-        <div class="week-number">Week 7</div>
-        <h2 class="week-title">Doing Research with Surveys</h2>
-        <div class="week-date">February 2026</div>
-        <a href="/mkt397/week7-study-guide.html" class="study-guide-link">한국어 Study Guide →</a>
-      </div>
-
-      <div class="synthesis-flow">
-
-        <!-- ——— STEP 1: READING ——— -->
-        <div class="synth-step phase-read">
-          <div class="synth-phase">
-            <div class="synth-phase-num">1</div>
-            <span class="synth-phase-label">This Week's Reading</span>
-          </div>
-          <h4>Survey Design & Construct Measurement</h4>
-          <ul class="reading-list">
-            <li><span class="read-icon">◇</span><div><cite>Vomberg & Klarmann (2021)</cite><span class="read-note">— "Crafting Survey Research": systematic process for conducting survey research — from questionnaire design to data quality control</span></div></li>
-            <li><span class="read-icon">◇</span><div><cite>Hohenberg & Taylor (2020)</cite><span class="read-note">— "Measuring Customer Satisfaction and Customer Loyalty": operationalization, scales, and measurement systems for two key marketing constructs</span></div></li>
-          </ul>
-        </div>
-
-        <div class="synth-connector"><span>↓</span></div>
-
-        <!-- ——— STEP 2: INTERPRETATION ——— -->
-        <div class="synth-step phase-interpret">
-          <div class="synth-phase">
-            <div class="synth-phase-num">2</div>
-            <span class="synth-phase-label">My Interpretation</span>
-          </div>
-          <h4>The measurement chain: tool → construct → decision</h4>
-
-          <p>These two papers form a logical pair. <strong>Vomberg & Klarmann</strong> teach you how to build the instrument — the survey itself. <strong>Hohenberg & Taylor</strong> show you what to build it for — measuring satisfaction and loyalty, two of the most consequential (and most error-prone) constructs in marketing.</p>
-
-          <p>The deeper lesson is about <em>cascading measurement error</em>. If your survey is poorly designed (biased wording, bad sampling, common method variance), your satisfaction scores will be distorted. If satisfaction is distorted, your loyalty predictions will be wrong. If loyalty predictions are wrong, the firm allocates resources to the wrong customers. Measurement error doesn't stay contained — it propagates through the entire <span class="term">CRM-Outcome Chain<span class="tooltip">Framework: Marketing Activities → Customer Attitudes (satisfaction, trust) + Factual Reasons (switching costs, contracts) → Loyalty Intentions → Loyalty Behavior → Economic Outcomes. Adapted from Kumar & Reinartz (2012).</span></span>.</p>
-
-          <p><strong>Reliability vs. Validity.</strong> <span class="term">Reliability<span class="tooltip">Consistency of measurement. If you ask 4 similar questions and answers move together, the scale is reliable. Cronbach's Alpha (α ≥ 0.7) and Composite Reliability (CR ≥ 0.7) are standard metrics.</span></span> is necessary but not sufficient. A scale can be perfectly consistent while measuring the wrong thing. Hohenberg & Taylor's Table 1 reports psychometric properties — CA, CR, <span class="term">AVE<span class="tooltip">Average Variance Extracted. ≥ 0.5 means the construct explains more variance in its items than measurement error does. Below 0.5, noise dominates signal.</span></span> — for each satisfaction scale, giving concrete quality benchmarks.</p>
-
-          <p><strong>Common Method Bias.</strong> When you measure both the independent variable (satisfaction) and the dependent variable (loyalty intention) in the same survey, respondents unconsciously align their answers. The observed correlation is inflated — not because the relationship is strong, but because of the <span class="term">measurement method<span class="tooltip">Common Method Bias (CMB): artificial inflation of relationships when IVs and DVs share the same measurement method — same survey, same time point, same respondent. Harman's single-factor test and marker variable techniques are common diagnostics.</span></span>. This is precisely why Hohenberg & Taylor recommend measuring loyalty <em>behavior</em> through objective CRM data rather than self-report.</p>
-
-          <p><strong>Intentions ≠ Behavior.</strong> Sheppard et al. (1988) showed that stated behavioral intentions are often a weak predictor of actual behavior. Customers who <em>say</em> they'll repurchase often don't. This is why the chapter advocates a dual measurement approach — subjective surveys for intentions, objective databases for behavior.</p>
-
-          <p><strong>The Satisfaction–Loyalty Disconnect.</strong> A meta-analysis found that satisfaction explains less than 25% of loyalty variance (Szymanski & Henard 2001). Over 60% of satisfied customers still defect (Reichheld 1996). Other drivers — trust, commitment, <span class="term">switching costs<span class="tooltip">Costs (financial, psychological, procedural) that customers incur when changing providers. Includes contractual obligations, learning costs, and loss of accumulated benefits (e.g., loyalty points).</span></span>, contractual obligations — matter enormously. This challenges any system that treats satisfaction as the sole predictor.</p>
-
-          <p><strong>Net Promoter Score.</strong> NPS reduces loyalty to a single question: "On 0–10, would you recommend?" Promoters (9–10) minus Detractors (0–6) = NPS. Its appeal is efficiency. But Keiningham et al. (2007) found no support for the claim that NPS is the single most reliable growth indicator. The chapter recommends integrating NPS as one component — not the whole system.</p>
-
-          <p><strong>Self-Selection & Heckman.</strong> When measuring loyalty through loyalty programs, customers <span class="term">self-select<span class="tooltip">Self-selection bias: when individuals choose to participate in a program based on characteristics correlated with the outcome of interest. Loyalty program members may spend more not because of the program, but because big spenders are more likely to enroll.</span></span> into programs. Comparing members vs. non-members confounds program effects with pre-existing differences. The Heckman two-stage correction addresses this by first estimating enrollment probability (Probit), then including the inverse Mills ratio in the outcome equation to purge selection bias.</p>
-        </div>
-
-        <div class="synth-connector"><span>↓</span></div>
-
-        <!-- ——— STEP 3: RESEARCH GAP ——— -->
-        <div class="synth-step phase-gap">
-          <div class="synth-phase">
-            <div class="synth-phase-num">3</div>
-            <span class="synth-phase-label">Research Gap / Emerging Question</span>
-          </div>
-          <h4>What if we applied these measurement principles to health communication?</h4>
-
-          <p>Most health communication interventions rely on self-reported attitude change measured in post-intervention surveys. But this week's readings expose how fragile that approach is: common method bias inflates treatment effects, intentions don't predict behavior, and satisfaction with a health message doesn't guarantee adherence.</p>
-
-          <p>What if we adopted Hohenberg & Taylor's dual measurement framework in health contexts? Measure <em>message reception and attitudes</em> through carefully designed surveys (applying Vomberg & Klarmann's principles), but measure <em>actual health behavior</em> through objective data — EHR records, pharmacy fills, app-tracked exercise, clinic visit logs.</p>
-
-          <p>The <span class="term">Confirmation-Disconfirmation Paradigm<span class="tooltip">Oliver (1980): Satisfaction = Perceived Performance (P) vs. Expected Performance (E). P > E → satisfaction. P < E → dissatisfaction. Satisfaction is about the gap between expectations and experience, not absolute quality.</span></span> also has untapped potential here. Health message effectiveness may depend not on absolute message quality, but on the gap between what patients <em>expected</em> from the health system and what they <em>experienced</em>. A message that sets appropriate expectations might produce more durable behavior change than one that maximizes initial satisfaction.</p>
-
-          <p><strong>Emerging question:</strong> Can we design health communication measurement systems that combine survey-based attitude assessment with objective behavioral data — and use the <span class="term">Heckman correction<span class="tooltip">Two-stage method: Stage 1 (Probit) estimates participation probability → computes inverse Mills ratio λ(z) = ϕ(z)/Φ(z). Stage 2 (OLS) includes λ as a regressor. If ρ is significant, selection bias was present.</span></span> to address self-selection into health programs (wellness apps, patient portals, support groups) the same way marketing researchers address self-selection into loyalty programs?</p>
-        </div>
-      </div>
-
-      <!-- VISUAL SCAFFOLD 1: Confirmation-Disconfirmation -->
-      <div class="visual-box">
-        <div class="visual-box-label">Visual Scaffold — Confirmation-Disconfirmation Paradigm</div>
-        <div class="visual-formula">
-          <strong>Oliver (1980) — Satisfaction Formation</strong><br><br>
-          Perceived Performance (P) vs. Expected Performance (E)<br><br>
-          P > E → Positive Disconfirmation → <strong>Satisfaction</strong><br>
-          P = E → Confirmation → <strong>Satisfaction</strong><br>
-          P < E → Negative Disconfirmation → <strong>Dissatisfaction</strong>
-        </div>
-        <div class="visual-caption">Satisfaction is not about absolute quality — it's about the gap between what was expected and what was experienced.</div>
-      </div>
-
-      <!-- VISUAL SCAFFOLD 2: Heckman -->
-      <div class="visual-box" style="margin-top:1rem">
-        <div class="visual-box-label">Visual Scaffold — Heckman Two-Stage Correction</div>
-        <div class="visual-formula">
-          <strong>Stage 1 (Selection):</strong> y₁* = X₁β₁ + e₁ → Probit<br>
-          <strong>Stage 2 (Outcome):</strong> E[y₂ | y₁* > 0] = X₂β₂ + ρλ(X₁β₁)<br><br>
-          λ(z) = ϕ(z) / Φ(z) — inverse Mills ratio<br><br>
-          If ρ significant → selection bias exists → correction needed<br>
-          If ρ ≈ 0 → no selection bias → simpler model suffices
-        </div>
-        <div class="visual-caption">The inverse Mills ratio captures the conditional probability of being observed (e.g., enrolled in a loyalty program) and purges its influence from the outcome equation.</div>
-      </div>
-
-      <!-- TAKEAWAY -->
-      <div class="takeaway">
-        <p><strong>Week 7 Takeaway:</strong> "What you measure shapes what you manage." Satisfaction surveys feel rigorous, but without validity checks, CMB controls, and behavioral data triangulation, they can create a measurement mirage — numbers that feel precise but point in the wrong direction. For both marketing and health communication, the path forward requires measuring constructs at multiple levels (overall + detailed), through multiple methods (survey + objective), while being honest about what surveys can and cannot capture.</p>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- ═══ LEARNING RESOURCES ═══ -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <div class="resources-section">
-    <hr class="resources-divider">
-    <div class="resources-header">
-      <h2>Learning Resources</h2>
-      <span class="resources-badge">Reference</span>
-    </div>
-    <p class="resources-desc">Curated statistical methods references and study materials for this course.</p>
-    <div class="resource-cards">
-      <a href="/mkt397/ucla-oarc-seminar-map.html" class="resource-card" data-type="seminar-map">
-        <span class="arrow">→</span>
-        <div class="resource-card-label">Statistical Methods</div>
-        <h3>UCLA OARC Seminar Map</h3>
-        <p>60+ free seminars — R, Stata, SAS, SPSS, Mplus. Searchable & filterable, with course-relevant picks marked.</p>
-      </a>
-      <a href="/mkt397/week7-study-guide.html" class="resource-card" data-type="study-guide">
-        <span class="arrow">→</span>
-        <div class="resource-card-label">Study Guide</div>
-        <h3>Week 7 한국어 가이드</h3>
-        <p>Survey research & construct measurement — Vomberg & Klarmann, Hohenberg & Taylor 핵심 정리.</p>
-      </a>
-      <a href="https://stats.oarc.ucla.edu/other/mult-pkg/whatstat/" target="_blank" class="resource-card" data-type="external">
-        <span class="arrow">↗</span>
-        <div class="resource-card-label">External</div>
-        <h3>Which Statistical Test?</h3>
-        <p>UCLA OARC decision guide — choose the right analysis for your data type and research question.</p>
-      </a>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="sub-footer">
-    <a href="/">← Back to Portfolio</a>
-    <span>Bella Kang · MKT 397 · Spring 2026</span>
+    <div class="sub-footer"><a href="/">← Back to Portfolio</a><span>Bella Kang · MKT 397 · Spring 2026</span></div>
   </div>
 
   <script>
-    // Week Tab Navigation
-    const tabs=document.querySelectorAll('.week-tab');
-    const panels=document.querySelectorAll('.week-panel');
-    tabs.forEach(tab=>{
-      tab.addEventListener('click',()=>{
-        const w=tab.dataset.week;
-        tabs.forEach(t=>t.classList.remove('active'));
-        tab.classList.add('active');
-        panels.forEach(p=>p.classList.remove('active'));
-        const target=document.getElementById('week-'+w);
-        if(target)target.classList.add('active');
-      });
-    });
+    const weekLinks=document.querySelectorAll('.sb-week'),panels=document.querySelectorAll('.week-panel'),sidebar=document.getElementById('sidebar'),overlay=document.getElementById('sidebarOverlay'),toggle=document.getElementById('mobileToggle');
+    weekLinks.forEach(l=>{l.addEventListener('click',()=>{const w=l.dataset.week;weekLinks.forEach(x=>x.classList.remove('active'));l.classList.add('active');panels.forEach(p=>p.classList.remove('active'));const t=document.getElementById('week-'+w);if(t){t.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}sidebar.classList.remove('open');overlay.classList.remove('show')})});
+    toggle.addEventListener('click',()=>{sidebar.classList.toggle('open');overlay.classList.toggle('show')});
+    overlay.addEventListener('click',()=>{sidebar.classList.remove('open');overlay.classList.remove('show')});
   </script>
 </body>
 </html>
