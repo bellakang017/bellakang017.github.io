@@ -1,0 +1,329 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UCLA OARC Statistical Seminar Map — MKT 397 Resource</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:#FFFFFF;--chalk:#F7F5F0;--piano:#F0EDE5;--linen:#E8E3D9;--stone:#D4CFC4;
+      --text:#1C1C1C;--text-mid:#4A4A4A;--text-soft:#7A7A7A;
+      --accent:#8B2332;--accent-light:#A73344;--accent-wash:rgba(139,35,50,0.06);
+      --rule:#DDD8CE;--sage:#6B7B5E;--sage-wash:rgba(107,123,94,0.07);
+      --blue:#2D5A7B;--blue-wash:rgba(45,90,123,0.06);
+      --mono:'JetBrains Mono',monospace;
+      --r-color:#276DC3;--stata-color:#1A7A4C;--sas-color:#4E4187;
+      --spss-color:#C0392B;--mplus-color:#D4881C;--cross-color:#1C1C1C;--special-color:#8B2332;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--white);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased}
+    ::selection{background:var(--accent);color:var(--white)}
+
+    /* ─── NAV ─── */
+    .sub-nav{position:fixed;top:0;width:100%;padding:1rem 0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule)}
+    .sub-nav-inner{max-width:960px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
+    .sub-nav-back{text-decoration:none;color:var(--text-soft);font-size:0.84rem;font-weight:500;display:flex;align-items:center;gap:0.4rem;transition:color 0.25s}
+    .sub-nav-back:hover{color:var(--accent)}
+    .sub-nav-right{display:flex;align-items:center;gap:1.5rem}
+    .sub-nav-title{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:var(--text)}
+    .lab-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.6rem;border-radius:4px;background:var(--blue-wash);color:var(--blue)}
+
+    /* ─── HERO ─── */
+    .hero{max-width:960px;margin:0 auto;padding:7rem 2rem 2rem}
+    .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem}
+    .hero-badge::before{content:'';width:18px;height:1.5px;background:var(--blue)}
+    .hero h1{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:400;line-height:1.25;color:var(--text);margin-bottom:0.5rem;letter-spacing:-0.02em}
+    .hero h1 em{font-style:italic;color:var(--accent)}
+    .hero-desc{font-size:0.95rem;color:var(--text-mid);line-height:1.8;max-width:640px;margin-bottom:1.5rem}
+    .hero-links{display:flex;gap:1.5rem;flex-wrap:wrap;padding-top:1rem;border-top:1px solid var(--rule)}
+    .hero-links a{font-size:0.82rem;color:var(--text-mid);text-decoration:none;font-weight:500;transition:color 0.2s;display:flex;align-items:center;gap:0.4rem}
+    .hero-links a:hover{color:var(--accent)}
+    .hero-links a::before{content:'→';font-size:0.75rem;color:var(--stone)}
+
+    /* ─── FILTER ─── */
+    .filter-section{max-width:960px;margin:1.5rem auto 0;padding:0 2rem}
+    .filter-row{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--rule)}
+    .filter-label{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-soft);margin-right:0.5rem}
+    .filter-btn{padding:0.4rem 0.9rem;border-radius:5px;border:1px solid var(--rule);background:var(--white);color:var(--text-mid);font-family:'Source Sans 3',sans-serif;font-size:0.78rem;font-weight:500;cursor:pointer;transition:all 0.2s}
+    .filter-btn:hover{border-color:var(--accent);color:var(--accent)}
+    .filter-btn.active{background:var(--text);color:var(--white);border-color:var(--text)}
+
+    /* ─── SEARCH ─── */
+    .search-section{max-width:960px;margin:1rem auto 0;padding:0 2rem}
+    .search-input{width:100%;padding:0.7rem 1rem 0.7rem 2.4rem;border:1px solid var(--rule);border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:0.88rem;color:var(--text);background:var(--chalk) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A7A7A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") 0.75rem center no-repeat;outline:none;transition:border-color 0.2s}
+    .search-input:focus{border-color:var(--accent);background-color:var(--white)}
+    .search-input::placeholder{color:var(--stone)}
+
+    /* ─── MAIN ─── */
+    .main{max-width:960px;margin:2rem auto 4rem;padding:0 2rem}
+
+    /* ─── CATEGORY ─── */
+    .category{margin-bottom:2.5rem;animation:fadeUp 0.35s ease both}
+    .category[data-visible="false"]{display:none}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+    .cat-header{display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--rule)}
+    .cat-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+    .cat-header h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;color:var(--text)}
+    .cat-count{font-size:0.7rem;color:var(--text-soft);background:var(--chalk);padding:0.2rem 0.6rem;border-radius:10px;font-weight:500}
+
+    /* ─── CARDS ─── */
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.75rem}
+    .card{background:var(--white);border-radius:8px;padding:1rem 1.2rem;border:1px solid var(--rule);text-decoration:none;color:var(--text);display:block;position:relative;transition:all 0.25s}
+    .card:hover{border-color:var(--stone);box-shadow:0 2px 12px rgba(28,28,28,0.05);transform:translateY(-1px)}
+    .card[data-visible="false"]{display:none}
+
+    .card-title{font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:0.2rem;line-height:1.4}
+    .card-note{font-size:0.78rem;color:var(--text-soft);line-height:1.4}
+    .card-tags{margin-top:0.6rem;display:flex;gap:0.4rem;flex-wrap:wrap}
+    .tag{font-size:0.62rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;padding:0.2rem 0.5rem;border-radius:3px;background:var(--chalk);color:var(--text-soft)}
+    .tag.priority{background:var(--accent-wash);color:var(--accent)}
+    .tag.thesis{background:var(--sage-wash);color:var(--sage)}
+    .tag.new{background:var(--blue-wash);color:var(--blue)}
+
+    /* Accent colors per category */
+    [data-cat="r"] .cat-dot{background:var(--r-color)}
+    [data-cat="stata"] .cat-dot{background:var(--stata-color)}
+    [data-cat="sas"] .cat-dot{background:var(--sas-color)}
+    [data-cat="spss"] .cat-dot{background:var(--spss-color)}
+    [data-cat="mplus"] .cat-dot{background:var(--mplus-color)}
+    [data-cat="cross"] .cat-dot{background:var(--cross-color)}
+    [data-cat="special"] .cat-dot{background:var(--special-color)}
+
+    /* Star for Bella picks */
+    .bella-pick::after{content:'★';position:absolute;top:0.8rem;right:0.9rem;font-size:0.75rem;color:var(--accent);opacity:0.5}
+
+    /* ─── FOOTER ─── */
+    .sub-footer{max-width:960px;margin:0 auto;padding:2rem 2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.8rem}
+    .sub-footer a{font-size:0.85rem;color:var(--text-mid);text-decoration:none;font-weight:500;transition:color 0.2s}
+    .sub-footer a:hover{color:var(--accent)}
+    .sub-footer span{font-size:0.78rem;color:var(--text-soft)}
+
+    @media(max-width:768px){
+      .hero{padding:6rem 1.5rem 1.5rem}
+      .hero h1{font-size:1.7rem}
+      .main{padding:1.5rem 1.5rem 3rem}
+      .cards{grid-template-columns:1fr}
+      .sub-footer{flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="sub-nav">
+    <div class="sub-nav-inner">
+      <a href="/mkt397/" class="sub-nav-back">← MKT 397</a>
+      <div class="sub-nav-right">
+        <span class="sub-nav-title">Seminar Map</span>
+        <span class="lab-badge">Learning Resource</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Statistical Methods Reference</div>
+    <h1>UCLA OARC <em>Seminar Map</em></h1>
+    <p class="hero-desc">60+ free statistical seminars from UCLA's Office of Advanced Research Computing, organized by software and topic. ★ marks seminars directly relevant to MKT 397 coursework and thesis research.</p>
+    <div class="hero-links">
+      <a href="https://stats.oarc.ucla.edu/other/mult-pkg/seminars/" target="_blank">Original OARC Page</a>
+      <a href="https://stats.oarc.ucla.edu/calendar/" target="_blank">Upcoming Live Workshops</a>
+      <a href="https://stats.oarc.ucla.edu/ucla/policies/" target="_blank">Free Statistical Consulting</a>
+    </div>
+  </div>
+
+  <!-- FILTER -->
+  <div class="filter-section">
+    <div class="filter-row">
+      <span class="filter-label">Filter</span>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="r">R</button>
+      <button class="filter-btn" data-filter="stata">Stata</button>
+      <button class="filter-btn" data-filter="sas">SAS</button>
+      <button class="filter-btn" data-filter="spss">SPSS</button>
+      <button class="filter-btn" data-filter="mplus">Mplus</button>
+      <button class="filter-btn" data-filter="cross">Cross-Pkg</button>
+      <button class="filter-btn" data-filter="special">Special</button>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-section">
+    <input class="search-input" type="text" placeholder="Search seminars… e.g. SEM, mediation, factor analysis, survey">
+  </div>
+
+  <!-- MAIN -->
+  <div class="main" id="main">
+
+    <!-- ═══ R ═══ -->
+    <div class="category" data-cat="r">
+      <div class="cat-header"><div class="cat-dot"></div><h2>R</h2><span class="cat-count">25</span></div>
+      <div class="cards">
+        <a class="card" href="https://stats.idre.ucla.edu/r/seminars/intro" target="_blank" data-search="introduction r basics dplyr ggplot2"><div class="card-title">Introduction to R</div><div class="card-note">Setup, dplyr, ggplot2, RMarkdown basics</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/r-data-management/" target="_blank" data-search="r data management wrangling"><div class="card-title">R Data Management</div><div class="card-note">Data wrangling & manipulation</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/r/seminars/r-markdown-basics/" target="_blank" data-search="r markdown rmarkdown report"><div class="card-title">R Markdown Basics</div><div class="card-note">Reproducible reports</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/r/seminars/ggplot2_intro/" target="_blank" data-search="ggplot2 visualization plotting"><div class="card-title">Introduction to ggplot2</div><div class="card-note">Grammar of graphics & data visualization</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/intro-to-linear-regression-r/" target="_blank" data-search="linear regression ols r"><div class="card-title">Intro to Linear Regression in R</div><div class="card-note">OLS regression fundamentals</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/r/seminars/introduction-to-regression-in-r" target="_blank" data-search="regression r introduction"><div class="card-title">Introduction to Regression in R</div><div class="card-note">Comprehensive regression overview</div></a>
+        <a class="card bella-pick" href="https://stats.idre.ucla.edu/r/seminars/interactions-r/" target="_blank" data-search="interactions moderation probing plotting r"><div class="card-title">Decomposing, Probing & Plotting Interactions</div><div class="card-note">Interaction effects & moderation analysis</div><div class="card-tags"><span class="tag priority">MKT 397</span></div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/analysis-and-visualization-of-interactions-in-r/" target="_blank" data-search="interactions visualization analysis r"><div class="card-title">Analysis & Visualization of Interactions in R</div><div class="card-note">Updated interaction analysis methods</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/r/seminars/survey-data-analysis-with-r/" target="_blank" data-search="survey data analysis design weights r"><div class="card-title">Survey Data Analysis with R</div><div class="card-note">Complex survey designs & weighted analysis</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/wp-content/uploads/2025/09/R_presentation.html" target="_blank" data-search="survey data analysis r 4.5 updated"><div class="card-title">Survey Data Analysis with R 4.5.1</div><div class="card-note">Updated 2025 version</div><div class="card-tags"><span class="tag new">New</span></div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/introduction-to-survival-analysis-in-r/" target="_blank" data-search="survival analysis kaplan meier cox r"><div class="card-title">Intro to Survival Analysis in R</div><div class="card-note">Kaplan-Meier, Cox regression</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/r/seminars/repeated-measures-analysis-with-r/" target="_blank" data-search="repeated measures longitudinal r"><div class="card-title">Repeated Measures Analysis in R</div><div class="card-note">Within-subject designs</div></a>
+        <a class="card bella-pick" href="https://stats.idre.ucla.edu/r/seminars/lgm/" target="_blank" data-search="latent growth model lgm measurement invariance lavaan r"><div class="card-title">Latent Growth Models & Measurement Invariance</div><div class="card-note">LGM + invariance testing in lavaan</div><div class="card-tags"><span class="tag thesis">Thesis</span></div></a>
+        <a class="card bella-pick" href="https://stats.idre.ucla.edu/r/seminars/rsem/" target="_blank" data-search="structural equation modeling sem lavaan r path analysis"><div class="card-title">Introduction to SEM in R with lavaan</div><div class="card-note">Path analysis, CFA, full SEM</div><div class="card-tags"><span class="tag thesis">Thesis</span><span class="tag priority">MKT 397</span></div></a>
+        <a class="card bella-pick" href="https://stats.idre.ucla.edu/r/seminars/rcfa/" target="_blank" data-search="confirmatory factor analysis cfa lavaan r"><div class="card-title">Confirmatory Factor Analysis with lavaan</div><div class="card-note">CFA model specification & evaluation</div><div class="card-tags"><span class="tag thesis">Thesis</span></div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/missing-data-in-r/" target="_blank" data-search="missing data imputation r mice"><div class="card-title">Missing Data in R</div><div class="card-note">Multiple imputation, missingness patterns</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/introduction-to-r-programming/" target="_blank" data-search="r programming functions loops"><div class="card-title">Introduction to R Programming</div><div class="card-note">Functions, loops, control flow</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/generalized_linear_regression/" target="_blank" data-search="generalized linear model glm r logistic poisson"><div class="card-title">Intro to Generalized Linear Regression</div><div class="card-note">GLM family: logistic, Poisson, etc.</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/beyond-logistic-regression-in-r/" target="_blank" data-search="multinomial ordinal logistic regression r"><div class="card-title">Beyond Logistic Regression in R</div><div class="card-note">Multinomial, ordinal, extensions</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/zero-inflated-and-hurdle-models-for-count-data-in-r/" target="_blank" data-search="zero inflated hurdle count data r"><div class="card-title">Zero-Inflated & Hurdle Models</div><div class="card-note">Advanced count data models</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/output-table-in-r/" target="_blank" data-search="output tables reporting r"><div class="card-title">Output Tables in R</div><div class="card-note">Publication-quality tables</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/effect-sizes-for-linear-multilevel-models-in-r/" target="_blank" data-search="effect size multilevel hlm r"><div class="card-title">Effect Sizes for Multilevel Models</div><div class="card-note">Effect size calculation for HLM</div></a>
+        <a class="card bella-pick" href="https://stats.oarc.ucla.edu/r/seminars/introduction-to-dags/" target="_blank" data-search="dag causal inference directed acyclic graph r"><div class="card-title">Introduction to DAGs for Causal Inference</div><div class="card-note">Directed acyclic graphs & causal reasoning</div><div class="card-tags"><span class="tag priority">MKT 397</span></div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/good-bad-controls/" target="_blank" data-search="covariate selection controls confounders regression r"><div class="card-title">Covariate Selection: Good & Bad Controls</div><div class="card-note">Avoiding collider bias & confounding</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/r/seminars/machine-learning-for-scientific-research/" target="_blank" data-search="machine learning scientific research r"><div class="card-title">Machine Learning for Scientific Research</div><div class="card-note">ML methods for researchers</div></a>
+      </div>
+    </div>
+
+    <!-- ═══ Stata ═══ -->
+    <div class="category" data-cat="stata">
+      <div class="cat-header"><div class="cat-dot"></div><h2>Stata</h2><span class="cat-count">14</span></div>
+      <div class="cards">
+        <a class="card" href="https://stats.oarc.ucla.edu/stata/seminars/introduction-to-stata-19-5/" target="_blank" data-search="introduction stata 19 basics"><div class="card-title">Introduction to Stata 19.5</div><div class="card-note">Latest version</div><div class="card-tags"><span class="tag new">New</span></div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/stata-16-class-notes/" target="_blank" data-search="introduction stata 16"><div class="card-title">Introduction to Stata 16</div><div class="card-note">Older version reference</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/stata-data-management/" target="_blank" data-search="stata data management wrangling"><div class="card-title">Stata Data Management</div><div class="card-note">Data wrangling & file handling</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/stata-regression/" target="_blank" data-search="regression stata ols linear"><div class="card-title">Regression with Stata</div><div class="card-note">Linear regression implementation</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/stata/seminars/logistic-regression-in-stata-newer/" target="_blank" data-search="logistic regression stata"><div class="card-title">Logistic Regression with Stata</div><div class="card-note">Updated logistic regression</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/stata-beyondbinarylogistic" target="_blank" data-search="multinomial ordinal logistic stata beyond binary"><div class="card-title">Beyond Binary Logistic Regression</div><div class="card-note">Multinomial, ordinal, other link functions</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/mi_in_stata_pt1_new/" target="_blank" data-search="multiple imputation missing data stata"><div class="card-title">Multiple Imputation in Stata 15</div><div class="card-note">MI methods & implementation</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/svy-stata-intro/" target="_blank" data-search="survey data analysis stata"><div class="card-title">Introduction to Survey Data Analysis</div><div class="card-note">Sampling design, weights, svyset</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/stata/seminars/applied-survey-data-analysis-using-stata-18/" target="_blank" data-search="applied survey data stata 18"><div class="card-title">Applied Survey Data Analysis (Stata 18)</div><div class="card-note">Advanced survey methods</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/stata-survival/" target="_blank" data-search="survival analysis stata"><div class="card-title">Survival Analysis Using Stata</div><div class="card-note">Time-to-event analysis</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/introduction-to-meta-analysis-in-stata/" target="_blank" data-search="meta analysis stata"><div class="card-title">Intro to Meta-analysis using Stata</div><div class="card-note">Effect size pooling, forest plots</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/stata-programming/" target="_blank" data-search="programming stata macros"><div class="card-title">Introduction to Programming in Stata</div><div class="card-note">Macros, loops, program writing</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/interactions-stata/" target="_blank" data-search="interactions moderation probing stata"><div class="card-title">Decomposing & Plotting Interactions</div><div class="card-note">Interaction effects in Stata</div></a>
+      </div>
+    </div>
+
+    <!-- ═══ SAS ═══ -->
+    <div class="category" data-cat="sas">
+      <div class="cat-header"><div class="cat-dot"></div><h2>SAS</h2><span class="cat-count">12</span></div>
+      <div class="cards">
+        <a class="card" href="https://stats.oarc.ucla.edu/sas/seminars/notes/introduction-to-sas-9-4-using-sas-ondemand/" target="_blank" data-search="introduction sas ondemand"><div class="card-title">Introduction to SAS using OnDemand</div><div class="card-note">Cloud-based SAS intro</div><div class="card-tags"><span class="tag new">New</span></div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/sas/seminars/notes/" target="_blank" data-search="introduction sas 9.4"><div class="card-title">Introduction to SAS 9.4</div><div class="card-note">Classic desktop SAS</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/sas/seminars/sas-programming-basics/" target="_blank" data-search="sas programming basics"><div class="card-title">Programming Basics in SAS</div><div class="card-note">DATA step, PROC fundamentals</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/sas/seminars/analyzing-and-visualizing-interactions/" target="_blank" data-search="interactions visualization sas"><div class="card-title">Analyzing & Visualizing Interactions</div><div class="card-note">Interaction effects & plots</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/sas/seminars/sas-regression/" target="_blank" data-search="regression sas linear"><div class="card-title">Regression with SAS</div><div class="card-note">PROC REG, linear models</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/sas/seminars/logistic-regression-in-sas/" target="_blank" data-search="logistic regression sas"><div class="card-title">Logistic Regression in SAS</div><div class="card-note">PROC LOGISTIC</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/sas/seminars/sas-repeatedmeasures/" target="_blank" data-search="repeated measures sas mixed"><div class="card-title">Repeated Measures Analysis in SAS</div><div class="card-note">PROC MIXED</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/sas/seminars/sas-survey/" target="_blank" data-search="survey data analysis sas"><div class="card-title">Applied Survey Data Analysis</div><div class="card-note">Complex survey procedures</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/sas/seminars/multiple-imputation-in-sas/mi_new_1/" target="_blank" data-search="multiple imputation sas"><div class="card-title">Multiple Imputation in SAS</div><div class="card-note">PROC MI, PROC MIANALYZE</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/sas/seminars/sas-survival/" target="_blank" data-search="survival analysis sas"><div class="card-title">Survival Analysis Using SAS</div><div class="card-note">PROC LIFETEST, PROC PHREG</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/sas/seminars/sas-arrays/" target="_blank" data-search="arrays sas data step"><div class="card-title">Using Arrays in SAS</div><div class="card-note">Array processing</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/sas/seminars/sas-macros-introduction/" target="_blank" data-search="macro language sas"><div class="card-title">Introduction to SAS Macro Language</div><div class="card-note">Macro variables & programs</div></a>
+      </div>
+    </div>
+
+    <!-- ═══ SPSS ═══ -->
+    <div class="category" data-cat="spss">
+      <div class="cat-header"><div class="cat-dot"></div><h2>SPSS</h2><span class="cat-count">13</span></div>
+      <div class="cards">
+        <a class="card" href="https://stats.idre.ucla.edu/spss/seminars/notes/" target="_blank" data-search="introduction spss 29 basics"><div class="card-title">Introduction to SPSS</div><div class="card-note">Point-and-click, v29</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/spss/seminars/introduction-to-regression-with-spss/" target="_blank" data-search="regression spss linear"><div class="card-title">Introduction to Regression with SPSS</div><div class="card-note">Linear regression basics</div></a>
+        <a class="card bella-pick" href="https://stats.oarc.ucla.edu/other/mult-pkg/seminars/spss-process/" target="_blank" data-search="mediation process macro spss hayes indirect effect"><div class="card-title">Mediation Models with PROCESS Macro</div><div class="card-note">Hayes PROCESS, indirect effects, bootstrapping</div><div class="card-tags"><span class="tag thesis">Thesis</span><span class="tag priority">ADV 382J</span></div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/spss/seminars/graphing-interactions-using-the-process-macro-in-spss/" target="_blank" data-search="interactions graphing process macro spss"><div class="card-title">Graphing Interactions Using PROCESS</div><div class="card-note">Moderation visualization</div></a>
+        <a class="card bella-pick" href="https://stats.oarc.ucla.edu/spss/seminars/introduction-to-factor-analysis/" target="_blank" data-search="factor analysis efa practical introduction spss"><div class="card-title">Practical Introduction to Factor Analysis</div><div class="card-note">EFA fundamentals, extraction & rotation</div><div class="card-tags"><span class="tag thesis">Thesis</span></div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/spss/seminars/efa-spss/" target="_blank" data-search="pca efa exploratory factor analysis spss"><div class="card-title">PCA and EFA with SPSS</div><div class="card-note">PCA vs EFA, component extraction</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/spss/seminars/introduction-to-spss-syntax-2/" target="_blank" data-search="spss syntax part 1"><div class="card-title">SPSS Syntax, Part 1</div><div class="card-note">Syntax basics</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/spss/seminars/introduction-to-spss-syntax-2-2/" target="_blank" data-search="spss syntax part 2"><div class="card-title">SPSS Syntax, Part 2</div><div class="card-note">Advanced syntax</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/spss/seminars/spss-syntax-to-the-next-level/" target="_blank" data-search="spss syntax advanced"><div class="card-title">SPSS Syntax Next Level</div><div class="card-note">Advanced automation</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/spss/seminars/applied-survey-data-analysis-using-spss-29/" target="_blank" data-search="survey data spss 29"><div class="card-title">Applied Survey Data Analysis (SPSS 29)</div><div class="card-note">Complex samples module</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/spss/seminars/repeated-measures/" target="_blank" data-search="repeated measures spss"><div class="card-title">Repeated Measures in SPSS</div><div class="card-note">Within-subjects designs</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/spss/seminars/spss-mixed-command/" target="_blank" data-search="mixed models spss multilevel"><div class="card-title">Using the SPSS Mixed Command</div><div class="card-note">Multilevel / hierarchical models</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/spss/seminars/spssgraphics/graphics-in-spss/" target="_blank" data-search="graphics charts spss"><div class="card-title">Graphics using SPSS</div><div class="card-note">Charts & visualization</div></a>
+      </div>
+    </div>
+
+    <!-- ═══ Mplus ═══ -->
+    <div class="category" data-cat="mplus">
+      <div class="cat-header"><div class="cat-dot"></div><h2>Mplus & Latent Variables</h2><span class="cat-count">4</span></div>
+      <div class="cards">
+        <a class="card" href="https://stats.idre.ucla.edu/mplus/seminars/mplus-class-notes" target="_blank" data-search="introduction mplus latent variable"><div class="card-title">Introduction to Mplus</div><div class="card-note">Syntax & model specification</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/mplus/seminars/building_mplus_skills/" target="_blank" data-search="mplus advanced skills"><div class="card-title">Building Your Mplus Skills</div><div class="card-note">Intermediate techniques</div></a>
+        <a class="card bella-pick" href="https://stats.oarc.ucla.edu/mplus/seminars/introduction-to-mediation-analysis-using-mplus/" target="_blank" data-search="mediation analysis mplus indirect effect"><div class="card-title">Mediation Analysis using Mplus</div><div class="card-note">Indirect effects, path analysis</div><div class="card-tags"><span class="tag thesis">Thesis</span></div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/spss/seminars/introduction-to-factor-analysis/" target="_blank" data-search="factor analysis efa"><div class="card-title">Practical Intro to Factor Analysis</div><div class="card-note">Cross-listed from SPSS</div></a>
+      </div>
+    </div>
+
+    <!-- ═══ Cross-Package ═══ -->
+    <div class="category" data-cat="cross">
+      <div class="cat-header"><div class="cat-dot"></div><h2>Cross-Package & Methodology</h2><span class="cat-count">8</span></div>
+      <div class="cards">
+        <a class="card" href="https://stats.idre.ucla.edu/other/mult-pkg/seminars/alda/" target="_blank" data-search="longitudinal data analysis singer willett"><div class="card-title">Longitudinal Research: Present & Future</div><div class="card-note">Singer & Willett — foundational methods</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/other/mult-pkg/seminars/mlm-longitudinal/" target="_blank" data-search="multilevel modeling longitudinal hlm"><div class="card-title">Longitudinal Data using MLM</div><div class="card-note">HLM for repeated measures</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/other/mult-pkg/seminars/svy-intro/" target="_blank" data-search="survey data analysis introduction"><div class="card-title">Introduction to Survey Data Analysis</div><div class="card-note">Cross-software survey methods</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/other/mult-pkg/seminars/advanced-topics-in-survey-data-analysis/" target="_blank" data-search="advanced survey topics"><div class="card-title">Advanced Topics in Survey Data</div><div class="card-note">Complex designs & weighting</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/other/mult-pkg/seminars/intro-power/" target="_blank" data-search="power analysis sample size"><div class="card-title">Introduction to Power Analysis</div><div class="card-note">Sample size determination</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/wp-content/uploads/2016/02/Power_analysis_-_intermediate_course_for_UCLA_white.pdf" target="_blank" data-search="power analysis intermediate"><div class="card-title">Intermediate Power Analysis</div><div class="card-note">PDF slides</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/wp-content/uploads/2016/02/Power_analysis_-_advanced_course_for_UCLA_white.pdf" target="_blank" data-search="power analysis advanced"><div class="card-title">Advanced Power Analysis</div><div class="card-note">PDF slides</div></a>
+        <a class="card" href="https://stats.oarc.ucla.edu/?page_id=37953&preview=true" target="_blank" data-search="power simulation r monte carlo"><div class="card-title">Power Simulations in R</div><div class="card-note">Monte Carlo simulation</div></a>
+      </div>
+    </div>
+
+    <!-- ═══ Special Topics ═══ -->
+    <div class="category" data-cat="special">
+      <div class="cat-header"><div class="cat-dot"></div><h2>Special Topics</h2><span class="cat-count">5</span></div>
+      <div class="cards">
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/deciphering-interactions-in-logistic-regression/" target="_blank" data-search="interactions logistic regression"><div class="card-title">Deciphering Interactions in Logistic Regression</div><div class="card-note">Log-odds scale interpretation</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/stata/seminars/regression-models-with-count-data/" target="_blank" data-search="count data poisson negative binomial"><div class="card-title">Regression Models with Count Data</div><div class="card-note">Poisson, NB, zero-inflated</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/other/mult-pkg/seminars/statistical-writing/" target="_blank" data-search="statistical writing apa reporting"><div class="card-title">Statistical Writing</div><div class="card-note">Reporting results, APA conventions</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/other/mult-pkg/seminars/accessing-and-analyzing-chis-data/" target="_blank" data-search="chis california health interview survey"><div class="card-title">Accessing & Analyzing CHIS Data</div><div class="card-note">California Health Interview Survey</div></a>
+        <a class="card" href="https://stats.idre.ucla.edu/other/mult-pkg/seminars/analyzing-the-results-from-an-online-questionnaire/" target="_blank" data-search="online questionnaire survey analysis"><div class="card-title">Analyzing Online Questionnaire Results</div><div class="card-note">Survey instrument analysis</div></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="sub-footer">
+    <a href="/mkt397/">← Back to MKT 397</a>
+    <span>Source: UCLA OARC · ★ = Course/Thesis relevant · Feb 2026</span>
+  </div>
+
+  <script>
+    const filterBtns=document.querySelectorAll('.filter-btn');
+    const categories=document.querySelectorAll('.category');
+    const searchInput=document.querySelector('.search-input');
+
+    filterBtns.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        filterBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const f=btn.dataset.filter;
+        categories.forEach(c=>{c.style.display=(f==='all'||c.dataset.cat===f)?'':'none'});
+        searchInput.value='';
+        document.querySelectorAll('.card').forEach(c=>{c.style.display=''});
+      });
+    });
+
+    searchInput.addEventListener('input',e=>{
+      const q=e.target.value.toLowerCase().trim();
+      if(q){filterBtns.forEach(b=>b.classList.remove('active'));document.querySelector('[data-filter="all"]').classList.add('active');categories.forEach(c=>{c.style.display=''})}
+      document.querySelectorAll('.card').forEach(card=>{
+        const t=((card.dataset.search||'')+' '+(card.querySelector('.card-title')?.textContent||'')+' '+(card.querySelector('.card-note')?.textContent||'')).toLowerCase();
+        card.style.display=(!q||t.includes(q))?'':'none';
+      });
+      categories.forEach(c=>{const v=c.querySelectorAll('.card:not([style*="display: none"])');c.style.display=(v.length===0&&q)?'none':''});
+    });
+  </script>
+</body>
+</html>
