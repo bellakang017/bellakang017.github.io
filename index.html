@@ -215,6 +215,74 @@
     @media(min-width:769px) and (max-width:1024px){
       .cw-row{grid-template-columns:1fr 1fr}
     }
+    .exp-featured {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.exp-featured-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 1.1rem 0.45rem 0.45rem;
+  background: var(--accent);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.exp-featured-link::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transition: left 0.6s ease;
+}
+
+.exp-featured-link:hover {
+  background: var(--accent-light);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(139, 35, 50, 0.3);
+}
+
+.exp-featured-link:hover::before { left: 100%; }
+
+.link-icon {
+  width: 34px; height: 34px;
+  border-radius: 7px;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.exp-featured-link:hover .link-icon { background: rgba(255,255,255,0.25); }
+
+.link-icon img {
+  width: 22px; height: 22px;
+  object-fit: contain;
+}
+
+.link-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  opacity: 0.6;
+  margin-left: 0.15rem;
+}
+
+.exp-featured-link:hover .link-arrow {
+  transform: translateX(4px);
+  opacity: 1;
+}
   </style>
 </head>
 <body>
@@ -284,13 +352,21 @@
         <div class="exp-item">
           <div class="exp-date">Dec 2025 –<br>Present</div>
           <div>
-            <a href="https://bellakang017.github.io/bk17/workshop/2025/12/15/gigc-life-design-workshop.html" class="exp-role">Global Impact Graduate Consultant ↗</a>
-            <div class="exp-org">UT Austin · Office of Career &amp; Life Design</div>
-            <p class="exp-desc">Operationalized Stanford's Life Design framework into a 12-week cohort. Built career readiness ecosystem — newsletter (300+ subscribers), interview guides, visa tools.</p>
-            <div class="exp-tags"><span class="tag">Workshop Design</span><span class="tag">Behavioral Intervention</span><span class="tag">Curriculum</span></div>
-           <div class="exp-tags" style="margin-top:0.3rem"><a href="/appleproject.joo/#" class="tag" style="text-decoration:none;cursor:pointer">→ Interview Instinct Quiz</a><a href="/appleproject.joo/#" class="tag" style="text-decoration:none;cursor:pointer">→ HIVE Handout</a></div>
-          </div>
-        </div>
+          <a href="https://bellakang017.github.io/bk17/workshop/2025/12/15/gigc-life-design-workshop.html" class="exp-role">Global Impact Graduate Consultant ↗</a>
+          <div class="exp-org">UT Austin · Office of Career &amp; Life Design</div>
+         <p class="exp-desc">Operationalized Stanford's Life Design framework into a 12-week cohort. Built career readiness ecosystem — newsletter (300+ subscribers), interview guides, visa tools.</p>
+        <div class="exp-featured">
+       <a href="YOUR_QUIZ_URL" class="exp-featured-link" target="_blank">
+      <span class="link-icon"><img src="/images/bear-transparent.png" alt=""></span>
+     <span>Interview Instinct Quiz</span>
+    <span class="link-arrow">→</span>
+  </a>
+  <a href="YOUR_HIVE_URL" class="exp-featured-link" target="_blank">
+    <span class="link-icon"><img src="/images/books-transparent.png" alt=""></span>
+    <span>HIVE Handout</span>
+    <span class="link-arrow">→</span>
+  </a>
+</div>         
         <div class="exp-item">
           <div class="exp-date">May –<br>Aug 2025</div>
           <div>
