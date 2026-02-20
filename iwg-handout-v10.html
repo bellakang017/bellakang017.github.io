@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interview Instinct</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--honey:#D4960A;--honey-d:#A87208;--honey-l:#FEF8E8;--honey-m:#FBF0D0;--comb:#F5E6C0;--wax:#FFF9EE;--paper:#FFFDF7;--ink:#2C2418;--sub:#5C4E38;--soft:#9A8E78;--line:#E8DCC4;
+--rose:#D4657A;--rose-l:#FDF0F3;--plum:#8A6AAA;--plum-l:#F3EEF9;--ut:#BF5700;--ut-l:#FFF3E8;--amber:#C88A2A;--amber-l:#FDF6E8;--sky:#4A8AB8;--sky-l:#EBF3FA;--mint:#2A9A8A;--mint-l:#E8F6F4;--coral:#D47A5A;--coral-l:#FDF2ED;--sage:#5A9A6A;--sage-l:#EDF7EF;--teal:#00A9B7;--teal-l:#E4F7F8;--gray:#333F48}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:#fff}
+
+/* ═══════════ COVER ═══════════ */
+.cover{width:100%;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2.5rem;position:relative;overflow:hidden;page-break-after:always;
+background:linear-gradient(170deg,#FFF9EE 0%,#FEF5DC 35%,#FFF8E8 70%,#FFFDF7 100%)}
+.cover::before{content:'';position:absolute;inset:0;opacity:.04;
+background-image:url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.3v17.4L30 52 0 34.7V17.3z' fill='none' stroke='%23000' stroke-width='.8'/%3E%3C/svg%3E");background-size:30px 26px}
+
+.cover-bee{font-size:2.8rem;margin-bottom:.6rem;filter:drop-shadow(0 2px 4px rgba(212,150,10,.2))}
+.cover-badge{display:inline-block;padding:.22rem .7rem;border-radius:100px;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--honey-d);background:var(--honey-m);border:1.5px solid var(--comb);margin-bottom:.8rem}
+.cover h1{font-family:'Lora',serif;font-size:3.5rem;font-weight:700;color:var(--ink);line-height:1.08}
+.cover h1 em{font-style:italic;color:var(--honey-d)}
+.cover-sub{font-family:'Lora',serif;font-size:1.05rem;font-style:italic;color:var(--sub);margin:.4rem 0 1.2rem}
+
+/* honey drip decoration */
+.honey-drip{display:flex;justify-content:center;gap:3px;margin-bottom:1.2rem}
+.drip{width:6px;height:12px;background:var(--honey);border-radius:0 0 50% 50%;opacity:.5}
+.drip:nth-child(2){height:18px;opacity:.6}.drip:nth-child(4){height:15px;opacity:.55}.drip:nth-child(6){height:20px;opacity:.65}.drip:nth-child(8){height:14px}
+
+.cover-info{font-size:.8rem;color:var(--sub);line-height:2}
+.cover-info strong{color:var(--ink)}
+.cover-quote{max-width:400px;margin:1.5rem auto 0;padding:1rem 1.2rem;background:rgba(255,255,255,.6);border-radius:12px;border:1.5px solid var(--comb)}
+.cover-quote p{font-family:'Lora',serif;font-size:.95rem;font-style:italic;color:var(--sub);line-height:1.6}
+.cover-quote cite{font-style:normal;font-size:.68rem;color:var(--soft);display:block;margin-top:.3rem}
+.cover-sig{margin-top:1.3rem;font-size:.74rem;color:var(--soft);line-height:1.7}
+.cover-sig strong{font-family:'Lora',serif;font-weight:600;font-size:.86rem;color:var(--ink)}
+.cover-name{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:1.5rem;padding-top:1rem;border-top:1.5px dashed var(--comb)}
+.cover-name-label{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--honey-d)}
+.cover-name-line{width:180px;border-bottom:1.5px solid var(--line)}
+
+/* ═══════════ PAGES ═══════════ */
+.page{max-width:700px;margin:0 auto;padding:2rem 2.5rem 1.5rem;page-break-before:always;position:relative}
+.page::before{content:'';position:absolute;inset:0;opacity:.045;pointer-events:none;
+background-image:radial-gradient(circle,#8A7A50 .5px,transparent .5px);background-size:18px 18px}
+.page-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem;position:relative;z-index:1}
+.page-title{font-family:'Lora',serif;font-size:2rem;font-weight:700;color:var(--ink)}
+.page-title em{font-style:italic;color:var(--honey-d)}
+.page-num{font-size:.56rem;font-weight:700;letter-spacing:.08em;color:var(--honey-d);padding:.15rem .5rem;background:var(--honey-m);border:1.5px solid var(--comb);border-radius:100px}
+.divider{width:36px;height:3px;background:var(--honey);margin-bottom:.7rem;border-radius:2px;position:relative;z-index:1}
+
+/* Hex section label */
+.hex-label{display:inline-flex;align-items:center;gap:.3rem;padding:.15rem .55rem;background:var(--honey-m);border:1.5px solid var(--comb);border-radius:6px;font-size:.62rem;font-weight:700;color:var(--honey-d);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.3rem;position:relative;z-index:1}
+
+/* Animal cards — sticker style */
+.animal-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.5rem 0;position:relative;z-index:1}
+.animal-card{border-radius:12px;padding:.6rem .7rem;display:flex;gap:.45rem;align-items:flex-start;border:1.5px solid;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.animal-emoji{font-size:1.5rem;flex-shrink:0}
+.animal-info h4{font-family:'Lora',serif;font-size:.85rem;font-weight:600;color:var(--ink)}
+.animal-tag{display:inline-block;font-size:.56rem;font-weight:700;letter-spacing:.02em;padding:.08rem .35rem;border-radius:100px;color:#fff;margin:.08rem 0 .12rem}
+.animal-prompt{font-family:'Lora',serif;font-style:italic;font-size:.75rem;color:var(--sub);line-height:1.35}
+.ac1{background:var(--rose-l);border-color:rgba(212,101,122,.2)}.ac1 .animal-tag{background:var(--rose)}
+.ac2{background:var(--plum-l);border-color:rgba(138,106,170,.2)}.ac2 .animal-tag{background:var(--plum)}
+.ac3{background:var(--ut-l);border-color:rgba(191,87,0,.15)}.ac3 .animal-tag{background:var(--ut)}
+.ac4{background:var(--amber-l);border-color:rgba(200,138,42,.15)}.ac4 .animal-tag{background:var(--amber)}
+.ac5{background:var(--sky-l);border-color:rgba(74,138,184,.15)}.ac5 .animal-tag{background:var(--sky)}
+.ac6{background:var(--mint-l);border-color:rgba(42,154,138,.15)}.ac6 .animal-tag{background:var(--mint)}
+.ac7{background:var(--coral-l);border-color:rgba(212,122,90,.15)}.ac7 .animal-tag{background:var(--coral)}
+.ac8{background:var(--sage-l);border-color:rgba(90,154,106,.15)}.ac8 .animal-tag{background:var(--sage)}
+
+/* Write fields — notebook */
+.field{position:relative;z-index:1}
+.field-label{font-family:'Lora',serif;font-size:.9rem;font-weight:600;color:var(--ink);margin-top:.9rem;margin-bottom:.15rem}
+.field-sub{font-size:.74rem;color:var(--soft);margin-bottom:.2rem}
+.nb-line{border-bottom:1.5px solid var(--line);height:30px}
+.nb-box{border:1.5px solid var(--line);border-radius:10px;min-height:65px;margin:.2rem 0 .5rem;background:rgba(255,253,247,.6);
+background-image:repeating-linear-gradient(transparent,transparent 26px,var(--line) 26px,var(--line) 27px);background-position:0 6px}
+.nb-box.lg{min-height:95px}
+
+/* ═══════════ HIVE FRAMEWORK ═══════════ */
+.hive-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin:.4rem 0;position:relative;z-index:1}
+.hive-card{border-radius:12px;padding:.55rem .7rem;position:relative;overflow:hidden}
+.hive-card::before{content:'';position:absolute;top:-8px;right:-8px;width:40px;height:40px;border-radius:50%;opacity:.08;background:currentColor}
+.hive-head{display:flex;align-items:center;gap:.4rem;margin-bottom:.05rem}
+.hive-letter{font-family:'Lora',serif;font-size:1.7rem;font-weight:700;line-height:1}
+.hive-name{font-family:'Lora',serif;font-size:.9rem;font-weight:600;color:var(--ink)}
+.hive-desc{font-size:.73rem;color:var(--soft);margin-bottom:.2rem}
+.hive-lines .hl{border-bottom:1.5px dashed rgba(0,0,0,.08);height:25px}
+.hi-h{background:var(--honey-l);color:var(--honey)}.hi-h .hive-letter{color:var(--honey)}
+.hi-i{background:var(--rose-l);color:var(--rose)}.hi-i .hive-letter{color:var(--rose)}
+.hi-v{background:var(--teal-l);color:var(--teal)}.hi-v .hive-letter{color:var(--teal)}
+.hi-e{background:var(--plum-l);color:var(--plum)}.hi-e .hive-letter{color:var(--plum)}
+
+/* Framework 1-2-3 */
+.fw-row{display:flex;gap:.4rem;margin:.6rem 0;position:relative;z-index:1}
+.fw-step{flex:1;text-align:center;padding:.55rem .3rem;border-radius:10px;border:1.5px solid}
+.fw-num{font-family:'Lora',serif;font-size:1.7rem;font-weight:700;line-height:1}
+.fw-name{font-size:.8rem;font-weight:700;color:var(--ink);margin:.1rem 0}
+.fw-desc{font-size:.62rem;color:var(--soft)}
+.fs1{background:var(--ut-l);border-color:rgba(191,87,0,.12)}.fs1 .fw-num{color:var(--ut)}
+.fs2{background:var(--honey-l);border-color:rgba(212,150,10,.12)}.fs2 .fw-num{color:var(--honey)}
+.fs3{background:var(--teal-l);border-color:rgba(0,169,183,.1)}.fs3 .fw-num{color:var(--teal)}
+
+/* Exercise badge */
+.ex-badge{display:inline-flex;align-items:center;gap:.2rem;font-size:.6rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.12rem .5rem;border-radius:100px;color:#fff;margin-bottom:.12rem;position:relative;z-index:1}
+.eb1{background:var(--ut)}.eb2{background:var(--honey)}.eb3{background:var(--teal)}
+
+/* Tip */
+.tip{background:var(--honey-l);border-radius:10px;padding:.5rem .8rem;margin:.5rem 0;font-size:.8rem;color:var(--sub);line-height:1.6;border:1.5px solid var(--comb);position:relative;z-index:1}
+.tip strong{color:var(--ink)}
+
+/* HIVE explainer */
+.hive-explainer{background:var(--honey-m);border-radius:12px;padding:.6rem .8rem;margin:.5rem 0;text-align:center;border:1.5px dashed var(--comb);position:relative;z-index:1}
+.hive-explainer p{font-size:.78rem;color:var(--sub);line-height:1.5}
+.hive-explainer strong{color:var(--honey-d)}
+.hive-word{font-family:'Lora',serif;font-size:1.3rem;font-weight:700;color:var(--honey-d);margin-bottom:.2rem}
+.hive-word span{display:inline-block;margin:0 .08rem}
+.hw-h{color:var(--honey)}.hw-i{color:var(--rose)}.hw-v{color:var(--teal)}.hw-e{color:var(--plum)}
+
+/* Closing */
+.closing{text-align:center;margin:1rem 0 .4rem;position:relative;z-index:1}
+.closing-quote{font-family:'Lora',serif;font-size:.95rem;font-style:italic;color:var(--sub);line-height:1.55;max-width:420px;margin:0 auto}
+.closing cite{font-style:normal;font-size:.66rem;color:var(--soft);display:block;margin-top:.25rem}
+.closing-bee{font-size:1.2rem;margin-top:.4rem}
+
+.footer{text-align:center;padding-top:.5rem;border-top:1.5px dashed var(--comb);margin-top:.6rem;font-size:.68rem;color:var(--soft);line-height:1.7;position:relative;z-index:1}
+.footer strong{font-family:'Lora',serif;font-weight:600;color:var(--ink);font-size:.78rem}
+
+@media print{
+.cover{min-height:auto;padding:2.5rem}
+.page{padding:1.4rem 2rem;page-break-before:always}
+.page::before{opacity:.03}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER ═══════════ -->
+<div class="cover">
+<div class="cover-bee">&#x1F41D;</div>
+<div class="cover-badge">IWG Workshop #2</div>
+<h1>Interview<br><em>Instinct</em></h1>
+<p class="cover-sub">Discover your natural interview style.</p>
+<div class="honey-drip"><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span><span class="drip"></span></div>
+<div class="cover-info">
+<strong>February 24, 2026</strong><br>
+3:00 &ndash; 4:00pm &middot; FAC 2.134<br>
+Office of Career and Life Design, UT Austin
+</div>
+<div class="cover-quote">
+<p>&ldquo;Every individual matters. Every individual has a role to play. Every individual makes a difference.&rdquo;</p>
+<cite>&mdash; Jane Goodall, primatologist &amp; ethologist</cite>
+</div>
+<div class="cover-sig">
+<strong>&#x2736; Bella Kang</strong><br>
+M.A. Advertising &middot; Graduate Global Impact Consultant<br>
+OCLD, UT Austin
+</div>
+<div class="cover-name">
+<div class="cover-name-label">Name</div>
+<div class="cover-name-line"></div>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 1: FIND YOUR INSTINCT ═══════════ -->
+<div class="page">
+<div class="page-head">
+<div>
+<div class="page-title">Find Your <em>Instinct</em></div>
+<div class="divider"></div>
+</div>
+<div class="page-num">01 / 03</div>
+</div>
+
+<p style="font-size:.86rem;color:var(--sub);margin-bottom:.5rem;position:relative;z-index:1">Everyone interviews differently. Find the animal that matches how you naturally show up.</p>
+
+<div class="animal-grid">
+<div class="animal-card ac1">
+<div class="animal-emoji">&#x1f411;</div>
+<div class="animal-info">
+<h4>Baby Lamb</h4>
+<div class="animal-tag">Creates trust</div>
+<div class="animal-prompt">A time you made someone feel supported</div>
+</div>
+</div>
+<div class="animal-card ac2">
+<div class="animal-emoji">&#x1f431;</div>
+<div class="animal-info">
+<h4>Wise Cat</h4>
+<div class="animal-tag">Reads the room</div>
+<div class="animal-prompt">When you adapted for different audiences</div>
+</div>
+</div>
+<div class="animal-card ac3">
+<div class="animal-emoji">&#x1f415;</div>
+<div class="animal-info">
+<h4>Loyal Pup</h4>
+<div class="animal-tag">Real-world solver</div>
+<div class="animal-prompt">When you solved a problem in chaos</div>
+</div>
+</div>
+<div class="animal-card ac4">
+<div class="animal-emoji">&#x1f430;</div>
+<div class="animal-info">
+<h4>Social Bunny</h4>
+<div class="animal-tag">Builds rapport</div>
+<div class="animal-prompt">When you connected people or ideas</div>
+</div>
+</div>
+<div class="animal-card ac5">
+<div class="animal-emoji">&#x1f989;</div>
+<div class="animal-info">
+<h4>Night Owl</h4>
+<div class="animal-tag">Airtight prep</div>
+<div class="animal-prompt">Walk through analyzing a complex problem</div>
+</div>
+</div>
+<div class="animal-card ac6">
+<div class="animal-emoji">&#x1f98a;</div>
+<div class="animal-info">
+<h4>Clever Fox</h4>
+<div class="animal-tag">Fresh angles</div>
+<div class="animal-prompt">When you found an unexpected solution</div>
+</div>
+</div>
+<div class="animal-card ac7">
+<div class="animal-emoji">&#x1f43b;</div>
+<div class="animal-info">
+<h4>Bold Bear</h4>
+<div class="animal-tag">Under pressure</div>
+<div class="animal-prompt">A tough call you made under pressure</div>
+</div>
+</div>
+<div class="animal-card ac8">
+<div class="animal-emoji">&#x1f98b;</div>
+<div class="animal-info">
+<h4>Free Butterfly</h4>
+<div class="animal-tag">Big-picture</div>
+<div class="animal-prompt">How global perspective changed an outcome</div>
+</div>
+</div>
+</div>
+
+<div class="field">
+<div class="field-label">&#x1F41D; My animal:</div>
+<div class="nb-line"></div>
+<div class="field-label">My superpower:</div>
+<div class="nb-line"></div>
+<div class="field-label">My story prompt:</div>
+<div class="nb-line"></div>
+<div class="nb-line"></div>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 2: BUILD YOUR HIVE ═══════════ -->
+<div class="page">
+<div class="page-head">
+<div>
+<div class="page-title">Build Your <em>HIVE</em></div>
+<div class="divider"></div>
+</div>
+<div class="page-num">02 / 03</div>
+</div>
+
+<div class="hive-explainer">
+<div class="hive-word"><span class="hw-h">H</span><span class="hw-i">I</span><span class="hw-v">V</span><span class="hw-e">E</span></div>
+<p>Every bee in a hive has a role. In an interview, you do too.<br>Use your animal&rsquo;s prompt to build a story interviewers remember.</p>
+</div>
+
+<div class="hive-grid">
+<div class="hive-card hi-h">
+<div class="hive-head"><div class="hive-letter">H</div><div class="hive-name">Habitat</div></div>
+<div class="hive-desc">Set the scene. Where, when, what was happening?</div>
+<div class="hive-lines"><div class="hl"></div><div class="hl"></div><div class="hl"></div></div>
+</div>
+<div class="hive-card hi-i">
+<div class="hive-head"><div class="hive-letter">I</div><div class="hive-name">Initiative</div></div>
+<div class="hive-desc">What was your role? Why did you step up?</div>
+<div class="hive-lines"><div class="hl"></div><div class="hl"></div><div class="hl"></div></div>
+</div>
+<div class="hive-card hi-v">
+<div class="hive-head"><div class="hive-letter">V</div><div class="hive-name">Venture</div></div>
+<div class="hive-desc">What did you do? Be specific about your choices.</div>
+<div class="hive-lines"><div class="hl"></div><div class="hl"></div><div class="hl"></div></div>
+</div>
+<div class="hive-card hi-e">
+<div class="hive-head"><div class="hive-letter">E</div><div class="hive-name">Effect</div></div>
+<div class="hive-desc">What happened? Numbers help.</div>
+<div class="hive-lines"><div class="hl"></div><div class="hl"></div><div class="hl"></div></div>
+</div>
+</div>
+
+<div class="tip">
+<strong>&#x1F41D; 60-second practice:</strong> Partner up. Tell your HIVE story in 60 seconds. Partner gives one strength, one suggestion. Switch.
+</div>
+
+<div class="field">
+<div class="field-label">Partner feedback:</div>
+<div class="nb-box lg"></div>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 3: SHARPEN YOUR INSTINCT ═══════════ -->
+<div class="page">
+<div class="page-head">
+<div>
+<div class="page-title">Sharpen Your <em>Instinct</em></div>
+<div class="divider"></div>
+</div>
+<div class="page-num">03 / 03</div>
+</div>
+
+<p style="font-size:.86rem;color:var(--sub);margin-bottom:.4rem;position:relative;z-index:1">McKinsey and BCG now test AI collaboration in interviews. They want clear thinking, not AI expertise.</p>
+
+<div class="fw-row">
+<div class="fw-step fs1"><div class="fw-num">1</div><div class="fw-name">Ask</div><div class="fw-desc">Sharp questions</div></div>
+<div class="fw-step fs2"><div class="fw-num">2</div><div class="fw-name">Structure</div><div class="fw-desc">No gaps, no overlaps</div></div>
+<div class="fw-step fs3"><div class="fw-num">3</div><div class="fw-name">Refine</div><div class="fw-desc">Think critically</div></div>
+</div>
+
+<div class="field" style="margin-top:.6rem">
+<div class="ex-badge eb1">&#x1F41D; Ask</div>
+<div class="field-label" style="margin-top:.1rem">Rewrite this into something sharp:</div>
+<div class="field-sub" style="font-style:italic">&ldquo;How can we improve our company&rsquo;s hiring process?&rdquo;</div>
+<div class="nb-box"></div>
+</div>
+
+<div class="field">
+<div class="ex-badge eb2">&#x1F41D; Structure</div>
+<div class="field-label" style="margin-top:.1rem">Break this into MECE buckets (no gaps, no overlaps):</div>
+<div class="field-sub" style="font-style:italic">&ldquo;Why are international grad students struggling to get US interviews?&rdquo;</div>
+<div class="nb-box lg"></div>
+</div>
+
+<div class="field">
+<div class="ex-badge eb3">&#x1F41D; Refine</div>
+<div class="field-label" style="margin-top:.1rem">What would you improve about this AI answer?</div>
+<div class="field-sub" style="font-style:italic">&ldquo;To increase sales, focus on social media, improve the website, and hire more salespeople.&rdquo;</div>
+<div class="nb-box"></div>
+</div>
+
+<div class="closing">
+<div class="closing-quote">
+<p>&ldquo;Only when our clever brain and our human heart work together in harmony can we achieve our full potential.&rdquo;</p>
+<cite>&mdash; Jane Goodall</cite>
+</div>
+<div class="closing-bee">&#x1F41D;</div>
+</div>
+
+<div class="footer">
+<strong>&#x2736; Bella Kang</strong><br>
+M.A. Advertising &middot; Graduate Global Impact Consultant<br>
+Office of Career and Life Design, UT Austin
+</div>
+</div>
+
+</body>
+</html>
