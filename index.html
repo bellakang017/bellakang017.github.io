@@ -1,45 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bella Kang — Research & Design Portfolio</title>
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-
   <style>
-    :root{
-  /* Ponyo-inspired base (soft paper + sea air) */
-  --white:#FFFFFF;
-  --chalk:#F4F2EA;     /* warm cloud-cream */
-  --piano:#E9E4D8;     /* sandy off-white */
-  --linen:#DED6C6;     /* driftwood linen */
-  --stone:#CFC6B4;     /* muted shoreline stone */
-
-  /* Text (keep readable, slightly warm) */
-  --text:#1F1B16;      
-  --text-mid:#4B433A;  
-  --text-soft:#7B7267; 
-
-  /* Ponyo accents (dress coral + sky + bucket green) */
-  --accent:#E85A5A;        /* Ponyo dress coral */
-  --accent-light:#F07A6E;  /* lighter coral */
-  --accent-wash:rgba(232,90,90,0.10);
-
-  /* Rules / dividers */
-  --rule:#D8D0C1;          /* warm neutral line */
-
-  /* Sage -> Ponyo green (bucket/grass) */
-  --sage:#43A047;          /* fresh grassy green */
-  --sage-wash:rgba(67,160,71,0.12);
-
-  /* Optional Ponyo extras (if you want more palette hooks later) */
-  --ponyo-sky:#2F97A8;     /* teal sky/sea */
-  --ponyo-sun:#E7B21C;     /* warm yellow */
-  --ponyo-peach:#E9BE8C;   /* skin/peach sand */
-  --ponyo-ink:#3B352C;     /* charcoal-brown */
-}
+    :root {
+      --white:#FFFFFF;--chalk:#F7F5F0;--piano:#F0EDE5;--linen:#E8E3D9;--stone:#D4CFC4;
+      --text:#1C1C1C;--text-mid:#4A4A4A;--text-soft:#7A7A7A;
+      --accent:#8B2332;--accent-light:#A73344;--accent-wash:rgba(139,35,50,0.06);
+      --rule:#DDD8CE;--sage:#6B7B5E;--sage-wash:rgba(107,123,94,0.07);
+    }
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--chalk);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased}
@@ -94,70 +68,6 @@
     .card-number{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--accent-wash);position:absolute;top:1rem;right:1.2rem;line-height:1}
     .card h3{font-family:'Playfair Display',serif;font-size:1.02rem;font-weight:600;color:var(--text);margin-bottom:0.4rem}
     .card p{font-size:0.87rem;color:var(--text-mid);line-height:1.7}
-
-    /* ─────────────────────────────────────────────
-       ABOUT CARD: Collapsible (Yale/Harvard vibe)
-       - smooth open/close
-       - chevron rotates
-       - keyboard accessible
-    ───────────────────────────────────────────── */
-    .card-toggle{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:0.75rem;
-      cursor:pointer;
-      user-select:none;
-      margin-bottom:0.35rem;
-      padding-right:0.35rem;
-    }
-    .card-toggle:focus{
-      outline:2px solid rgba(139,35,50,0.18);
-      outline-offset:4px;
-      border-radius:10px;
-    }
-    .card-toggle .chev{
-      width:28px;height:28px;
-      display:inline-flex;
-      align-items:center;justify-content:center;
-      border-radius:8px;
-      background:rgba(0,0,0,0.03);
-      color:var(--text-soft);
-      transition:transform 0.25s ease, background 0.25s ease, color 0.25s ease;
-      flex-shrink:0;
-      font-size:0.85rem;
-      line-height:1;
-    }
-    .card:hover .card-toggle .chev{
-      background:var(--accent-wash);
-      color:var(--accent);
-    }
-    .card.is-open .card-toggle .chev{
-      transform:rotate(180deg);
-      background:var(--accent-wash);
-      color:var(--accent);
-    }
-
-    .card-content{
-      height:auto;
-      overflow:hidden;
-      will-change:height;
-      transition:height 360ms cubic-bezier(0.25,1,0.5,1);
-    }
-    .card-content-inner{
-      opacity:1;
-      transform:translateY(0);
-      transition:opacity 220ms ease, transform 220ms ease;
-      padding-top:0.2rem;
-    }
-    .card.is-collapsed .card-content{
-      height:0 !important;
-    }
-    .card.is-collapsed .card-content-inner{
-      opacity:0;
-      transform:translateY(-6px);
-      pointer-events:none;
-    }
 
     .question-block{background:linear-gradient(135deg,var(--chalk) 0%,var(--piano) 100%);border-left:3px solid var(--accent);padding:1.8rem 2.2rem;margin-top:1.5rem;border-radius:0 12px 12px 0;grid-column:1/-1}
     .question-block p{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:400;line-height:1.6;color:var(--text);font-style:italic}
@@ -301,16 +211,84 @@
       .log-card{flex-direction:column;align-items:flex-start;gap:0.8rem}
       .section-rule,.nav-inner{padding:0 1.5rem}
     }
+
     @media(min-width:769px) and (max-width:1024px){
       .cw-row{grid-template-columns:1fr 1fr}
     }
+    .exp-featured {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.exp-featured-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 1.1rem 0.45rem 0.45rem;
+  background: var(--accent);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.exp-featured-link::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transition: left 0.6s ease;
+}
+
+.exp-featured-link:hover {
+  background: var(--accent-light);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(139, 35, 50, 0.3);
+}
+
+.exp-featured-link:hover::before { left: 100%; }
+
+.link-icon {
+  width: 34px; height: 34px;
+  border-radius: 7px;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.exp-featured-link:hover .link-icon { background: rgba(255,255,255,0.25); }
+
+.link-icon img {
+  width: 22px; height: 22px;
+  object-fit: contain;
+}
+
+.link-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  opacity: 0.6;
+  margin-left: 0.15rem;
+}
+
+.exp-featured-link:hover .link-arrow {
+  transform: translateX(4px);
+  opacity: 1;
+}
   </style>
 </head>
-
 <body>
   <!-- SCROLL PROGRESS -->
   <div class="scroll-progress" id="scrollProgress"></div>
-
+    
   <!-- NAV -->
   <nav>
     <div class="nav-inner">
@@ -325,8 +303,8 @@
       </ul>
     </div>
   </nav>
-
-  <!-- HERO -->
+    
+  <!-- HERO (COMPACT) -->
   <div class="hero">
     <div class="hero-left">
       <div class="hero-label">Bella Kang · UT Austin MA Advertising</div>
@@ -342,7 +320,7 @@
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN CONTENT (White card) -->
   <div class="main-content">
 
     <!-- ABOUT -->
@@ -351,64 +329,11 @@
         <div class="section-label">About</div>
         <h2 class="section-title">How I think about health &amp; communication</h2>
       </div>
-
       <div class="about-layout">
-        <!-- Card 01 -->
-        <div class="card fade-up stagger-1 is-collapsed" data-collapsible>
-          <div class="card-number">01</div>
-          <h3 class="card-toggle" role="button" tabindex="0" aria-expanded="false">
-            Research Focus
-            <span class="chev" aria-hidden="true">▾</span>
-          </h3>
-          <div class="card-content">
-            <div class="card-content-inner">
-              <p>Communication patterns — especially self-silencing and help-seeking — among Korean American midlife women. How culturally specific styles interact with stress, coping, and access to care.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 02 -->
-        <div class="card fade-up stagger-2 is-collapsed" data-collapsible>
-          <div class="card-number">02</div>
-          <h3 class="card-toggle" role="button" tabindex="0" aria-expanded="false">
-            Methods
-            <span class="chev" aria-hidden="true">▾</span>
-          </h3>
-          <div class="card-content">
-            <div class="card-content-inner">
-              <p>Mixed methods (qualitative + quantitative) to bridge lived experience and measurable outcomes. Full-cycle: observation → theory → experimentation → field.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 03 -->
-        <div class="card fade-up stagger-3 is-collapsed" data-collapsible>
-          <div class="card-number">03</div>
-          <h3 class="card-toggle" role="button" tabindex="0" aria-expanded="false">
-            Intervention Philosophy
-            <span class="chev" aria-hidden="true">▾</span>
-          </h3>
-          <div class="card-content">
-            <div class="card-content-inner">
-              <p>Small shifts in how people interpret their circumstances can redirect self-defeating patterns into self-enhancing ones. Psychologically wise intervention design.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 04 -->
-        <div class="card fade-up stagger-4 is-collapsed" data-collapsible>
-          <div class="card-number">04</div>
-          <h3 class="card-toggle" role="button" tabindex="0" aria-expanded="false">
-            What's Next
-            <span class="chev" aria-hidden="true">▾</span>
-          </h3>
-          <div class="card-content">
-            <div class="card-content-inner">
-              <p>PhD program (Fall 2027) in health communication, developmental science, or educational psychology. Evidence to implementation.</p>
-            </div>
-          </div>
-        </div>
-
+        <div class="card fade-up stagger-1"><div class="card-number">01</div><h3>Research Focus</h3><p>Communication patterns — especially self-silencing and help-seeking — among Korean American midlife women. How culturally specific styles interact with stress, coping, and access to care.</p></div>
+        <div class="card fade-up stagger-2"><div class="card-number">02</div><h3>Methods</h3><p>Mixed methods (qualitative + quantitative) to bridge lived experience and measurable outcomes. Full-cycle: observation → theory → experimentation → field.</p></div>
+        <div class="card fade-up stagger-3"><div class="card-number">03</div><h3>Intervention Philosophy</h3><p>Small shifts in how people interpret their circumstances can redirect self-defeating patterns into self-enhancing ones. Psychologically wise intervention design.</p></div>
+        <div class="card fade-up stagger-4"><div class="card-number">04</div><h3>What's Next</h3><p>PhD program (Fall 2027) in health communication, developmental science, or educational psychology. Evidence to implementation.</p></div>
         <div class="question-block fade-up">
           <p>How do we design messages that work <strong>with</strong> — not against — the cognitive and cultural contexts people actually inhabit?</p>
         </div>
@@ -417,7 +342,7 @@
 
     <div class="section-rule"><hr></div>
 
-    <!-- (rest of your sections unchanged) -->
+    <!-- EXPERIENCE -->
     <div class="section" id="experience">
       <div class="section-header">
         <div class="section-label">Experience</div>
@@ -427,24 +352,136 @@
         <div class="exp-item">
           <div class="exp-date">Dec 2025 –<br>Present</div>
           <div>
-            <a href="https://bellakang017.github.io/bk17/workshop/2025/12/15/gigc-life-design-workshop.html" class="exp-role">Global Impact Graduate Consultant ↗</a>
-            <div class="exp-org">UT Austin · Office of Career &amp; Life Design</div>
-            <p class="exp-desc">Operationalized Stanford's Life Design framework into a 12-week cohort. Built career readiness ecosystem — newsletter (300+ subscribers), interview guides, visa tools.</p>
+          <a href="https://bellakang017.github.io/bk17/workshop/2025/12/15/gigc-life-design-workshop.html" class="exp-role">Global Impact Graduate Consultant ↗</a>
+          <div class="exp-org">UT Austin · Office of Career &amp; Life Design</div>
+         <p class="exp-desc">Operationalized Stanford's Life Design framework into a 12-week cohort. Built career readiness ecosystem — newsletter (300+ subscribers), interview guides, visa tools.</p>
+        <div class="exp-featured">
+       <a href="/interview-instinct.html" class="exp-featured-link" target="_blank">
+      <span class="link-icon"><img src="/images/bear-transparent.png" alt=""></span>
+     <span>Interview Instinct Quiz</span>
+    <span class="link-arrow">→</span>
+  </a>
+  <a href="/iwg-handout-v10.html" class="exp-featured-link" target="_blank">
+    <span class="link-icon"><img src="/images/books-transparent.png" alt=""></span>
+    <span>HIVE Handout</span>
+    <span class="link-arrow">→</span>
+  </a>
+</div>         
+        <div class="exp-item">
+          <div class="exp-date">May –<br>Aug 2025</div>
+          <div>
+            <div class="exp-role">Global Marketing Intern</div>
+            <div class="exp-org">Dasique · Seoul, South Korea</div>
+            <p class="exp-desc">Localized Olive Young Global pages (+20% intl engagement). Competitor research for NA go-to-market. Inventory analytics for 100+ SKUs.</p>
+            <div class="exp-tags"><span class="tag">Global Marketing</span><span class="tag">Localization</span></div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-date">Dec 2023 –<br>May 2025</div>
+          <div>
+            <div class="exp-role">Research Assistant</div>
+            <div class="exp-org">UT Austin School of Nursing</div>
+            <p class="exp-desc">AI-based pain management, lifestyle interventions, depressive symptom reduction in Asian American women. Recruitment, data collection, multi-team coordination.</p>
+            <div class="exp-tags"><span class="tag">Health Research</span><span class="tag">Data Collection</span></div>
           </div>
         </div>
       </div>
     </div>
 
-    <footer>
-      <div class="footer-links">
-        <a href="https://www.linkedin.com/in/bellakang017" target="_blank">LinkedIn</a>
-        <a href="#" id="emailLink">Email</a>
+    <div class="section-rule"><hr></div>
+
+    <!-- EDUCATION -->
+    <div class="section" id="education">
+      <div class="section-header">
+        <div class="section-label">Education</div>
+        <h2 class="section-title">Where I've studied</h2>
       </div>
+      <div class="degree-row fade-up">
+        <div class="deg deg-ma">
+          <div class="deg-head"><span class="deg-badge deg-badge-ma">MA</span><span class="deg-status deg-status-on"><span class="deg-dot deg-dot-on"></span> In Progress</span></div>
+          <h3>Advertising (Thesis Track)</h3>
+          <div class="deg-school">Moody College of Communication · UT Austin</div>
+          <div class="deg-date">Aug 2025 – May 2027</div>
+          <p class="deg-desc">Health communication, behavioral science, intervention design. PhD-level coursework in marketing research, persuasion theory, and educational psychology.</p>
+        </div>
+        <div class="deg deg-bs">
+          <div class="deg-head"><span class="deg-badge deg-badge-bs">BS</span><span class="deg-status deg-status-off"><span class="deg-dot deg-dot-off"></span> Completed</span></div>
+          <h3>Advertising</h3>
+          <div class="deg-school">UT Austin · GPA 3.88 / 4.0</div>
+          <div class="deg-date">Graduated</div>
+          <p class="deg-desc">Moody College Dean's List Honors (FA22, SP23, FA23, SP24, FA25). Texas Immersive Institution, Texas Undergraduate Sales Organization.</p>
+        </div>
+      </div>
+      <div class="cw-divider"><span class="cw-divider-label">Coursework</span><div class="cw-divider-line"></div></div>
+      <p class="cw-subtitle">Each course deepens how I think about health, communication, and change.</p>
+      <div class="cw-row fade-up">
+        <a href="/adv382j-guide/" class="cw-card">
+          <div class="cw-top"><span class="cw-code">ADV 382J</span><span class="cw-sem">Spring 2026</span></div>
+          <h4>Persuasion Theory</h4>
+          <p class="cw-desc"> Graduate seminar on persuasion theories (e.g., ELM, TPB, attitude functions) and their application to advertising and strategic communication.</p>
+          <div class="cw-foot"><div class="cw-tags"><span class="cw-tag cw-tag-a">Exam 1</span><span class="cw-tag cw-tag-s">ADV</span></div><span class="cw-arrow">→</span></div>
+        </a>
+        <a href="/hdf342/" class="cw-card">
+          <div class="cw-top"><span class="cw-code">HDF 342</span><span class="cw-sem">Fall 2025</span></div>
+          <h4>Developmental Psychopathology</h4>
+          <p class="cw-desc">Developmental Psychopathology - Examines how psychological disorders emerge across the life course.Integrates theory, research, and clinical insight to understand how typical development diverges into maladaptation.<p>
+.</p>
+          <div class="cw-foot"><div class="cw-tags"><span class="cw-tag cw-tag-a">Health Equity</span><span class="cw-tag cw-tag-s">HDF</span></div><span class="cw-arrow">→</span></div>
+        </a>
+        <a href="/mkt397/" class="cw-card">
+          <div class="cw-top"><span class="cw-code">MKT 397</span><span class="cw-sem">Spring 2026</span></div>
+          <h4> [PhD] Quantitative Marketing</h4>
+          <p class="cw-desc">PhD seminar on marketing research methods with an empirics-first orientation. Covers causal inference, endogeneity, field and quasi-experiments, AI/ML applications, and analysis of structured and unstructured data.</p>
+          <div class="cw-foot"><div class="cw-tags"><span class="cw-tag cw-tag-a">PhD-Level</span><span class="cw-tag cw-tag-s">McCombs</span></div><span class="cw-arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <div class="section-rule"><hr></div>
+
+    <!-- ACADEMIC LOGS -->
+    <div class="section" id="logs">
+      <div class="section-header">
+        <div class="section-label">Academic Logs</div>
+        <h2 class="section-title">Learning in progress</h2>
+      </div>
+      <p class="log-section-intro">Open research notebooks — weekly notes on assigned readings, how I interpret them, and the questions that shape my next steps.</p>
+      <div class="log-cards fade-up">
+        <a href="/mkt397/" class="log-card">
+          <div class="log-card-icon">◈</div>
+          <div class="log-card-content">
+            <div class="log-card-top"><span class="log-card-code">MKT 397</span><span class="log-card-badge">Lab Notebook</span></div>
+            <h3> [PhD] Quantitative Marketing</h3>
+            <p>Empirics-first methodology, causal inference. Prof. Rex Du, McCombs School of Business.</p>
+            <div class="log-card-meta"><span>Spring 2026</span><span>·</span><span>8 weeks logged</span></div>
+          </div>
+          <span class="log-card-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="section-rule"><hr></div>
+
+    <!-- BEYOND RESEARCH -->
+    <div class="section" id="interests">
+      <div class="section-header">
+        <div class="section-label">Beyond Research</div>
+        <h2 class="section-title">Other things I care about</h2>
+      </div>
+      <div class="interest-row fade-up">
+        <div class="interest-item"><h3>Saturday Reading Group</h3><p>I lead a weekly reading group exploring the mind–body connection. Currently reading <em>Core Awareness</em> by Liz Koch — how embodied practice informs behavior change.</p></div>
+        <div class="interest-item"><h3>Certified Pilates Instructor</h3><p>How embodied practice shapes cognition, stress, and well-being. The body isn't separate from the research — it's part of it.</p></div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-links"><a href="https://www.linkedin.com/in/bellakang017" target="_blank">LinkedIn</a><a href="#" id="emailLink">Email</a></div>
       <span class="footer-copy">© 2026 Bella Kang</span>
     </footer>
   </div>
 
-  <!-- CONTACT MODAL (unchanged) -->
+  <!-- CONTACT MODAL -->
   <div class="modal-overlay" id="contactModal">
     <div class="modal-card">
       <div class="modal-accent"></div>
@@ -502,93 +539,6 @@
     }
     modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('active'))closeModal()});
-
-    /* ─────────────────────────────────────────────
-       ABOUT cards: smooth collapse/expand (custom)
-       - starts collapsed (via .is-collapsed)
-       - click / Enter / Space toggles
-       - height animates to exact content height
-    ───────────────────────────────────────────── */
-    (function initAboutCollapsibles(){
-      const cards = document.querySelectorAll('[data-collapsible]');
-      if(!cards.length) return;
-
-      const setHeights = (card, open) => {
-        const content = card.querySelector('.card-content');
-        if (!content) return;
-
-        // If opening:
-        if (open) {
-          card.classList.remove('is-collapsed');
-          card.classList.add('is-open');
-
-          // Set explicit height for transition
-          content.style.height = 'auto';
-          const full = content.scrollHeight;
-          content.style.height = '0px';
-          // Force reflow
-          content.getBoundingClientRect();
-          content.style.height = full + 'px';
-
-          // After transition, set to auto for responsive content
-          const onEnd = (e) => {
-            if (e.propertyName !== 'height') return;
-            content.style.height = 'auto';
-            content.removeEventListener('transitionend', onEnd);
-          };
-          content.addEventListener('transitionend', onEnd);
-        } else {
-          // closing:
-          const current = content.scrollHeight;
-          content.style.height = current + 'px';
-          // force reflow
-          content.getBoundingClientRect();
-          content.style.height = '0px';
-          card.classList.add('is-collapsed');
-          card.classList.remove('is-open');
-        }
-      };
-
-      cards.forEach(card => {
-        const toggle = card.querySelector('.card-toggle');
-        const content = card.querySelector('.card-content');
-        if(!toggle || !content) return;
-
-        // init collapsed state (height 0)
-        if (card.classList.contains('is-collapsed')) {
-          content.style.height = '0px';
-          toggle.setAttribute('aria-expanded','false');
-          card.classList.remove('is-open');
-        } else {
-          toggle.setAttribute('aria-expanded','true');
-          card.classList.add('is-open');
-        }
-
-        const onToggle = () => {
-          const isCollapsed = card.classList.contains('is-collapsed');
-          toggle.setAttribute('aria-expanded', isCollapsed ? 'true' : 'false');
-          setHeights(card, isCollapsed); // if collapsed -> open
-        };
-
-        toggle.addEventListener('click', onToggle);
-        toggle.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            onToggle();
-          }
-        });
-      });
-
-      // Optional: keep open cards stable on resize
-      window.addEventListener('resize', () => {
-        cards.forEach(card => {
-          if (!card.classList.contains('is-collapsed')) {
-            const content = card.querySelector('.card-content');
-            if (content) content.style.height = 'auto';
-          }
-        });
-      });
-    })();
   </script>
 </body>
 </html>
