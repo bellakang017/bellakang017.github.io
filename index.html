@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bella Kang — Research & Design</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍏</text></svg>">
+  <link rel="icon" type="image/png" href="images/clover-seal.png">
+  <link rel="apple-touch-icon" href="images/clover-seal.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -595,17 +596,17 @@
       <h3>Let's connect</h3>
       <p>Health communication, research collaborations, or a good cup of tea.</p>
       <div class="contact-email" onclick="copyEmail()">
-        <span>bellakang@utexas.edu</span>
+        <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a484f46464b414b444d6a5f5e4f524b59044f4e5f">[email&#160;protected]</a></span>
         <span class="copy-label" id="copyLabel">Copy</span>
       </div>
       <div class="contact-links">
         <a href="https://www.linkedin.com/in/bellakang017" target="_blank">LinkedIn ↗</a>
-        <a href="mailto:bellakang@utexas.edu">Open in Mail ↗</a>
+        <a href="/cdn-cgi/l/email-protection#5537303939343e343b32152021302d34267b303120">Open in Mail ↗</a>
       </div>
     </div>
   </div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Contact modal
     function openContact(e){e.preventDefault();document.getElementById('contactOverlay').classList.add('open');}
     function closeContact(e){e.preventDefault();document.getElementById('contactOverlay').classList.remove('open');}
@@ -639,11 +640,4 @@
     }
     animateRing();
 
-    // Hover effect on interactive elements
-    document.querySelectorAll('a, button, .contact-email').forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-    });
-  </script>
-</body>
-</html>
+    // Hover effect on interactive e
