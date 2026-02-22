@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The Curiosity Cabinet — IWG Workshop #2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+:root{--parch:#FDF6EC;--parch-deep:#F5EBDA;--ink:#2C1810;--ink-soft:#5C4033;--ink-dim:#9E8E7E;--gold:#D4A843;--gold-bright:#F0C850;--gold-glow:rgba(212,168,67,0.25);--gold-soft:rgba(212,168,67,0.08);--emerald:#2D6E4C;--emerald-bright:#3D9E6A;--emerald-glow:rgba(45,110,76,0.15);--emerald-soft:rgba(45,110,76,0.06);--amethyst:#7B4FA2;--amethyst-soft:rgba(123,79,162,0.06);--ruby:#C0392B;--sapphire:#2E6B8A;--blush:#D4849E;--cream:#FFFDF8;--border:rgba(44,24,16,0.08);--border-strong:rgba(44,24,16,0.15);--shadow-sm:0 1px 4px rgba(0,0,0,0.03);--shadow-md:0 4px 20px rgba(0,0,0,0.05);--shadow-lg:0 8px 36px rgba(0,0,0,0.07);--ease:cubic-bezier(.22,1,.36,1);--ease-smooth:cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Bricolage Grotesque',sans-serif;color:var(--ink);background:var(--parch);-webkit-font-smoothing:antialiased}
+
+.bg-base{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(212,168,67,0.07) 0%,transparent 60%),radial-gradient(ellipse 70% 50% at 80% 85%,rgba(123,79,162,0.05) 0%,transparent 55%),radial-gradient(ellipse 60% 60% at 50% 50%,rgba(45,110,76,0.04) 0%,transparent 50%),var(--parch)}
+.bg-tile{position:fixed;inset:0;z-index:0;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%232C1810' stroke-width='.5' opacity='.6'%3E%3Cpath d='M60 50c-6-2-14-8-22-6s-4 10 2 12 14 2 20-6z'/%3E%3Cpath d='M60 50c6-2 14-8 22-6s4 10-2 12-14 2-20-6z'/%3E%3Cpath d='M55 62c2 4 3 10 5 14M65 62c-2 4-3 10-5 14'/%3E%3Ccircle cx='20' cy='95' r='6'/%3E%3Cpath d='M20 89v-8M16 92l-5-5M24 92l5-5'/%3E%3C/g%3E%3C/svg%3E");background-size:120px 120px}
+.blob{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(70px)}
+.blob:nth-child(1){width:300px;height:300px;top:5%;left:-5%;background:rgba(212,168,67,0.08);animation:blobA 22s ease-in-out infinite}
+.blob:nth-child(2){width:260px;height:260px;bottom:5%;right:-3%;background:rgba(123,79,162,0.06);animation:blobA 26s ease-in-out infinite reverse}
+.blob:nth-child(3){width:220px;height:220px;top:35%;left:55%;background:rgba(45,110,76,0.06);animation:blobB 30s ease-in-out infinite}
+@keyframes blobA{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-25px) scale(1.1)}66%{transform:translate(-25px,35px) scale(.9)}}
+@keyframes blobB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,25px) scale(1.05)}}
+.sun{position:fixed;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(240,200,80,0.1) 0%,rgba(212,168,67,0.03) 40%,transparent 65%);animation:sunP 8s ease-in-out infinite}
+@keyframes sunP{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}
+.leaf{position:fixed;z-index:0;pointer-events:none;opacity:.05;font-size:1.4rem;animation:leafD linear infinite}
+.leaf:nth-child(1){left:10%;animation-duration:28s;animation-delay:-5s}
+.leaf:nth-child(2){left:30%;animation-duration:32s;animation-delay:-12s;font-size:1rem;opacity:.04}
+.leaf:nth-child(3){left:60%;animation-duration:24s;animation-delay:-8s;font-size:1.5rem}
+.leaf:nth-child(4){left:80%;animation-duration:30s;animation-delay:-18s;font-size:1.1rem;opacity:.04}
+@keyframes leafD{0%{transform:translateY(-20px) rotate(0);opacity:0}5%{opacity:.05}95%{opacity:.04}100%{transform:translateY(calc(100vh + 20px)) rotate(360deg);opacity:0}}
+.bg-vig{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 30%,rgba(44,24,16,0.02) 100%)}
+.bevo{position:fixed;bottom:1rem;left:1rem;z-index:0;pointer-events:none;opacity:.03}
+.bevo svg{width:72px;height:45px}
+
+@media(hover:hover)and(pointer:fine){body{cursor:none}*{cursor:none !important}}
+#lumos{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:2;background:radial-gradient(circle,rgba(240,200,80,0.06) 0%,rgba(212,168,67,0.015) 40%,transparent 65%);transform:translate(-50%,-50%);display:none}
+#dot{position:fixed;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);background:var(--gold);box-shadow:0 0 10px rgba(212,168,67,0.3);transition:width .15s,height .15s,background .15s;left:-100px;top:-100px}
+#dot.big{width:12px;height:12px;background:var(--gold-bright);box-shadow:0 0 18px rgba(240,200,80,0.5)}
+
+.hdr{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,246,236,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.55rem 1.8rem;display:flex;justify-content:space-between;align-items:center}
+.hdr-mark{font-family:'Fraunces',serif;font-size:.78rem;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:.35rem}
+.hdr-mark .s{color:var(--gold);font-size:1rem}
+.hdr-sub{font-size:.6rem;color:var(--ink-dim)}
+.prog{position:fixed;top:38px;left:0;right:0;height:3px;z-index:100;background:var(--parch-deep)}
+.prog-bar{height:100%;border-radius:2px;transition:width .6s var(--ease-smooth);background:linear-gradient(90deg,var(--emerald),var(--gold),var(--amethyst));box-shadow:0 0 10px var(--gold-glow)}
+.page-ct{position:fixed;bottom:.8rem;right:1.5rem;z-index:100;font-family:'IBM Plex Mono',monospace;font-size:.55rem;color:var(--ink-dim)}
+
+.dot-nav{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;gap:6px;align-items:center}
+.dot-nav__dot{width:8px;height:8px;border-radius:50%;background:var(--ink-dim);opacity:.25;border:none;padding:0;cursor:pointer;transition:all .3s ease;position:relative}
+.dot-nav__dot:hover{opacity:.7;transform:scale(1.4)}
+.dot-nav__dot.active{opacity:1;background:var(--gold);box-shadow:0 0 8px var(--gold-glow);transform:scale(1.3)}
+.dot-nav__dot.done{opacity:.55;background:var(--emerald)}
+.dot-nav__dot.done.active{background:var(--gold);opacity:1}
+.dot-nav__dot::before{content:attr(data-label);position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:'IBM Plex Mono',monospace;font-size:.5rem;color:var(--ink-soft);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;background:rgba(253,246,236,0.95);padding:3px 8px;border-radius:6px;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
+.dot-nav__dot:hover::before{opacity:1}
+.dot-nav__sep{width:1px;height:8px;background:var(--border-strong);opacity:.3}
+
+.blk{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);z-index:100;font-family:'Fraunces',serif;font-size:.8rem;font-style:italic;color:var(--ruby);opacity:0;transition:opacity .4s;pointer-events:none;background:rgba(253,246,236,0.9);padding:.4rem 1rem;border-radius:20px;border:1px solid rgba(192,57,43,0.15)}
+.blk.show{opacity:1}
+.toast-wrap{position:fixed;top:50px;left:50%;z-index:200;display:flex;align-items:center;gap:.4rem;background:var(--cream);border:1px solid var(--border);border-radius:14px;padding:.4rem .8rem;box-shadow:var(--shadow-md);opacity:0;transform:translateX(-50%) translateY(-12px);transition:all .35s var(--ease);pointer-events:none}
+.toast-wrap.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast-bunny{font-size:1.15rem;line-height:1}
+.toast-text{font-family:'Fraunces',serif;font-size:.82rem;font-style:italic;color:var(--emerald)}
+
+.arr{position:fixed;top:50%;transform:translateY(-50%);z-index:100;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border-strong);background:rgba(255,253,248,0.85);backdrop-filter:blur(8px);color:var(--ink-soft);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .3s;box-shadow:var(--shadow-sm)}
+.arr:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 4px 20px var(--gold-glow)}
+.arr.locked{opacity:.15;pointer-events:none}
+.arr.L{left:.8rem}.arr.R{right:2.8rem}
+@keyframes shake{0%,100%{transform:translateY(-50%) translateX(0)}25%{transform:translateY(-50%) translateX(3px)}75%{transform:translateY(-50%) translateX(-3px)}}
+.arr.shake{animation:shake .3s ease}
+
+.deck{position:relative;width:100%;height:100%;z-index:1}
+.ch{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3.5rem 2rem 2rem;text-align:center;opacity:0;transform:translateY(20px) scale(.98);pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.ch.on{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.ch.exit-up{opacity:0;transform:translateY(-20px) scale(.98)}
+
+.badge{font-family:'IBM Plex Mono',monospace;font-size:.55rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--amethyst);background:var(--amethyst-soft);border:1px solid rgba(123,79,162,0.12);padding:.28rem .75rem;border-radius:100px;margin-bottom:.9rem}
+.ch-h{font-family:'Fraunces',serif;font-optical-sizing:auto;font-size:clamp(1.5rem,4.5vw,2.4rem);font-weight:500;line-height:1.2;letter-spacing:-.02em;color:var(--ink);max-width:560px;margin-bottom:.5rem}
+.ch-h i{font-style:italic;color:var(--amethyst)}
+.ch-p{font-size:.95rem;color:var(--ink-soft);max-width:440px;line-height:1.75;margin-bottom:.5rem}
+.ch-p strong{color:var(--ink);font-weight:600}
+.ch-ref{font-family:'IBM Plex Mono',monospace;font-size:.48rem;color:var(--ink-dim);margin-top:.5rem}
+.rule{width:28px;height:2px;background:var(--gold);border-radius:1px;margin:.6rem auto}
+
+.q-label{font-family:'IBM Plex Mono',monospace;font-size:.5rem;color:var(--ink-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+.q-title{font-family:'Fraunces',serif;font-size:clamp(1.15rem,3vw,1.45rem);font-style:italic;font-weight:400;color:var(--ink-soft);margin-bottom:1rem;max-width:420px}
+.vials{display:grid;gap:.5rem;width:100%;max-width:480px}
+.vial{position:relative;padding:.85rem 1.1rem .85rem 2.8rem;background:rgba(255,253,248,0.8);backdrop-filter:blur(6px);border:1.5px solid var(--border);border-radius:14px;text-align:left;transition:all .3s var(--ease);box-shadow:var(--shadow-sm);cursor:pointer}
+.vial::before{content:'';position:absolute;left:.95rem;top:50%;transform:translateY(-50%);width:15px;height:15px;border-radius:50%;border:2px solid var(--border-strong);transition:all .3s}
+.vial:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 4px 20px var(--gold-glow)}
+.vial.sel{border-color:var(--emerald);background:var(--emerald-soft)}
+.vial.sel::before{background:var(--emerald);border-color:var(--emerald);box-shadow:0 0 8px var(--emerald-glow)}
+.vial.sel::after{content:'\2713';position:absolute;left:.95rem;top:50%;transform:translateY(-50%);width:15px;height:15px;display:flex;align-items:center;justify-content:center;font-size:.5rem;color:white;font-weight:700}
+.vial-t{font-family:'Fraunces',serif;font-size:.88rem;font-weight:400;color:var(--ink);line-height:1.4}
+
+.res-card{display:none;width:100%;max-width:440px;background:rgba(255,253,248,0.88);backdrop-filter:blur(12px);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.res-card.show{display:block;animation:cardPop .65s var(--ease)}
+@keyframes cardPop{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+.res-top{padding:1.5rem;text-align:center;border-bottom:1px solid var(--border)}
+.res-emoji{font-size:3.5rem;margin-bottom:.35rem;animation:emojiBounce .7s var(--ease)}
+@keyframes emojiBounce{0%{transform:scale(0) rotate(-10deg)}60%{transform:scale(1.15) rotate(3deg)}100%{transform:scale(1) rotate(0)}}
+.res-name{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;margin-bottom:.1rem}
+.res-desc{font-size:.82rem;color:var(--ink-soft);line-height:1.65;max-width:360px;margin:.3rem auto 0}
+.res-body{padding:.8rem 1.2rem}
+.res-row{display:flex;align-items:flex-start;gap:.6rem;padding:.4rem 0;border-top:1px solid var(--border)}
+.res-tag{font-family:'IBM Plex Mono',monospace;font-size:.45rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;min-width:44px;padding-top:.12rem}
+.res-tag.edge{color:var(--emerald)}.res-tag.core{color:var(--amethyst)}.res-tag.try{color:var(--gold)}
+.res-text{font-size:.78rem;color:var(--ink-soft);line-height:1.55}
+.res-text strong{color:var(--ink);font-weight:600}
+
+.sowhat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;width:100%;max-width:500px;margin:.7rem 0}
+.sw-card{background:rgba(255,253,248,0.8);backdrop-filter:blur(6px);border:1.5px solid var(--border);border-radius:14px;padding:1rem;text-align:left;transition:all .35s var(--ease);position:relative;overflow:hidden}
+.sw-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0;transition:opacity .3s}
+.sw-card:nth-child(1)::before{background:var(--ruby);opacity:.45}
+.sw-card:nth-child(2)::before{background:var(--sapphire);opacity:.45}
+.sw-card:nth-child(3)::before{background:var(--emerald);opacity:.45}
+.sw-card:nth-child(4)::before{background:var(--gold);opacity:.45}
+.sw-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.sw-card:hover::before{opacity:1}
+.sw-label{font-family:'IBM Plex Mono',monospace;font-size:.45rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.15rem}
+.sw-card:nth-child(1) .sw-label{color:var(--ruby)}
+.sw-card:nth-child(2) .sw-label{color:var(--sapphire)}
+.sw-card:nth-child(3) .sw-label{color:var(--emerald)}
+.sw-card:nth-child(4) .sw-label{color:var(--gold)}
+.sw-title{font-family:'Fraunces',serif;font-size:.9rem;font-weight:500;color:var(--ink);margin-bottom:.15rem;line-height:1.3}
+.sw-desc{font-size:.72rem;color:var(--ink-dim);line-height:1.55}
+
+.forge{width:100%;max-width:460px;margin:.4rem 0;text-align:left}
+.f-cell{display:flex;align-items:flex-start;gap:.7rem;padding:.45rem 0;border-bottom:1px solid var(--border);transition:all .4s}
+.f-cell.glow{border-bottom-color:var(--emerald)}
+.f-cell.y-cell{border-bottom:none;padding:.65rem .6rem;margin-top:.2rem;background:linear-gradient(90deg,var(--gold-soft),transparent);border-radius:10px;border:1.5px solid rgba(212,168,67,0.12)}
+.f-let{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;min-width:24px;text-align:center;color:var(--ink-dim);transition:color .4s;line-height:1.3;padding-top:.1rem}
+.f-cell.glow .f-let{color:var(--emerald)}
+.y-cell .f-let{font-size:1.5rem;color:var(--gold);text-shadow:0 0 12px rgba(212,168,67,0.2)}
+.f-r{flex:1}
+.f-w{font-family:'IBM Plex Mono',monospace;font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:.08rem}
+.y-cell .f-w{color:var(--gold)}
+.f-in{width:100%;background:transparent;border:none;border-bottom:1.5px solid var(--border);padding:.25rem 0;font-family:'Fraunces',serif;font-size:.88rem;color:var(--ink);outline:none;transition:border-color .3s;resize:none;min-height:28px;line-height:1.5;overflow:hidden}
+.f-in::placeholder{color:var(--ink-dim);font-style:italic;font-weight:300}
+.f-in:focus{border-bottom-color:var(--emerald)}
+.y-cell .f-in{font-size:.92rem;border-bottom-color:rgba(212,168,67,0.3)}
+.y-cell .f-in:focus{border-bottom-color:var(--gold-bright)}
+
+.monet-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.monet-bg .wash{position:absolute;border-radius:50%;filter:blur(70px);animation:drift 20s ease-in-out infinite}
+.monet-bg .wash:nth-child(1){width:280px;height:280px;top:-40px;left:-60px;background:rgba(108,145,180,0.12)}
+.monet-bg .wash:nth-child(2){width:230px;height:230px;bottom:-50px;right:-40px;background:rgba(180,120,160,0.1);animation-delay:-5s}
+.monet-bg .wash:nth-child(3){width:180px;height:180px;top:30%;right:10%;background:rgba(220,180,90,0.1);animation-delay:-10s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-10px,15px) scale(.95)}}
+.val-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;width:100%;max-width:520px;margin:.5rem 0;position:relative;z-index:1}
+.val-card{background:rgba(255,253,248,0.65);backdrop-filter:blur(10px);border:1.5px solid rgba(44,24,16,0.06);border-radius:14px;padding:.9rem;text-align:left;transition:all .4s var(--ease);position:relative;overflow:hidden;cursor:pointer}
+.val-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .5s;border-radius:14px}
+.val-card:nth-child(1)::before{background:linear-gradient(135deg,rgba(108,145,180,0.1),transparent)}
+.val-card:nth-child(2)::before{background:linear-gradient(135deg,rgba(180,120,160,0.1),transparent)}
+.val-card:nth-child(3)::before{background:linear-gradient(135deg,rgba(220,180,90,0.1),transparent)}
+.val-card:nth-child(4)::before{background:linear-gradient(135deg,rgba(100,160,100,0.1),transparent)}
+.val-card:nth-child(5)::before{background:linear-gradient(135deg,rgba(200,130,130,0.1),transparent)}
+.val-card:nth-child(6)::before{background:linear-gradient(135deg,rgba(140,140,180,0.1),transparent)}
+.val-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.06);border-color:rgba(44,24,16,0.1)}
+.val-card:hover::before{opacity:1}
+.val-card.on{border-color:var(--amethyst);background:rgba(255,253,248,0.85)}
+.val-card.on::before{opacity:1}
+.val-card.on .val-check{background:var(--amethyst);border-color:var(--amethyst);box-shadow:0 0 10px rgba(123,79,162,0.2)}
+.val-card.on .val-check::after{opacity:1}
+.val-top{display:flex;align-items:center;gap:.4rem;margin-bottom:.25rem}
+.val-check{width:17px;height:17px;border-radius:50%;border:2px solid var(--border-strong);flex-shrink:0;transition:all .35s;position:relative}
+.val-check::after{content:'\2713';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.5rem;color:white;font-weight:700;opacity:0;transition:opacity .3s}
+.val-name{font-family:'Fraunces',serif;font-size:.92rem;font-weight:500;color:var(--ink);line-height:1.2}
+.val-ex{font-size:.68rem;color:var(--ink-dim);line-height:1.55;font-style:italic;padding-left:1.9rem}
+.val-card.on .val-ex{color:var(--ink-soft)}
+
+.send-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.3rem;border:1.5px solid var(--emerald);border-radius:100px;background:var(--emerald);color:white;font-family:'Fraunces',serif;font-size:.82rem;font-weight:500;transition:all .3s;margin-top:.8rem;cursor:pointer}
+.send-btn:hover{background:var(--emerald-bright);box-shadow:0 4px 16px var(--emerald-glow);transform:translateY(-2px)}
+.confetti{position:fixed;z-index:9996;pointer-events:none;border-radius:1px}
+
+@media(max-width:600px){.ch{padding:3rem 1.2rem 1.5rem}.arr.L{left:.4rem}.arr.R{right:2rem}.dot-nav{right:.4rem;gap:5px}.dot-nav__dot{width:6px;height:6px}.dot-nav__dot::before{display:none}.dot-nav__sep{height:5px}#lumos,#dot{display:none !important}.sowhat-grid,.val-grid{grid-template-columns:1fr}.blob{opacity:.6}.leaf,.bevo,.sun{display:none}}
+  </style>
+</head>
+<body>
+
+<div class="bg-base"></div><div class="bg-tile"></div>
+<div class="blob"></div><div class="blob"></div><div class="blob"></div>
+<div class="sun"></div>
+<div class="leaf">🍃</div><div class="leaf">🌿</div><div class="leaf">🍂</div><div class="leaf">🍃</div>
+<div class="bg-vig"></div>
+<div class="bevo"><svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#BF5700" stroke-width="1.5"><path d="M30 35c-12-4-25-15-28-25M70 35c12-4 25-15 28-25"/><ellipse cx="50" cy="38" rx="22" ry="16"/><circle cx="42" cy="33" r="2" fill="#BF5700"/><circle cx="58" cy="33" r="2" fill="#BF5700"/><path d="M46 42c2 2 6 2 8 0" stroke-width="1.2"/><path d="M50 55v5"/></g></svg></div>
+<div id="lumos"></div><div id="dot"></div>
+
+<div class="hdr"><div class="hdr-mark"><span class="s">✦</span> The Curiosity Cabinet</div><div class="hdr-sub">IWG #2 · Feb 24 2026</div></div>
+<div class="prog"><div class="prog-bar" id="bar"></div></div>
+<div class="page-ct" id="cnt"></div>
+<div class="blk" id="blk">✦ Choose a path to continue</div>
+<div class="toast-wrap" id="toast"><div class="toast-bunny">🐰</div><div class="toast-text" id="toastTxt"></div></div>
+
+<nav class="dot-nav" id="dotNav">
+  <div class="dot-nav__dot active" data-slide="0" data-label="Welcome"></div>
+  <div class="dot-nav__dot" data-slide="1" data-label="Discover"></div>
+  <div class="dot-nav__sep"></div>
+  <div class="dot-nav__dot" data-slide="2" data-label="Q1"></div>
+  <div class="dot-nav__dot" data-slide="3" data-label="Q2"></div>
+  <div class="dot-nav__dot" data-slide="4" data-label="Q3"></div>
+  <div class="dot-nav__dot" data-slide="5" data-label="Q4"></div>
+  <div class="dot-nav__dot" data-slide="6" data-label="Q5"></div>
+  <div class="dot-nav__dot" data-slide="7" data-label="Q6"></div>
+  <div class="dot-nav__sep"></div>
+  <div class="dot-nav__dot" data-slide="8" data-label="Result"></div>
+  <div class="dot-nav__dot" data-slide="9" data-label="So What"></div>
+  <div class="dot-nav__dot" data-slide="10" data-label="Story"></div>
+  <div class="dot-nav__sep"></div>
+  <div class="dot-nav__dot" data-slide="11" data-label="Values"></div>
+  <div class="dot-nav__dot" data-slide="12" data-label="Finish"></div>
+</nav>
+
+<button class="arr L" id="arrL" onmouseenter="hI()" onmouseleave="hO()">&#8249;</button>
+<button class="arr R" id="arrR" onmouseenter="hI()" onmouseleave="hO()">&#8594;</button>
+
+<div class="deck">
+
+<div class="ch on" data-i="0" data-free="1">
+  <div class="badge">&#10022; Magical Zoology Edition</div>
+  <div class="ch-h">What kind of <i>thinker</i> are you?</div>
+  <div class="rule"></div>
+  <div class="ch-p">Five creatures. Six questions. One instinct.<br>Discover your <strong>Interview Instinct</strong> &#8212; the animal archetype of how your mind works under pressure.</div>
+  <div class="ch-p" style="font-family:'Fraunces',serif;font-style:italic;color:var(--amethyst);font-size:0.88rem">No right answers &#8212; only instincts.</div>
+</div>
+
+<div class="ch" data-i="1" data-free="1">
+  <div class="badge">Chamber I &#183; Discover</div>
+  <div class="ch-h">Six questions.<br>Pick what feels <i>true</i>.</div>
+  <div class="ch-p">Your pattern reveals your Interview Instinct &#8212; and the framework step where you naturally shine.</div>
+</div>
+
+<div class="ch" data-i="2" data-quiz="1"><div class="q-label">Question 1 of 6</div><div class="q-title">Under pressure, I reach for&#8230;</div><div class="vials"><div class="vial" data-t="owl"><div class="vial-t">Structure first &#8212; organise, then decide</div></div><div class="vial" data-t="fox"><div class="vial-t">Curiosity first &#8212; the unknown is where I shine</div></div><div class="vial" data-t="dolphin"><div class="vial-t">Connection first &#8212; read the room, then respond</div></div><div class="vial" data-t="lion"><div class="vial-t">Evidence first &#8212; lead with my strongest card</div></div><div class="vial" data-t="bunny"><div class="vial-t">Empathy first &#8212; understand, then adapt</div></div></div></div>
+
+<div class="ch" data-i="3" data-quiz="1"><div class="q-label">Question 2 of 6</div><div class="q-title">A curveball question. I&#8230;</div><div class="vials"><div class="vial" data-t="owl"><div class="vial-t">Pause. Think. Then answer carefully.</div></div><div class="vial" data-t="fox"><div class="vial-t">Light up &#8212; unexpected means interesting</div></div><div class="vial" data-t="dolphin"><div class="vial-t">Anchor it to something personal I know</div></div><div class="vial" data-t="lion"><div class="vial-t">Pivot to a strength I can own</div></div><div class="vial" data-t="bunny"><div class="vial-t">Stay warm &#8212; find common ground first</div></div></div></div>
+
+<div class="ch" data-i="4" data-quiz="1"><div class="q-label">Question 3 of 6</div><div class="q-title">I feel most confident when I have&#8230;</div><div class="vials"><div class="vial" data-t="owl"><div class="vial-t">A clear framework to follow</div></div><div class="vial" data-t="fox"><div class="vial-t">Freedom to explore multiple angles</div></div><div class="vial" data-t="dolphin"><div class="vial-t">A genuine human connection in the room</div></div><div class="vial" data-t="lion"><div class="vial-t">A concrete result I can point to</div></div><div class="vial" data-t="bunny"><div class="vial-t">Time to observe and prepare thoughtfully</div></div></div></div>
+
+<div class="ch" data-i="5" data-quiz="1"><div class="q-label">Question 4 of 6</div><div class="q-title">My communication superpower is&#8230;</div><div class="vials"><div class="vial" data-t="owl"><div class="vial-t">Making the complex feel simple</div></div><div class="vial" data-t="fox"><div class="vial-t">Finding the unexpected analogy</div></div><div class="vial" data-t="dolphin"><div class="vial-t">Making people feel truly heard</div></div><div class="vial" data-t="lion"><div class="vial-t">Getting to the point, fast</div></div><div class="vial" data-t="bunny"><div class="vial-t">Creating safety where others open up</div></div></div></div>
+
+<div class="ch" data-i="6" data-quiz="1"><div class="q-label">Question 5 of 6</div><div class="q-title">The one thing I add that AI cannot&#8230;</div><div class="vials"><div class="vial" data-t="owl"><div class="vial-t">Contextual judgment &#8212; what matters here, now</div></div><div class="vial" data-t="fox"><div class="vial-t">The angle nobody thought of yet</div></div><div class="vial" data-t="dolphin"><div class="vial-t">A story that makes data feel human</div></div><div class="vial" data-t="lion"><div class="vial-t">Conviction to commit and move forward</div></div><div class="vial" data-t="bunny"><div class="vial-t">Emotional intelligence that builds trust</div></div></div></div>
+
+<div class="ch" data-i="7" data-quiz="1"><div class="q-label">Question 6 of 6</div><div class="q-title">In a team, I&#8217;m the one who&#8230;</div><div class="vials"><div class="vial" data-t="owl"><div class="vial-t">Builds the plan everyone follows</div></div><div class="vial" data-t="fox"><div class="vial-t">Drops the idea that changes everything</div></div><div class="vial" data-t="dolphin"><div class="vial-t">Bridges people who don&#8217;t agree yet</div></div><div class="vial" data-t="lion"><div class="vial-t">Calls the shot and drives it home</div></div><div class="vial" data-t="bunny"><div class="vial-t">Makes sure everyone feels included</div></div></div></div>
+
+<div class="ch" data-i="8" data-free="1"><div class="badge">Your Interview Instinct</div><div id="res"><div class="ch-p" style="font-style:italic">Summoning your spirit animal&#8230;</div></div></div>
+
+<div class="ch" data-i="9" data-free="1">
+  <div class="badge">Chamber II &#183; So What?</div>
+  <div class="ch-h">Now you know your instinct.<br><i>What can you do</i> with it?</div>
+  <div class="sowhat-grid">
+    <div class="sw-card"><div class="sw-label">In interviews</div><div class="sw-title">Lead with your strength</div><div class="sw-desc">Your instinct tells you which answers come naturally. Start there, build outward.</div></div>
+    <div class="sw-card"><div class="sw-label">With AI tools</div><div class="sw-title">Know when to trust yourself</div><div class="sw-desc">Use AI for what it does well. Use your instinct for what it cannot.</div></div>
+    <div class="sw-card"><div class="sw-label">In preparation</div><div class="sw-title">Practice your growth edge</div><div class="sw-desc">Fox &#8594; STRUCTURE. Owl &#8594; STORY. Growth lives at the edge.</div></div>
+    <div class="sw-card"><div class="sw-label">Right now</div><div class="sw-title">Write your STORY</div><div class="sw-desc">Transform one experience into an identity statement only you can write.</div></div>
+  </div>
+</div>
+
+<div class="ch" data-i="10" data-free="1">
+  <div class="badge">Chamber III &#183; Story Forge</div>
+  <div class="ch-h">The part only <i>you</i> can write.</div>
+  <div class="ch-p" style="font-size:.85rem;margin-bottom:.2rem">AI can summarise your situation. Only you define the value.</div>
+  <div class="forge">
+    <div class="f-cell"><div class="f-let">S</div><div class="f-r"><div class="f-w">Situation</div><textarea class="f-in" rows="1" placeholder="The context and challenge&#8230;"></textarea></div></div>
+    <div class="f-cell"><div class="f-let">T</div><div class="f-r"><div class="f-w">Task</div><textarea class="f-in" rows="1" placeholder="Your specific role&#8230;"></textarea></div></div>
+    <div class="f-cell"><div class="f-let">O</div><div class="f-r"><div class="f-w">Outcome</div><textarea class="f-in" rows="1" placeholder="The measurable result&#8230;"></textarea></div></div>
+    <div class="f-cell"><div class="f-let">R</div><div class="f-r"><div class="f-w">Reflection</div><textarea class="f-in" rows="1" placeholder="What you learned&#8230;"></textarea></div></div>
+    <div class="f-cell y-cell"><div class="f-let">Y</div><div class="f-r"><div class="f-w">You &#8212; Identity Statement</div><textarea class="f-in" id="yIn" rows="1" placeholder="What this says about who you are&#8230;"></textarea></div></div>
+  </div>
+</div>
+
+<div class="ch" data-i="11" data-free="1" style="position:relative">
+  <div class="monet-bg"><div class="wash"></div><div class="wash"></div><div class="wash"></div></div>
+  <div class="badge" style="position:relative;z-index:1">Chamber IV &#183; Integrate</div>
+  <div class="ch-h" style="position:relative;z-index:1">What do <i>you</i> value?</div>
+  <div class="ch-p" style="position:relative;z-index:1;margin-bottom:.15rem">Select what matters. Then ask: does this company deserve the way I think?</div>
+  <div class="val-grid">
+    <div class="val-card" onclick="tv(this)" onmouseenter="hI()" onmouseleave="hO()"><div class="val-top"><div class="val-check"></div><div class="val-name">Achievement</div></div><div class="val-ex">&#8220;I need work that uses my best abilities and shows me concrete results.&#8221;</div></div>
+    <div class="val-card" onclick="tv(this)" onmouseenter="hI()" onmouseleave="hO()"><div class="val-top"><div class="val-check"></div><div class="val-name">Independence</div></div><div class="val-ex">&#8220;I need autonomy &#8212; to make decisions and try my own approach.&#8221;</div></div>
+    <div class="val-card" onclick="tv(this)" onmouseenter="hI()" onmouseleave="hO()"><div class="val-top"><div class="val-check"></div><div class="val-name">Recognition</div></div><div class="val-ex">&#8220;I need advancement, leadership, and visible impact.&#8221;</div></div>
+    <div class="val-card" onclick="tv(this)" onmouseenter="hI()" onmouseleave="hO()"><div class="val-top"><div class="val-check"></div><div class="val-name">Relationships</div></div><div class="val-ex">&#8220;I need a team that feels collaborative, not competitive.&#8221;</div></div>
+    <div class="val-card" onclick="tv(this)" onmouseenter="hI()" onmouseleave="hO()"><div class="val-top"><div class="val-check"></div><div class="val-name">Support</div></div><div class="val-ex">&#8220;I need managers I trust &#8212; competent, fair, invested in my growth.&#8221;</div></div>
+    <div class="val-card" onclick="tv(this)" onmouseenter="hI()" onmouseleave="hO()"><div class="val-top"><div class="val-check"></div><div class="val-name">Working Conditions</div></div><div class="val-ex">&#8220;I need stability, variety, and space for life outside work.&#8221;</div></div>
+  </div>
+</div>
+
+<div class="ch" data-i="12" data-free="1">
+  <div class="ch-h">You thought this was about <i>AI</i>.</div>
+  <div class="rule"></div>
+  <div class="ch-p" style="font-size:1.05rem">It was always about <strong style="color:var(--emerald)">you</strong>.</div>
+  <div class="ch-p" style="font-family:'Fraunces',serif;font-style:italic;color:var(--amethyst);font-size:.88rem">Your instinct + this framework = your competitive advantage.</div>
+  <button class="send-btn" onclick="sendResults()" onmouseenter="hI()" onmouseleave="hO()">&#10022; Send My Results</button>
+  <div class="ch-ref" style="margin-top:.6rem">Bella Kang &#183; OCLD &#183; UT Austin &#183; Spring 2026</div>
+</div>
+
+</div>
+
+<script>
+var lumos=document.getElementById('lumos'),dot=document.getElementById('dot'),mx=-100,my=-100,dx=-100,dy=-100,lx=-100,ly=-100,hasMouse=false;
+var isTouch=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
+if(!isTouch){document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;if(!hasMouse){hasMouse=true;lumos.style.display='block';dx=mx;dy=my;lx=mx;ly=my}});(function cl(){if(hasMouse){dx+=(mx-dx)*.35;dy+=(my-dy)*.35;dot.style.left=dx+'px';dot.style.top=dy+'px';lx+=(mx-lx)*.06;ly+=(my-ly)*.06;lumos.style.left=lx+'px';lumos.style.top=ly+'px'}requestAnimationFrame(cl)})()}
+function hI(){dot.classList.add('big')}function hO(){dot.classList.remove('big')}
+
+var cur=0,cc=document.querySelectorAll('.ch'),tot=cc.length,sc={owl:0,fox:0,dolphin:0,lion:0,bunny:0},answered=new Set(),transitioning=false;
+var cheers=['Brilliant instinct \u2726','Trust that feeling \u2726','Self-knowledge is power \u2726','Your mind knows \u2726','Instincts sharpening \u2726','That reveals something \u2726'];
+var dots=document.querySelectorAll('.dot-nav__dot');
+
+function updateDots(){dots.forEach(function(d){var si=parseInt(d.dataset.slide);d.classList.remove('active');if(si>=2&&si<=7&&answered.has(si))d.classList.add('done');if(si===cur)d.classList.add('active')})}
+dots.forEach(function(d){d.addEventListener('click',function(){var t=parseInt(d.dataset.slide);if(!isNaN(t)&&t!==cur)navigateTo(t)});d.addEventListener('mouseenter',hI);d.addEventListener('mouseleave',hO)});
+function navigateTo(idx){if(idx===cur||transitioning)return;performTransition(idx,idx>cur?1:-1)}
+
+function canAdvance(i){return cc[i].dataset.free==='1'||answered.has(i)}
+function performTransition(next,dir){if(next<0||next>=tot||transitioning)return;transitioning=true;var prev=cur;cc[prev].classList.remove('on');cc[prev].classList.add('exit-up');cur=next;setTimeout(function(){cc[prev].classList.remove('exit-up');cc[cur].classList.add('on');updateUI();transitioning=false;if(cur===8)showRes()},60)}
+function go(d){if(transitioning)return;var nx=cur+d;if(nx<0||nx>=tot)return;if(d>0&&!canAdvance(cur)){var b=document.getElementById('blk');b.classList.add('show');setTimeout(function(){b.classList.remove('show')},1800);var a=document.getElementById('arrR');a.classList.add('shake');setTimeout(function(){a.classList.remove('shake')},350);return}performTransition(nx,d)}
+function updateUI(){document.getElementById('bar').style.width=(cur/(tot-1)*100)+'%';document.getElementById('cnt').textContent=(cur+1)+'/'+tot;document.getElementById('arrL').classList.toggle('locked',cur===0);document.getElementById('arrR').classList.toggle('locked',cur===tot-1||(!canAdvance(cur)&&cur<tot-1));updateDots()}
+updateUI();
+
+document.addEventListener('keydown',function(e){if(document.activeElement&&document.activeElement.tagName==='TEXTAREA')return;if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(1)}if(e.key==='ArrowLeft'){e.preventDefault();go(-1)}});
+var tx=0;document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});document.addEventListener('touchend',function(e){var d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>50)go(d>0?1:-1)},{passive:true});
+document.getElementById('arrL').addEventListener('click',function(){go(-1)});document.getElementById('arrR').addEventListener('click',function(){go(1)});
+
+document.querySelectorAll('.vial').forEach(function(v){v.addEventListener('click',function(){pk(v)});v.addEventListener('mouseenter',hI);v.addEventListener('mouseleave',hO)});
+function pk(el){var card=el.closest('.ch'),idx=+card.dataset.i,vials=card.querySelector('.vials');vials.querySelectorAll('.vial').forEach(function(v){if(v!==el&&v.classList.contains('sel')){v.classList.remove('sel');sc[v.dataset.t]--}});if(!el.classList.contains('sel')){el.classList.add('sel');sc[el.dataset.t]++;answered.add(idx);updateDots();burst(el);showToast(cheers[Math.floor(Math.random()*cheers.length)]);setTimeout(function(){go(1)},700)}else{el.classList.remove('sel');sc[el.dataset.t]--;answered.delete(idx);updateDots()}}
+function tv(el){el.classList.toggle('on');if(el.classList.contains('on'))burst(el)}
+function showToast(msg){var t=document.getElementById('toast');document.getElementById('toastTxt').textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},1800)}
+
+var ani={owl:{emoji:'\u{1F989}',n:'The Strategic Owl',d:'You lead with analysis and structure. Under pressure, you organise before you speak \u2014 building clarity from complexity.',s:'Systematic Thinking',fw:'STRUCTURE & REFINE',color:'var(--amethyst)',tip:'Practice STORY \u2014 let your lived experience speak alongside your frameworks.'},fox:{emoji:'\u{1F98A}',n:'The Adaptable Fox',d:'You thrive in ambiguity. When the unexpected arrives, you pivot and find angles others miss.',s:'Creative Reframing',fw:'ASK',color:'var(--gold)',tip:'Practice STRUCTURE \u2014 give your brilliant ideas a skeleton others can follow.'},dolphin:{emoji:'\u{1F42C}',n:'The Empathic Dolphin',d:'You read the room. Social cues, energy, tone \u2014 you adjust instinctively and create connection.',s:'Relational Intelligence',fw:'STORY',color:'var(--sapphire)',tip:'Practice REFINE \u2014 trust your instinct but sharpen the evidence behind it.'},lion:{emoji:'\u{1F981}',n:'The Decisive Lion',d:'You lead with impact. Data, results, evidence \u2014 you cut through noise with conviction.',s:'Impact-Driven Clarity',fw:'REFINE',color:'var(--ruby)',tip:'Practice ASK \u2014 slow down to ask the question before jumping to the answer.'},bunny:{emoji:'\u{1F430}',n:'The Gentle Bunny',d:'You lead with care and emotional intelligence. You create safety so others can do their best thinking.',s:'Trust-Building Warmth',fw:'STORY & ASK',color:'var(--blush)',tip:'Practice STRUCTURE \u2014 your warmth is your edge; add a framework and you become unstoppable.'}};
+var resultShown=false;
+function showRes(){if(resultShown)return;var best='owl',max=0;for(var k in sc)if(sc[k]>max){max=sc[k];best=k}var a=ani[best];resultShown=true;document.getElementById('res').innerHTML='<div class="res-card show"><div class="res-top"><div class="res-emoji">'+a.emoji+'</div><div class="res-name" style="color:'+a.color+'">'+a.n+'</div><div class="res-desc">'+a.d+'</div></div><div class="res-body"><div class="res-row"><div class="res-tag edge">Edge</div><div class="res-text">Your instinct excels at <strong>'+a.fw+'</strong>. Build from this strength.</div></div><div class="res-row"><div class="res-tag core">Core</div><div class="res-text">'+a.s+' \u2014 what AI cannot replicate.</div></div><div class="res-row"><div class="res-tag try">Try</div><div class="res-text">'+a.tip+'</div></div></div></div>';window._result=a;confetti()}
+
+document.querySelectorAll('.f-in').forEach(function(el){el.addEventListener('input',function(){autoGrow(el);fg(el)});el.addEventListener('focus',function(){fg(el)})});
+document.getElementById('yIn').addEventListener('input',function(){autoGrow(this);yT(this)});
+function autoGrow(el){el.style.height='auto';el.style.height=el.scrollHeight+'px'}
+function fg(inp){inp.closest('.f-cell').classList.toggle('glow',inp.value.length>0)}
+function yT(inp){fg(inp);if(inp.value.length>3){var r=inp.getBoundingClientRect();for(var i=0;i<3;i++){var p=document.createElement('div');var s=2+Math.random()*3;p.style.cssText='position:fixed;width:'+s+'px;height:'+s+'px;border-radius:50%;left:'+(r.left+Math.random()*r.width)+'px;top:'+r.top+'px;background:'+(Math.random()>.4?'#D4A843':'#F0C850')+';pointer-events:none;z-index:9998';document.body.appendChild(p);p.animate([{opacity:1,transform:'translateY(0) scale(1)'},{opacity:0,transform:'translateY('+(-(15+Math.random()*20))+'px) scale(0)'}],{duration:500+Math.random()*200,easing:'cubic-bezier(.22,1,.36,1)'}).onfinish=function(){p.remove()}}}}
+
+function burst(el){var r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,cols=['#D4A843','#2D6E4C','#7B4FA2','#C0392B','#2E6B8A','#E8A0BF'];for(var i=0;i<14;i++){var p=document.createElement('div');var s=3+Math.random()*4;p.style.cssText='position:fixed;width:'+s+'px;height:'+s+'px;border-radius:50%;left:'+cx+'px;top:'+cy+'px;background:'+cols[i%6]+';pointer-events:none;z-index:9998';document.body.appendChild(p);var angle=(Math.PI*2/14)*i+(Math.random()-.5)*.4,dist=30+Math.random()*60;p.animate([{opacity:1,transform:'translate(0,0) scale(1)'},{opacity:0,transform:'translate('+Math.cos(angle)*dist+'px,'+Math.sin(angle)*dist+'px) scale(0)'}],{duration:500+Math.random()*250,easing:'cubic-bezier(.22,1,.36,1)'}).onfinish=function(){p.remove()}}}
+function confetti(){var cols=['#D4A843','#2D6E4C','#7B4FA2','#C0392B','#2E6B8A','#F0C850','#E8A0BF'];for(var i=0;i<40;i++){var c=document.createElement('div');c.className='confetti';var s=4+Math.random()*6,rot=Math.random()*360;c.style.cssText='width:'+s+'px;height:'+(s*.6)+'px;left:'+(Math.random()*100)+'vw;top:-10px;background:'+cols[i%7]+';transform:rotate('+rot+'deg)';document.body.appendChild(c);var dur=1500+Math.random()*1500,driftX=(Math.random()-.5)*80;c.animate([{opacity:1,transform:'translateY(0) translateX(0) rotate('+rot+'deg)'},{opacity:0,transform:'translateY('+(window.innerHeight+20)+'px) translateX('+driftX+'px) rotate('+(rot+360)+'deg)'}],{duration:dur,easing:'cubic-bezier(.22,1,.36,1)'}).onfinish=function(){c.remove()}}}
+
+function sendResults(){var a=window._result||{n:'Not yet revealed',s:'-',fw:'-'};var story=document.querySelectorAll('.f-in');var vals=[].slice.call(document.querySelectorAll('.val-card.on')).map(function(v){return v.querySelector('.val-name').textContent}).join(', ')||'None selected';var storyText=['S','T','O','R','Y'].map(function(l,i){return l+': '+(story[i]?story[i].value||'\u2014':'\u2014')}).join('\n');var body='Interview Instinct: '+a.n+'\nStrength: '+a.s+'\nFramework Edge: '+a.fw+'\n\nSTORY:\n'+storyText+'\n\nValues: '+vals+'\n\n\u2014 Sent from The Curiosity Cabinet';var subj=encodeURIComponent('My Interview Instinct \u2014 '+a.n);var bodyEnc=encodeURIComponent(body);try{navigator.clipboard.writeText(body)}catch(e){}window.open('mailto:bellakang017@gmail.com?subject='+subj+'&body='+bodyEnc,'_blank');confetti();showToast('Results copied & email opened \u2726')}
+</script>
+</body>
+</html>
