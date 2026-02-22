@@ -19,17 +19,15 @@
       --txt: #0D3B66;
       --txt2: #3a6585;
       --txt3: #7a9bb5;
-      --glass: rgba(255,255,255,.52);
-      --glassB: rgba(255,255,255,.22);
+      --glass: rgba(255,255,255,.65);
+      --glassB: rgba(255,255,255,.3);
       --card: #fff;
       --bdr: rgba(13,59,102,.07);
       --serif: 'Crimson Pro', Georgia, serif;
       --sans: 'DM Sans', sans-serif;
       --mono: 'JetBrains Mono', monospace;
-      /* Rauno spring curves */
       --spring: cubic-bezier(.175,.885,.32,1.275);
       --ease-out: cubic-bezier(.16,1,.3,1);
-      --ease-spring: cubic-bezier(.25,.46,.45,.94);
     }
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{height:100%;overflow:hidden}
@@ -37,479 +35,192 @@
     ::selection{background:rgba(232,93,117,.14);color:var(--deep)}
     .vert{writing-mode:vertical-rl;text-orientation:mixed}
 
-    /* ═══ GLASSMORPHISM BUBBLES ═══ */
+    /* Bubbles */
     @keyframes bf{0%,100%{transform:translateY(0) scale(1);opacity:.14}50%{transform:translateY(-20px) scale(1.05);opacity:.22}}
-    @keyframes bf2{0%,100%{transform:translateY(0) rotate(0)}40%{transform:translateY(-14px) rotate(3deg)}80%{transform:translateY(-6px) rotate(-2deg)}}
-    .gb{position:absolute;border-radius:50%;pointer-events:none;background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--glassB);box-shadow:inset 0 0 20px rgba(255,255,255,.3),0 6px 28px rgba(79,176,198,.06)}
+    .gb{position:absolute;border-radius:50%;pointer-events:none;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glassB);box-shadow:inset 0 0 20px rgba(255,255,255,.3),0 6px 28px rgba(79,176,198,.06)}
 
-    /* ═══ PORTRAIT RIPPLE ═══ */
-    @keyframes rip{0%{transform:scale(1);opacity:.45}100%{transform:scale(1.9);opacity:0}}
-    .portrait{position:relative;cursor:default}
-    .portrait::before,.portrait::after{content:'';position:absolute;inset:-10px;border-radius:50%;border:2px solid var(--sea);opacity:0;pointer-events:none}
-    .portrait:hover::before{animation:rip 1.4s var(--ease-spring) infinite}
-    .portrait:hover::after{animation:rip 1.4s var(--ease-spring) .5s infinite}
-    .portrait:hover img{transform:scale(1.04);box-shadow:0 0 36px rgba(79,176,198,.3)}
-
-    /* ═══ STAGGERED ENTRANCE (Rauno's 10% novelty — first load only) ═══ */
-    @keyframes staggerIn{
-      0%{opacity:0;transform:translateY(16px) scale(.98)}
-      100%{opacity:1;transform:translateY(0) scale(1)}
-    }
+    /* Staggered Entrance */
+    @keyframes staggerIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}
     .si{opacity:0;animation:staggerIn .7s var(--ease-out) forwards}
     .si-1{animation-delay:.05s} .si-2{animation-delay:.12s} .si-3{animation-delay:.2s}
-    .si-4{animation-delay:.3s} .si-5{animation-delay:.4s} .si-6{animation-delay:.52s}
-    .si-7{animation-delay:.64s}
+    .si-4{animation-delay:.3s} .si-5{animation-delay:.42s} .si-6{animation-delay:.54s}
 
-    /* ═══ PANEL SLIDE-FADE TRANSITION ═══ */
-    @keyframes panelSlide{
-      0%{opacity:0;transform:translateX(12px)}
-      100%{opacity:1;transform:translateX(0)}
+    /* ═══ NEW: CONTEXTUAL INSIGHT POPOVER ═══ */
+    .kw {
+      position: relative;
+      color: var(--coral);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: rgba(232,93,117,0.2);
+      text-underline-offset: 4px;
+      cursor: help;
+      transition: all 0.3s var(--ease-out);
     }
-    .panel-anim{animation:panelSlide .45s var(--ease-out)}
+    .kw:hover { text-decoration-color: var(--coral); color: var(--deep); }
+    
+    .kw::after {
+      content: attr(data-insight);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: 220px;
+      padding: 0.8rem 1rem;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glassB);
+      border-radius: 12px;
+      color: var(--deep);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      line-height: 1.5;
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(13,59,102,0.1);
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.3s var(--spring);
+      z-index: 1000;
+      pointer-events: none;
+    }
+    .kw:hover::after { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ═══ DISSECTION REVEAL ═══ */
-    @keyframes dissect{
-      0%{opacity:0;max-height:0;transform:translateY(-8px)}
-      100%{opacity:1;max-height:600px;transform:translateY(0)}
-    }
-    .dissect{animation:dissect .5s var(--ease-out) forwards;overflow:hidden}
+    /* Portrait Ripple */
+    @keyframes rip{0%{transform:scale(1);opacity:.45}100%{transform:scale(1.9);opacity:0}}
+    .portrait{position:relative}
+    .portrait::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--sea);opacity:0;pointer-events:none}
+    .portrait:hover::before{animation:rip 1.4s var(--ease-out) infinite}
+    .portrait:hover img{transform:scale(1.05);box-shadow:0 8px 32px rgba(79,176,198,.25)}
 
-    /* ═══ KEYWORD HOVER EFFECT ═══ */
-    .kw{
-      color:var(--coral);font-weight:700;
-      text-decoration:underline;text-decoration-color:transparent;
-      text-underline-offset:4px;text-decoration-thickness:2.5px;
-      transition:text-decoration-color .4s var(--ease-out), letter-spacing .3s var(--ease-out);
-      cursor:default;
-    }
-    .kw:hover{
-      text-decoration-color:var(--coral);
-      letter-spacing:.02em;
-    }
-
-    /* Mono-swap on hover for tech keywords */
-    .kw-tech{
-      font-family:var(--sans);
-      transition:font-family 0s, color .3s, text-decoration-color .4s var(--ease-out);
-    }
-    .kw-tech:hover{
-      font-family:var(--mono);
-      font-size:.92em;
-      text-decoration-color:var(--sea);
-      color:var(--sea);
-    }
-
-    /* ═══ SPECIMEN ICONS ═══ */
-    .spec{
-      width:84px;height:84px;border-radius:24px;
-      display:flex;align-items:center;justify-content:center;
-      cursor:pointer;position:relative;flex-shrink:0;
-      border:2px solid transparent;
-      transition:all .4s var(--spring);
-      box-shadow:0 2px 12px rgba(13,59,102,.04);
-    }
-    .spec:hover{transform:translateY(-6px) scale(1.05);box-shadow:0 12px 36px rgba(13,59,102,.08)}
-    .spec.on{border-color:var(--coral);box-shadow:0 12px 40px rgba(232,93,117,.12)}
-    .spec img{width:46px;height:46px;object-fit:contain;transition:transform .4s var(--spring)}
-    .spec:hover img{transform:scale(1.1) rotate(3deg)}
-    .spec-label{
-      position:absolute;bottom:-24px;
-      font-family:var(--mono);font-size:9px;font-weight:600;
-      letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
-      opacity:0;transition:opacity .3s var(--ease-out);color:var(--txt2)
-    }
+    /* Specimen Icons */
+    .spec{width:84px;height:84px;border-radius:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;border:2px solid transparent;transition:all .4s var(--spring);box-shadow:0 2px 10px rgba(13,59,102,.03)}
+    .spec:hover{transform:translateY(-5px);border-color:var(--sea-l)}
+    .spec.on{border-color:var(--coral);box-shadow:0 10px 32px rgba(232,93,117,.1)}
+    .spec-label{position:absolute;bottom:-24px;font-family:var(--mono);font-size:9px;font-weight:600;text-transform:uppercase;opacity:0;transition:opacity .3s;color:var(--txt2)}
     .spec:hover .spec-label,.spec.on .spec-label{opacity:1}
 
-    /* ═══ APPLE PORTAL ═══ */
-    @keyframes apGlow{0%,100%{filter:drop-shadow(0 0 10px rgba(107,184,76,.2));transform:translateY(0)}50%{filter:drop-shadow(0 0 28px rgba(107,184,76,.4));transform:translateY(-7px)}}
-    .ap:hover .ap-img{animation:apGlow 1.6s ease-in-out infinite}
-    .ap:hover{border-color:rgba(107,184,76,.3)!important;box-shadow:0 14px 48px rgba(107,184,76,.08)!important;transform:translateY(-3px)}
-
-    /* ═══ EXP ACCORDION ═══ */
-    .exp-plus{transition:transform .35s var(--spring);font-weight:700}
-    .exp-plus.open{transform:rotate(45deg)}
-
-    /* ═══ SCROLLBAR ═══ */
+    /* Scroller */
     .cscroll::-webkit-scrollbar{width:3px}
-    .cscroll::-webkit-scrollbar-track{background:transparent}
     .cscroll::-webkit-scrollbar-thumb{background:var(--sea-l);border-radius:2px}
 
-    /* ═══ NAV ═══ */
-    .np{
-      transition:all .3s var(--ease-out);cursor:pointer;position:relative;
-      background:none;border:none;font-family:var(--mono);padding:8px 0
-    }
-    .np.on{color:var(--deep);font-weight:700}
-    .np.on::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--coral)}
-
-    /* ═══ RESPONSIVE ═══ */
-    @media(max-width:900px){
-      .dash{grid-template-columns:1fr!important}
-      .brand-col{display:none!important}
-      .gb{display:none}
-      .spec{width:68px;height:68px}
-    }
+    @media(max-width:900px){ .dash{grid-template-columns:1fr!important} .brand-col{display:none!important} }
   </style>
 </head>
 <body>
 
-<div class="dash" style="height:100vh;display:grid;grid-template-columns:96px 1fr;overflow:hidden">
+<div class="dash" style="height:100vh;display:grid;grid-template-columns:100px 1fr;overflow:hidden">
 
-  <!-- ═══ LEFT: BRAND COLUMN ═══ -->
-  <div class="brand-col" style="background:var(--deep);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.6rem 0;position:relative;overflow:hidden;z-index:10">
-    <div class="gb" style="width:30px;height:30px;top:20%;right:-6px;animation:bf 5s ease-in-out infinite"></div>
-    <div class="gb" style="width:18px;height:18px;bottom:25%;left:4px;animation:bf2 7s ease-in-out 1.5s infinite"></div>
-    <div class="gb" style="width:12px;height:12px;top:60%;right:22px;animation:bf 6s ease-in-out 3s infinite"></div>
-
-    <!-- Profile Photo — LARGER, CENTERED -->
-    <div class="portrait si si-1" style="margin-bottom:1rem;z-index:2">
-      <img src="images/profile (1).jpg" alt="Bella Kang" style="width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid rgba(79,176,198,.4);transition:all .5s var(--spring);box-shadow:0 6px 24px rgba(79,176,198,.22)">
+  <div class="brand-col" style="background:var(--deep);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 0;z-index:10;position:relative">
+    <div class="gb" style="width:30px;height:30px;top:15%;animation:bf 5s infinite"></div>
+    
+    <div class="portrait si si-1" style="margin-bottom:1.5rem">
+      <img src="images/profile (1).jpg" alt="Bella Kang" loading="lazy" style="width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid rgba(79,176,198,.3);transition:all .5s var(--spring)">
     </div>
 
-    <!-- Vertical Name — CENTERED -->
-    <h1 class="vert si si-2" style="font-family:var(--serif);font-size:2.2rem;font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1;transform:rotate(180deg);flex:1;display:flex;align-items:center;z-index:2">
-      Bella <span style="color:var(--sun);font-style:italic;margin-top:2px">Kang</span>
+    <h1 class="vert si si-2" style="font-family:var(--serif);font-size:2.4rem;font-weight:800;color:#fff;transform:rotate(180deg);flex:1;display:flex;align-items:center">
+      Bella <span style="color:var(--sun);font-style:italic;margin-top:4px">Kang</span>
     </h1>
-
-    <div class="vert si si-3" style="font-family:var(--mono);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--sea-l);opacity:.45;transform:rotate(180deg);z-index:2;margin-top:.6rem">
-      Moody College · Thesis Track
+    
+    <div class="vert si si-3" style="font-family:var(--mono);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--sea-l);opacity:.5;transform:rotate(180deg);margin-top:1rem">
+      UT Austin · Thesis Track
     </div>
   </div>
 
-  <!-- ═══ RIGHT: CONTENT ═══ -->
   <div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;position:relative">
-    <div class="gb" style="width:90px;height:90px;top:10%;right:6%;animation:bf 9s ease-in-out infinite;opacity:.08"></div>
-    <div class="gb" style="width:50px;height:50px;bottom:16%;right:30%;animation:bf2 7s ease-in-out 2s infinite;opacity:.06"></div>
+    <div class="gb" style="width:80px;height:80px;top:10%;right:5%;opacity:.05"></div>
 
-    <!-- NAV -->
-    <nav style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 2.4rem;background:rgba(253,252,240,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);z-index:20;flex-shrink:0">
-      <div style="display:flex;gap:2rem;align-items:center">
-        <button class="np on" data-v="cabinet" onclick="nav('cabinet',this)" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--deep)">Cabinet</button>
-        <button class="np" data-v="field" onclick="nav('field',this)" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2)">Field</button>
-        <button class="np" data-v="archive" onclick="nav('archive',this)" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2)">Archive</button>
+    <nav style="height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(253,252,240,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--bdr);z-index:20">
+      <div style="display:flex;gap:2rem">
+        <button class="np on" onclick="nav('cabinet',this)" style="background:none;border:none;font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;color:var(--deep)">Cabinet</button>
+        <button class="np" onclick="nav('field',this)" style="background:none;border:none;font-family:var(--mono);font-size:11px;cursor:pointer;color:var(--txt3)">Field</button>
+        <button class="np" onclick="nav('archive',this)" style="background:none;border:none;font-family:var(--mono);font-size:11px;cursor:pointer;color:var(--txt3)">Archive</button>
       </div>
-      <div style="display:flex;gap:1rem;align-items:center">
-        <a href="https://www.linkedin.com/in/bellakang017" target="_blank" style="font-family:var(--mono);font-size:10px;color:var(--txt2);text-decoration:none">LinkedIn ↗</a>
-        <button onclick="openC()" style="font-family:var(--mono);font-size:10px;font-weight:700;padding:7px 16px;background:var(--coral);color:#fff;border:none;border-radius:6px;cursor:pointer;transition:all .3s var(--spring)" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 16px rgba(232,93,117,.2)'" onmouseout="this.style.transform='';this.style.boxShadow=''">CONTACT</button>
-      </div>
+      <button onclick="openC()" style="font-family:var(--mono);font-size:10px;font-weight:700;padding:8px 18px;background:var(--coral);color:#fff;border:none;border-radius:8px;cursor:pointer">CONTACT</button>
     </nav>
 
-    <!-- CONTENT -->
-    <div class="cscroll" style="flex:1;overflow-y:auto;overflow-x:hidden;position:relative;z-index:10">
-
-      <!-- ═══ CABINET (Main + Beyond merged) ═══ -->
-      <div class="panel active" id="p-cabinet" style="padding:2.8rem 3.2rem;max-width:880px">
-
-        <!-- STAGGERED HERO -->
-        <header style="margin-bottom:2.4rem">
-          <p class="si si-3" style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:1rem">Research Specimen // UT Austin</p>
-          <h2 class="si si-4" style="font-family:var(--serif);font-size:clamp(1.9rem,3.8vw,2.7rem);font-weight:700;line-height:1.18;color:var(--deep)">
-            I research how <span class="kw kw-tech">AI</span> and <span class="kw kw-tech">technology</span> shape
-            <span class="kw" style="text-decoration-color:var(--sun)">human behavior</span>
-            in <span class="kw">health</span> and <span class="kw kw-tech">education</span>
-            — designing messages that don't just
-            <span style="font-style:italic;text-decoration:underline;text-decoration-color:var(--sun);text-underline-offset:5px;text-decoration-thickness:4px"> reach</span>, but
-            <span style="font-style:italic;color:var(--coral);font-weight:800"> resonate</span>.
+    <div class="cscroll" style="flex:1;overflow-y:auto;padding:3rem 3.5rem;position:relative">
+      
+      <div class="panel active" id="p-cabinet" style="max-width:900px">
+        <header style="margin-bottom:3rem">
+          <p class="si si-4" style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);margin-bottom:1rem">Research Specimen // 2026</p>
+          <h2 class="si si-5" style="font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:700;line-height:1.2;color:var(--deep)">
+            I research how <span class="kw" data-insight="Leveraging LLMs & Behavioral AI as cognitive scaffolding for learning.">AI</span> and <span class="kw" data-insight="Using tech-driven interventions to nudge positive health outcomes.">technology</span> shape 
+            <span class="kw" data-insight="Analyzing cognitive friction and psychological barriers to change.">human behavior</span> in 
+            <span class="kw" data-insight="From mental health agency to digital health literacy.">health</span> and 
+            <span class="kw" data-insight="Designing adaptive educational systems for neurodiverse thinkers.">education</span>.
           </h2>
         </header>
 
-        <!-- ═══ 4 SPECIMEN ICONS (Lens + Vial + Anchor + Portal) ═══ -->
-        <div class="si si-5" style="display:flex;gap:1.4rem;margin-bottom:2.2rem;padding-bottom:.6rem;flex-wrap:wrap">
-          <div class="spec" style="background:rgba(79,176,198,.07)" onclick="tSpec('lens',this)">
-            <img src="images/glass-apple2.png" alt="The Lens">
+        <div class="si si-6" style="display:flex;gap:1.5rem;margin-bottom:3rem;flex-wrap:wrap">
+          <div class="spec" style="background:rgba(79,176,198,.08)" onclick="tSpec('lens',this)">
+            <img src="images/glass-apple2.png" alt="Lens" loading="lazy">
             <span class="spec-label">Analytical Lens</span>
           </div>
-          <div class="spec" style="background:rgba(232,93,117,.05)" onclick="tSpec('vial',this)">
-            <img src="images/4.png" alt="The Vial">
-            <span class="spec-label">Prototyping</span>
+          <div class="spec" style="background:rgba(232,93,117,.06)" onclick="tSpec('vial',this)">
+            <img src="images/4.png" alt="Vial" loading="lazy">
+            <span class="spec-label">The Vial</span>
           </div>
           <div class="spec" style="background:rgba(242,201,76,.08)" onclick="tSpec('anchor',this)">
-            <img src="images/puppy-book.png" alt="The Thesis">
+            <img src="images/puppy-book.png" alt="Thesis" loading="lazy">
             <span class="spec-label">The Thesis</span>
           </div>
           <div class="spec" style="background:rgba(107,184,76,.06)" onclick="tSpec('beyond',this)">
-            <img src="images/apple-heart.png" alt="Beyond">
+            <img src="images/apple-heart.png" alt="Beyond" loading="lazy">
             <span class="spec-label">Beyond</span>
           </div>
         </div>
 
-        <!-- DISSECTED PANELS -->
         <div id="sp-lens" class="sp" style="display:none">
-          <div class="dissect" style="padding:1.6rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:20px;margin-bottom:2rem;box-shadow:0 8px 32px rgba(13,59,102,.04)">
-            <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
-              <img src="images/glass-apple2.png" style="width:34px;height:34px;object-fit:contain">
-              <div>
-                <h3 style="font-family:var(--serif);font-size:1.35rem;font-weight:800;color:var(--deep)">The Lens</h3>
-                <p style="font-family:var(--mono);font-size:10px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">Catching Points of Tension</p>
-              </div>
-            </div>
-            <p style="font-family:var(--serif);font-size:1.02rem;line-height:1.8;color:var(--txt2)">
-              Communication patterns — especially <span class="kw">self-silencing</span> and <span class="kw">help-seeking</span> — among Korean American midlife women. How culturally specific styles interact with <span class="kw kw-tech">stress</span>, coping, and access to care.
+          <div class="dissect" style="padding:2rem;background:var(--glass);border:1px solid var(--glassB);border-radius:24px;margin-bottom:2rem">
+            <h3 style="font-family:var(--serif);font-size:1.5rem;font-weight:800;margin-bottom:0.5rem">The Lens</h3>
+            <p style="font-family:var(--serif);font-size:1.1rem;line-height:1.7;color:var(--txt2)">
+              Studying <span class="kw" data-insight="A pattern where individuals suppress their own needs to maintain harmony.">self-silencing</span> among Korean American midlife women. Catching <span class="kw" data-insight="Specific moments where cultural values clash with health-seeking actions.">points of tension</span> between culture and care.
             </p>
           </div>
         </div>
 
-        <div id="sp-vial" class="sp" style="display:none">
-          <div class="dissect" style="padding:1.6rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:20px;margin-bottom:2rem;box-shadow:0 8px 32px rgba(13,59,102,.04)">
-            <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
-              <img src="images/4.png" style="width:34px;height:34px;object-fit:contain">
-              <div>
-                <h3 style="font-family:var(--serif);font-size:1.35rem;font-weight:800;color:var(--deep)">The Vial</h3>
-                <p style="font-family:var(--mono);font-size:10px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">Interdisciplinary Alchemy</p>
-              </div>
-            </div>
-            <p style="font-family:var(--serif);font-size:1.02rem;line-height:1.8;color:var(--txt2)">
-              <span class="kw kw-tech">Mixed methods</span> (qualitative + quantitative) bridging lived experience and measurable outcomes. Small <span class="kw">cognitive shifts</span> redirect self-defeating patterns into <span class="kw" style="text-decoration-color:var(--sun)">self-enhancing ones</span>. Full-cycle: observation → theory → experimentation → field.
-            </p>
-          </div>
-        </div>
-
-        <div id="sp-anchor" class="sp" style="display:none">
-          <div class="dissect" style="padding:1.6rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:20px;margin-bottom:2rem;box-shadow:0 8px 32px rgba(13,59,102,.04)">
-            <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1rem">
-              <img src="images/puppy-book.png" style="width:34px;height:34px;object-fit:contain">
-              <div>
-                <h3 style="font-family:var(--serif);font-size:1.35rem;font-weight:800;color:var(--deep)">The Anchor</h3>
-                <p style="font-family:var(--mono);font-size:10px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">What Holds Against the Tide</p>
-              </div>
-            </div>
-            <p style="font-family:var(--serif);font-size:1.02rem;line-height:1.8;color:var(--txt2)">
-              PhD program (<span class="kw" style="text-decoration-color:var(--sun)">Fall 2027</span>) in <span class="kw">health communication</span>, <span class="kw kw-tech">developmental science</span>, or <span class="kw kw-tech">educational psychology</span>. Psychologically wise <span class="kw">intervention design</span> — evidence to implementation.
-            </p>
-          </div>
-        </div>
-
-        <!-- BEYOND (4th specimen — merged into Cabinet) -->
         <div id="sp-beyond" class="sp" style="display:none">
-          <div class="dissect" style="margin-bottom:2rem">
-            <!-- Green Apple Portal -->
-            <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="ap" style="display:block;padding:2rem 2.2rem;background:linear-gradient(135deg,rgba(107,184,76,.06),rgba(79,176,198,.03));border:1.5px solid rgba(107,184,76,.16);border-radius:24px;text-decoration:none;color:var(--deep);transition:all .45s var(--spring);margin-bottom:1rem">
-              <div style="display:flex;align-items:center;gap:1.8rem">
-                <img src="images/apple-heart.png" alt="" class="ap-img" style="width:80px;height:80px;object-fit:contain;transition:all .4s">
+           <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" style="text-decoration:none; display:block; margin-bottom:2rem;">
+            <div style="padding:2.5rem;background:linear-gradient(135deg,rgba(107,184,76,.1),rgba(253,252,240,1));border:1.5px solid rgba(107,184,76,0.2);border-radius:28px;transition:all .4s var(--spring)" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform=''">
+              <div style="display:flex;align-items:center;gap:2rem">
+                <img src="images/apple-heart.png" alt="Green Apple" loading="lazy" style="width:80px;height:80px">
                 <div>
-                  <p style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(107,184,76,.8);margin-bottom:.35rem">Design Principle</p>
-                  <h3 style="font-family:var(--serif);font-size:1.6rem;font-weight:800;margin-bottom:.35rem">Green Apple Logic</h3>
-                  <p style="font-size:.92rem;color:var(--txt2);line-height:1.65;max-width:380px">Interventions succeed when <span class="kw">healthy choices</span> feel natural — not prescribed. A mother who kept green apples in the kimchi fridge.</p>
-                  <p style="font-family:var(--mono);font-size:11px;color:var(--coral);margin-top:.6rem;font-weight:700">Enter the Orchard →</p>
-                </div>
-              </div>
-            </a>
-            <!-- Beyond cards -->
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem">
-              <div style="padding:1.1rem 1.3rem;border-radius:16px;background:var(--card);border:1px solid var(--bdr)">
-                <p style="font-family:var(--mono);font-size:9px;color:var(--sea);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem">Weekly</p>
-                <h3 style="font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--deep);margin-bottom:.25rem">Saturday Reading Group</h3>
-                <p style="font-size:.85rem;color:var(--txt2);line-height:1.6">Mind–body connection. Currently: <em>Core Awareness</em> by Liz Koch.</p>
-              </div>
-              <div style="padding:1.1rem 1.3rem;border-radius:16px;background:var(--card);border:1px solid var(--bdr)">
-                <p style="font-family:var(--mono);font-size:9px;color:var(--coral);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem">Certified</p>
-                <h3 style="font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--deep);margin-bottom:.25rem">Pilates Instructor</h3>
-                <p style="font-size:.85rem;color:var(--txt2);line-height:1.6">Embodied practice shaping <span class="kw">cognition</span>, stress, well-being.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Central question — always visible, si-6 -->
-        <div class="si si-6" style="padding:1.2rem 1.5rem;border-left:4px solid var(--sea);background:rgba(79,176,198,.05);border-radius:0 16px 16px 0">
-          <p style="font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--deep);line-height:1.55;font-weight:500">
-            How do we design messages that work <strong style="font-weight:800">with</strong> — not against — the <span class="kw kw-tech">cognitive</span> and <span class="kw">cultural</span> contexts people actually inhabit?
-          </p>
-        </div>
-      </div>
-
-      <!-- ═══ FIELD ═══ -->
-      <div class="panel" id="p-field" style="display:none;padding:2.8rem 3.2rem;max-width:880px">
-        <header style="margin-bottom:2rem">
-          <p style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:.5rem">Field Specimens</p>
-          <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:800;color:var(--deep)">Where I've worked</h2>
-          <div style="width:44px;height:3px;background:var(--coral);border-radius:2px;margin-top:.5rem"></div>
-        </header>
-
-        <div id="expList">
-          <div style="margin-bottom:.5rem" class="exp-wrap">
-            <div class="exp-row" onclick="tExp(this)" style="display:flex;align-items:center;gap:1.2rem;padding:1.1rem 1.4rem;background:var(--card);border:1px solid var(--bdr);border-radius:16px;cursor:pointer;transition:all .3s var(--ease-out)">
-              <span style="font-family:var(--mono);font-size:10px;color:var(--txt3);min-width:52px;font-weight:600">2025–</span>
-              <div style="flex:1">
-                <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:800;color:var(--deep)">Global Impact Graduate Consultant</h3>
-                <p style="font-family:var(--mono);font-size:11px;color:var(--sea);font-weight:600">UT Austin · Career & Life Design</p>
-              </div>
-              <span class="exp-plus" style="font-size:18px;color:var(--coral)">+</span>
-            </div>
-            <div class="exp-body" style="display:none">
-              <div class="dissect" style="padding:1rem 1.4rem 1.1rem;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(79,176,198,.12);border-top:none;border-radius:0 0 16px 16px">
-                <p style="font-family:var(--serif);font-size:.95rem;color:var(--txt2);line-height:1.7;margin-bottom:.7rem">Operationalized Stanford's <span class="kw">Life Design</span> framework into a 12-week cohort. Newsletter (500+ subscribers), <span class="kw kw-tech">interview tools</span>, visa guides.</p>
-                <div style="display:flex;gap:.4rem;flex-wrap:wrap">
-                  <a href="/interview-instinct.html" style="display:inline-flex;align-items:center;gap:.3rem;font-family:var(--mono);font-size:10px;font-weight:700;padding:5px 12px;border-radius:8px;background:rgba(232,93,117,.07);color:var(--deep);text-decoration:none;border:1px solid rgba(232,93,117,.12);transition:all .3s var(--spring)" onmouseover="this.style.background='var(--coral)';this.style.color='#fff'" onmouseout="this.style.background='rgba(232,93,117,.07)';this.style.color='var(--deep)'"><img src="images/puppy-book.png" style="width:14px;height:14px">Interview Instinct →</a>
-                  <a href="/iwg-handout-v10.html" style="display:inline-flex;align-items:center;gap:.3rem;font-family:var(--mono);font-size:10px;font-weight:700;padding:5px 12px;border-radius:8px;background:rgba(232,93,117,.07);color:var(--deep);text-decoration:none;border:1px solid rgba(232,93,117,.12);transition:all .3s var(--spring)" onmouseover="this.style.background='var(--coral)';this.style.color='#fff'" onmouseout="this.style.background='rgba(232,93,117,.07)';this.style.color='var(--deep)'"><img src="images/journal.png" style="width:14px;height:14px">HIVE Handout →</a>
+                  <p style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6BB84C;text-transform:uppercase;margin-bottom:.4rem">Design Principle</p>
+                  <h3 style="font-family:var(--serif);font-size:1.8rem;font-weight:800;color:var(--deep);margin-bottom:.4rem">Green Apple Logic</h3>
+                  <p style="font-size:1rem;color:var(--txt2);line-height:1.6">Interventions succeed when <span class="kw" data-insight="Low-friction designs that align with existing habit loops.">healthy choices</span> feel natural — not prescribed.</p>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div style="margin-bottom:.5rem" class="exp-wrap">
-            <div class="exp-row" onclick="tExp(this)" style="display:flex;align-items:center;gap:1.2rem;padding:1.1rem 1.4rem;background:var(--card);border:1px solid var(--bdr);border-radius:16px;cursor:pointer;transition:all .3s var(--ease-out)">
-              <span style="font-family:var(--mono);font-size:10px;color:var(--txt3);min-width:52px;font-weight:600">2025</span>
-              <div style="flex:1">
-                <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:800;color:var(--deep)">Global Marketing Intern</h3>
-                <p style="font-family:var(--mono);font-size:11px;color:var(--sea);font-weight:600">Dasique · Seoul</p>
-              </div>
-              <span class="exp-plus" style="font-size:18px;color:var(--coral)">+</span>
-            </div>
-            <div class="exp-body" style="display:none">
-              <div class="dissect" style="padding:1rem 1.4rem 1.1rem;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(79,176,198,.12);border-top:none;border-radius:0 0 16px 16px">
-                <p style="font-family:var(--serif);font-size:.95rem;color:var(--txt2);line-height:1.7">Localized Olive Young Global pages (<span class="kw">+20% intl engagement</span>). Go-to-market research. Inventory analytics for 100+ SKUs.</p>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-bottom:.5rem" class="exp-wrap">
-            <div class="exp-row" onclick="tExp(this)" style="display:flex;align-items:center;gap:1.2rem;padding:1.1rem 1.4rem;background:var(--card);border:1px solid var(--bdr);border-radius:16px;cursor:pointer;transition:all .3s var(--ease-out)">
-              <span style="font-family:var(--mono);font-size:10px;color:var(--txt3);min-width:52px;font-weight:600">23–25</span>
-              <div style="flex:1">
-                <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:800;color:var(--deep)">Research Assistant</h3>
-                <p style="font-family:var(--mono);font-size:11px;color:var(--sea);font-weight:600">UT Austin School of Nursing</p>
-              </div>
-              <span class="exp-plus" style="font-size:18px;color:var(--coral)">+</span>
-            </div>
-            <div class="exp-body" style="display:none">
-              <div class="dissect" style="padding:1rem 1.4rem 1.1rem;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(79,176,198,.12);border-top:none;border-radius:0 0 16px 16px">
-                <p style="font-family:var(--serif);font-size:.95rem;color:var(--txt2);line-height:1.7"><span class="kw kw-tech">AI-based</span> pain management, lifestyle interventions, depressive symptom reduction in Asian American women.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══ ARCHIVE ═══ -->
-      <div class="panel" id="p-archive" style="display:none;padding:2.8rem 3.2rem;max-width:880px">
-        <header style="margin-bottom:2rem">
-          <p style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-bottom:.5rem">Scholarly Archive</p>
-          <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:800;color:var(--deep)">Where I've studied</h2>
-          <div style="width:44px;height:3px;background:var(--sea);border-radius:2px;margin-top:.5rem"></div>
-        </header>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.8rem">
-          <div style="padding:1.3rem 1.4rem;border-radius:18px;background:var(--deep);color:#fff">
-            <p style="font-family:var(--mono);font-size:10px;color:var(--coral);font-weight:700;margin-bottom:.35rem">MA · In Progress</p>
-            <h3 style="font-family:var(--serif);font-size:1.2rem;font-weight:800;margin-bottom:.1rem">Advertising (Thesis Track)</h3>
-            <p style="font-family:var(--mono);font-size:10px;color:var(--sea-l);opacity:.55">Moody College · 2025–2027</p>
-            <p style="font-family:var(--serif);font-size:.85rem;color:rgba(153,191,213,.6);line-height:1.55;margin-top:.35rem"><span class="kw" style="color:var(--sun)">Health communication</span>, behavioral science, <span class="kw" style="color:var(--sun)">intervention design</span>.</p>
-          </div>
-          <div style="padding:1.3rem 1.4rem;border-radius:18px;background:var(--card);border:1px solid var(--bdr)">
-            <p style="font-family:var(--mono);font-size:10px;color:var(--sea);font-weight:700;margin-bottom:.35rem">BS · Completed</p>
-            <h3 style="font-family:var(--serif);font-size:1.2rem;font-weight:800;color:var(--deep);margin-bottom:.1rem">Advertising</h3>
-            <p style="font-family:var(--mono);font-size:10px;color:var(--txt3)">UT Austin · GPA 3.88</p>
-            <p style="font-family:var(--serif);font-size:.85rem;color:var(--txt2);line-height:1.55;margin-top:.35rem">Dean's List Honors (FA22–FA25).</p>
-          </div>
+           </a>
         </div>
 
-        <p style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:.4rem;display:flex;align-items:center;gap:.35rem">
-          <img src="images/puppy-book.png" style="width:15px;height:15px;object-fit:contain"> Coursework
-        </p>
-        <div id="cwList">
-          <a href="/adv382j-guide/" class="cw-row" style="display:flex;align-items:center;padding:.55rem .7rem;text-decoration:none;color:var(--txt);border-left:2.5px solid transparent;border-radius:0 8px 8px 0;transition:all .25s var(--ease-out);margin-bottom:1px" onmouseover="this.style.borderLeftColor='var(--sea)';this.style.background='rgba(79,176,198,.05)'" onmouseout="this.style.borderLeftColor='transparent';this.style.background=''">
-            <span style="font-family:var(--mono);font-size:11px;color:var(--txt3);min-width:65px;font-weight:600">ADV 382J</span>
-            <span style="font-family:var(--serif);font-size:.92rem;font-weight:700;flex:1;color:var(--deep)">Persuasion Theory</span>
-            <span style="font-family:var(--mono);font-size:10px;color:var(--txt3)">Sp 26</span>
-            <span style="margin-left:.5rem;color:var(--coral);font-weight:800">→</span>
-          </a>
-          <a href="/mkt397/" class="cw-row" style="display:flex;align-items:center;padding:.55rem .7rem;text-decoration:none;color:var(--txt);border-left:2.5px solid transparent;border-radius:0 8px 8px 0;transition:all .25s var(--ease-out);margin-bottom:1px" onmouseover="this.style.borderLeftColor='var(--sea)';this.style.background='rgba(79,176,198,.05)'" onmouseout="this.style.borderLeftColor='transparent';this.style.background=''">
-            <span style="font-family:var(--mono);font-size:11px;color:var(--txt3);min-width:65px;font-weight:600">MKT 397</span>
-            <span style="font-family:var(--serif);font-size:.92rem;font-weight:700;flex:1;color:var(--deep)">[PhD] Quantitative Marketing</span>
-            <span style="font-family:var(--mono);font-size:10px;color:var(--txt3)">Sp 26</span>
-            <span style="margin-left:.5rem;color:var(--coral);font-weight:800">→</span>
-          </a>
-          <a href="/hdf342/" class="cw-row" style="display:flex;align-items:center;padding:.55rem .7rem;text-decoration:none;color:var(--txt);border-left:2.5px solid transparent;border-radius:0 8px 8px 0;transition:all .25s var(--ease-out);margin-bottom:1px" onmouseover="this.style.borderLeftColor='var(--sea)';this.style.background='rgba(79,176,198,.05)'" onmouseout="this.style.borderLeftColor='transparent';this.style.background=''">
-            <span style="font-family:var(--mono);font-size:11px;color:var(--txt3);min-width:65px;font-weight:600">HDF 342</span>
-            <span style="font-family:var(--serif);font-size:.92rem;font-weight:700;flex:1;color:var(--deep)">Developmental Psychopathology</span>
-            <span style="font-family:var(--mono);font-size:10px;color:var(--txt3)">Fa 25</span>
-            <span style="margin-left:.5rem;color:var(--coral);font-weight:800">→</span>
-          </a>
-        </div>
-
-        <div style="margin-top:1.8rem">
-          <p style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:.4rem;display:flex;align-items:center;gap:.35rem">
-            <img src="images/journal.png" style="width:15px;height:15px;object-fit:contain"> Research Logs
+        <div class="si si-6" style="padding:1.5rem 2rem;border-left:5px solid var(--sea);background:rgba(79,176,198,.06);border-radius:0 20px 20px 0">
+          <p style="font-family:var(--serif);font-size:1.2rem;font-style:italic;color:var(--deep);line-height:1.6">
+            How do we design messages that work <strong>with</strong> — not against — the <span class="kw" data-insight="Executive functions like memory, focus, and mental flexibility.">cognitive</span> and <span class="kw" data-insight="The inherited narratives & social norms that dictate behavior.">cultural</span> contexts people actually inhabit?
           </p>
-          <a href="/mkt397/" style="display:flex;align-items:center;gap:.8rem;padding:.9rem 1.1rem;background:var(--card);border:1px solid var(--bdr);border-radius:14px;text-decoration:none;color:var(--txt);max-width:420px;transition:all .3s var(--spring)" onmouseover="this.style.borderColor='var(--sea)';this.style.boxShadow='0 6px 24px rgba(79,176,198,.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(13,59,102,.07)';this.style.boxShadow='';this.style.transform=''">
-            <div style="width:42px;height:42px;border-radius:10px;background:rgba(79,176,198,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0"><img src="images/journal.png" style="width:26px;height:26px;object-fit:contain"></div>
-            <div>
-              <h3 style="font-family:var(--serif);font-size:.95rem;font-weight:800;color:var(--deep)">[PhD] Quantitative Marketing</h3>
-              <p style="font-size:.78rem;color:var(--txt2)">Empirics-first · Prof. Rex Du</p>
-              <p style="font-family:var(--mono);font-size:10px;color:var(--coral);font-weight:700;margin-top:2px">Sp 2026 · 8 weeks</p>
-            </div>
-          </a>
         </div>
-      </div>
 
-    </div>
-  </div>
-</div>
-
-<!-- ═══ CONTACT ═══ -->
-<div id="cO" style="position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(13,59,102,.32);backdrop-filter:blur(12px)" onclick="closeC()">
-  <div style="background:var(--cream);border-radius:20px;padding:2rem;max-width:340px;width:90%;position:relative;box-shadow:0 24px 64px rgba(13,59,102,.22);border:1px solid var(--bdr)" onclick="event.stopPropagation()">
-    <button onclick="closeC()" style="position:absolute;top:10px;right:12px;background:none;border:none;font-size:16px;cursor:pointer;color:var(--txt3)">✕</button>
-    <img src="images/envelope.png" alt="" style="width:48px;height:48px;object-fit:contain;margin-bottom:.4rem">
-    <h3 style="font-family:var(--serif);font-size:1.3rem;font-weight:800;color:var(--deep);margin-bottom:.15rem">Let's connect</h3>
-    <p style="font-size:.88rem;color:var(--txt2);margin-bottom:.8rem;line-height:1.5">Health communication, research, or a good cup of tea.</p>
-    <div onclick="cpE()" style="font-family:var(--mono);font-size:.82rem;background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:.5rem .7rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;cursor:pointer;transition:all .25s var(--ease-out)" onmouseover="this.style.borderColor='var(--sea)'" onmouseout="this.style.borderColor='rgba(13,59,102,.07)'">
-      <span>bellakang@utexas.edu</span>
-      <span id="cpL" style="font-size:.6rem;color:var(--coral);font-weight:700">Copy</span>
-    </div>
-    <div style="display:flex;gap:.9rem">
-      <a href="https://www.linkedin.com/in/bellakang017" target="_blank" style="font-size:.78rem;color:var(--txt2);text-decoration:none">LinkedIn ↗</a>
-      <a href="mailto:bellakang@utexas.edu" style="font-size:.78rem;color:var(--txt2);text-decoration:none">Open in Mail ↗</a>
-    </div>
+      </div> </div>
   </div>
 </div>
 
 <script>
-/* Nav with slide-fade */
-function nav(id,btn){
-  document.querySelectorAll('.np').forEach(b=>{b.classList.remove('on');b.style.color='var(--txt2)'});
-  btn.classList.add('on');btn.style.color='var(--deep)';
-  document.querySelectorAll('.panel').forEach(p=>{p.style.display='none'});
-  const p=document.getElementById('p-'+id);
-  p.style.display='block';p.style.animation='panelSlide .45s var(--ease-out)';
-}
-
-/* Specimen toggle */
-let aSpec=null;
-function tSpec(id,el){
-  document.querySelectorAll('.spec').forEach(s=>s.classList.remove('on'));
-  document.querySelectorAll('.sp').forEach(p=>p.style.display='none');
-  if(aSpec===id){aSpec=null;return}
-  aSpec=id;el.classList.add('on');
-  document.getElementById('sp-'+id).style.display='block';
-}
-
-/* Exp accordion */
-function tExp(row){
-  const wrap=row.closest('.exp-wrap');
-  const body=wrap.querySelector('.exp-body');
-  const plus=row.querySelector('.exp-plus');
-  if(body.style.display==='none'){
-    body.style.display='block';plus.classList.add('open');
-    row.style.borderRadius='16px 16px 0 0';
-  }else{
-    body.style.display='none';plus.classList.remove('open');
-    row.style.borderRadius='16px';
+  function nav(id,btn){
+    document.querySelectorAll('.np').forEach(b=>{b.classList.remove('on');b.style.color='var(--txt3)';b.style.fontWeight='400'});
+    btn.classList.add('on');btn.style.color='var(--deep)';btn.style.fontWeight='700';
+    document.querySelectorAll('.panel').forEach(p=>p.style.display='none');
+    document.getElementById('p-'+id).style.display='block';
   }
-}
 
-/* Contact */
-function openC(){document.getElementById('cO').style.display='flex'}
-function closeC(){document.getElementById('cO').style.display='none'}
-function cpE(){navigator.clipboard.writeText('bellakang@utexas.edu');const l=document.getElementById('cpL');l.textContent='Copied!';setTimeout(()=>l.textContent='Copy',2000)}
-
-/* Keyboard */
-document.addEventListener('keydown',e=>{
-  const k={'1':'cabinet','2':'field','3':'archive'};
-  if(k[e.key]){const b=document.querySelector(`.np[data-v="${k[e.key]}"]`);if(b)nav(k[e.key],b)}
-  if(e.key==='Escape')closeC();
-});
+  let aSpec=null;
+  function tSpec(id,el){
+    document.querySelectorAll('.spec').forEach(s=>s.classList.remove('on'));
+    document.querySelectorAll('.sp').forEach(p=>p.style.display='none');
+    if(aSpec===id){aSpec=null;return}
+    aSpec=id;el.classList.add('on');
+    document.getElementById('sp-'+id).style.display='block';
+  }
 </script>
+
 </body>
 </html>
