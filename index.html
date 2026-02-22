@@ -108,18 +108,43 @@
     .hero {
       padding: 5.5rem 2rem 2rem;
       max-width: 840px; margin: 0 auto;
-      display: flex; align-items: flex-start; gap: 2rem;
+      position: relative;
     }
-    .hero-text { flex: 1; }
-    .hero-mascot {
-      width: 88px; height: 88px; object-fit: contain;
-      flex-shrink: 0; margin-top: 0.5rem;
-      filter: drop-shadow(0 4px 12px rgba(92,61,46,0.12));
-      animation: mascotBob 3.5s ease-in-out infinite;
+    .hero-brand {
+      position: absolute; top: 4.8rem; right: 2rem;
+      text-decoration: none;
+      display: flex; flex-direction: column; align-items: flex-end;
+      gap: 0.1rem;
+      transition: all 0.3s;
     }
-    @keyframes mascotBob {
-      0%,100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-6px) rotate(2deg); }
+    .hero-brand:hover { transform: translateY(-1px); }
+    .hero-brand:hover .brand-name { color: var(--crimson); }
+    .hero-brand:hover .brand-dot { background: var(--crimson); box-shadow: 0 0 8px rgba(155,35,53,0.25); }
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--brown);
+      letter-spacing: -0.01em;
+      line-height: 1;
+      transition: color 0.3s;
+    }
+    .brand-dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      background: var(--gold-glow);
+      border-radius: 50%;
+      margin: 0 0.08rem;
+      transition: all 0.3s;
+    }
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      opacity: 0.6;
     }
 
     .hero-label {
@@ -348,25 +373,81 @@
     .log-content p { font-size: 0.76rem; color: var(--warm-gray); line-height: 1.4; }
     .log-meta { font-family: var(--font-mono); font-size: 0.63rem; color: var(--gold); margin-top: 0.15rem; }
 
-    /* ═══ SIDE TAB ═══ */
+    /* ═══ SIDE TAB — enchanted door ═══ */
     .side-tab {
-      position: fixed; right: 0; top: 50%;
+      position: fixed; right: -1px; top: 50%;
       transform: translateY(-50%); z-index: 90;
-      writing-mode: vertical-rl;
     }
     .side-tab a {
-      display: block; text-decoration: none;
-      padding: 0.9rem 0.5rem;
-      font-family: var(--font-mono); font-size: 0.63rem;
-      font-weight: 500; letter-spacing: 0.08em;
-      background: var(--crimson); color: #fff;
-      border-radius: 8px 0 0 8px;
-      box-shadow: -2px 0 10px rgba(155,35,53,0.1);
-      transition: all 0.25s;
+      display: flex; flex-direction: column; align-items: center;
+      text-decoration: none;
+      padding: 1rem 0.5rem 0.9rem 0.6rem;
+      writing-mode: vertical-rl;
+      background: var(--card-bg);
+      border: 1px solid rgba(198,146,42,0.2);
+      border-right: none;
+      border-radius: 14px 0 0 14px;
+      box-shadow: -2px 2px 16px rgba(92,61,46,0.06);
+      transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+    }
+    /* golden shimmer line on left edge */
+    .side-tab a::before {
+      content: '';
+      position: absolute; left: 0; top: 15%; bottom: 15%;
+      width: 2.5px;
+      background: linear-gradient(180deg, transparent, var(--gold-glow), var(--gold), var(--gold-glow), transparent);
+      border-radius: 2px;
+      opacity: 0.6;
+      transition: opacity 0.4s;
+    }
+    /* soft glow bg on hover */
+    .side-tab a::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at left center, rgba(242,201,76,0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
     }
     .side-tab a:hover {
-      background: var(--brown);
       padding-right: 0.7rem;
+      border-color: var(--gold-glow);
+      box-shadow: -4px 2px 28px rgba(198,146,42,0.15), 0 0 0 1px rgba(242,201,76,0.08);
+    }
+    .side-tab a:hover::before { opacity: 1; }
+    .side-tab a:hover::after { opacity: 1; }
+    .side-tab a:hover .tab-text { color: var(--brown); }
+    .side-tab a:hover .tab-star { opacity: 1; transform: scale(1.2) rotate(15deg); }
+    .side-tab a:hover .tab-flora { opacity: 0.7; }
+
+    .side-tab .tab-star {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      color: var(--gold-glow);
+      opacity: 0.7;
+      transition: all 0.4s;
+      position: relative; z-index: 1;
+      filter: drop-shadow(0 0 3px rgba(232,180,76,0.4));
+    }
+    .side-tab .tab-text {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--brown-light);
+      letter-spacing: 0.03em;
+      position: relative; z-index: 1;
+      transition: color 0.3s;
+    }
+    .side-tab .tab-flora {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.08em;
+      margin-top: 0.4rem;
+      opacity: 0.4;
+      position: relative; z-index: 1;
+      transition: opacity 0.4s;
     }
 
     /* ═══ FOOTER ═══ */
@@ -452,24 +533,32 @@
     </ul>
   </nav>
 
-  <!-- SIDE TAB -->
+  <!-- SIDE TAB — the little door -->
   <div class="side-tab">
-    <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank">Beyond Research ✦</a>
+    <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank">
+      <span class="tab-star">❊</span>
+      <span class="tab-text">Bell.a</span>
+      <span class="tab-flora">beyond</span>
+    </a>
   </div>
 
   <section class="hero">
+    <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="hero-brand anim d3">
+      <span class="brand-name">Bell<span class="brand-dot"></span>a</span>
+      <span class="brand-sub">beyond</span>
+    </a>
     <div class="hero-text">
       <p class="hero-label anim">Bella Kang · UT Austin MA Advertising</p>
       <h1 class="anim d1">I study why health messages <em>reach</em> some people and miss others.</h1>
       <div class="tag-row anim d2">
         <span>Health Communication</span>
         <span>Behavior Change</span>
-        <span>Mixed Methods</span>
         <span>Intervention Design</span>
-        <span>Cross-Cultural</span>
+        <span>Life Design</span>
+        <span>Interdisciplinary</span>
+        <span>AI Education</span>
       </div>
     </div>
-    <img src="images/figurine-laptop.png" alt="" class="hero-mascot anim d3">
   </section>
 
   <div class="divider"></div>
