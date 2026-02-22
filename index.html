@@ -1,381 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bella Kang — Research & Design</title>
-  <link rel="icon" type="image/png" href="images/9.png">
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --deep:#0D3B66;--sea:#4FB0C6;--sea-l:#99bfd5;--coral:#E85D75;--peach:#f7a088;
-      --sun:#F2C94C;--cream:#FDFCF5;--sage:rgba(107,184,76,.8);
-      --txt:#0D3B66;--txt2:#3a6585;--txt3:#7a9bb5;
-      --glass:rgba(255,255,255,.55);--glassB:rgba(255,255,255,.2);
-      --card:#fff;--bdr:rgba(13,59,102,.06);
-      --sf:'Crimson Pro',Georgia,serif;--st:'Crimson Text',serif;
-      --sm:'JetBrains Mono',monospace;
-      --spring:cubic-bezier(.175,.885,.32,1.275);
-      --eo:cubic-bezier(.16,1,.3,1);
-    }
-    *{margin:0;padding:0;box-sizing:border-box}
-    html,body{height:100%;overflow:hidden}
-    body{font-family:var(--sf);color:var(--txt);background:var(--cream);-webkit-font-smoothing:antialiased}
-    ::selection{background:rgba(232,93,117,.14);color:var(--deep)}
-    .vert{writing-mode:vertical-rl;text-orientation:mixed}
-
-    /* ═══ FAIRY FLOWERS ═══ */
-    @keyframes fd{
-      0%,100%{transform:translate(0,0) scale(1);opacity:.6}
-      25%{transform:translate(12px,-18px) scale(1.1);opacity:.8}
-      50%{transform:translate(-8px,-30px) scale(.95);opacity:.5}
-      75%{transform:translate(15px,-12px) scale(1.05);opacity:.7}
-    }
-    .fairy{position:absolute;border-radius:50%;pointer-events:none}
-
-    /* ═══ STAGGER ═══ */
-    @keyframes si{0%{opacity:0;transform:translateY(18px) scale(.97)}100%{opacity:1;transform:translateY(0) scale(1)}}
-    .si{opacity:0;animation:si .7s var(--eo) forwards}
-    .s1{animation-delay:.06s}.s2{animation-delay:.14s}.s3{animation-delay:.24s}
-    .s4{animation-delay:.36s}.s5{animation-delay:.48s}.s6{animation-delay:.6s}
-
-    /* ═══ PANEL SLIDE ═══ */
-    @keyframes ps{0%{opacity:0;transform:translateX(16px)}100%{opacity:1;transform:translateX(0)}}
-
-    /* ═══ DISSECT ═══ */
-    @keyframes di{0%{opacity:0;max-height:0;transform:translateY(-8px)}100%{opacity:1;max-height:800px;transform:translateY(0)}}
-    .di{animation:di .5s var(--eo) forwards;overflow:hidden}
-
-    /* ═══ BREATHE ═══ */
-    @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-
-    /* ═══ POPOVER ═══ */
-    @keyframes popIn{0%{opacity:0;transform:translateX(-50%) translateY(6px) scale(.94)}100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
-    .iw{position:relative;display:inline;color:var(--coral);font-weight:700;border-bottom:2px solid transparent;transition:border-color .35s var(--eo);cursor:help}
-    .iw:hover{border-bottom-color:var(--coral)}
-    .iw[data-tech]:hover{border-bottom-color:var(--sea);color:var(--sea);font-family:var(--sm);font-size:.93em}
-    .ip{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px) scale(.94);width:max-content;max-width:280px;padding:10px 14px;background:var(--deep);color:var(--cream);font-family:var(--sm);font-size:11px;font-weight:400;line-height:1.55;border-radius:12px;box-shadow:0 10px 40px rgba(13,59,102,.22);opacity:0;pointer-events:none;transition:opacity .3s var(--eo),transform .4s var(--spring);z-index:100}
-    .ip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--deep)}
-    .iw:hover .ip{opacity:1;transform:translateX(-50%) translateY(0) scale(1);pointer-events:auto}
-    .ip-l{display:block;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sea-l);margin-bottom:4px;font-weight:600}
-
-    /* ═══ SPECIMENS ═══ */
-    .spec{
-      width:110px;height:110px;border-radius:32px;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-      cursor:pointer;position:relative;flex-shrink:0;
-      border:2.5px solid transparent;
-      transition:all .4s var(--spring);
-      box-shadow:0 2px 12px rgba(13,59,102,.03);
-    }
-    .spec:hover{transform:translateY(-5px) scale(1.04);box-shadow:0 10px 32px rgba(13,59,102,.07)}
-    .spec.on{border-color:var(--coral);box-shadow:0 10px 36px rgba(232,93,117,.1);animation:breathe 3s ease-in-out infinite}
-    .spec svg{transition:filter .5s,transform .4s var(--spring)}
-    .spec:hover svg{transform:scale(1.08) rotate(2deg)}
-    .spec.on svg,.spec:hover svg{filter:drop-shadow(0 0 8px currentColor)}
-    .spec-lbl{font-family:var(--st);font-size:10.5px;font-weight:600;color:var(--txt2);text-align:center;line-height:1.15;letter-spacing:.02em}
-
-    /* ═══ APPLE PORTAL ═══ */
-    .ap{transition:all .45s var(--spring)}
-    .ap:hover{box-shadow:0 16px 48px rgba(107,184,76,.1)!important;transform:translateY(-3px);border-color:rgba(107,184,76,.3)!important}
-
-    /* ═══ ACCORDION ═══ */
-    .ep{transition:transform .35s var(--spring);font-weight:700}
-    .ep.open{transform:rotate(45deg)}
-
-    /* ═══ SCROLL ═══ */
-    .cs::-webkit-scrollbar{width:3px}
-    .cs::-webkit-scrollbar-track{background:transparent}
-    .cs::-webkit-scrollbar-thumb{background:var(--sea-l);border-radius:2px}
-
-    /* ═══ NAV ═══ */
-    .np{
-      display:inline-flex;align-items:center;gap:4px;
-      font-family:var(--st);font-size:13px;font-weight:500;
-      background:none;border:none;cursor:pointer;padding:8px 0;
-      transition:all .3s var(--eo);white-space:nowrap;
-      text-decoration:none;
-    }
-    .np.on{font-weight:700;color:var(--deep);text-decoration:underline;text-decoration-color:var(--coral);text-underline-offset:4px;text-decoration-thickness:2px}
-    .np:not(.on){color:var(--txt3)}
-
-    /* ═══ RESPONSIVE ═══ */
-    @media(max-width:900px){
-      .dash{grid-template-columns:1fr!important}
-      .bcol{display:none!important}
-      .fairy{display:none}
-      .spec{width:86px;height:86px;border-radius:24px}
-      .hero{font-size:1.5rem!important}
-      .ip{display:none!important}
-      .content-pad{padding:1.8rem 1.4rem!important}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bella Kang — Research & Design</title>
+<link rel="icon" type="image/png" href="images/glass-apple2.png">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#0D3B66;--sea:#4FB0C6;--sea-l:#99bfd5;--coral:#E85D75;--peach:#f7a088;--sun:#F2C94C;--cream:#FDFCF5;--sage:rgba(107,184,76,.8);--txt:#0D3B66;--txt2:#3a6585;--txt3:#7a9bb5;--glass:rgba(255,255,255,.55);--glassB:rgba(255,255,255,.2);--card:#fff;--bdr:rgba(13,59,102,.06);--sf:'Crimson Pro',Georgia,serif;--st:'Crimson Text',serif;--sm:'JetBrains Mono',monospace;--spring:cubic-bezier(.175,.885,.32,1.275);--eo:cubic-bezier(.16,1,.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}html,body{height:100%;overflow:hidden}
+body{font-family:var(--sf);color:var(--txt);background:var(--cream);-webkit-font-smoothing:antialiased}
+::selection{background:rgba(232,93,117,.14);color:var(--deep)}.vert{writing-mode:vertical-rl;text-orientation:mixed}
+@keyframes fd{0%,100%{transform:translate(0,0) scale(1);opacity:.6}25%{transform:translate(12px,-18px) scale(1.1);opacity:.8}50%{transform:translate(-8px,-30px) scale(.95);opacity:.5}75%{transform:translate(15px,-12px) scale(1.05);opacity:.7}}.fairy{position:absolute;border-radius:50%;pointer-events:none}
+@keyframes si{0%{opacity:0;transform:translateY(18px) scale(.97)}100%{opacity:1;transform:translateY(0) scale(1)}}.si{opacity:0;animation:si .7s var(--eo) forwards}.s1{animation-delay:.06s}.s2{animation-delay:.14s}.s3{animation-delay:.24s}.s4{animation-delay:.36s}.s5{animation-delay:.48s}.s6{animation-delay:.6s}
+@keyframes ps{0%{opacity:0;transform:translateX(16px)}100%{opacity:1;transform:translateX(0)}}
+@keyframes di{0%{opacity:0;max-height:0;transform:translateY(-8px)}100%{opacity:1;max-height:1200px;transform:translateY(0)}}.di{animation:di .5s var(--eo) forwards;overflow:hidden}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.iw{position:relative;display:inline;color:var(--coral);font-weight:700;border-bottom:2px solid transparent;transition:border-color .35s var(--eo);cursor:help;z-index:50}.iw:hover{border-bottom-color:var(--coral)}.iw[data-tech]:hover{border-bottom-color:var(--sea);color:var(--sea);font-family:var(--sm);font-size:.93em}
+.ip{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px) scale(.94);width:max-content;max-width:280px;padding:10px 14px;background:var(--deep);color:var(--cream);font-family:var(--sm);font-size:11px;font-weight:400;line-height:1.55;border-radius:12px;box-shadow:0 10px 40px rgba(13,59,102,.22);opacity:0;pointer-events:none;transition:opacity .3s var(--eo),transform .4s var(--spring);z-index:100}.ip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--deep)}.iw:hover .ip{opacity:1;transform:translateX(-50%) translateY(0) scale(1);pointer-events:auto}.ip-l{display:block;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sea-l);margin-bottom:4px;font-weight:600}
+.spec{width:110px;height:110px;border-radius:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;position:relative;flex-shrink:0;border:2.5px solid transparent;transition:all .4s var(--spring);box-shadow:0 2px 12px rgba(13,59,102,.03)}.spec:hover{transform:translateY(-5px) scale(1.04);box-shadow:0 10px 32px rgba(13,59,102,.07)}.spec.on{border-color:var(--coral);box-shadow:0 10px 36px rgba(232,93,117,.1);animation:breathe 3s ease-in-out infinite}.spec svg{transition:filter .5s,transform .4s var(--spring)}.spec:hover svg{transform:scale(1.08) rotate(2deg)}.spec.on svg,.spec:hover svg{filter:drop-shadow(0 0 8px currentColor)}.spec-lbl{font-family:var(--st);font-size:10.5px;font-weight:600;color:var(--txt2);text-align:center;line-height:1.15;letter-spacing:.02em}
+.course-avatar.on{animation:breathe 3s ease-in-out infinite}.course-avatar[data-c="adv"].on{border-color:var(--coral);box-shadow:0 10px 36px rgba(232,93,117,.1)}.course-avatar[data-c="mkt"].on{border-color:var(--sea);box-shadow:0 10px 36px rgba(79,176,198,.1)}.course-avatar[data-c="edp"].on{border-color:var(--sun);box-shadow:0 10px 36px rgba(242,201,76,.12)}
+.ap{transition:all .45s var(--spring)}.ap:hover{box-shadow:0 16px 48px rgba(107,184,76,.1)!important;transform:translateY(-3px);border-color:rgba(107,184,76,.3)!important}
+.cs::-webkit-scrollbar{width:3px}.cs::-webkit-scrollbar-track{background:transparent}.cs::-webkit-scrollbar-thumb{background:var(--sea-l);border-radius:2px}
+.np{display:inline-flex;align-items:center;gap:4px;font-family:var(--st);font-size:13px;font-weight:500;background:none;border:none;cursor:pointer;padding:8px 0;transition:all .3s var(--eo);white-space:nowrap;text-decoration:none}.np.on{font-weight:700;color:var(--deep);text-decoration:underline;text-decoration-color:var(--coral);text-underline-offset:4px;text-decoration-thickness:2px}.np:not(.on){color:var(--txt3)}
+.fc{border-radius:24px;border:1.5px solid var(--bdr);background:var(--card);transition:all .4s var(--spring);cursor:pointer;overflow:hidden}.fc:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(13,59,102,.06)}.fc.fc-on{border-color:var(--sea);box-shadow:0 8px 32px rgba(79,176,198,.08)}.fc-head{padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1rem}.fc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.fc-body{display:none;padding:0 1.6rem 1.4rem}.fc.fc-on .fc-body{display:block;animation:di .4s var(--eo) forwards}.fc-tag{font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:6px;display:inline-block}.fc-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--sm);font-size:9.5px;font-weight:700;padding:6px 14px;border-radius:10px;text-decoration:none;transition:all .3s var(--spring)}.fc-link:hover{transform:translateY(-1px)}.fc-chev{transition:transform .3s var(--spring);font-size:14px;font-weight:700;color:var(--txt3)}.fc.fc-on .fc-chev{transform:rotate(90deg);color:var(--sea)}
+.pt-btn:hover{color:var(--deep)!important}.pt-on{color:var(--deep)!important} .ap:hover .vb-arrow{transform:translateX(3px)}
+@media(max-width:900px){.dash{grid-template-columns:1fr!important}.bcol{display:none!important}.fairy{display:none}.spec{width:86px;height:86px;border-radius:24px}.hero{font-size:1.5rem!important}.ip{display:none!important}.content-pad{padding:1.8rem 1.4rem!important}.field-grid{grid-template-columns:1fr!important}}
+</style>
 </head>
 <body>
-
 <div class="dash" style="height:100vh;display:grid;grid-template-columns:96px 1fr;overflow:hidden">
-
-  <!-- ═══ SIDEBAR ═══ -->
   <aside class="bcol" style="background:var(--deep);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.4rem 0;position:relative;overflow:hidden;z-index:10">
-    <div class="portrait si s1" style="margin-bottom:.8rem;z-index:2;position:relative">
-      <img src="images/profile.jpg" alt="Bella Kang" loading="lazy" style="width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid rgba(79,176,198,.4);transition:all .5s var(--spring);box-shadow:0 6px 24px rgba(79,176,198,.22)"
-        onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 0 36px rgba(79,176,198,.3)'"
-        onmouseout="this.style.transform='';this.style.boxShadow='0 6px 24px rgba(79,176,198,.22)'">
-    </div>
-    <h1 class="vert si s2" style="font-family:var(--sf);font-size:2.1rem;font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1;transform:rotate(180deg);flex:1;display:flex;align-items:center;z-index:2">
-      Bella <span style="color:var(--sun);font-style:italic">Kang</span>
-    </h1>
-    <p class="vert si s3" style="font-family:var(--sm);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:var(--sea-l);opacity:.4;transform:rotate(180deg);z-index:2;margin-top:.5rem">
-      Moody College · Thesis Track
-    </p>
+    <div class="portrait si s1" style="margin-bottom:.8rem;z-index:2;position:relative"><img src="images/profile.jpg" alt="Bella Kang" loading="lazy" style="width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid rgba(79,176,198,.4);transition:all .5s var(--spring);box-shadow:0 6px 24px rgba(79,176,198,.22)" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''"></div>
+    <h1 class="vert si s2" style="font-family:var(--sf);font-size:2.1rem;font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1;transform:rotate(180deg);flex:1;display:flex;align-items:center;z-index:2">Bella <span style="color:var(--sun);font-style:italic">Kang</span></h1>
+    <p class="vert si s3" style="font-family:var(--sm);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:var(--sea-l);opacity:.4;transform:rotate(180deg);z-index:2;margin-top:.5rem">Moody College · Thesis Track</p>
   </aside>
-
-  <!-- ═══ MAIN ═══ -->
   <div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;position:relative">
-
-    <!-- Fairy Flowers -->
-    <div style="position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden">
-      <div class="fairy" style="left:8%;top:15%;width:60px;height:60px;background:radial-gradient(circle,rgba(79,176,198,.06) 0%,transparent 70%);animation:fd 18s ease-in-out infinite"></div>
-      <div class="fairy" style="left:75%;top:10%;width:80px;height:80px;background:radial-gradient(circle,rgba(232,93,117,.04) 0%,transparent 70%);animation:fd 22s ease-in-out 3s infinite"></div>
-      <div class="fairy" style="left:45%;top:70%;width:50px;height:50px;background:radial-gradient(circle,rgba(242,201,76,.05) 0%,transparent 70%);animation:fd 20s ease-in-out 6s infinite"></div>
-      <div class="fairy" style="left:85%;top:55%;width:70px;height:70px;background:radial-gradient(circle,rgba(107,184,76,.04) 0%,transparent 70%);animation:fd 24s ease-in-out 2s infinite"></div>
-      <div class="fairy" style="left:20%;top:80%;width:40px;height:40px;background:radial-gradient(circle,rgba(247,160,136,.05) 0%,transparent 70%);animation:fd 16s ease-in-out 8s infinite"></div>
-      <div class="fairy" style="left:60%;top:30%;width:55px;height:55px;background:radial-gradient(circle,rgba(153,191,213,.05) 0%,transparent 70%);animation:fd 19s ease-in-out 4s infinite"></div>
-    </div>
-
-    <!-- NAV -->
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden"><div class="fairy" style="left:8%;top:15%;width:60px;height:60px;background:radial-gradient(circle,rgba(79,176,198,.06) 0%,transparent 70%);animation:fd 18s ease-in-out infinite"></div><div class="fairy" style="left:75%;top:10%;width:80px;height:80px;background:radial-gradient(circle,rgba(232,93,117,.04) 0%,transparent 70%);animation:fd 22s ease-in-out 3s infinite"></div><div class="fairy" style="left:45%;top:70%;width:50px;height:50px;background:radial-gradient(circle,rgba(242,201,76,.05) 0%,transparent 70%);animation:fd 20s ease-in-out 6s infinite"></div></div>
     <nav style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(253,252,245,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);z-index:20;flex-shrink:0">
       <div style="display:flex;gap:1.3rem;align-items:center">
-        <button class="np on" data-v="cabinet" onclick="go('cabinet',this)">
-          <svg width="14" height="14" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="10" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/><line x1="29" y1="29" x2="38" y2="38" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/></svg>
-          Cabinet
-        </button>
+        <button class="np on" data-v="cabinet" onclick="go('cabinet',this)"><svg width="14" height="14" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="10" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/><line x1="29" y1="29" x2="38" y2="38" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/></svg> Cabinet</button>
         <button class="np" data-v="field" onclick="go('field',this)">In the Field</button>
         <button class="np" data-v="notes" onclick="go('notes',this)">Study Notes</button>
-        <button class="np" data-v="orchard" onclick="go('orchard',this)">
-          <svg width="14" height="14" viewBox="0 0 48 48" fill="none"><path d="M24 42s-12-9-12-20c0-5 3-8 7-8 2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 4 0 7 3 7 8 0 11-12 20-12 20z" stroke="#6BB84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          The Orchard
-        </button>
+        <button class="np" data-v="orchard" onclick="go('orchard',this)"><svg width="14" height="14" viewBox="0 0 48 48" fill="none"><path d="M24 42s-12-9-12-20c0-5 3-8 7-8 2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 4 0 7 3 7 8 0 11-12 20-12 20z" stroke="#6BB84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> The Orchard</button>
       </div>
-      <div style="display:flex;gap:.9rem;align-items:center">
-        <a href="https://www.linkedin.com/in/bellakang017" target="_blank" style="font-family:var(--sm);font-size:9.5px;color:var(--txt3);text-decoration:none">LinkedIn ↗</a>
-        <button onclick="openC()" style="font-family:var(--sm);font-size:9.5px;font-weight:700;padding:6px 14px;background:var(--coral);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .3s var(--spring)"
-          onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 16px rgba(232,93,117,.2)'"
-          onmouseout="this.style.transform='';this.style.boxShadow=''">CONTACT</button>
-      </div>
+      <div style="display:flex;gap:.9rem;align-items:center"><a href="https://www.linkedin.com/in/bellakang017" target="_blank" style="font-family:var(--sm);font-size:9.5px;color:var(--txt3);text-decoration:none">LinkedIn ↗</a><button onclick="openC()" style="font-family:var(--sm);font-size:9.5px;font-weight:700;padding:6px 14px;background:var(--coral);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .3s var(--spring)" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">CONTACT</button></div>
     </nav>
-
-    <!-- CONTENT -->
     <div class="cs" style="flex:1;overflow-y:auto;overflow-x:hidden;position:relative;z-index:10">
 
-      <!-- ═══ CABINET ═══ -->
-      <div class="panel on" id="p-cabinet" style="padding:2.5rem 3rem;max-width:880px" class="content-pad">
+      <!-- CABINET -->
+      <div class="panel on" id="p-cabinet" style="padding:2.5rem 3rem;max-width:880px">
         <header style="margin-bottom:2.2rem">
           <p class="si s3" style="font-family:var(--sm);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:.8rem">Research Specimen · UT Austin</p>
-          <h2 class="si s4 hero" style="font-size:clamp(1.8rem,3.6vw,2.5rem);font-weight:700;line-height:1.2;color:var(--deep)">
-            I research how
-            <span class="iw" data-tech>AI<span class="ip"><span class="ip-l">Marginalia</span>Applying computational models and LLMs to understand and scale behavior-change interventions.</span></span>
-            and
-            <span class="iw" data-tech>technology<span class="ip"><span class="ip-l">Marginalia</span>Digital tools — from chatbots to mobile health apps — that mediate how people receive health information.</span></span>
-            shape
-            <span class="iw" style="border-bottom-color:var(--sun)">human behavior<span class="ip"><span class="ip-l">Marginalia</span>Patterns of action, cognition, and emotion shaped by environment, culture, and communication framing (Yeager, Crum, Falk).</span></span>
-            in
-            <span class="iw">health<span class="ip"><span class="ip-l">Marginalia</span>Physical and mental well-being, with focus on help-seeking and culturally-embedded care patterns in underserved populations.</span></span>
-            and
-            <span class="iw" data-tech>education<span class="ip"><span class="ip-l">Marginalia</span>Psychologically wise learning environments that scaffold growth mindset, reduce threat, and build belonging (Yeager, Walton).</span></span>
-            — designing messages that don't just
-            <span style="font-style:italic;border-bottom:4px solid var(--sun);padding-bottom:1px">reach</span>, but
-            <span style="font-style:italic;color:var(--coral);font-weight:800">resonate</span>.
-          </h2>
+          <h2 class="si s4 hero" style="font-size:clamp(1.8rem,3.6vw,2.5rem);font-weight:700;line-height:1.2;color:var(--deep)">I research how <span class="iw" data-tech>AI<span class="ip"><span class="ip-l">Marginalia</span>Applying computational models and LLMs to understand and scale behavior-change interventions.</span></span> and <span class="iw" data-tech>technology<span class="ip"><span class="ip-l">Marginalia</span>Digital tools — from chatbots to mobile health apps — that mediate how people receive health information.</span></span> shape <span class="iw" style="border-bottom-color:var(--sun)">human behavior<span class="ip"><span class="ip-l">Marginalia</span>Patterns of action, cognition, and emotion shaped by environment, culture, and communication framing.</span></span> in <span class="iw">health<span class="ip"><span class="ip-l">Marginalia</span>Physical and mental well-being, with focus on help-seeking and culturally-embedded care patterns.</span></span> and <span class="iw" data-tech>education<span class="ip"><span class="ip-l">Marginalia</span>Psychologically wise learning environments that scaffold growth mindset, reduce threat, and build belonging.</span></span> — designing messages that don't just <span style="font-style:italic;border-bottom:4px solid var(--sun);padding-bottom:1px">reach</span>, but <span style="font-style:italic;color:var(--coral);font-weight:800">resonate</span>.</h2>
         </header>
-
-        <!-- 4 SPECIMENS — large, 32px radius, labels always visible -->
         <div class="si s5" style="display:flex;gap:1.2rem;margin-bottom:2rem;flex-wrap:wrap">
-          <!-- Lens -->
-          <div class="spec" id="s-lens" style="background:rgba(79,176,198,.06);color:#4FB0C6" onclick="tS('lens')">
-            <svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="12" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round" fill="rgba(79,176,198,.08)"/><line x1="30" y1="30" x2="40" y2="40" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round"/><circle cx="17" cy="18" r="2" fill="rgba(79,176,198,.25)"/><path d="M18 25c2-1 5-1 7 0" stroke="#4FB0C6" stroke-width="2" stroke-linecap="round" opacity=".4"/></svg>
-            <span class="spec-lbl">Analytical<br>Lens</span>
-          </div>
-          <!-- Vial -->
-          <div class="spec" id="s-vial" style="background:rgba(232,93,117,.04);color:#E85D75" onclick="tS('vial')">
-            <svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M18 6h12M20 6v16l-8 14a4 4 0 003.5 6h17a4 4 0 003.5-6l-8-14V6" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.06)"/><path d="M14 32h20" stroke="#E85D75" stroke-width="2" stroke-linecap="round" opacity=".3"/><circle cx="22" cy="36" r="2" fill="rgba(232,93,117,.2)"/><circle cx="28" cy="34" r="1.5" fill="rgba(247,160,136,.25)"/></svg>
-            <span class="spec-lbl">Proto-<br>typing</span>
-          </div>
-          <!-- Anchor -->
-          <div class="spec" id="s-anchor" style="background:rgba(242,201,76,.06);color:#F2C94C" onclick="tS('anchor')">
-            <svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="5" stroke="#F2C94C" stroke-width="3" stroke-linecap="round" fill="rgba(242,201,76,.08)"/><line x1="24" y1="15" x2="24" y2="38" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/><path d="M24 38c-6 0-10-4-12-8" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/><path d="M24 38c6 0 10-4 12-8" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/><path d="M20 26c2 3 6 3 8 0" stroke="rgba(242,201,76,.3)" stroke-width="2" stroke-linecap="round"/></svg>
-            <span class="spec-lbl">The<br>Thesis</span>
-          </div>
-          <!-- Orchard -->
-          <div class="spec" id="s-orch" style="background:rgba(107,184,76,.06);color:#6BB84C" onclick="tS('orch')">
-            <svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(107,184,76,.06)"/><path d="M24 18v14" stroke="#6BB84C" stroke-width="2" stroke-linecap="round" opacity=".4"/><path d="M24 24l-5-3M24 28l5-3" stroke="#6BB84C" stroke-width="1.8" stroke-linecap="round" opacity=".3"/><circle cx="18" cy="22" r="1.5" fill="rgba(107,184,76,.3)"><animate attributeName="opacity" values=".2;.5;.2" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="30" cy="20" r="1" fill="rgba(242,201,76,.4)"><animate attributeName="opacity" values=".3;.6;.3" dur="3s" repeatCount="indefinite"/></circle></svg>
-            <span class="spec-lbl">The<br>Orchard</span>
-          </div>
+          <div class="spec" id="s-lens" style="background:rgba(79,176,198,.06);color:#4FB0C6" onclick="tS('lens')"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="12" stroke="#4FB0C6" stroke-width="3.5" fill="rgba(79,176,198,.08)"/><line x1="30" y1="30" x2="40" y2="40" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round"/></svg><span class="spec-lbl">Analytical<br>Lens</span></div>
+          <div class="spec" id="s-vial" style="background:rgba(232,93,117,.04);color:#E85D75" onclick="tS('vial')"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M18 6h12M20 6v16l-8 14a4 4 0 003.5 6h17a4 4 0 003.5-6l-8-14V6" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.06)"/></svg><span class="spec-lbl">Proto-<br>typing</span></div>
+          <div class="spec" id="s-anchor" style="background:rgba(242,201,76,.06);color:#F2C94C" onclick="tS('anchor')"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="5" stroke="#F2C94C" stroke-width="3" fill="rgba(242,201,76,.08)"/><line x1="24" y1="15" x2="24" y2="38" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/><path d="M24 38c-6 0-10-4-12-8M24 38c6 0 10-4 12-8" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/></svg><span class="spec-lbl">The<br>Thesis</span></div>
+          <div class="spec" id="s-orch" style="background:rgba(107,184,76,.06);color:#6BB84C" onclick="tS('orch')"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(107,184,76,.06)"/></svg><span class="spec-lbl">The<br>Orchard</span></div>
         </div>
-
-        <!-- DISSECTED: Lens -->
-        <div id="sp-lens" class="sp" style="display:none">
-          <div class="di" style="padding:1.8rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:28px;margin-bottom:1.8rem;box-shadow:0 8px 32px rgba(13,59,102,.04)">
-            <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem">
-              <svg width="30" height="30" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="12" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round" fill="rgba(79,176,198,.08)"/><line x1="30" y1="30" x2="40" y2="40" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round"/></svg>
-              <div>
-                <h3 style="font-size:1.3rem;font-weight:800;color:var(--deep)">The Lens</h3>
-                <p style="font-family:var(--sm);font-size:9.5px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">Catching Points of Tension</p>
-              </div>
-            </div>
-            <p style="font-size:1.05rem;line-height:1.85;color:var(--txt2)">
-              Communication patterns — especially
-              <span class="iw">self-silencing<span class="ip"><span class="ip-l">Key Construct</span>Tendency to suppress one's needs to preserve relational harmony — salient in collectivist contexts.</span></span>
-              and
-              <span class="iw">help-seeking<span class="ip"><span class="ip-l">Key Construct</span>The cognitive and social process of recognizing a need and initiating action — often inhibited by stigma.</span></span>
-              — among Korean American midlife women. How culturally specific styles interact with
-              <span class="iw" data-tech>stress<span class="ip"><span class="ip-l">Crum, 2017</span>Mindsets about stress shape physiological outcomes. Reframing stress as enhancing improves performance and health.</span></span>,
-              coping, and access to care.
-            </p>
-          </div>
-        </div>
-
-        <!-- DISSECTED: Vial -->
-        <div id="sp-vial" class="sp" style="display:none">
-          <div class="di" style="padding:1.8rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:28px;margin-bottom:1.8rem;box-shadow:0 8px 32px rgba(13,59,102,.04)">
-            <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem">
-              <svg width="30" height="30" viewBox="0 0 48 48" fill="none"><path d="M18 6h12M20 6v16l-8 14a4 4 0 003.5 6h17a4 4 0 003.5-6l-8-14V6" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.06)"/></svg>
-              <div>
-                <h3 style="font-size:1.3rem;font-weight:800;color:var(--deep)">The Vial</h3>
-                <p style="font-family:var(--sm);font-size:9.5px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">Interdisciplinary Alchemy</p>
-              </div>
-            </div>
-            <p style="font-size:1.05rem;line-height:1.85;color:var(--txt2)">
-              <span class="iw" data-tech>Mixed methods<span class="ip"><span class="ip-l">Methodology</span>Integrating qualitative depth with quantitative rigor (causal inference) for full-cycle research.</span></span>
-              bridging lived experience and measurable outcomes. Small
-              <span class="iw">cognitive shifts<span class="ip"><span class="ip-l">Yeager & Walton</span>Brief psychological interventions that alter how people interpret adversity — redirecting self-defeating into self-enhancing patterns.</span></span>
-              redirect self-defeating patterns into self-enhancing ones.
-            </p>
-          </div>
-        </div>
-
-        <!-- DISSECTED: Anchor -->
-        <div id="sp-anchor" class="sp" style="display:none">
-          <div class="di" style="padding:1.8rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:28px;margin-bottom:1.8rem;box-shadow:0 8px 32px rgba(13,59,102,.04)">
-            <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem">
-              <svg width="30" height="30" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="5" stroke="#F2C94C" stroke-width="3" stroke-linecap="round" fill="rgba(242,201,76,.08)"/><line x1="24" y1="15" x2="24" y2="38" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/><path d="M24 38c-6 0-10-4-12-8M24 38c6 0 10-4 12-8" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/></svg>
-              <div>
-                <h3 style="font-size:1.3rem;font-weight:800;color:var(--deep)">The Anchor</h3>
-                <p style="font-family:var(--sm);font-size:9.5px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">What Holds Against the Tide</p>
-              </div>
-            </div>
-            <p style="font-size:1.05rem;line-height:1.85;color:var(--txt2)">
-              PhD program (<span class="iw" style="border-bottom-color:var(--sun)">Fall 2027<span class="ip"><span class="ip-l">Next Step</span>Targeting Health Communication, Human Development & Family Sciences, or Educational Psychology.</span></span>)
-              in health communication, developmental science, or educational psychology. Psychologically wise
-              <span class="iw">intervention design<span class="ip"><span class="ip-l">Design Philosophy</span>Creating conditions where growth-oriented behavior emerges naturally — through environmental and cognitive scaffolding.</span></span>
-              — evidence to implementation.
-            </p>
-          </div>
-        </div>
-
-        <!-- DISSECTED: Orchard (cabinet-within-cabinet) -->
-        <div id="sp-orch" class="sp" style="display:none">
-          <div class="di" style="margin-bottom:1.8rem">
-            <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="ap"
-              style="display:block;padding:2rem 2.2rem;margin-bottom:.8rem;border-radius:32px;text-decoration:none;color:var(--deep);background:linear-gradient(135deg,rgba(107,184,76,.06),rgba(253,252,245,.5));border:2px solid rgba(107,184,76,.15);box-shadow:0 0 0 0 transparent,0 12px 40px rgba(107,184,76,.06);backdrop-filter:blur(8px)">
-              <div style="display:flex;align-items:center;gap:1.5rem">
-                <svg width="72" height="72" viewBox="0 0 48 48" fill="none" style="flex-shrink:0"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(107,184,76,.06)"/><path d="M24 18v14" stroke="#6BB84C" stroke-width="2" stroke-linecap="round" opacity=".4"/><path d="M24 24l-5-3M24 28l5-3" stroke="#6BB84C" stroke-width="1.8" stroke-linecap="round" opacity=".3"/><circle cx="18" cy="22" r="1.5" fill="rgba(107,184,76,.3)"><animate attributeName="opacity" values=".2;.5;.2" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="30" cy="20" r="1" fill="rgba(242,201,76,.4)"><animate attributeName="opacity" values=".3;.6;.3" dur="3s" repeatCount="indefinite"/></circle></svg>
-                <div>
-                  <p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(107,184,76,.8);margin-bottom:6px">Design Principle</p>
-                  <h3 style="font-size:1.5rem;font-weight:800;margin-bottom:6px">Green Apple Logic</h3>
-                  <p style="font-size:.95rem;color:var(--txt2);line-height:1.65;max-width:360px">
-                    Interventions succeed when
-                    <span class="iw">healthy choices<span class="ip"><span class="ip-l">Green Apple Logic</span>A mother kept green apples in the kimchi fridge — designing environments where the right choice is the easy one.</span></span>
-                    feel natural — not prescribed.
-                  </p>
-                  <p style="font-family:var(--sm);font-size:10px;color:var(--coral);margin-top:8px;font-weight:700">Enter the Orchard →</p>
-                </div>
-              </div>
-            </a>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
-              <div style="padding:1.3rem 1.5rem;border-radius:28px;background:var(--card);border:1px solid var(--bdr)">
-                <p style="font-family:var(--sm);font-size:8.5px;color:var(--sea);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Weekly</p>
-                <h3 style="font-size:1.05rem;font-weight:700;color:var(--deep);margin-bottom:4px">Saturday Reading Group</h3>
-                <p style="font-size:.88rem;color:var(--txt2);line-height:1.6">Mind–body connection. Currently: <em>Core Awareness</em> by Liz Koch.</p>
-              </div>
-              <div style="padding:1.3rem 1.5rem;border-radius:28px;background:var(--card);border:1px solid var(--bdr)">
-                <p style="font-family:var(--sm);font-size:8.5px;color:var(--coral);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Certified</p>
-                <h3 style="font-size:1.05rem;font-weight:700;color:var(--deep);margin-bottom:4px">Pilates Instructor</h3>
-                <p style="font-size:.88rem;color:var(--txt2);line-height:1.6">Embodied practice shaping cognition, stress, well-being.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Central Question -->
-        <div class="si s6" style="padding:1.2rem 1.5rem;border-left:4px solid var(--sea);background:rgba(79,176,198,.04);border-radius:0 20px 20px 0">
-          <p style="font-size:1.08rem;font-style:italic;color:var(--deep);line-height:1.55;font-weight:500">
-            How do we design messages that work <strong>with</strong> — not against — the
-            <span class="iw" data-tech>cognitive<span class="ip"><span class="ip-l">Falk, 2015</span>Self-related neural processing in medial prefrontal cortex predicts whether a health message will change behavior.</span></span>
-            and
-            <span class="iw">cultural<span class="ip"><span class="ip-l">Context</span>Communication norms, family structures, collectivist values, and language patterns shaping how health information is received.</span></span>
-            contexts people actually inhabit?
-          </p>
-        </div>
+        <div id="sp-lens" class="sp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:28px;margin-bottom:1.8rem"><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem"><svg width="30" height="30" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="12" stroke="#4FB0C6" stroke-width="3.5" fill="rgba(79,176,198,.08)"/><line x1="30" y1="30" x2="40" y2="40" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round"/></svg><div><h3 style="font-size:1.3rem;font-weight:800;color:var(--deep)">The Lens</h3><p style="font-family:var(--sm);font-size:9.5px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">Catching Points of Tension</p></div></div><p style="font-size:1.05rem;line-height:1.85;color:var(--txt2)">Communication patterns — especially <span class="iw">self-silencing<span class="ip"><span class="ip-l">Key Construct</span>Tendency to suppress one's needs to preserve relational harmony.</span></span> and <span class="iw">help-seeking<span class="ip"><span class="ip-l">Key Construct</span>The cognitive and social process of recognizing a need and initiating action.</span></span> — among Korean American midlife women.</p></div></div>
+        <div id="sp-vial" class="sp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:28px;margin-bottom:1.8rem"><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem"><svg width="30" height="30" viewBox="0 0 48 48" fill="none"><path d="M18 6h12M20 6v16l-8 14a4 4 0 003.5 6h17a4 4 0 003.5-6l-8-14V6" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.06)"/></svg><div><h3 style="font-size:1.3rem;font-weight:800;color:var(--deep)">The Vial</h3><p style="font-family:var(--sm);font-size:9.5px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">Interdisciplinary Alchemy</p></div></div><p style="font-size:1.05rem;line-height:1.85;color:var(--txt2)"><span class="iw" data-tech>Mixed methods<span class="ip"><span class="ip-l">Methodology</span>Integrating qualitative depth with quantitative rigor for full-cycle research.</span></span> bridging lived experience and measurable outcomes. Small <span class="iw">cognitive shifts<span class="ip"><span class="ip-l">Yeager &amp; Walton</span>Brief interventions that alter how people interpret adversity.</span></span> redirect self-defeating patterns into self-enhancing ones.</p></div></div>
+        <div id="sp-anchor" class="sp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:28px;margin-bottom:1.8rem"><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem"><svg width="30" height="30" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="5" stroke="#F2C94C" stroke-width="3" fill="rgba(242,201,76,.08)"/><line x1="24" y1="15" x2="24" y2="38" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/></svg><div><h3 style="font-size:1.3rem;font-weight:800;color:var(--deep)">The Anchor</h3><p style="font-family:var(--sm);font-size:9.5px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">What Holds Against the Tide</p></div></div><p style="font-size:1.05rem;line-height:1.85;color:var(--txt2)">PhD program (Fall 2027) in health communication, developmental science, or educational psychology. Psychologically wise intervention design — evidence to implementation.</p></div></div>
+        <div id="sp-orch" class="sp" style="display:none"><div class="di" style="margin-bottom:1.8rem"><a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="ap" style="display:block;padding:1.6rem 1.8rem;border-radius:32px;text-decoration:none;color:var(--deep);background:linear-gradient(135deg,rgba(107,184,76,.06),rgba(253,252,245,.5));border:2px solid rgba(107,184,76,.15)"><div style="display:flex;align-items:center;gap:1rem"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="flex-shrink:0"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" fill="rgba(107,184,76,.06)"/></svg><div><p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(107,184,76,.8);margin-bottom:4px">Design Principle</p><h3 style="font-size:1.3rem;font-weight:800;margin-bottom:4px">Green Apple Logic</h3><p style="font-size:.88rem;color:var(--txt2);line-height:1.5">Interventions succeed when healthy choices feel natural — not prescribed.</p><p style="font-family:var(--sm);font-size:10px;color:var(--coral);margin-top:6px;font-weight:700">Enter the Orchard →</p></div></div></a></div></div>
+        <div class="si s6" style="padding:1.2rem 1.5rem;border-left:4px solid var(--sea);background:rgba(79,176,198,.04);border-radius:0 20px 20px 0"><p style="font-size:1.08rem;font-style:italic;color:var(--deep);line-height:1.55;font-weight:500">How do we design messages that work <strong>with</strong> — not against — the cognitive and cultural contexts people actually inhabit?</p></div>
       </div>
 
-      <!-- ═══ IN THE FIELD ═══ -->
+      <!-- IN THE FIELD — Expandable Cards -->
       <div class="panel" id="p-field" style="display:none;padding:2.5rem 3rem;max-width:880px">
         <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:6px">Field Specimens</p>
         <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:6px">Where I've worked</h2>
         <div style="width:40px;height:3px;background:var(--coral);border-radius:2px;margin-bottom:1.5rem"></div>
-
-        <div class="ew" style="margin-bottom:6px"><div onclick="tE(this)" style="display:flex;align-items:center;gap:1rem;padding:1.2rem 1.5rem;background:var(--card);border:1px solid var(--bdr);border-radius:28px;cursor:pointer;transition:all .3s var(--eo)"><span style="font-family:var(--sm);font-size:10px;color:var(--txt3);min-width:48px;font-weight:600">2025–</span><div style="flex:1"><h3 style="font-size:1.12rem;font-weight:800;color:var(--deep)">Global Impact Graduate Consultant</h3><p style="font-family:var(--sm);font-size:10.5px;color:var(--sea);font-weight:600">UT Austin · Career & Life Design</p></div><span class="ep" style="font-size:18px;color:var(--coral)">+</span></div><div class="eb" style="display:none"><div class="di" style="padding:1rem 1.5rem;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(79,176,198,.1);border-top:none;border-radius:0 0 28px 28px"><p style="font-size:.95rem;color:var(--txt2);line-height:1.8;margin-bottom:.6rem">Operationalized Stanford's <span class="iw">Life Design<span class="ip"><span class="ip-l">Framework</span>Burnett & Evans' design-thinking methodology applied to career navigation — prototype, test, iterate.</span></span> framework into a 12-week cohort. Newsletter (500+ subscribers), interview tools, visa guides.</p><div style="display:flex;gap:.4rem;flex-wrap:wrap"><a href="/interview-instinct.html" style="font-family:var(--sm);font-size:9.5px;font-weight:700;padding:5px 12px;border-radius:12px;background:rgba(232,93,117,.06);color:var(--deep);text-decoration:none;border:1px solid rgba(232,93,117,.1);transition:all .3s var(--spring)" onmouseover="this.style.background='var(--coral)';this.style.color='#fff'" onmouseout="this.style.background='rgba(232,93,117,.06)';this.style.color='var(--deep)'">Interview Instinct →</a><a href="/iwg-handout-v10.html" style="font-family:var(--sm);font-size:9.5px;font-weight:700;padding:5px 12px;border-radius:12px;background:rgba(232,93,117,.06);color:var(--deep);text-decoration:none;border:1px solid rgba(232,93,117,.1);transition:all .3s var(--spring)" onmouseover="this.style.background='var(--coral)';this.style.color='#fff'" onmouseout="this.style.background='rgba(232,93,117,.06)';this.style.color='var(--deep)'">HIVE Handout →</a><a href="/curiosity-cabinet.html" style="font-family:var(--sm);font-size:9.5px;font-weight:700;padding:5px 12px;border-radius:12px;background:rgba(232,93,117,.06);color:var(--deep);text-decoration:none;border:1px solid rgba(232,93,117,.1);transition:all .3s var(--spring)" onmouseover="this.style.background='var(--coral)';this.style.color='#fff'" onmouseout="this.style.background='rgba(232,93,117,.06)';this.style.color='var(--deep)'">Curiosity Cabinet →</a></div></div></div></div>
-
-        <div class="ew" style="margin-bottom:6px"><div onclick="tE(this)" style="display:flex;align-items:center;gap:1rem;padding:1.2rem 1.5rem;background:var(--card);border:1px solid var(--bdr);border-radius:28px;cursor:pointer;transition:all .3s var(--eo)"><span style="font-family:var(--sm);font-size:10px;color:var(--txt3);min-width:48px;font-weight:600">2025</span><div style="flex:1"><h3 style="font-size:1.12rem;font-weight:800;color:var(--deep)">Global Marketing Intern</h3><p style="font-family:var(--sm);font-size:10.5px;color:var(--sea);font-weight:600">Dasique · Seoul</p></div><span class="ep" style="font-size:18px;color:var(--coral)">+</span></div><div class="eb" style="display:none"><div class="di" style="padding:1rem 1.5rem;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(79,176,198,.1);border-top:none;border-radius:0 0 28px 28px"><p style="font-size:.95rem;color:var(--txt2);line-height:1.8">Localized Olive Young Global pages (+20% intl engagement). Go-to-market research. 100+ SKU analytics.</p></div></div></div>
-
-        <div class="ew" style="margin-bottom:6px"><div onclick="tE(this)" style="display:flex;align-items:center;gap:1rem;padding:1.2rem 1.5rem;background:var(--card);border:1px solid var(--bdr);border-radius:28px;cursor:pointer;transition:all .3s var(--eo)"><span style="font-family:var(--sm);font-size:10px;color:var(--txt3);min-width:48px;font-weight:600">23–25</span><div style="flex:1"><h3 style="font-size:1.12rem;font-weight:800;color:var(--deep)">Research Assistant</h3><p style="font-family:var(--sm);font-size:10.5px;color:var(--sea);font-weight:600">UT Austin School of Nursing</p></div><span class="ep" style="font-size:18px;color:var(--coral)">+</span></div><div class="eb" style="display:none"><div class="di" style="padding:1rem 1.5rem;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(79,176,198,.1);border-top:none;border-radius:0 0 28px 28px"><p style="font-size:.95rem;color:var(--txt2);line-height:1.8"><span class="iw" data-tech>AI-based<span class="ip"><span class="ip-l">Application</span>Machine learning models for pain assessment and personalized lifestyle intervention delivery.</span></span> pain management, lifestyle interventions, depressive symptom reduction in Asian American women.</p></div></div></div>
+        <div class="field-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+          <!-- GIGC -->
+          <div class="fc" id="fc-gigc" onclick="toggleField('gigc')" style="grid-column:1/-1">
+            <div class="fc-head"><div class="fc-icon" style="background:rgba(79,176,198,.08)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.06)"/><circle cx="24" cy="24" r="8" stroke="#4FB0C6" stroke-width="2" opacity=".4"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sea);font-weight:700;letter-spacing:.08em;text-transform:uppercase">UT Austin · Career &amp; Life Design</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Global Impact Graduate Consultant</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">2025–Present</p></div><span class="fc-chev">›</span></div>
+            <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:12px">Operationalized Stanford's <span style="color:var(--sun);font-weight:700">Life Design</span> framework into a 12-week cohort. Newsletter (500+ subscribers), interview tools, visa guides.</p><div style="display:flex;gap:6px;flex-wrap:wrap"><a href="/interview-instinct.html" class="fc-link" style="color:var(--sea);background:rgba(79,176,198,.06);border:1px solid rgba(79,176,198,.12)">Interview Instinct →</a><a href="/iwg-handout-v10.html" class="fc-link" style="color:var(--coral);background:rgba(232,93,117,.06);border:1px solid rgba(232,93,117,.12)">HIVE Handout →</a><a href="/curiosity-cabinet.html" class="fc-link" style="color:var(--sun);background:rgba(242,201,76,.08);border:1px solid rgba(242,201,76,.15)">Curiosity Cabinet →</a></div></div>
+          </div>
+          <!-- Dasique -->
+          <div class="fc" id="fc-dasique" onclick="toggleField('dasique')">
+            <div class="fc-head"><div class="fc-icon" style="background:rgba(232,93,117,.06)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 4l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z" stroke="#E85D75" stroke-width="2.5" fill="rgba(232,93,117,.06)" stroke-linejoin="round"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--coral);font-weight:700;letter-spacing:.08em;text-transform:uppercase">Dasique · Seoul</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Global Marketing Intern</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">Summer 2025</p></div><span class="fc-chev">›</span></div>
+            <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:10px">Localized Olive Young Global pages (<span style="color:var(--sun);font-weight:700">+20% intl engagement</span>). GTM research. 100+ SKU analytics across APAC.</p><div style="display:flex;gap:4px;flex-wrap:wrap"><span class="fc-tag" style="color:var(--coral);background:rgba(232,93,117,.06)">Localization</span><span class="fc-tag" style="color:var(--sea);background:rgba(79,176,198,.06)">GTM Research</span><span class="fc-tag" style="color:var(--sun);background:rgba(242,201,76,.08)">APAC</span></div></div>
+          </div>
+          <!-- RA -->
+          <div class="fc" id="fc-ra" onclick="toggleField('ra')">
+            <div class="fc-head"><div class="fc-icon" style="background:rgba(242,201,76,.06)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 6v36M6 24h36" stroke="#F2C94C" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="#F2C94C" stroke-width="2" fill="rgba(242,201,76,.06)"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sun);font-weight:700;letter-spacing:.08em;text-transform:uppercase">UT School of Nursing</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Research Assistant</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">2023–2025 · 18 months</p></div><span class="fc-chev">›</span></div>
+            <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:10px"><span style="color:var(--sea);font-weight:700">AI-based</span> pain management, lifestyle interventions, depressive symptom reduction in Asian American women.</p><div style="display:flex;gap:4px;flex-wrap:wrap"><span class="fc-tag" style="color:var(--sea);background:rgba(79,176,198,.06)">AI &amp; Health</span><span class="fc-tag" style="color:var(--coral);background:rgba(232,93,117,.06)">Mixed Methods</span></div></div>
+          </div>
+        </div>
       </div>
 
-      <!-- ═══ STUDY NOTES ═══ -->
+      <!-- STUDY NOTES — Avatar Picker -->
       <div class="panel" id="p-notes" style="display:none;padding:2.5rem 3rem;max-width:880px">
         <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-bottom:6px">Scholarly Archive</p>
         <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:6px">Where I've studied</h2>
         <div style="width:40px;height:3px;background:var(--sea);border-radius:2px;margin-bottom:1.5rem"></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.5rem">
-          <div style="padding:1.5rem 1.6rem;border-radius:28px;background:var(--deep);color:#fff"><p style="font-family:var(--sm);font-size:9px;color:var(--coral);font-weight:700;margin-bottom:6px">MA · In Progress</p><h3 style="font-size:1.15rem;font-weight:800;margin-bottom:2px">Advertising (Thesis Track)</h3><p style="font-family:var(--sm);font-size:9px;color:var(--sea-l);opacity:.5">Moody College · 2025–2027</p><p style="font-size:.85rem;color:rgba(153,191,213,.6);line-height:1.55;margin-top:6px"><span style="color:var(--sun);font-weight:700">Health communication</span>, behavioral science, intervention design.</p></div>
-          <div style="padding:1.5rem 1.6rem;border-radius:28px;background:var(--card);border:1px solid var(--bdr)"><p style="font-family:var(--sm);font-size:9px;color:var(--sea);font-weight:700;margin-bottom:6px">BS · Completed</p><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep);margin-bottom:2px">Advertising</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">UT Austin · GPA 3.88</p><p style="font-size:.85rem;color:var(--txt2);line-height:1.55;margin-top:6px">Dean's List Honors (FA22–FA25).</p></div>
+          <div style="padding:1.5rem 1.6rem;border-radius:28px;background:var(--deep);color:#fff;box-shadow:0 8px 32px rgba(13,59,102,.12),inset 0 1px 0 rgba(79,176,198,.15)"><p style="font-family:var(--sm);font-size:9px;color:var(--coral);font-weight:700;margin-bottom:6px">MA · In Progress</p><h3 style="font-size:1.15rem;font-weight:800;margin-bottom:2px">Advertising (Thesis Track)</h3><p style="font-family:var(--sm);font-size:9px;color:var(--sea-l);opacity:.5">Moody College · 2025–2027</p><p style="font-size:.85rem;color:rgba(153,191,213,.6);line-height:1.55;margin-top:6px"><span style="color:var(--sun);font-weight:700">Health communication</span>, behavioral science, intervention design.</p></div>
+          <div style="padding:1.5rem 1.6rem;border-radius:28px;background:var(--card);border:1.5px solid rgba(79,176,198,.12);box-shadow:0 4px 16px rgba(13,59,102,.03)"><p style="font-family:var(--sm);font-size:9px;color:var(--sea);font-weight:700;margin-bottom:6px">BS · Completed</p><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep);margin-bottom:2px">Advertising</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">UT Austin · GPA 3.88</p><p style="font-size:.85rem;color:var(--txt2);line-height:1.55;margin-top:6px">Dean's List Honors (FA22–FA25).</p></div>
         </div>
-        <p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:6px">Coursework</p>
-        <a href="/adv382j-guide/" style="display:flex;align-items:center;padding:.55rem .7rem;text-decoration:none;color:var(--txt);border-left:2.5px solid transparent;border-radius:0 8px 8px 0;transition:all .25s var(--eo);margin-bottom:1px" onmouseover="this.style.borderLeftColor='var(--sea)';this.style.background='rgba(79,176,198,.04)'" onmouseout="this.style.borderLeftColor='transparent';this.style.background=''"><span style="font-family:var(--sm);font-size:10px;color:var(--txt3);min-width:62px;font-weight:600">ADV 382J</span><span style="font-size:.9rem;font-weight:700;flex:1;color:var(--deep)">Persuasion Theory</span><span style="font-family:var(--sm);font-size:9px;color:var(--txt3)">Sp 26</span><span style="margin-left:8px;color:var(--coral);font-weight:800">→</span></a>
-        <a href="/mkt397/" style="display:flex;align-items:center;padding:.55rem .7rem;text-decoration:none;color:var(--txt);border-left:2.5px solid transparent;border-radius:0 8px 8px 0;transition:all .25s var(--eo);margin-bottom:1px" onmouseover="this.style.borderLeftColor='var(--sea)';this.style.background='rgba(79,176,198,.04)'" onmouseout="this.style.borderLeftColor='transparent';this.style.background=''"><span style="font-family:var(--sm);font-size:10px;color:var(--txt3);min-width:62px;font-weight:600">MKT 397</span><span style="font-size:.9rem;font-weight:700;flex:1;color:var(--deep)">[PhD] Quantitative Marketing</span><span style="font-family:var(--sm);font-size:9px;color:var(--txt3)">Sp 26</span><span style="margin-left:8px;color:var(--coral);font-weight:800">→</span></a>
-        <a href="/hdf342/" style="display:flex;align-items:center;padding:.55rem .7rem;text-decoration:none;color:var(--txt);border-left:2.5px solid transparent;border-radius:0 8px 8px 0;transition:all .25s var(--eo);margin-bottom:1px" onmouseover="this.style.borderLeftColor='var(--sea)';this.style.background='rgba(79,176,198,.04)'" onmouseout="this.style.borderLeftColor='transparent';this.style.background=''"><span style="font-family:var(--sm);font-size:10px;color:var(--txt3);min-width:62px;font-weight:600">HDF 342</span><span style="font-size:.9rem;font-weight:700;flex:1;color:var(--deep)">Developmental Psychopathology</span><span style="font-family:var(--sm);font-size:9px;color:var(--txt3)">Fa 25</span><span style="margin-left:8px;color:var(--coral);font-weight:800">→</span></a>
-        <div style="margin-top:1.5rem"><p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:6px">Research Logs</p>
-          <a href="/mkt397/" style="display:flex;align-items:center;gap:.7rem;padding:1rem 1.2rem;background:var(--card);border:1px solid var(--bdr);border-radius:20px;text-decoration:none;color:var(--txt);max-width:420px;transition:all .3s var(--spring)" onmouseover="this.style.borderColor='var(--sea)';this.style.boxShadow='0 6px 24px rgba(79,176,198,.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(13,59,102,.06)';this.style.boxShadow='';this.style.transform=''"><div style="width:40px;height:40px;border-radius:12px;background:rgba(79,176,198,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="24" height="24" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="10" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/><line x1="29" y1="29" x2="38" y2="38" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/></svg></div><div><h3 style="font-size:.92rem;font-weight:800;color:var(--deep)">[PhD] Quantitative Marketing</h3><p style="font-size:.76rem;color:var(--txt2)">Empirics-first · Prof. Rex Du</p><p style="font-family:var(--sm);font-size:9px;color:var(--coral);font-weight:700;margin-top:1px">Sp 2026 · 8 weeks</p></div></a>
+        <p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:10px">Spring 2026 Coursework — pick to explore</p>
+        <div style="display:flex;gap:1rem;margin-bottom:1.8rem;flex-wrap:wrap">
+          <div class="spec course-avatar" data-c="adv" id="ca-adv" style="background:rgba(232,93,117,.05);color:#E85D75;width:120px;height:120px" onclick="pickCourse('adv')"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><path d="M8 40V16l16-10 16 10v24" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.06)"/><path d="M18 40V28h12v12" stroke="#E85D75" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="spec-lbl" style="font-size:9.5px">ADV<br>382J</span></div>
+          <div class="spec course-avatar" data-c="mkt" id="ca-mkt" style="background:rgba(79,176,198,.05);color:#4FB0C6;width:120px;height:120px" onclick="pickCourse('mkt')"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><rect x="6" y="22" width="8" height="18" rx="2" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.06)"/><rect x="20" y="14" width="8" height="26" rx="2" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.06)"/><rect x="34" y="8" width="8" height="32" rx="2" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.06)"/></svg><span class="spec-lbl" style="font-size:9.5px">MKT<br>397</span></div>
+          <div class="spec course-avatar" data-c="edp" id="ca-edp" style="background:rgba(242,201,76,.05);color:#F2C94C;width:120px;height:120px" onclick="pickCourse('edp')"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#F2C94C" stroke-width="2.5" fill="rgba(242,201,76,.06)"/><path d="M14 42c0-6 4-10 10-10s10 4 10 10" stroke="#F2C94C" stroke-width="2.5" stroke-linecap="round"/></svg><span class="spec-lbl" style="font-size:9.5px">EDP<br>382C</span></div>
         </div>
+        <!-- Course panels -->
+        <div id="cp-adv" class="cp" style="display:none"><div class="di" style="padding:1.6rem 1.8rem;background:rgba(232,93,117,.03);border:1.5px solid rgba(232,93,117,.12);border-radius:24px;margin-bottom:1.5rem"><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem"><div style="width:36px;height:36px;border-radius:10px;background:rgba(232,93,117,.08);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 48 48" fill="none"><path d="M8 40V16l16-10 16 10v24" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep)">Persuasion Theory</h3><p style="font-family:var(--sm);font-size:9px;color:var(--coral);font-weight:600">ADV 382J · Spring 2026</p></div></div><p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:10px">Dual-process models (ELM, HSM), narrative persuasion, and message framing as applied to health communication contexts.</p><a href="/adv382j-guide/" class="fc-link" style="color:var(--coral);background:rgba(232,93,117,.06);border:1px solid rgba(232,93,117,.12)">Course Guide →</a></div></div>
+        <div id="cp-mkt" class="cp" style="display:none"><div class="di" style="padding:1.6rem 1.8rem;background:rgba(79,176,198,.03);border:1.5px solid rgba(79,176,198,.12);border-radius:24px;margin-bottom:1.5rem"><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem"><div style="width:36px;height:36px;border-radius:10px;background:rgba(79,176,198,.08);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 48 48" fill="none"><rect x="6" y="22" width="8" height="18" rx="2" stroke="#4FB0C6" stroke-width="2.5"/><rect x="20" y="14" width="8" height="26" rx="2" stroke="#4FB0C6" stroke-width="2.5"/><rect x="34" y="8" width="8" height="32" rx="2" stroke="#4FB0C6" stroke-width="2.5"/></svg></div><div><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep)">[PhD] Quantitative Marketing</h3><p style="font-family:var(--sm);font-size:9px;color:var(--sea);font-weight:600">MKT 397 · Prof. Rex Du · Spring 2026</p></div></div><p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:10px">Empirics-first methodology. Causal inference, structural models, and econometric methods applied to consumer behavior.</p><a href="/mkt397/" class="fc-link" style="color:var(--sea);background:rgba(79,176,198,.06);border:1px solid rgba(79,176,198,.12)">Research Log →</a></div></div>
+        <div id="cp-edp" class="cp" style="display:none"><div class="di" style="padding:1.6rem 1.8rem;background:rgba(242,201,76,.03);border:1.5px solid rgba(242,201,76,.15);border-radius:24px;margin-bottom:1.5rem"><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem"><div style="width:36px;height:36px;border-radius:10px;background:rgba(242,201,76,.08);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#F2C94C" stroke-width="2.5"/><path d="M14 42c0-6 4-10 10-10s10 4 10 10" stroke="#F2C94C" stroke-width="2.5" stroke-linecap="round"/></svg></div><div><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep)">[PhD] Psychologically Wise Interventions</h3><p style="font-family:var(--sm);font-size:9px;color:var(--sun);font-weight:600">EDP 382C · Dr. Patricia Chen · Spring 2026</p></div></div><p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:10px">Growth mindset, belonging, stress reappraisal, and self-affirmation as scalable intervention levers. Theory-building meets intervention design.</p><a href="/edp382k/" class="fc-link" style="color:#c9a620;background:rgba(242,201,76,.06);border:1px solid rgba(242,201,76,.15)">Course Portfolio →</a></div></div>
       </div>
 
-      <!-- ═══ THE ORCHARD ═══ -->
-      <div class="panel" id="p-orchard" style="display:none;padding:2.5rem 3rem;max-width:880px">
+      <!-- THE ORCHARD — Pill Morph Tabs -->
+      <div class="panel" id="p-orchard" style="display:none;padding:2.5rem 3rem;max-width:880px;position:relative">
+        <!-- Flickering Grid Background -->
+        <canvas id="fgCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.35"></canvas>
+        <div style="position:relative;z-index:1">
         <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-bottom:6px">Beyond Research</p>
         <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:6px">The Orchard</h2>
         <div style="width:40px;height:3px;background:var(--peach);border-radius:2px;margin-bottom:1.5rem"></div>
-        <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="ap"
-          style="display:block;padding:2rem 2.2rem;margin-bottom:1rem;border-radius:32px;text-decoration:none;color:var(--deep);background:linear-gradient(135deg,rgba(107,184,76,.06),rgba(253,252,245,.5));border:2px solid rgba(107,184,76,.15);box-shadow:0 12px 40px rgba(107,184,76,.06);backdrop-filter:blur(8px)">
-          <div style="display:flex;align-items:center;gap:1.5rem">
-            <svg width="80" height="80" viewBox="0 0 48 48" fill="none" style="flex-shrink:0"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(107,184,76,.06)"/><path d="M24 18v14" stroke="#6BB84C" stroke-width="2" stroke-linecap="round" opacity=".4"/><path d="M24 24l-5-3M24 28l5-3" stroke="#6BB84C" stroke-width="1.8" stroke-linecap="round" opacity=".3"/><circle cx="18" cy="22" r="1.5" fill="rgba(107,184,76,.3)"><animate attributeName="opacity" values=".2;.5;.2" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="30" cy="20" r="1" fill="rgba(242,201,76,.4)"><animate attributeName="opacity" values=".3;.6;.3" dur="3s" repeatCount="indefinite"/></circle></svg>
-            <div>
-              <p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);margin-bottom:6px">Design Principle</p>
-              <h3 style="font-size:1.5rem;font-weight:800;margin-bottom:6px">Green Apple Logic</h3>
-              <p style="font-size:.95rem;color:var(--txt2);line-height:1.65;max-width:360px">Interventions succeed when healthy choices feel natural — not prescribed.</p>
-              <p style="font-family:var(--sm);font-size:10px;color:var(--coral);margin-top:8px;font-weight:700">Enter the Orchard →</p>
+        <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="ap" style="display:block;padding:1.4rem 1.6rem;margin-bottom:1.2rem;border-radius:24px;text-decoration:none;color:var(--deep);background:linear-gradient(135deg,rgba(107,184,76,.06),rgba(253,252,245,.5));border:2px solid rgba(107,184,76,.15);position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(107,184,76,.06),transparent 60%);pointer-events:none;transition:opacity .4s;opacity:.5"></div><div style="display:flex;align-items:center;gap:1rem;position:relative;z-index:1"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="flex-shrink:0"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" fill="rgba(107,184,76,.06)"/></svg><div style="flex:1"><p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-bottom:3px">Design Principle</p><h3 style="font-size:1.15rem;font-weight:800;margin-bottom:3px">Green Apple Logic</h3><p style="font-size:.85rem;color:var(--txt2);line-height:1.5">Healthy choices feel natural — not prescribed.</p></div><div style="display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:12px;background:rgba(107,184,76,.08);border:1px solid rgba(107,184,76,.15);flex-shrink:0;transition:all .3s var(--spring)"><span style="font-family:var(--sm);font-size:9px;font-weight:700;color:#6BB84C">Visit Blog</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="transition:transform .3s var(--spring)"><path d="M5 12h14M12 5l7 7-7 7" stroke="#6BB84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></a>
+        <!-- Pill Morph Tabs -->
+        <div id="pillTabs" style="max-width:640px">
+          <!-- Tab Bar -->
+          <div id="pt-bar" style="position:relative;display:inline-flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(13,59,102,.06);backdrop-filter:blur(8px);border:1px solid rgba(13,59,102,.06);margin-bottom:1.5rem">
+            <!-- Animated pill indicator -->
+            <div id="pt-pill" style="position:absolute;top:4px;bottom:4px;border-radius:999px;background:linear-gradient(90deg,rgba(107,184,76,.15),rgba(79,176,198,.12));box-shadow:0 6px 20px rgba(13,59,102,.06);border:1px solid rgba(255,255,255,.3);transition:left .35s var(--spring),width .35s var(--spring);pointer-events:none"></div>
+            <!-- Glow behind pill -->
+            <div id="pt-glow" style="position:absolute;top:0;bottom:0;border-radius:999px;filter:blur(16px);opacity:.25;background:linear-gradient(90deg,#6BB84C,#4FB0C6);mix-blend-mode:multiply;transition:left .35s var(--spring),width .35s var(--spring);pointer-events:none"></div>
+            <button class="pt-btn pt-on" data-pt="reading" onclick="pillTab('reading')" style="position:relative;z-index:2;padding:8px 18px;border-radius:999px;border:none;background:none;cursor:pointer;font-family:var(--st);font-size:12.5px;font-weight:600;color:var(--deep);transition:color .3s;white-space:nowrap">
+              <svg width="13" height="13" viewBox="0 0 48 48" fill="none" style="vertical-align:-1px;margin-right:4px"><rect x="8" y="6" width="28" height="36" rx="3" stroke="currentColor" stroke-width="3" fill="none"/><path d="M16 16h12M16 24h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>Reading
+            </button>
+            <button class="pt-btn" data-pt="pilates" onclick="pillTab('pilates')" style="position:relative;z-index:2;padding:8px 18px;border-radius:999px;border:none;background:none;cursor:pointer;font-family:var(--st);font-size:12.5px;font-weight:600;color:var(--txt3);transition:color .3s;white-space:nowrap">
+              <svg width="13" height="13" viewBox="0 0 48 48" fill="none" style="vertical-align:-1px;margin-right:4px"><circle cx="24" cy="12" r="6" stroke="currentColor" stroke-width="3"/><path d="M24 18v14M16 26l8 6 8-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 42h12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>Pilates
+            </button>
+            <button class="pt-btn" data-pt="mindbody" onclick="pillTab('mindbody')" style="position:relative;z-index:2;padding:8px 18px;border-radius:999px;border:none;background:none;cursor:pointer;font-family:var(--st);font-size:12.5px;font-weight:600;color:var(--txt3);transition:color .3s;white-space:nowrap">
+              <svg width="13" height="13" viewBox="0 0 48 48" fill="none" style="vertical-align:-1px;margin-right:4px"><circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="2.5" fill="none"/><path d="M24 14c-3 4-3 8 0 10s3 6 0 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Mind–Body
+            </button>
+          </div>
+          <!-- Tab Panels -->
+          <div class="pt-panel" id="ptp-reading" style="animation:di .4s var(--eo) forwards">
+            <div style="padding:1.6rem 1.8rem;background:var(--card);border:1.5px solid var(--bdr);border-radius:24px">
+              <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem">
+                <div style="width:40px;height:40px;border-radius:12px;background:rgba(107,184,76,.08);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="28" height="36" rx="3" stroke="#6BB84C" stroke-width="3" fill="rgba(107,184,76,.06)"/><path d="M16 16h12M16 24h8" stroke="#6BB84C" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+                <div><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep)">Saturday Reading Group</h3><p style="font-family:var(--sm);font-size:9px;color:var(--sage);font-weight:600;letter-spacing:.06em">Weekly · Mind–Body Connection</p></div>
+              </div>
+              <p style="font-size:.95rem;line-height:1.75;color:var(--txt2)">Exploring the mind–body connection through embodied practice and integrative reading. Currently: <span style="color:var(--sun);font-weight:700"><em>Core Awareness</em></span> by Liz Koch — how the psoas muscle connects movement, breath, and emotional regulation.</p>
+              <div style="margin-top:1rem;padding:.8rem 1rem;border-radius:14px;background:rgba(107,184,76,.04);border:1px solid rgba(107,184,76,.1)"><p style="font-size:.82rem;color:var(--txt2);line-height:1.6"><strong style="color:#6BB84C">Research ↔ Practice:</strong> Weekly reading informs thesis work on embodied cognition and stress responses in health communication contexts.</p></div>
             </div>
           </div>
-        </a>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
-          <div style="padding:1.5rem 1.6rem;border-radius:28px;background:var(--card);border:1px solid var(--bdr)"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sea);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Weekly</p><h3 style="font-size:1.08rem;font-weight:700;color:var(--deep);margin-bottom:4px">Saturday Reading Group</h3><p style="font-size:.9rem;color:var(--txt2);line-height:1.65">Mind–body connection. Currently: <em>Core Awareness</em> by Liz Koch.</p></div>
-          <div style="padding:1.5rem 1.6rem;border-radius:28px;background:var(--card);border:1px solid var(--bdr)"><p style="font-family:var(--sm);font-size:8.5px;color:var(--coral);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Certified</p><h3 style="font-size:1.08rem;font-weight:700;color:var(--deep);margin-bottom:4px">Pilates Instructor</h3><p style="font-size:.9rem;color:var(--txt2);line-height:1.65">Embodied practice shaping cognition, stress, well-being.</p></div>
+          <div class="pt-panel" id="ptp-pilates" style="display:none">
+            <div style="padding:1.6rem 1.8rem;background:var(--card);border:1.5px solid var(--bdr);border-radius:24px">
+              <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem">
+                <div style="width:40px;height:40px;border-radius:12px;background:rgba(232,93,117,.06);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="12" r="6" stroke="#E85D75" stroke-width="3" fill="rgba(232,93,117,.06)"/><path d="M24 18v14M16 26l8 6 8-6" stroke="#E85D75" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 42h12" stroke="#E85D75" stroke-width="3" stroke-linecap="round"/></svg></div>
+                <div><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep)">Pilates Instructor</h3><p style="font-family:var(--sm);font-size:9px;color:var(--coral);font-weight:600;letter-spacing:.06em">Certified · Embodied Practice</p></div>
+              </div>
+              <p style="font-size:.95rem;line-height:1.75;color:var(--txt2)">Embodied practice shaping cognition, stress responses, and holistic well-being. <span style="color:var(--coral);font-weight:700">Movement as research method</span> — understanding how physical engagement translates into psychological resilience and self-awareness.</p>
+              <div style="margin-top:1rem;padding:.8rem 1rem;border-radius:14px;background:rgba(232,93,117,.03);border:1px solid rgba(232,93,117,.08)"><p style="font-size:.82rem;color:var(--txt2);line-height:1.6"><strong style="color:var(--coral)">Crum Connection:</strong> Beliefs about body and stress shape physiological outcomes — Pilates is where this theory becomes lived experience.</p></div>
+            </div>
+          </div>
+          <div class="pt-panel" id="ptp-mindbody" style="display:none">
+            <div style="padding:1.6rem 1.8rem;background:var(--card);border:1.5px solid var(--bdr);border-radius:24px">
+              <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem">
+                <div style="width:40px;height:40px;border-radius:12px;background:rgba(79,176,198,.06);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.06)"/><path d="M24 14c-3 4-3 8 0 10s3 6 0 10" stroke="#4FB0C6" stroke-width="2" stroke-linecap="round"/></svg></div>
+                <div><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep)">Mind–Body Connection</h3><p style="font-family:var(--sm);font-size:9px;color:var(--sea);font-weight:600;letter-spacing:.06em">Philosophy · Integration</p></div>
+              </div>
+              <p style="font-size:.95rem;line-height:1.75;color:var(--txt2)">Neuroplasticity meets embodied cognition. How <span style="color:var(--sea);font-weight:700">adaptive beliefs</span> about body and stress shape physiological outcomes — the theoretical bridge connecting Crum's mindset-physiology work with Millán's neuroplasticity framework.</p>
+              <div style="margin-top:1rem;padding:.8rem 1rem;border-radius:14px;background:rgba(79,176,198,.04);border:1px solid rgba(79,176,198,.1)"><p style="font-size:.82rem;color:var(--txt2);line-height:1.6"><strong style="color:var(--sea)">Millán + Crum:</strong> Shared human–machine learning meets stress reappraisal — adaptive systems that reshape both neural pathways and health outcomes.</p></div>
+            </div>
+          </div>
         </div>
+        </div><!-- end z-index wrapper -->
       </div>
 
-    </div>
-  </div>
-</div>
+    </div><!-- end cs -->
+  </div><!-- end main -->
+</div><!-- end dash -->
 
 <!-- CONTACT -->
 <div id="cO" style="position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(13,59,102,.3);backdrop-filter:blur(12px)" onclick="closeC()">
@@ -383,41 +184,226 @@
     <button onclick="closeC()" style="position:absolute;top:8px;right:10px;background:none;border:none;font-size:14px;cursor:pointer;color:var(--txt3)">✕</button>
     <h3 style="font-size:1.2rem;font-weight:800;color:var(--deep);margin-bottom:4px">Let's connect</h3>
     <p style="font-size:.85rem;color:var(--txt2);margin-bottom:12px;line-height:1.5">Research, collaboration, or tea.</p>
-    <div onclick="cpE()" style="font-family:var(--sm);font-size:.8rem;background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:.5rem .7rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;cursor:pointer;transition:all .25s" onmouseover="this.style.borderColor='var(--sea)'" onmouseout="this.style.borderColor='rgba(13,59,102,.06)'"><span>bellakang@utexas.edu</span><span id="cpL" style="font-size:.55rem;color:var(--coral);font-weight:700">Copy</span></div>
+    <div onclick="cpE()" style="font-family:var(--sm);font-size:.8rem;background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:.5rem .7rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;cursor:pointer"><span>bellakang@utexas.edu</span><span id="cpL" style="font-size:.55rem;color:var(--coral);font-weight:700">Copy</span></div>
     <div style="display:flex;gap:.8rem"><a href="https://www.linkedin.com/in/bellakang017" target="_blank" style="font-size:.75rem;color:var(--txt2);text-decoration:none">LinkedIn ↗</a><a href="mailto:bellakang@utexas.edu" style="font-size:.75rem;color:var(--txt2);text-decoration:none">Mail ↗</a></div>
   </div>
 </div>
 
 <script>
-function go(id,btn){
-  document.querySelectorAll('.np').forEach(b=>{b.classList.remove('on')});
-  btn.classList.add('on');
-  document.querySelectorAll('.panel').forEach(p=>p.style.display='none');
-  const p=document.getElementById('p-'+id);
-  p.style.display='block';p.style.animation='ps .5s var(--eo)';
-}
-let aS=null;
-function tS(id){
-  document.querySelectorAll('.spec').forEach(s=>s.classList.remove('on'));
-  document.querySelectorAll('.sp').forEach(p=>p.style.display='none');
-  if(aS===id){aS=null;return}
-  aS=id;
-  document.getElementById('s-'+id).classList.add('on');
-  document.getElementById('sp-'+id).style.display='block';
-}
-function tE(row){
-  const w=row.closest('.ew'),b=w.querySelector('.eb'),p=row.querySelector('.ep');
-  if(b.style.display==='none'){b.style.display='block';p.classList.add('open');row.style.borderRadius='28px 28px 0 0'}
-  else{b.style.display='none';p.classList.remove('open');row.style.borderRadius='28px'}
-}
+function go(id,btn){document.querySelectorAll('.np').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.panel').forEach(p=>p.style.display='none');const p=document.getElementById('p-'+id);p.style.display='block';p.style.animation='ps .5s var(--eo)';if(id==='orchard'){setTimeout(()=>pillMeasure(),50);initFlickerGrid()}else{stopFlickerGrid()}}
+let aS=null;function tS(id){document.querySelectorAll('.spec:not(.course-avatar)').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.sp').forEach(p=>p.style.display='none');if(aS===id){aS=null;return}aS=id;document.getElementById('s-'+id).classList.add('on');document.getElementById('sp-'+id).style.display='block'}
+let aC=null;function pickCourse(id){document.querySelectorAll('.course-avatar').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.cp').forEach(p=>p.style.display='none');if(aC===id){aC=null;return}aC=id;document.getElementById('ca-'+id).classList.add('on');document.getElementById('cp-'+id).style.display='block'}
+let aF=null;function toggleField(id){document.querySelectorAll('.fc').forEach(c=>c.classList.remove('fc-on'));if(aF===id){aF=null;return}aF=id;document.getElementById('fc-'+id).classList.add('fc-on')}
 function openC(){document.getElementById('cO').style.display='flex'}
 function closeC(){document.getElementById('cO').style.display='none'}
 function cpE(){navigator.clipboard.writeText('bellakang@utexas.edu');const l=document.getElementById('cpL');l.textContent='Copied!';setTimeout(()=>l.textContent='Copy',2000)}
-document.addEventListener('keydown',e=>{
-  const k={'1':'cabinet','2':'field','3':'notes','4':'orchard'};
-  if(k[e.key]){const b=document.querySelector(`.np[data-v="${k[e.key]}"]`);if(b)go(k[e.key],b)}
-  if(e.key==='Escape')closeC();
+document.addEventListener('keydown',e=>{const k={'1':'cabinet','2':'field','3':'notes','4':'orchard'};if(k[e.key]){const b=document.querySelector('.np[data-v="'+k[e.key]+'"]');if(b)go(k[e.key],b)}if(e.key==='Escape')closeC()});
+
+/* ── Pill Morph Tabs ── */
+let ptActive='reading';
+function pillMeasure(){
+  const bar=document.getElementById('pt-bar');
+  const pill=document.getElementById('pt-pill');
+  const glow=document.getElementById('pt-glow');
+  const btn=document.querySelector('.pt-btn[data-pt="'+ptActive+'"]');
+  if(!bar||!pill||!btn)return;
+  const bR=bar.getBoundingClientRect();
+  const tR=btn.getBoundingClientRect();
+  const left=tR.left-bR.left;
+  const width=tR.width;
+  pill.style.left=left+'px';pill.style.width=width+'px';
+  if(glow){glow.style.left=left+'px';glow.style.width=width+'px'}
+}
+function pillTab(id){
+  if(id===ptActive)return;
+  ptActive=id;
+  /* update button styles */
+  document.querySelectorAll('.pt-btn').forEach(b=>{
+    b.classList.remove('pt-on');
+    b.style.color='var(--txt3)';
+  });
+  const btn=document.querySelector('.pt-btn[data-pt="'+id+'"]');
+  if(btn){btn.classList.add('pt-on');btn.style.color='var(--deep)'}
+  /* morph pill + expand pop */
+  const pill=document.getElementById('pt-pill');
+  if(pill){
+    pill.style.transition='left .35s cubic-bezier(.175,.885,.32,1.275),width .35s cubic-bezier(.175,.885,.32,1.275),transform .15s ease';
+    pill.style.transform='scaleY(1.08)';
+    pill.style.borderRadius='24px';
+    setTimeout(()=>{pill.style.transform='scaleY(1)';pill.style.borderRadius='999px'},180);
+  }
+  pillMeasure();
+  /* switch panels with animation */
+  document.querySelectorAll('.pt-panel').forEach(p=>{p.style.display='none'});
+  const panel=document.getElementById('ptp-'+id);
+  if(panel){panel.style.display='block';panel.style.animation='di .4s cubic-bezier(.16,1,.3,1) forwards'}
+}
+/* init pill position on load & resize */
+window.addEventListener('resize',pillMeasure);
+setTimeout(pillMeasure,100);
+
+/* ── Flickering Grid Background ── */
+let fgAnim=null;
+function initFlickerGrid(){
+  const c=document.getElementById('fgCanvas');if(!c)return;
+  const ctx=c.getContext('2d');if(!ctx)return;
+  const p=c.parentElement;if(!p)return;
+  const dpr=window.devicePixelRatio||1;
+  const sqSize=4,gap=7,flicker=0.25,maxOp=0.22;
+  const colors=['107,184,76','79,176,198','242,201,76','232,93,117'];
+  function resize(){
+    const w=p.clientWidth,h=p.clientHeight;
+    c.width=w*dpr;c.height=h*dpr;
+    c.style.width=w+'px';c.style.height=h+'px';
+  }
+  resize();
+  const ro=new ResizeObserver(resize);ro.observe(p);
+  let cols,rows,squares,sqColors;
+  function setup(){
+    cols=Math.floor((c.width/dpr)/(sqSize+gap));
+    rows=Math.floor((c.height/dpr)/(sqSize+gap));
+    const len=cols*rows;
+    squares=new Float32Array(len);
+    sqColors=new Uint8Array(len);
+    for(let i=0;i<len;i++){squares[i]=Math.random()*maxOp;sqColors[i]=Math.floor(Math.random()*colors.length)}
+  }
+  setup();
+  let last=0;
+  function draw(t){
+    const dt=(t-last)/1000;last=t;
+    ctx.clearRect(0,0,c.width,c.height);
+    for(let i=0;i<cols;i++){for(let j=0;j<rows;j++){
+      const idx=i*rows+j;
+      if(Math.random()<flicker*dt){squares[idx]=Math.random()*maxOp;if(Math.random()<0.05)sqColors[idx]=Math.floor(Math.random()*colors.length)}
+      ctx.fillStyle='rgba('+colors[sqColors[idx]]+','+squares[idx]+')';
+      ctx.fillRect(i*(sqSize+gap)*dpr,j*(sqSize+gap)*dpr,sqSize*dpr,sqSize*dpr);
+    }}
+    fgAnim=requestAnimationFrame(draw);
+  }
+  fgAnim=requestAnimationFrame(draw);
+}
+function stopFlickerGrid(){if(fgAnim){cancelAnimationFrame(fgAnim);fgAnim=null}}
+
+/* ── Cool Mode: Confetti Burst on Click (bigger, bolder) ── */
+const cmColors=['#6BB84C','#4FB0C6','#E85D75','#F2C94C','#f7a088','#0D3B66'];
+function coolBurst(x,y){
+  const count=12+Math.floor(Math.random()*8);
+  for(let i=0;i<count;i++){
+    const dot=document.createElement('div');
+    const sz=5+Math.random()*8;
+    const col=cmColors[Math.floor(Math.random()*cmColors.length)];
+    const ang=Math.random()*Math.PI*2;
+    const dist=40+Math.random()*70;
+    const dx=Math.cos(ang)*dist;
+    const dy=Math.sin(ang)*dist-30;
+    const shapes=['50%','30%','4px'];
+    const br=shapes[Math.floor(Math.random()*shapes.length)];
+    dot.style.cssText='position:fixed;pointer-events:none;z-index:99999;border-radius:'+br+';width:'+sz+'px;height:'+sz+'px;background:'+col+';left:'+x+'px;top:'+y+'px;opacity:.95;transition:all .8s cubic-bezier(.16,1,.3,1);box-shadow:0 0 4px '+col+';';
+    document.body.appendChild(dot);
+    requestAnimationFrame(()=>{
+      dot.style.transform='translate('+dx+'px,'+dy+'px) rotate('+(Math.random()*360)+'deg) scale(0)';
+      dot.style.opacity='0';
+    });
+    setTimeout(()=>dot.remove(),900);
+  }
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('.spec,.course-avatar,.fc,.pt-btn,.ap,.np,button:not(#gb-fab):not(.gb-emoji-btn)');
+  if(t)coolBurst(e.clientX,e.clientY);
 });
+
+/* ── Guestbook FAB + Modal ── */
+(function(){
+  /* FAB button */
+  const fab=document.createElement('button');
+  fab.id='gb-fab';
+  fab.innerHTML='<span style="font-size:18px">💬</span>';
+  fab.style.cssText='position:fixed;bottom:24px;right:24px;z-index:9998;width:52px;height:52px;border-radius:50%;border:2px solid rgba(79,176,198,.2);background:var(--card);box-shadow:0 8px 32px rgba(13,59,102,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .4s cubic-bezier(.175,.885,.32,1.275)';
+  fab.title='Leave a reaction!';
+  fab.onmouseenter=()=>{fab.style.transform='scale(1.1) translateY(-2px)';fab.style.boxShadow='0 12px 40px rgba(79,176,198,.15)'};
+  fab.onmouseleave=()=>{fab.style.transform='';fab.style.boxShadow='0 8px 32px rgba(13,59,102,.1)'};
+  fab.onclick=()=>toggleGB();
+  document.body.appendChild(fab);
+
+  /* floating animation */
+  let fy=0,fd=1;
+  function fabFloat(){fy+=fd*.12;if(fy>4)fd=-1;if(fy<-4)fd=1;fab.style.transform='translateY('+fy+'px)';requestAnimationFrame(fabFloat)}
+  fabFloat();
+
+  /* Guestbook modal */
+  const gbHTML=`
+  <div id="gb-modal" style="position:fixed;inset:0;z-index:10001;display:none;align-items:center;justify-content:center;background:rgba(13,59,102,.25);backdrop-filter:blur(10px)" onclick="if(event.target===this)toggleGB()">
+    <div style="background:var(--cream);border-radius:28px;padding:1.8rem;max-width:380px;width:92%;position:relative;box-shadow:0 24px 64px rgba(13,59,102,.18);border:1.5px solid rgba(79,176,198,.1)" onclick="event.stopPropagation()">
+      <button onclick="toggleGB()" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:16px;cursor:pointer;color:var(--txt3)">✕</button>
+      <div style="text-align:center;margin-bottom:1.2rem">
+        <p style="font-size:1.6rem;margin-bottom:4px">🌱</p>
+        <h3 style="font-family:var(--sf);font-size:1.15rem;font-weight:800;color:var(--deep)">Leave a Seed</h3>
+        <p style="font-family:var(--sm);font-size:9px;color:var(--txt3);margin-top:2px">How does this portfolio make you feel?</p>
+      </div>
+      <div id="gb-emojis" style="display:flex;justify-content:center;gap:8px;margin-bottom:1.2rem">
+        <button class="gb-emoji-btn" data-emoji="🍎" onclick="gbReact(this)" style="width:48px;height:48px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);cursor:pointer;font-size:22px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span>🍎</span><span class="gb-cnt" style="font-family:var(--sm);font-size:8px;color:var(--txt3);font-weight:700">0</span></button>
+        <button class="gb-emoji-btn" data-emoji="🌿" onclick="gbReact(this)" style="width:48px;height:48px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);cursor:pointer;font-size:22px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span>🌿</span><span class="gb-cnt" style="font-family:var(--sm);font-size:8px;color:var(--txt3);font-weight:700">0</span></button>
+        <button class="gb-emoji-btn" data-emoji="✨" onclick="gbReact(this)" style="width:48px;height:48px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);cursor:pointer;font-size:22px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span>✨</span><span class="gb-cnt" style="font-family:var(--sm);font-size:8px;color:var(--txt3);font-weight:700">0</span></button>
+        <button class="gb-emoji-btn" data-emoji="💡" onclick="gbReact(this)" style="width:48px;height:48px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);cursor:pointer;font-size:22px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span>💡</span><span class="gb-cnt" style="font-family:var(--sm);font-size:8px;color:var(--txt3);font-weight:700">0</span></button>
+        <button class="gb-emoji-btn" data-emoji="🫶" onclick="gbReact(this)" style="width:48px;height:48px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);cursor:pointer;font-size:22px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span>🫶</span><span class="gb-cnt" style="font-family:var(--sm);font-size:8px;color:var(--txt3);font-weight:700">0</span></button>
+      </div>
+      <div id="gb-thanked" style="display:none;text-align:center;padding:.8rem;border-radius:16px;background:rgba(107,184,76,.06);margin-bottom:.8rem">
+        <p style="font-size:.9rem;color:var(--deep);font-weight:700">Thank you for your seed! 🌱</p>
+        <p style="font-family:var(--sm);font-size:9px;color:var(--txt3);margin-top:4px">Every small gesture grows something meaningful.</p>
+      </div>
+      <div style="border-top:1px solid var(--bdr);padding-top:1rem;margin-top:.4rem">
+        <p style="font-family:var(--sm);font-size:8.5px;color:var(--txt3);text-align:center;margin-bottom:8px">Want to connect? Drop your info below.</p>
+        <div style="display:flex;gap:6px">
+          <input id="gb-input" type="text" placeholder="Name, email, or just say hi..." style="flex:1;padding:8px 12px;border-radius:12px;border:1.5px solid var(--bdr);background:var(--card);font-family:var(--sf);font-size:.85rem;color:var(--deep);outline:none;transition:border-color .3s" onfocus="this.style.borderColor='rgba(79,176,198,.4)'" onblur="this.style.borderColor='var(--bdr)'">
+          <button onclick="gbSend()" style="padding:8px 16px;border-radius:12px;border:none;background:var(--sea);color:#fff;font-family:var(--sm);font-size:10px;font-weight:700;cursor:pointer;transition:all .3s cubic-bezier(.175,.885,.32,1.275)" onmouseenter="this.style.transform='scale(1.05)'" onmouseleave="this.style.transform=''">Send</button>
+        </div>
+        <div id="gb-sent-msg" style="display:none;text-align:center;margin-top:8px"><p style="font-family:var(--sm);font-size:9px;color:var(--sage)">Saved! Looking forward to connecting. 💚</p></div>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',gbHTML);
+
+  /* Load stored reactions */
+  const stored=JSON.parse(localStorage.getItem('gb-reactions')||'{}');
+  document.querySelectorAll('.gb-emoji-btn').forEach(btn=>{
+    const e=btn.dataset.emoji;
+    const cnt=stored[e]||0;
+    btn.querySelector('.gb-cnt').textContent=cnt;
+  });
+})();
+
+function toggleGB(){
+  const m=document.getElementById('gb-modal');
+  m.style.display=m.style.display==='flex'?'none':'flex';
+}
+
+function gbReact(btn){
+  const emoji=btn.dataset.emoji;
+  const stored=JSON.parse(localStorage.getItem('gb-reactions')||'{}');
+  stored[emoji]=(stored[emoji]||0)+1;
+  localStorage.setItem('gb-reactions',JSON.stringify(stored));
+  btn.querySelector('.gb-cnt').textContent=stored[emoji];
+  /* animate */
+  btn.style.transform='scale(1.2)';btn.style.borderColor='rgba(107,184,76,.3)';btn.style.background='rgba(107,184,76,.06)';
+  setTimeout(()=>{btn.style.transform='';btn.style.borderColor='';btn.style.background=''},300);
+  /* show thank you */
+  document.getElementById('gb-thanked').style.display='block';
+  /* burst from button */
+  const r=btn.getBoundingClientRect();
+  coolBurst(r.left+r.width/2,r.top+r.height/2);
+}
+
+function gbSend(){
+  const input=document.getElementById('gb-input');
+  const val=input.value.trim();
+  if(!val)return;
+  const msgs=JSON.parse(localStorage.getItem('gb-messages')||'[]');
+  msgs.push({text:val,time:new Date().toISOString()});
+  localStorage.setItem('gb-messages',JSON.stringify(msgs));
+  input.value='';
+  document.getElementById('gb-sent-msg').style.display='block';
+  setTimeout(()=>document.getElementById('gb-sent-msg').style.display='none',3000);
+}
 </script>
 </body>
 </html>
