@@ -39,10 +39,35 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
 .recent-post{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;background:var(--card);border:1px solid var(--bdr);text-decoration:none;transition:all .3s var(--snap)}.recent-post:hover{transform:translateX(4px);border-color:rgba(107,184,76,.2)}
 /* sub-specimens inside Lens */
 .sub-spec{width:90px;height:90px;border-radius:22px 26px 20px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:2px solid transparent;transition:all .35s var(--drift);box-shadow:0 2px 10px rgba(13,59,102,.02)}.sub-spec:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 8px 24px rgba(13,59,102,.06)}.sub-spec.on{border-color:var(--sea);box-shadow:0 8px 28px rgba(79,176,198,.1)}.sub-spec svg{transition:all .4s var(--spring)}.sub-spec:hover svg{transform:scale(1.08)}.sub-spec .spec-lbl{font-size:9px}
-@media(max-width:900px){.dash{grid-template-columns:1fr!important}.bcol{display:none!important}.fairy{display:none}.spec{width:86px;height:86px;border-radius:24px}.sub-spec{width:72px;height:72px;border-radius:20px}.hero{font-size:1.5rem!important}.ip{display:none!important}.field-grid{grid-template-columns:1fr!important}#pt-bar{flex-wrap:wrap;border-radius:20px}.currently-grid{grid-template-columns:1fr!important}.topic-grid{grid-template-columns:1fr!important}.degree-grid{grid-template-columns:1fr!important}.practice-grid{grid-template-columns:1fr!important}body,a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cursor:auto!important}#blend-cursor{display:none!important}.spec-hint,.spec-action{display:none!important}.lucky-note{max-width:200px;font-size:12px}body::before{display:none}}
+@media(max-width:900px){.dash{grid-template-columns:1fr!important}.bcol{display:none!important}.fairy{display:none}.spec{width:86px;height:86px;border-radius:24px}.sub-spec{width:72px;height:72px;border-radius:20px}.hero{font-size:1.5rem!important}.ip{position:fixed!important;opacity:0;pointer-events:none;transition:opacity .3s;max-width:240px}.ip.m-show{opacity:1!important;pointer-events:auto}.field-grid{grid-template-columns:1fr!important}#pt-bar{flex-wrap:wrap;border-radius:20px}.currently-grid{grid-template-columns:1fr!important}.topic-grid{grid-template-columns:1fr!important}.degree-grid{grid-template-columns:1fr!important}.practice-grid{grid-template-columns:1fr!important}body,a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cursor:auto!important}#blend-cursor{display:none!important}.spec-hint{display:block!important;position:static!important;opacity:.6!important;transform:none!important;margin-top:4px;font-size:8px!important}.spec-action{display:none!important}.lucky-note{max-width:200px;font-size:12px}body::before{display:none}
+/* Mobile welcome overlay */
+#m-welcome{position:fixed;inset:0;z-index:10002;background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center}#m-welcome img{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid rgba(79,176,198,.3);margin-bottom:1rem;box-shadow:0 6px 24px rgba(79,176,198,.15)}.mw-btn{display:flex;align-items:center;gap:10px;width:100%;padding:14px 16px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);text-align:left;cursor:pointer;transition:all .3s var(--snap);font-family:var(--sf)}.mw-btn:active{transform:scale(.97);border-color:var(--sea)}
+/* Mobile identity + progress */
+.m-id{display:flex!important;align-items:center;gap:8px}nav{flex-wrap:wrap!important;height:auto!important;padding:8px 12px!important;gap:4px!important}nav>div:first-child{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:.6rem!important;padding-bottom:2px;scrollbar-width:none}nav>div:first-child::-webkit-scrollbar{display:none}nav>div:last-child{display:none!important}.np{font-size:12px!important;padding:6px 10px!important;border-radius:12px!important;background:rgba(13,59,102,.03)}.np.on{text-decoration:none!important}.np[data-v="cabinet"].on{background:rgba(79,176,198,.1)!important;color:var(--sea)!important}.np[data-v="field"].on{background:rgba(232,93,117,.08)!important;color:var(--coral)!important}.np[data-v="notes"].on{background:rgba(242,201,76,.1)!important;color:var(--sun)!important}.np[data-v="orchard"].on{background:rgba(107,184,76,.08)!important;color:var(--sage)!important}
+.m-progress{display:flex!important;align-items:center;gap:8px;margin-left:auto}.m-dots{display:flex;gap:4px}.m-dot{width:6px;height:6px;border-radius:50%;background:var(--bdr);transition:all .3s}.m-dot.on{width:16px;border-radius:3px}.m-dot[data-v="cabinet"].on{background:var(--sea)}.m-dot[data-v="field"].on{background:var(--coral)}.m-dot[data-v="notes"].on{background:var(--sun)}.m-dot[data-v="orchard"].on{background:var(--sage)}.m-counter{font-family:var(--sm);font-size:8px;color:var(--txt3);letter-spacing:.04em}
+/* Mobile next blocks + proof + aside */
+.m-next{display:block!important;margin-top:2rem;padding:1.2rem;border-radius:16px;background:rgba(79,176,198,.04);border:1.5px dashed rgba(79,176,198,.15);text-align:center;cursor:pointer}.m-next:active{transform:scale(.98);background:rgba(79,176,198,.08)}
+.m-proof{display:flex!important;gap:6px;flex-wrap:wrap;margin-bottom:1rem}.m-badge{font-family:var(--sm);font-size:8px;font-weight:600;padding:4px 8px;border-radius:8px;background:rgba(79,176,198,.06);color:var(--txt2);border:1px solid rgba(79,176,198,.08)}
+.m-aside{display:block!important;margin-top:10px;padding:10px 14px;border-radius:12px;background:rgba(242,201,76,.04);border-left:3px solid rgba(242,201,76,.15)}
+/* Mobile panel padding */
+.panel{padding:1.5rem 1.2rem!important}
+}
 </style>
 </head>
 <body>
+<!-- Mobile Welcome Overlay -->
+<div id="m-welcome" style="display:none">
+  <img src="images/profile.jpg" alt="Bella Kang">
+  <h2 style="font-size:1.4rem;font-weight:800;color:var(--deep);margin-bottom:4px">Hi, I'm Bella</h2>
+  <p style="font-family:var(--sm);font-size:9px;color:var(--sea);letter-spacing:.1em;margin-bottom:6px">MOODY COLLEGE &middot; UT AUSTIN</p>
+  <p style="font-size:.88rem;color:var(--txt2);line-height:1.5;margin-bottom:1.5rem;max-width:280px">I research how AI and technology shape human behavior in health and education.</p>
+  <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px">
+    <button class="mw-btn" onclick="mwGo('cabinet')"><span style="font-size:20px">&#128269;</span><div><strong style="color:var(--deep);font-size:.9rem">Cabinet</strong><br><span style="font-size:.75rem;color:var(--txt3)">My research identity</span></div></button>
+    <button class="mw-btn" onclick="mwGo('field')"><span style="font-size:20px">&#129514;</span><div><strong style="color:var(--deep);font-size:.9rem">Experience</strong><br><span style="font-size:.75rem;color:var(--txt3)">Where I've worked</span></div></button>
+    <button class="mw-btn" onclick="mwGo('notes')"><span style="font-size:20px">&#128218;</span><div><strong style="color:var(--deep);font-size:.9rem">Study Notes</strong><br><span style="font-size:.75rem;color:var(--txt3)">Courses &amp; degrees</span></div></button>
+    <button class="mw-btn" onclick="mwGo('orchard')"><span style="font-size:20px">&#127807;</span><div><strong style="color:var(--deep);font-size:.9rem">The Orchard</strong><br><span style="font-size:.75rem;color:var(--txt3)">Blog &amp; practice journal</span></div></button>
+  </div>
+</div>
 <div class="dash" style="height:100vh;display:grid;grid-template-columns:96px 1fr;overflow:hidden">
   <aside class="bcol" style="background:var(--deep);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.4rem 0;position:relative;overflow:hidden;z-index:10">
     <div class="portrait si s1" style="margin-bottom:.8rem;z-index:2;position:relative"><img src="images/profile.jpg" alt="Bella Kang" loading="lazy" style="width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid rgba(79,176,198,.4);transition:all .5s var(--spring);box-shadow:0 6px 24px rgba(79,176,198,.22)" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''"></div>
@@ -52,6 +77,8 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
   <div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;position:relative">
     <div style="position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden"><div class="fairy" style="left:8%;top:15%;width:60px;height:60px;background:radial-gradient(circle,rgba(79,176,198,.06) 0%,transparent 70%);animation:fd 18s ease-in-out infinite"></div><div class="fairy" style="left:75%;top:10%;width:80px;height:80px;background:radial-gradient(circle,rgba(232,93,117,.04) 0%,transparent 70%);animation:fd 22s ease-in-out 3s infinite"></div><div class="fairy" style="left:45%;top:70%;width:50px;height:50px;background:radial-gradient(circle,rgba(242,201,76,.05) 0%,transparent 70%);animation:fd 20s ease-in-out 6s infinite"></div></div>
     <nav style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(253,252,245,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);z-index:20;flex-shrink:0">
+      <!-- Mobile identity bar -->
+      <div class="m-id" style="display:none"><img src="images/profile.jpg" alt="" style="width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:center 20%;border:2px solid rgba(79,176,198,.25)"><span style="font-family:var(--sf);font-size:.8rem;font-weight:700;color:var(--deep)">Bella Kang</span><div class="m-progress" style="display:none"><span class="m-dots"><span class="m-dot on" data-v="cabinet"></span><span class="m-dot" data-v="field"></span><span class="m-dot" data-v="notes"></span><span class="m-dot" data-v="orchard"></span></span><span class="m-counter">1/4</span></div></div>
       <div style="display:flex;gap:1.3rem;align-items:center">
         <button class="np on" data-v="cabinet" onclick="go('cabinet',this)"><svg width="14" height="14" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="10" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/><line x1="29" y1="29" x2="38" y2="38" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/></svg> Cabinet</button>
         <button class="np" data-v="field" onclick="go('field',this)">Experience</button>
@@ -68,6 +95,10 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
           <p class="si s3" style="font-family:var(--sm);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:.8rem">Research Specimen · UT Austin</p>
           <h2 class="si s4 hero" style="font-size:clamp(1.8rem,3.6vw,2.5rem);font-weight:700;line-height:1.2;color:var(--deep)">I research how <span class="iw" data-tech>AI<span class="ip"><span class="ip-l">Marginalia</span>Applying computational models and LLMs to understand and scale behavior-change interventions.</span></span> and <span class="iw" data-tech>technology<span class="ip"><span class="ip-l">Marginalia</span>Digital tools — from chatbots to mobile health apps — that mediate how people receive health information.</span></span> shape <span class="iw" style="border-bottom-color:var(--sun)">human behavior<span class="ip"><span class="ip-l">Marginalia</span>Patterns of action, cognition, and emotion shaped by environment, culture, and communication framing.</span></span> in <span class="iw">health<span class="ip"><span class="ip-l">Marginalia</span>Physical and mental well-being, with focus on help-seeking and culturally-embedded care patterns.</span></span> and <span class="iw" data-tech>education<span class="ip"><span class="ip-l">Marginalia</span>Psychologically wise learning environments that scaffold growth mindset, reduce threat, and build belonging.</span></span> — designing messages that don't just <span style="font-style:italic;border-bottom:4px solid var(--sun);padding-bottom:1px">reach</span>, but <span style="font-style:italic;color:var(--coral);font-weight:800">resonate</span>.</h2>
         </header>
+        <!-- Mobile hero aside (plain language) -->
+        <div class="m-aside" style="display:none"><p style="font-family:var(--st);font-size:.82rem;color:var(--txt2);font-style:italic;line-height:1.5">In simpler terms: I study why health messages work for some people but not others &mdash; and how to fix that.</p></div>
+        <!-- Mobile social proof -->
+        <div class="m-proof" style="display:none"><span class="m-badge">&#127979; Moody College</span><span class="m-badge">&#11088; Dean's List &times;7</span><span class="m-badge">&#128202; 3.88 GPA</span></div>
         <!-- 4 Specimen Icons -->
         <div class="si s5" style="display:flex;gap:1.2rem;margin-bottom:2rem;flex-wrap:wrap">
           <div class="spec" id="s-lens" style="background:rgba(79,176,198,.06);color:#4FB0C6" onclick="tS('lens')"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="12" stroke="#4FB0C6" stroke-width="3.5" fill="rgba(79,176,198,.08)"/><line x1="30" y1="30" x2="40" y2="40" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round"/></svg><span class="spec-lbl">Analytical<br>Lens</span><svg class="spec-action" width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span class="spec-hint">research identity</span></div>
@@ -92,6 +123,8 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
           </div>
         </div>
         <div class="si s6" style="padding:1.2rem 1.5rem;border-left:4px solid var(--sea);background:rgba(79,176,198,.04);border-radius:0 20px 20px 0"><p style="font-size:1.08rem;font-style:italic;color:var(--deep);line-height:1.55;font-weight:500">How do we design messages that work <strong>with</strong> — not against — the cognitive and cultural contexts people actually inhabit?</p></div>
+        <!-- Mobile: Continue to next section -->
+        <div class="m-next" style="display:none" onclick="go('field',document.querySelector('[data-v=field]'))"><p style="font-family:var(--sm);font-size:8px;color:var(--txt3);letter-spacing:.08em;margin-bottom:4px">CONTINUE EXPLORING</p><p style="font-size:1rem;font-weight:700;color:var(--deep)">Experience &rarr;</p><p style="font-size:.78rem;color:var(--txt2);margin-top:2px;font-style:italic">"Where I've actually done the work"</p></div>
       </div>
 
       <!-- EXPERIENCE (In the Field) -->
@@ -113,6 +146,8 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
             <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:10px"><span class="iw" data-tech style="color:var(--sea)">AI-based<span class="ip"><span class="ip-l">Approach</span>Machine learning models for personalized pain assessment and adaptive intervention delivery.</span></span> pain management, <span class="iw">lifestyle interventions<span class="ip"><span class="ip-l">Method</span>Behavior-change programs targeting diet, exercise, and stress management for chronic conditions.</span></span>, depressive symptom reduction in Asian American women.</p><div style="display:flex;gap:4px;flex-wrap:wrap"><span class="fc-tag" style="color:var(--sea);background:rgba(79,176,198,.06)">AI &amp; Health</span><span class="fc-tag" style="color:var(--coral);background:rgba(232,93,117,.06)">Mixed Methods</span></div></div>
           </div>
         </div>
+        <!-- Mobile: Continue to next section -->
+        <div class="m-next" style="display:none" onclick="go('notes',document.querySelector('[data-v=notes]'))"><p style="font-family:var(--sm);font-size:8px;color:var(--txt3);letter-spacing:.08em;margin-bottom:4px">CONTINUE EXPLORING</p><p style="font-size:1rem;font-weight:700;color:var(--deep)">Study Notes &rarr;</p><p style="font-size:.78rem;color:var(--txt2);margin-top:2px;font-style:italic">"The courses shaping my thinking"</p></div>
       </div>
 
       <!-- STUDY NOTES -->
@@ -391,7 +426,8 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
         <div style="padding:1rem 1.4rem;border-left:4px solid var(--sea);background:rgba(79,176,198,.03);border-radius:0 20px 20px 0;margin-top:.5rem">
           <p style="font-size:1rem;font-style:italic;color:var(--deep);line-height:1.6;font-weight:500">Each course is a different lens on the same question: how do we design interventions that work <strong style="color:var(--coral)">with</strong> people's psychology — not against it?</p>
         </div>
-
+        <!-- Mobile: Continue to next section -->
+        <div class="m-next" style="display:none" onclick="go('orchard',document.querySelector('[data-v=orchard]'))"><p style="font-family:var(--sm);font-size:8px;color:var(--txt3);letter-spacing:.08em;margin-bottom:4px">CONTINUE EXPLORING</p><p style="font-size:1rem;font-weight:700;color:var(--deep)">The Orchard &rarr;</p><p style="font-size:.78rem;color:var(--txt2);margin-top:2px;font-style:italic">"Where I write about what I'm learning"</p></div>
       </div>
 
       <!-- THE ORCHARD -->
@@ -634,6 +670,8 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
           </div>
         </div>
 
+        <!-- Mobile: Back to start -->
+        <div class="m-next" style="display:none" onclick="go('cabinet',document.querySelector('[data-v=cabinet]'))"><p style="font-family:var(--sm);font-size:8px;color:var(--txt3);letter-spacing:.08em;margin-bottom:4px">FULL CIRCLE</p><p style="font-size:1rem;font-weight:700;color:var(--deep)">&larr; Back to Cabinet</p><p style="font-size:.78rem;color:var(--txt2);margin-top:2px;font-style:italic">"Where it all begins"</p></div>
         </div><!-- end z-index wrapper -->
       </div>
 
@@ -696,7 +734,13 @@ initMarginalia();
 new MutationObserver(()=>initMarginalia()).observe(document.body,{childList:true,subtree:true});
 
 /* ── Navigation ── */
-function go(id,btn){document.querySelectorAll('.np').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.panel').forEach(p=>p.style.display='none');const p=document.getElementById('p-'+id);p.style.display='block';p.style.animation='ps .5s var(--eo)';if(id==='orchard'){setTimeout(()=>pillMeasure(),50);initFlickerGrid()}else{stopFlickerGrid()}}
+const navOrder=['cabinet','field','notes','orchard'];
+function go(id,btn){document.querySelectorAll('.np').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.panel').forEach(p=>p.style.display='none');const p=document.getElementById('p-'+id);p.style.display='block';p.style.animation='ps .5s var(--eo)';if(id==='orchard'){setTimeout(()=>pillMeasure(),50);initFlickerGrid()}else{stopFlickerGrid()}
+/* Update mobile progress dots */
+document.querySelectorAll('.m-dot').forEach(d=>d.classList.remove('on'));const ad=document.querySelector('.m-dot[data-v="'+id+'"]');if(ad)ad.classList.add('on');const mc=document.querySelector('.m-counter');if(mc)mc.textContent=(navOrder.indexOf(id)+1)+'/4';
+/* Scroll to top on mobile */
+const cs=document.querySelector('.cs');if(cs)cs.scrollTop=0;
+}
 function openC(){document.getElementById('cO').style.display='flex'}
 function closeC(){document.getElementById('cO').style.display='none'}
 function cpE(){navigator.clipboard.writeText('bellakang@utexas.edu');const l=document.getElementById('cpL');l.textContent='Copied!';setTimeout(()=>l.textContent='Copy',2000)}
@@ -878,6 +922,51 @@ function showFullScreenQuote(){
 function toggleGB(){const m=document.getElementById('gb-modal');m.style.display=m.style.display==='flex'?'none':'flex'}
 function gbReact(btn){const emoji=btn.dataset.emoji;const stored=JSON.parse(localStorage.getItem('gb-reactions')||'{}');stored[emoji]=(stored[emoji]||0)+1;localStorage.setItem('gb-reactions',JSON.stringify(stored));btn.querySelector('.gb-cnt').textContent=stored[emoji];btn.style.transform='scale(1.2)';setTimeout(()=>btn.style.transform='',300);document.getElementById('gb-thanked').style.display='block';const r=btn.getBoundingClientRect();coolBurst(r.left+r.width/2,r.top+r.height/2)}
 function gbSend(){const input=document.getElementById('gb-input');const val=input.value.trim();if(!val)return;const msgs=JSON.parse(localStorage.getItem('gb-messages')||'[]');msgs.push({text:val,time:new Date().toISOString()});localStorage.setItem('gb-messages',JSON.stringify(msgs));input.value='';document.getElementById('gb-sent-msg').style.display='block';setTimeout(()=>document.getElementById('gb-sent-msg').style.display='none',3000)}
+
+/* ── Mobile UX ── */
+(function(){
+  const isMobile=window.matchMedia('(max-width:900px)').matches;
+  const mw=document.getElementById('m-welcome');
+  if(isMobile&&!sessionStorage.getItem('mw-seen')){
+    if(mw)mw.style.display='flex';
+  }else{
+    if(mw)mw.style.display='none';
+  }
+  /* Tap-to-reveal tooltips on mobile */
+  if(isMobile){
+    document.addEventListener('click',function(e){
+      document.querySelectorAll('.ip.m-show').forEach(function(p){p.classList.remove('m-show')});
+      var iw=e.target.closest('.iw');
+      if(iw){
+        var ip=iw.querySelector('.ip');
+        if(ip){
+          var r=iw.getBoundingClientRect();
+          ip.style.left=Math.min(r.left,window.innerWidth-250)+'px';
+          ip.style.top=(r.bottom+8)+'px';
+          ip.classList.add('m-show');
+          e.preventDefault();
+        }
+      }
+    });
+  }
+  /* Shake easter egg on mobile */
+  if(isMobile&&window.DeviceMotionEvent){
+    var shakeThreshold=15,lastShake=0;
+    window.addEventListener('devicemotion',function(e){
+      var a=e.accelerationIncludingGravity;if(!a)return;
+      var total=Math.abs(a.x)+Math.abs(a.y)+Math.abs(a.z);
+      if(total>shakeThreshold*3&&Date.now()-lastShake>3000){
+        lastShake=Date.now();
+        if(typeof showFullScreenQuote==='function')showFullScreenQuote();
+      }
+    });
+  }
+})();
+function mwGo(id){
+  var mw=document.getElementById('m-welcome');if(mw)mw.style.display='none';
+  sessionStorage.setItem('mw-seen','1');
+  go(id,document.querySelector('.np[data-v="'+id+'"]'));
+}
 </script>
 </body>
 </html>
