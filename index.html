@@ -33,7 +33,8 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
 .ap{transition:all .5s var(--drift)}.ap:hover{box-shadow:0 16px 48px rgba(122,154,109,.1),0 4px 12px rgba(61,50,40,.04)!important;transform:translateY(-3px);border-color:rgba(122,154,109,.25)!important}
 .cs::-webkit-scrollbar{width:3px}.cs::-webkit-scrollbar-track{background:transparent}.cs::-webkit-scrollbar-thumb{background:var(--sea-l);border-radius:2px}
 .np{display:inline-flex;align-items:center;gap:4px;font-family:var(--st);font-size:13px;font-weight:500;background:none;border:none;cursor:pointer;padding:7px 16px;border-radius:10px;transition:all .3s var(--eo);white-space:nowrap;text-decoration:none;position:relative}.np.on{font-weight:700;color:var(--deep);background:rgba(122,154,109,.12);box-shadow:0 2px 8px rgba(122,154,109,.08)}.np.on::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:16px;height:2px;border-radius:1px;background:var(--sea)}.np:not(.on){color:var(--txt3)}.np:not(.on):hover{color:var(--txt2);background:rgba(61,50,40,.04)}
-.fc{border-radius:20px;border:1.5px solid var(--bdr);background:var(--card);transition:all .4s var(--snap);cursor:pointer;overflow:hidden}.fc:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(61,50,40,.06);border-color:rgba(122,154,109,.15)}.fc.fc-on{border-color:var(--sea);box-shadow:0 8px 32px rgba(122,154,109,.08)}.fc-head{padding:1.5rem 1.8rem;display:flex;align-items:center;gap:1.2rem}.fc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.fc-body{display:none;padding:0 1.8rem 1.6rem}.fc.fc-on .fc-body{display:block;animation:di .4s var(--eo) forwards}.fc-tag{font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:6px;display:inline-block}.fc-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--sm);font-size:9.5px;font-weight:700;padding:6px 14px;border-radius:10px;text-decoration:none;transition:all .3s var(--snap)}.fc-link:hover{transform:translateY(-1px)}.fc-chev{transition:transform .3s var(--spring);font-size:14px;font-weight:700;color:var(--txt3)}.fc.fc-on .fc-chev{transform:rotate(90deg);color:var(--sea)}
+.fc{border-radius:20px;border:1.5px solid var(--bdr);background:var(--card);transition:all .4s var(--snap);cursor:pointer;overflow:hidden}.fc:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(61,50,40,.06);border-color:rgba(196,167,108,.15)}.fc.fc-on{border-color:var(--sea);box-shadow:0 8px 32px rgba(122,154,109,.08)}.fc-head{padding:1.5rem 1.8rem;display:flex;align-items:center;gap:1.2rem}.fc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.fc-body{display:none;padding:0 1.8rem 1.6rem}.fc.fc-on .fc-body{display:block;animation:di .4s var(--eo) forwards}.fc-tag{font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:6px;display:inline-block}.fc-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--sm);font-size:9.5px;font-weight:700;padding:6px 14px;border-radius:10px;text-decoration:none;transition:all .3s var(--snap)}.fc-link:hover{transform:translateY(-1px)}.fc-chev{transition:transform .3s var(--spring);font-size:14px;font-weight:700;color:var(--txt3)}.fc.fc-on .fc-chev{transform:rotate(90deg);color:var(--sea)}
+.fc-hint{font-size:.82rem;color:var(--txt2);line-height:1.4;margin-top:4px;opacity:.7}
 .pt-btn:hover{color:var(--deep)!important}.pt-on{color:var(--deep)!important}
 .lucky-note{position:fixed;padding:10px 14px;background:#FDF8F0;border:1px solid rgba(196,167,108,.25);border-radius:2px 12px 2px 12px;font-family:var(--st);font-size:13px;font-style:italic;color:var(--deep);box-shadow:2px 3px 8px rgba(61,50,40,.06);opacity:0;transition:opacity .5s ease;z-index:10000;max-width:260px;line-height:1.5}.lucky-note.show{opacity:1}.lucky-attr{display:block;font-family:var(--sm);font-size:8px;color:var(--txt3);margin-top:4px;font-style:normal;letter-spacing:.06em}
 @keyframes fab-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}#gb-fab{animation:fab-float 3s ease-in-out infinite}#gb-fab:hover{animation-play-state:paused;transform:scale(1.1) translateY(-2px)!important}
@@ -152,18 +153,19 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
       <div class="panel" id="p-field" style="display:none;padding:2.5rem 3rem;max-width:880px;margin:0 auto">
         <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:6px">Field Specimens</p>
         <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:6px">Where I've worked</h2>
-        <div style="width:40px;height:3px;background:var(--coral);border-radius:2px;margin-bottom:2rem"></div>
+        <div style="width:40px;height:3px;border-radius:2px;margin-bottom:.8rem;background:linear-gradient(90deg,var(--coral),var(--sun))"></div>
+        <p style="font-size:.9rem;color:var(--txt2);line-height:1.5;margin-bottom:1.8rem">3 roles across research, health tech, and global marketing.</p>
         <div class="field-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
           <div class="fc" id="fc-gigc" onclick="toggleField('gigc')" style="grid-column:1/-1">
-            <div class="fc-head"><div class="fc-icon" style="background:rgba(122,154,109,.08)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#7A9A6D" stroke-width="2.5" fill="rgba(122,154,109,.06)"/><circle cx="24" cy="24" r="8" stroke="#7A9A6D" stroke-width="2" opacity=".4"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sea);font-weight:700;letter-spacing:.08em;text-transform:uppercase">UT Austin · Career &amp; Life Design</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Global Impact Graduate Consultant</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">2025–Present</p></div><span class="fc-chev">›</span></div>
+            <div class="fc-head"><div class="fc-icon" style="background:rgba(122,154,109,.08)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#7A9A6D" stroke-width="2.5" fill="rgba(122,154,109,.06)"/><circle cx="24" cy="24" r="8" stroke="#7A9A6D" stroke-width="2" opacity=".4"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sea);font-weight:700;letter-spacing:.08em;text-transform:uppercase">UT Austin · Career &amp; Life Design</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Global Impact Graduate Consultant</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">2025–Present</p><p class="fc-hint">Life Design cohort · Newsletter 500+ subs · Interview tools</p></div><span class="fc-chev">›</span></div>
             <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:12px">Operationalized Stanford's <span class="iw" style="color:var(--sun)">Life Design<span class="ip"><span class="ip-l">Framework</span>Bill Burnett &amp; Dave Evans' design thinking approach applied to career and life planning.</span></span> framework into a 12-week cohort. Newsletter (500+ subscribers), interview tools, visa guides.</p><div style="display:flex;gap:6px;flex-wrap:wrap"><a href="/interview-instinct.html" class="fc-link" style="color:var(--sea);background:rgba(122,154,109,.06);border:1px solid rgba(122,154,109,.12)">Interview Instinct →</a><a href="/iwg-handout-v10.html" class="fc-link" style="color:var(--coral);background:rgba(196,145,138,.06);border:1px solid rgba(196,145,138,.12)">HIVE Handout →</a><a href="/curiosity-cabinet.html" class="fc-link" style="color:var(--sun);background:rgba(196,167,108,.08);border:1px solid rgba(196,167,108,.15)">Curiosity Cabinet →</a></div></div>
           </div>
           <div class="fc" id="fc-dasique" onclick="toggleField('dasique')">
-            <div class="fc-head"><div class="fc-icon" style="background:rgba(196,145,138,.06)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 4l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z" stroke="#C4918A" stroke-width="2.5" fill="rgba(196,145,138,.06)" stroke-linejoin="round"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--coral);font-weight:700;letter-spacing:.08em;text-transform:uppercase">Dasique · Seoul</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Global Marketing Intern</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">Summer 2025</p></div><span class="fc-chev">›</span></div>
+            <div class="fc-head"><div class="fc-icon" style="background:rgba(196,145,138,.06)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 4l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z" stroke="#C4918A" stroke-width="2.5" fill="rgba(196,145,138,.06)" stroke-linejoin="round"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--coral);font-weight:700;letter-spacing:.08em;text-transform:uppercase">Dasique · Seoul</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Global Marketing Intern</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">Summer 2025</p><p class="fc-hint">+20% intl engagement · 100+ SKU analytics · APAC</p></div><span class="fc-chev">›</span></div>
             <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:10px">Localized <span class="iw" style="color:var(--coral)">Olive Young Global<span class="ip"><span class="ip-l">Brand</span>Korea's leading health &amp; beauty platform, expanding globally via CJ Group.</span></span> pages (<span style="color:var(--sun);font-weight:700">+20% intl engagement</span>). <span class="iw" data-tech>GTM<span class="ip"><span class="ip-l">Strategy</span>Go-To-Market — the plan for launching products into new markets and customer segments.</span></span> research. 100+ SKU analytics across <span class="iw">APAC<span class="ip"><span class="ip-l">Region</span>Asia-Pacific — primary expansion markets including Japan, SEA, and Greater China.</span></span>.</p><div style="display:flex;gap:4px;flex-wrap:wrap"><span class="fc-tag" style="color:var(--coral);background:rgba(196,145,138,.06)">Localization</span><span class="fc-tag" style="color:var(--sea);background:rgba(122,154,109,.06)">GTM Research</span><span class="fc-tag" style="color:var(--sun);background:rgba(196,167,108,.08)">APAC</span></div></div>
           </div>
           <div class="fc" id="fc-ra" onclick="toggleField('ra')">
-            <div class="fc-head"><div class="fc-icon" style="background:rgba(196,167,108,.06)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 6v36M6 24h36" stroke="#C4A76C" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="#C4A76C" stroke-width="2" fill="rgba(196,167,108,.06)"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sun);font-weight:700;letter-spacing:.08em;text-transform:uppercase">UT School of Nursing</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Research Assistant</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">2023–2025 · 18 months</p></div><span class="fc-chev">›</span></div>
+            <div class="fc-head"><div class="fc-icon" style="background:rgba(196,167,108,.06)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 6v36M6 24h36" stroke="#C4A76C" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="#C4A76C" stroke-width="2" fill="rgba(196,167,108,.06)"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sun);font-weight:700;letter-spacing:.08em;text-transform:uppercase">UT School of Nursing</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Research Assistant</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">2023–2025 · 18 months</p><p class="fc-hint">AI pain management · Mixed methods · Asian American health</p></div><span class="fc-chev">›</span></div>
             <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:10px"><span class="iw" data-tech style="color:var(--sea)">AI-based<span class="ip"><span class="ip-l">Approach</span>Machine learning models for personalized pain assessment and adaptive intervention delivery.</span></span> pain management, <span class="iw">lifestyle interventions<span class="ip"><span class="ip-l">Method</span>Behavior-change programs targeting diet, exercise, and stress management for chronic conditions.</span></span>, depressive symptom reduction in Asian American women.</p><div style="display:flex;gap:4px;flex-wrap:wrap"><span class="fc-tag" style="color:var(--sea);background:rgba(122,154,109,.06)">AI &amp; Health</span><span class="fc-tag" style="color:var(--coral);background:rgba(196,145,138,.06)">Mixed Methods</span></div></div>
           </div>
         </div>
@@ -287,38 +289,29 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
           </div>
           <!-- Description -->
           <p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:14px"><span class="iw" style="color:var(--coral)">Dual-process models<span class="ip"><span class="ip-l">Theory</span>Frameworks (ELM, HSM) explaining two routes of persuasion — central (effortful) and peripheral (heuristic).</span></span> (ELM, HSM), <span class="iw">narrative persuasion<span class="ip"><span class="ip-l">Concept</span>Using stories to transport audiences past counter-arguing, enabling attitude and belief change.</span></span>, and <span class="iw">message framing<span class="ip"><span class="ip-l">Technique</span>Presenting information as gains or losses to shift how people evaluate health decisions.</span></span> as applied to health communication contexts. This course is the theoretical backbone of my thesis work — understanding <em>how</em> and <em>why</em> messages change minds.</p>
-          <!-- Key Topics Grid -->
-          <div class="topic-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(196,145,138,.04);border:1px solid rgba(196,145,138,.08)">
+          <!-- Key Highlights -->
+          <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+            <div style="flex:1;min-width:200px;padding:.6rem .8rem;border-radius:12px;background:rgba(196,145,138,.04);border:1px solid rgba(196,145,138,.08)">
               <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em;margin-bottom:3px">DUAL-PROCESS MODELS</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">ELM, HSM, and when central vs. peripheral routes dominate</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">ELM, HSM — central vs. peripheral persuasion routes</p>
             </div>
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(196,145,138,.04);border:1px solid rgba(196,145,138,.08)">
-              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em;margin-bottom:3px">NARRATIVE TRANSPORT</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">How stories bypass resistance and reshape health beliefs</p>
-            </div>
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(196,145,138,.04);border:1px solid rgba(196,145,138,.08)">
+            <div style="flex:1;min-width:200px;padding:.6rem .8rem;border-radius:12px;background:rgba(196,145,138,.04);border:1px solid rgba(196,145,138,.08)">
               <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em;margin-bottom:3px">MESSAGE FRAMING</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Gain vs. loss frames in preventive health communication</p>
-            </div>
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(196,145,138,.04);border:1px solid rgba(196,145,138,.08)">
-              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em;margin-bottom:3px">RESISTANCE &amp; REACTANCE</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Why some messages backfire and how to anticipate it</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Gain vs. loss frames in health communication</p>
             </div>
           </div>
-          <!-- Thesis Connection -->
-          <div style="padding:.8rem 1rem;border-radius:14px;background:linear-gradient(135deg,rgba(196,145,138,.04),rgba(196,167,108,.04));border-left:3px solid var(--coral);margin-bottom:14px">
-            <p style="font-family:var(--sm);font-size:8px;font-weight:700;color:var(--coral);letter-spacing:.08em;margin-bottom:4px">THESIS CONNECTION</p>
-            <p style="font-size:.85rem;color:var(--txt2);line-height:1.6">How can culturally-adapted message framing reduce <span class="iw">self-silencing<span class="ip"><span class="ip-l">Key Construct</span>Suppressing one's needs and voice to maintain relational harmony — prevalent in collectivist cultural contexts.</span></span> in Korean American women seeking mental health support?</p>
-          </div>
-          <!-- Tags + Link -->
-          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-            <div style="display:flex;gap:5px;flex-wrap:wrap">
-              <span class="fc-tag" style="color:var(--coral);background:rgba(196,145,138,.06)">Health Comm</span>
-              <span class="fc-tag" style="color:var(--sun);background:rgba(196,167,108,.06)">Attitude Change</span>
-              <span class="fc-tag" style="color:var(--sea);background:rgba(122,154,109,.06)">Social Influence</span>
+          <!-- Thesis Connection + Tags -->
+          <div style="padding:.6rem .8rem;border-radius:12px;background:linear-gradient(135deg,rgba(196,145,138,.04),rgba(196,167,108,.04));border-left:3px solid var(--coral);margin-bottom:10px">
+            <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.08em;margin-bottom:3px">THESIS CONNECTION</p>
+            <p style="font-size:.82rem;color:var(--txt2);line-height:1.5;margin-bottom:6px">How can culturally-adapted message framing reduce <span class="iw">self-silencing<span class="ip"><span class="ip-l">Key Construct</span>Suppressing one's needs and voice to maintain relational harmony — prevalent in collectivist cultural contexts.</span></span> in Korean American women seeking mental health support?</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
+              <div style="display:flex;gap:4px;flex-wrap:wrap">
+                <span class="fc-tag" style="color:var(--coral);background:rgba(196,145,138,.06)">Health Comm</span>
+                <span class="fc-tag" style="color:var(--sun);background:rgba(196,167,108,.06)">Attitude Change</span>
+                <span class="fc-tag" style="color:var(--sea);background:rgba(122,154,109,.06)">Social Influence</span>
+              </div>
+              <a href="/adv382j-guide/" class="fc-link" style="color:var(--coral);background:rgba(196,145,138,.06);border:1px solid rgba(196,145,138,.12)">Course Guide &#8594;</a>
             </div>
-            <a href="/adv382j-guide/" class="fc-link" style="color:var(--coral);background:rgba(196,145,138,.06);border:1px solid rgba(196,145,138,.12)">Course Guide &#8594;</a>
           </div>
         </div></div>
 
@@ -335,38 +328,29 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
           </div>
           <!-- Description -->
           <p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:14px">Empirics-first methodology. <span class="iw" data-tech style="color:var(--sea)">Causal inference<span class="ip"><span class="ip-l">Method</span>Statistical techniques (DiD, IV, RDD) to establish cause-and-effect from observational data.</span></span>, <span class="iw" data-tech>structural models<span class="ip"><span class="ip-l">Method</span>Economic models of decision processes — modeling why consumers choose, not just what they choose.</span></span>, and econometric methods applied to consumer behavior. Learning to think like a quantitative researcher — to let the data structure reveal the story rather than imposing one.</p>
-          <!-- Key Topics Grid -->
-          <div class="topic-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(122,154,109,.04);border:1px solid rgba(122,154,109,.08)">
+          <!-- Key Highlights -->
+          <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+            <div style="flex:1;min-width:200px;padding:.6rem .8rem;border-radius:12px;background:rgba(122,154,109,.04);border:1px solid rgba(122,154,109,.08)">
               <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--sea);letter-spacing:.06em;margin-bottom:3px">CAUSAL INFERENCE</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">DiD, IV, RDD — isolating treatment effects in observational data</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">DiD, IV, RDD — isolating treatment effects</p>
             </div>
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(122,154,109,.04);border:1px solid rgba(122,154,109,.08)">
+            <div style="flex:1;min-width:200px;padding:.6rem .8rem;border-radius:12px;background:rgba(122,154,109,.04);border:1px solid rgba(122,154,109,.08)">
               <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--sea);letter-spacing:.06em;margin-bottom:3px">STRUCTURAL MODELS</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Modeling decision processes rather than just correlations</p>
-            </div>
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(122,154,109,.04);border:1px solid rgba(122,154,109,.08)">
-              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--sea);letter-spacing:.06em;margin-bottom:3px">ECONOMETRIC METHODS</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">MLE, GMM, and Bayesian approaches to marketing problems</p>
-            </div>
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(122,154,109,.04);border:1px solid rgba(122,154,109,.08)">
-              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--sea);letter-spacing:.06em;margin-bottom:3px">CONSUMER BEHAVIOR</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Choice models, brand switching, and demand estimation</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Modeling decision processes, not just correlations</p>
             </div>
           </div>
-          <!-- Thesis Connection -->
-          <div style="padding:.8rem 1rem;border-radius:14px;background:linear-gradient(135deg,rgba(122,154,109,.04),rgba(122,154,109,.04));border-left:3px solid var(--sea);margin-bottom:14px">
-            <p style="font-family:var(--sm);font-size:8px;font-weight:700;color:var(--sea);letter-spacing:.08em;margin-bottom:4px">WHY THIS MATTERS</p>
-            <p style="font-size:.85rem;color:var(--txt2);line-height:1.6">Building the quantitative rigor to design experiments that measure real intervention effects — not just survey responses but behavioral change.</p>
-          </div>
-          <!-- Tags + Link -->
-          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-            <div style="display:flex;gap:5px;flex-wrap:wrap">
-              <span class="fc-tag" style="color:var(--sea);background:rgba(122,154,109,.06)">Econometrics</span>
-              <span class="fc-tag" style="color:var(--coral);background:rgba(196,145,138,.06)">Causal Design</span>
-              <span class="fc-tag" style="color:var(--sun);background:rgba(196,167,108,.06)">Consumer Choice</span>
+          <!-- Thesis Connection + Tags -->
+          <div style="padding:.6rem .8rem;border-radius:12px;background:linear-gradient(135deg,rgba(122,154,109,.04),rgba(122,154,109,.04));border-left:3px solid var(--sea);margin-bottom:10px">
+            <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--sea);letter-spacing:.08em;margin-bottom:3px">WHY THIS MATTERS</p>
+            <p style="font-size:.82rem;color:var(--txt2);line-height:1.5;margin-bottom:6px">Building the quantitative rigor to design experiments that measure real intervention effects — not just survey responses but behavioral change.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
+              <div style="display:flex;gap:4px;flex-wrap:wrap">
+                <span class="fc-tag" style="color:var(--sea);background:rgba(122,154,109,.06)">Econometrics</span>
+                <span class="fc-tag" style="color:var(--coral);background:rgba(196,145,138,.06)">Causal Design</span>
+                <span class="fc-tag" style="color:var(--sun);background:rgba(196,167,108,.06)">Consumer Choice</span>
+              </div>
+              <a href="/mkt397/" class="fc-link" style="color:var(--sea);background:rgba(122,154,109,.06);border:1px solid rgba(122,154,109,.12)">Research Log &#8594;</a>
             </div>
-            <a href="/mkt397/" class="fc-link" style="color:var(--sea);background:rgba(122,154,109,.06);border:1px solid rgba(122,154,109,.12)">Research Log &#8594;</a>
           </div>
         </div></div>
 
@@ -383,57 +367,35 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
           </div>
           <!-- Description -->
           <p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:14px"><span class="iw" style="color:var(--sun)">Growth mindset<span class="ip"><span class="ip-l">Dweck</span>The belief that abilities can be developed through effort, reshaping how people respond to challenge.</span></span>, <span class="iw">belonging<span class="ip"><span class="ip-l">Walton &amp; Cohen</span>Brief interventions that normalize adversity and build social connection in academic settings.</span></span>, <span class="iw">stress reappraisal<span class="ip"><span class="ip-l">Crum Lab</span>Reframing the stress response as enhancing rather than debilitating — changing physiology through belief.</span></span>, and <span class="iw">self-affirmation<span class="ip"><span class="ip-l">Cohen &amp; Sherman</span>Values-affirmation exercises that buffer identity threat and reduce achievement gaps.</span></span> as scalable intervention levers. This is where I learn to design the smallest possible cognitive shift that redirects self-defeating patterns into self-enhancing ones.</p>
-          <!-- Key Topics Grid -->
-          <div class="topic-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(196,167,108,.04);border:1px solid rgba(196,167,108,.1)">
-              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.06em;margin-bottom:3px">GROWTH MINDSET</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Dweck's framework: how beliefs about ability shape resilience</p>
-            </div>
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(196,167,108,.04);border:1px solid rgba(196,167,108,.1)">
-              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.06em;margin-bottom:3px">BELONGING INTERVENTIONS</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Walton &amp; Cohen's social-belonging intervention and its replications</p>
-            </div>
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(196,167,108,.04);border:1px solid rgba(196,167,108,.1)">
-              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.06em;margin-bottom:3px">STRESS REAPPRAISAL</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Crum's mindset science: reframing stress as enhancing, not debilitating</p>
-            </div>
-            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(196,167,108,.04);border:1px solid rgba(196,167,108,.1)">
-              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.06em;margin-bottom:3px">SELF-AFFIRMATION</p>
-              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Values-affirmation to buffer identity threat in academic settings</p>
-            </div>
-          </div>
-          <!-- Thesis Connection -->
-          <div style="padding:.8rem 1rem;border-radius:14px;background:linear-gradient(135deg,rgba(196,167,108,.04),rgba(196,145,138,.04));border-left:3px solid var(--sun);margin-bottom:14px">
-            <p style="font-family:var(--sm);font-size:8px;font-weight:700;color:#c9a620;letter-spacing:.08em;margin-bottom:4px">THESIS CONNECTION</p>
-            <p style="font-size:.85rem;color:var(--txt2);line-height:1.6">Can a psychologically wise intervention reframe help-seeking from weakness to strength in cultures that emphasize relational harmony?</p>
-          </div>
-          <!-- Key Scholars -->
+          <!-- Key Highlights -->
           <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
-            <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(196,167,108,.05);border:1px solid rgba(196,167,108,.1)">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C4A76C" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#C4A76C" stroke-width="2" stroke-linecap="round"/></svg>
-              <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Yeager &amp; Walton</span>
+            <div style="flex:1;min-width:200px;padding:.6rem .8rem;border-radius:12px;background:rgba(196,167,108,.04);border:1px solid rgba(196,167,108,.1)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.06em;margin-bottom:3px">GROWTH MINDSET</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">How beliefs about ability shape resilience (Dweck)</p>
             </div>
-            <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(196,167,108,.05);border:1px solid rgba(196,167,108,.1)">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C4A76C" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#C4A76C" stroke-width="2" stroke-linecap="round"/></svg>
-              <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Dweck</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(196,167,108,.05);border:1px solid rgba(196,167,108,.1)">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C4A76C" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#C4A76C" stroke-width="2" stroke-linecap="round"/></svg>
-              <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Crum</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(196,167,108,.05);border:1px solid rgba(196,167,108,.1)">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C4A76C" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#C4A76C" stroke-width="2" stroke-linecap="round"/></svg>
-              <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Cohen &amp; Sherman</span>
+            <div style="flex:1;min-width:200px;padding:.6rem .8rem;border-radius:12px;background:rgba(196,167,108,.04);border:1px solid rgba(196,167,108,.1)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.06em;margin-bottom:3px">BELONGING INTERVENTIONS</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Walton &amp; Cohen's social-belonging intervention</p>
             </div>
           </div>
-          <!-- Tags + Link -->
-          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-            <div style="display:flex;gap:5px;flex-wrap:wrap">
-              <span class="fc-tag" style="color:#c9a620;background:rgba(196,167,108,.06)">Wise Interventions</span>
-              <span class="fc-tag" style="color:var(--coral);background:rgba(196,145,138,.06)">Mindset Science</span>
-              <span class="fc-tag" style="color:var(--sea);background:rgba(122,154,109,.06)">Belonging</span>
+          <!-- Thesis Connection + Scholars + Tags -->
+          <div style="padding:.6rem .8rem;border-radius:12px;background:linear-gradient(135deg,rgba(196,167,108,.04),rgba(196,145,138,.04));border-left:3px solid var(--sun);margin-bottom:10px">
+            <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.08em;margin-bottom:3px">THESIS CONNECTION</p>
+            <p style="font-size:.82rem;color:var(--txt2);line-height:1.5;margin-bottom:6px">Can a psychologically wise intervention reframe help-seeking from weakness to strength in cultures that emphasize relational harmony?</p>
+            <div style="display:flex;gap:4px;margin-bottom:6px;flex-wrap:wrap">
+              <span style="font-family:var(--sm);font-size:7.5px;padding:2px 8px;border-radius:8px;background:rgba(196,167,108,.05);border:1px solid rgba(196,167,108,.1);color:var(--txt2)">Yeager &amp; Walton</span>
+              <span style="font-family:var(--sm);font-size:7.5px;padding:2px 8px;border-radius:8px;background:rgba(196,167,108,.05);border:1px solid rgba(196,167,108,.1);color:var(--txt2)">Dweck</span>
+              <span style="font-family:var(--sm);font-size:7.5px;padding:2px 8px;border-radius:8px;background:rgba(196,167,108,.05);border:1px solid rgba(196,167,108,.1);color:var(--txt2)">Crum</span>
+              <span style="font-family:var(--sm);font-size:7.5px;padding:2px 8px;border-radius:8px;background:rgba(196,167,108,.05);border:1px solid rgba(196,167,108,.1);color:var(--txt2)">Cohen &amp; Sherman</span>
             </div>
-            <a href="/edp382c/" class="fc-link" style="color:#c9a620;background:rgba(196,167,108,.06);border:1px solid rgba(196,167,108,.15)">Course Portfolio &#8594;</a>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
+              <div style="display:flex;gap:4px;flex-wrap:wrap">
+                <span class="fc-tag" style="color:#c9a620;background:rgba(196,167,108,.06)">Wise Interventions</span>
+                <span class="fc-tag" style="color:var(--coral);background:rgba(196,145,138,.06)">Mindset Science</span>
+                <span class="fc-tag" style="color:var(--sea);background:rgba(122,154,109,.06)">Belonging</span>
+              </div>
+              <a href="/edp382c/" class="fc-link" style="color:#c9a620;background:rgba(196,167,108,.06);border:1px solid rgba(196,167,108,.15)">Course Portfolio &#8594;</a>
+            </div>
           </div>
         </div></div>
 
@@ -907,13 +869,16 @@ function showLuckyNote(anchor,pos){
   setTimeout(()=>{note.classList.remove('show');setTimeout(()=>note.remove(),600)},5000);
 }
 function showFullScreenQuote(){
+  if(window._quoteActive)return;window._quoteActive=true;
+  const existing=document.querySelector('.sn-quote-overlay');if(existing)existing.remove();
   const q=rndQuote(),ov=document.createElement('div');
+  ov.className='sn-quote-overlay';
   ov.style.cssText='position:fixed;inset:0;z-index:99998;display:flex;align-items:center;justify-content:center;background:rgba(61,50,40,.85);backdrop-filter:blur(20px);opacity:0;transition:opacity .6s ease;flex-direction:column;gap:12px;cursor:pointer';
   ov.innerHTML='<p style="font-family:var(--st);font-size:1.5rem;color:var(--cream);text-align:center;max-width:460px;line-height:1.6;font-style:italic">\u201C'+q.text+'\u201D</p><p style="font-family:var(--sm);font-size:10px;color:var(--sea-l);letter-spacing:.12em">\u2014 '+q.attr+'</p>';
   document.body.appendChild(ov);
   requestAnimationFrame(()=>{ov.style.opacity='1'});
   coolBurst(window.innerWidth/2,window.innerHeight/2);
-  const dismiss=()=>{ov.style.opacity='0';setTimeout(()=>ov.remove(),700)};
+  const dismiss=()=>{ov.style.opacity='0';setTimeout(()=>{ov.remove();window._quoteActive=false},700)};
   setTimeout(dismiss,4000);ov.onclick=dismiss;
 }
 /* EE1: Triple-click hero */
@@ -1015,18 +980,19 @@ setTimeout(snPillMeasure,200);
 window.addEventListener('resize',snPillMeasure);
 /* ── Lotus Easter Eggs: Literary Quotes ── */
 const litQuotes=[
-  {text:"One cannot think well, love well, sleep well, if one has not dined well.",attr:"Virginia Woolf, A Room of One's Own"},
-  {text:"I have been and still am a seeker, but I have ceased to question stars and books; I have begun to listen to the teaching my blood whispers to me.",attr:"Hermann Hesse, Demian"},
-  {text:"Becoming is better than being.",attr:"Carol Dweck, Mindset"},
-  {text:"The only way to do great work is to love what you do.",attr:"Steve Jobs"},
-  {text:"You must not ever stop being whimsical. And you must not, ever, give anyone else the responsibility for your life.",attr:"Mary Oliver"},
-  {text:"Every flower must grow through dirt.",attr:"Laurie Jean Sennott"},
-  {text:"What is to give light must endure burning.",attr:"Viktor Frankl"},
-  {text:"The mind is not a vessel to be filled, but a fire to be kindled.",attr:"Plutarch"}
+  {text:"One cannot think well, love well, sleep well, if one has not dined well.",attr:"Virginia Woolf"},
+  {text:"I have been and still am a seeker, but I have ceased to question stars and books; I have begun to listen to the teaching my blood whispers to me.",attr:"Hermann Hesse"},
+  {text:"You must not ever stop being whimsical.",attr:"Mary Oliver"},
+  {text:"Perhaps all the dragons in our lives are princesses who are only waiting to see us act, just once, with beauty and courage.",attr:"Rainer Maria Rilke"},
+  {text:"I took a deep breath and listened to the old brag of my heart. I am, I am, I am.",attr:"Sylvia Plath"},
+  {text:"I dwell in Possibility \u2014 a fairer House than Prose.",attr:"Emily Dickinson"},
+  {text:"A book must be the axe for the frozen sea within us.",attr:"Franz Kafka"},
+  {text:"And once the storm is over, you won\u2019t remember how you made it through. But one thing is certain. When you come out of the storm, you won\u2019t be the same person who walked in.",attr:"Haruki Murakami"}
 ];
 let lastLitIdx=-1;
 function rndLit(){let i;do{i=Math.floor(Math.random()*litQuotes.length)}while(i===lastLitIdx&&litQuotes.length>1);lastLitIdx=i;return litQuotes[i]}
 function showLitQuote(){
+  if(window._quoteActive)return;window._quoteActive=true;
   const existing=document.querySelector('.sn-quote-overlay');if(existing)existing.remove();
   const q=rndLit(),ov=document.createElement('div');
   ov.className='sn-quote-overlay';
@@ -1034,7 +1000,7 @@ function showLitQuote(){
   document.body.appendChild(ov);
   requestAnimationFrame(()=>{ov.classList.add('show')});
   coolBurst(window.innerWidth/2,window.innerHeight/2);
-  const dismiss=()=>{ov.classList.remove('show');setTimeout(()=>ov.remove(),700)};
+  const dismiss=()=>{ov.classList.remove('show');setTimeout(()=>{ov.remove();window._quoteActive=false},700)};
   setTimeout(dismiss,4500);ov.onclick=dismiss;
 }
 /* Lotus hover easter egg (3-second hold) */
