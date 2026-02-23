@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bella Kang — Research &amp; Design</title>
+<link rel="icon" type="image/png" href="images/9.png">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#0D3B66;--sea:#4FB0C6;--sea-l:#99bfd5;--coral:#E85D75;--peach:#f7a088;--sun:#F2C94C;--cream:#FDFCF5;--sage:rgba(107,184,76,.8);--txt:#0D3B66;--txt2:#3a6585;--txt3:#7a9bb5;--glass:rgba(255,255,255,.55);--glassB:rgba(255,255,255,.2);--card:#fff;--bdr:rgba(13,59,102,.06);--sf:'Crimson Pro',Georgia,serif;--st:'Crimson Text',serif;--sm:'JetBrains Mono',monospace;--spring:cubic-bezier(.175,.885,.32,1.275);--eo:cubic-bezier(.16,1,.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}html,body{height:100%;overflow:hidden}
+body{font-family:var(--sf);color:var(--txt);background:var(--cream);-webkit-font-smoothing:antialiased;cursor:none}
+a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cursor:none}
+#blend-cursor{position:fixed;top:0;left:0;width:18px;height:18px;border-radius:50%;background:rgba(79,176,198,.55);mix-blend-mode:difference;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .25s var(--eo),height .25s var(--eo),background .3s,opacity .25s}
+#blend-cursor.hover{width:44px;height:44px;background:rgba(232,93,117,.45)}
+#blend-cursor.click{width:14px;height:14px;background:rgba(242,201,76,.6)}
+::selection{background:rgba(232,93,117,.14);color:var(--deep)}.vert{writing-mode:vertical-rl;text-orientation:mixed}
+@keyframes fd{0%,100%{transform:translate(0,0) scale(1);opacity:.6}25%{transform:translate(12px,-18px) scale(1.1);opacity:.8}50%{transform:translate(-8px,-30px) scale(.95);opacity:.5}75%{transform:translate(15px,-12px) scale(1.05);opacity:.7}}.fairy{position:absolute;border-radius:50%;pointer-events:none}
+@keyframes si{0%{opacity:0;transform:translateY(18px) scale(.97)}100%{opacity:1;transform:translateY(0) scale(1)}}.si{opacity:0;animation:si .7s var(--eo) forwards}.s1{animation-delay:.06s}.s2{animation-delay:.14s}.s3{animation-delay:.24s}.s4{animation-delay:.36s}.s5{animation-delay:.48s}.s6{animation-delay:.6s}
+@keyframes ps{0%{opacity:0;transform:translateX(16px)}100%{opacity:1;transform:translateX(0)}}
+@keyframes di{0%{opacity:0;max-height:0;transform:translateY(-8px)}100%{opacity:1;max-height:2000px;transform:translateY(0)}}.di{animation:di .5s var(--eo) forwards;overflow:hidden}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.iw{position:relative;display:inline;color:var(--coral);font-weight:700;border-bottom:2px solid transparent;transition:border-color .35s var(--eo);cursor:help;z-index:50}.iw:hover{border-bottom-color:var(--coral)}.iw[data-tech]:hover{border-bottom-color:var(--sea);color:var(--sea);font-family:var(--sm);font-size:.93em}
+.ip{position:fixed;width:max-content;max-width:280px;padding:10px 14px;background:var(--deep);color:var(--cream);font-family:var(--sm);font-size:11px;font-weight:400;line-height:1.55;border-radius:12px;box-shadow:0 10px 40px rgba(13,59,102,.22);opacity:0;pointer-events:none;transition:opacity .3s var(--eo),transform .4s var(--spring);z-index:10000;transform:translateY(6px) scale(.94)}.iw:hover .ip{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}.ip-l{display:block;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sea-l);margin-bottom:4px;font-weight:600}
+.spec{width:110px;height:110px;border-radius:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;position:relative;flex-shrink:0;border:2.5px solid transparent;transition:all .4s var(--spring);box-shadow:0 2px 12px rgba(13,59,102,.03)}.spec:hover{transform:translateY(-5px) scale(1.04);box-shadow:0 10px 32px rgba(13,59,102,.07)}.spec.on{border-color:var(--coral);box-shadow:0 10px 36px rgba(232,93,117,.1);animation:breathe 3s ease-in-out infinite}.spec svg{transition:filter .5s,transform .4s var(--spring)}.spec:hover svg{transform:scale(1.08) rotate(2deg)}.spec.on svg,.spec:hover svg{filter:drop-shadow(0 0 8px currentColor)}.spec-lbl{font-family:var(--st);font-size:10.5px;font-weight:600;color:var(--txt2);text-align:center;line-height:1.15;letter-spacing:.02em}
+.course-avatar.on{animation:breathe 3s ease-in-out infinite}.course-avatar[data-c="adv"].on{border-color:var(--coral);box-shadow:0 10px 36px rgba(232,93,117,.1)}.course-avatar[data-c="mkt"].on{border-color:var(--sea);box-shadow:0 10px 36px rgba(79,176,198,.1)}.course-avatar[data-c="edp"].on{border-color:var(--sun);box-shadow:0 10px 36px rgba(242,201,76,.12)}
+.ap{transition:all .45s var(--spring)}.ap:hover{box-shadow:0 16px 48px rgba(107,184,76,.1)!important;transform:translateY(-3px);border-color:rgba(107,184,76,.3)!important}
+.cs::-webkit-scrollbar{width:3px}.cs::-webkit-scrollbar-track{background:transparent}.cs::-webkit-scrollbar-thumb{background:var(--sea-l);border-radius:2px}
+.np{display:inline-flex;align-items:center;gap:4px;font-family:var(--st);font-size:13px;font-weight:500;background:none;border:none;cursor:pointer;padding:8px 0;transition:all .3s var(--eo);white-space:nowrap;text-decoration:none}.np.on{font-weight:700;color:var(--deep);text-decoration:underline;text-decoration-color:var(--coral);text-underline-offset:4px;text-decoration-thickness:2px}.np:not(.on){color:var(--txt3)}
+.fc{border-radius:24px;border:1.5px solid var(--bdr);background:var(--card);transition:all .4s var(--spring);cursor:pointer;overflow:hidden}.fc:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(13,59,102,.06)}.fc.fc-on{border-color:var(--sea);box-shadow:0 8px 32px rgba(79,176,198,.08)}.fc-head{padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1rem}.fc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.fc-body{display:none;padding:0 1.6rem 1.4rem}.fc.fc-on .fc-body{display:block;animation:di .4s var(--eo) forwards}.fc-tag{font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:6px;display:inline-block}.fc-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--sm);font-size:9.5px;font-weight:700;padding:6px 14px;border-radius:10px;text-decoration:none;transition:all .3s var(--spring)}.fc-link:hover{transform:translateY(-1px)}.fc-chev{transition:transform .3s var(--spring);font-size:14px;font-weight:700;color:var(--txt3)}.fc.fc-on .fc-chev{transform:rotate(90deg);color:var(--sea)}
+.pt-btn:hover{color:var(--deep)!important}.pt-on{color:var(--deep)!important}
+/* sub-specimens inside Lens */
+.sub-spec{width:90px;height:90px;border-radius:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:2px solid transparent;transition:all .4s var(--spring);box-shadow:0 2px 10px rgba(13,59,102,.02)}.sub-spec:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 8px 24px rgba(13,59,102,.06)}.sub-spec.on{border-color:var(--sea);box-shadow:0 8px 28px rgba(79,176,198,.1)}.sub-spec svg{transition:all .4s var(--spring)}.sub-spec:hover svg{transform:scale(1.08)}.sub-spec .spec-lbl{font-size:9px}
+@media(max-width:900px){.dash{grid-template-columns:1fr!important}.bcol{display:none!important}.fairy{display:none}.spec{width:86px;height:86px;border-radius:24px}.sub-spec{width:72px;height:72px;border-radius:20px}.hero{font-size:1.5rem!important}.ip{display:none!important}.field-grid{grid-template-columns:1fr!important}#pt-bar{flex-wrap:wrap;border-radius:20px}.currently-grid{grid-template-columns:1fr!important}.topic-grid{grid-template-columns:1fr!important}.degree-grid{grid-template-columns:1fr!important}.practice-grid{grid-template-columns:1fr!important}body,a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cursor:auto!important}#blend-cursor{display:none!important}}
+</style>
+</head>
+<body>
+<div class="dash" style="height:100vh;display:grid;grid-template-columns:96px 1fr;overflow:hidden">
+  <aside class="bcol" style="background:var(--deep);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.4rem 0;position:relative;overflow:hidden;z-index:10">
+    <div class="portrait si s1" style="margin-bottom:.8rem;z-index:2;position:relative"><img src="images/profile.jpg" alt="Bella Kang" loading="lazy" style="width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid rgba(79,176,198,.4);transition:all .5s var(--spring);box-shadow:0 6px 24px rgba(79,176,198,.22)" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''"></div>
+    <h1 class="vert si s2" style="font-family:var(--sf);font-size:2.1rem;font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1;transform:rotate(180deg);flex:1;display:flex;align-items:center;z-index:2">Bella <span style="color:var(--sun);font-style:italic">Kang</span></h1>
+    <p class="vert si s3" style="font-family:var(--sm);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:var(--sea-l);opacity:.4;transform:rotate(180deg);z-index:2;margin-top:.5rem">Moody College · Thesis Track</p>
+  </aside>
+  <div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;position:relative">
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden"><div class="fairy" style="left:8%;top:15%;width:60px;height:60px;background:radial-gradient(circle,rgba(79,176,198,.06) 0%,transparent 70%);animation:fd 18s ease-in-out infinite"></div><div class="fairy" style="left:75%;top:10%;width:80px;height:80px;background:radial-gradient(circle,rgba(232,93,117,.04) 0%,transparent 70%);animation:fd 22s ease-in-out 3s infinite"></div><div class="fairy" style="left:45%;top:70%;width:50px;height:50px;background:radial-gradient(circle,rgba(242,201,76,.05) 0%,transparent 70%);animation:fd 20s ease-in-out 6s infinite"></div></div>
+    <nav style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(253,252,245,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);z-index:20;flex-shrink:0">
+      <div style="display:flex;gap:1.3rem;align-items:center">
+        <button class="np on" data-v="cabinet" onclick="go('cabinet',this)"><svg width="14" height="14" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="10" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/><line x1="29" y1="29" x2="38" y2="38" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/></svg> Cabinet</button>
+        <button class="np" data-v="field" onclick="go('field',this)">Experience</button>
+        <button class="np" data-v="notes" onclick="go('notes',this)">Study Notes</button>
+        <button class="np" data-v="orchard" onclick="go('orchard',this)"><svg width="14" height="14" viewBox="0 0 48 48" fill="none"><path d="M24 42s-12-9-12-20c0-5 3-8 7-8 2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 4 0 7 3 7 8 0 11-12 20-12 20z" stroke="#6BB84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> The Orchard</button>
+      </div>
+      <div style="display:flex;gap:.9rem;align-items:center"><a href="https://www.linkedin.com/in/bellakang017" target="_blank" style="font-family:var(--sm);font-size:9.5px;color:var(--txt3);text-decoration:none">LinkedIn ↗</a><button onclick="openC()" style="font-family:var(--sm);font-size:9.5px;font-weight:700;padding:6px 14px;background:var(--coral);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .3s var(--spring)" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">CONTACT</button></div>
+    </nav>
+    <div class="cs" style="flex:1;overflow-y:auto;overflow-x:hidden;position:relative;z-index:10">
+
+      <!-- CABINET -->
+      <div class="panel on" id="p-cabinet" style="padding:2.5rem 3rem;max-width:880px;margin:0 auto">
+        <header style="margin-bottom:2.2rem">
+          <p class="si s3" style="font-family:var(--sm);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:.8rem">Research Specimen · UT Austin</p>
+          <h2 class="si s4 hero" style="font-size:clamp(1.8rem,3.6vw,2.5rem);font-weight:700;line-height:1.2;color:var(--deep)">I research how <span class="iw" data-tech>AI<span class="ip"><span class="ip-l">Marginalia</span>Applying computational models and LLMs to understand and scale behavior-change interventions.</span></span> and <span class="iw" data-tech>technology<span class="ip"><span class="ip-l">Marginalia</span>Digital tools — from chatbots to mobile health apps — that mediate how people receive health information.</span></span> shape <span class="iw" style="border-bottom-color:var(--sun)">human behavior<span class="ip"><span class="ip-l">Marginalia</span>Patterns of action, cognition, and emotion shaped by environment, culture, and communication framing.</span></span> in <span class="iw">health<span class="ip"><span class="ip-l">Marginalia</span>Physical and mental well-being, with focus on help-seeking and culturally-embedded care patterns.</span></span> and <span class="iw" data-tech>education<span class="ip"><span class="ip-l">Marginalia</span>Psychologically wise learning environments that scaffold growth mindset, reduce threat, and build belonging.</span></span> — designing messages that don't just <span style="font-style:italic;border-bottom:4px solid var(--sun);padding-bottom:1px">reach</span>, but <span style="font-style:italic;color:var(--coral);font-weight:800">resonate</span>.</h2>
+        </header>
+        <!-- 4 Specimen Icons -->
+        <div class="si s5" style="display:flex;gap:1.2rem;margin-bottom:2rem;flex-wrap:wrap">
+          <div class="spec" id="s-lens" style="background:rgba(79,176,198,.06);color:#4FB0C6" onclick="tS('lens')"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="12" stroke="#4FB0C6" stroke-width="3.5" fill="rgba(79,176,198,.08)"/><line x1="30" y1="30" x2="40" y2="40" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round"/></svg><span class="spec-lbl">Analytical<br>Lens</span></div>
+          <div class="spec" id="s-exp" style="background:rgba(232,93,117,.04);color:#E85D75" onclick="go('field',document.querySelector('[data-v=field]'))"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M18 6h12M20 6v16l-8 14a4 4 0 003.5 6h17a4 4 0 003.5-6l-8-14V6" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.06)"/></svg><span class="spec-lbl">Expe-<br>rience</span></div>
+          <div class="spec" id="s-study" style="background:rgba(242,201,76,.06);color:#F2C94C" onclick="go('notes',document.querySelector('[data-v=notes]'))"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="5" stroke="#F2C94C" stroke-width="3" fill="rgba(242,201,76,.08)"/><line x1="24" y1="15" x2="24" y2="38" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/><path d="M24 38c-6 0-10-4-12-8M24 38c6 0 10-4 12-8" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/></svg><span class="spec-lbl">Study<br>Notes</span></div>
+          <div class="spec" id="s-orch" style="background:rgba(107,184,76,.06);color:#6BB84C" onclick="go('orchard',document.querySelector('[data-v=orchard]'))"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(107,184,76,.06)"/></svg><span class="spec-lbl">The<br>Orchard</span></div>
+        </div>
+        <!-- Lens expanded: 3 sub-specimens -->
+        <div id="sp-lens" class="sp" style="display:none">
+          <div class="di" style="padding:1.8rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:28px;margin-bottom:1.8rem">
+            <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:1rem"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="12" stroke="#4FB0C6" stroke-width="3.5" fill="rgba(79,176,198,.08)"/><line x1="30" y1="30" x2="40" y2="40" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round"/></svg><div><h3 style="font-size:1.2rem;font-weight:800;color:var(--deep)">The Lens</h3><p style="font-family:var(--sm);font-size:9px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">Research Identity</p></div></div>
+            <!-- 3 sub-spec buttons -->
+            <div style="display:flex;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap">
+              <div class="sub-spec" id="ss-al" style="background:rgba(79,176,198,.05);color:#4FB0C6" onclick="event.stopPropagation();tSub('al')"><svg width="28" height="28" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="10" stroke="#4FB0C6" stroke-width="3" fill="rgba(79,176,198,.06)"/><line x1="28" y1="28" x2="38" y2="38" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/></svg><span class="spec-lbl">Analytical<br>Lens</span></div>
+              <div class="sub-spec" id="ss-pt" style="background:rgba(232,93,117,.04);color:#E85D75" onclick="event.stopPropagation();tSub('pt')"><svg width="28" height="28" viewBox="0 0 48 48" fill="none"><path d="M18 8h12M20 8v14l-7 12a3.5 3.5 0 003 5h16a3.5 3.5 0 003-5l-7-12V8" stroke="#E85D75" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.04)"/></svg><span class="spec-lbl">Proto-<br>typing</span></div>
+              <div class="sub-spec" id="ss-th" style="background:rgba(242,201,76,.05);color:#F2C94C" onclick="event.stopPropagation();tSub('th')"><svg width="28" height="28" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="4" stroke="#F2C94C" stroke-width="2.5" fill="rgba(242,201,76,.06)"/><line x1="24" y1="14" x2="24" y2="34" stroke="#F2C94C" stroke-width="2.5" stroke-linecap="round"/><path d="M24 34c-5 0-8-3-10-6M24 34c5 0 8-3 10-6" stroke="#F2C94C" stroke-width="2.5" stroke-linecap="round"/></svg><span class="spec-lbl">The<br>Thesis</span></div>
+            </div>
+            <!-- Sub panels -->
+            <div id="ssp-al" class="ssp" style="display:none"><div class="di" style="padding:1.2rem 1.4rem;background:rgba(79,176,198,.03);border:1px solid rgba(79,176,198,.1);border-radius:20px"><p style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sea);margin-bottom:6px">Catching Points of Tension</p><p style="font-size:.95rem;line-height:1.75;color:var(--txt2)">Communication patterns — especially <span class="iw">self-silencing<span class="ip"><span class="ip-l">Key Construct</span>Tendency to suppress one's needs to preserve relational harmony.</span></span> and <span class="iw">help-seeking<span class="ip"><span class="ip-l">Key Construct</span>The cognitive and social process of recognizing a need and initiating action.</span></span> — among Korean American midlife women.</p></div></div>
+            <div id="ssp-pt" class="ssp" style="display:none"><div class="di" style="padding:1.2rem 1.4rem;background:rgba(232,93,117,.03);border:1px solid rgba(232,93,117,.08);border-radius:20px"><p style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);margin-bottom:6px">Interdisciplinary Alchemy</p><p style="font-size:.95rem;line-height:1.75;color:var(--txt2)"><span class="iw" data-tech>Mixed methods<span class="ip"><span class="ip-l">Methodology</span>Integrating qualitative depth with quantitative rigor for full-cycle research.</span></span> bridging lived experience and measurable outcomes. Small <span class="iw">cognitive shifts<span class="ip"><span class="ip-l">Yeager &amp; Walton</span>Brief interventions that alter how people interpret adversity.</span></span> redirect self-defeating patterns into self-enhancing ones.</p></div></div>
+            <div id="ssp-th" class="ssp" style="display:none"><div class="di" style="padding:1.2rem 1.4rem;background:rgba(242,201,76,.03);border:1px solid rgba(242,201,76,.1);border-radius:20px"><p style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sun);margin-bottom:6px">What Holds Against the Tide</p><p style="font-size:.95rem;line-height:1.75;color:var(--txt2)">PhD program (Fall 2027) in health communication, developmental science, or educational psychology. Psychologically wise intervention design — evidence to implementation.</p></div></div>
+          </div>
+        </div>
+        <div class="si s6" style="padding:1.2rem 1.5rem;border-left:4px solid var(--sea);background:rgba(79,176,198,.04);border-radius:0 20px 20px 0"><p style="font-size:1.08rem;font-style:italic;color:var(--deep);line-height:1.55;font-weight:500">How do we design messages that work <strong>with</strong> — not against — the cognitive and cultural contexts people actually inhabit?</p></div>
+      </div>
+
+      <!-- EXPERIENCE (In the Field) -->
+      <div class="panel" id="p-field" style="display:none;padding:2.5rem 3rem;max-width:880px;margin:0 auto">
+        <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:6px">Field Specimens</p>
+        <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:6px">Where I've worked</h2>
+        <div style="width:40px;height:3px;background:var(--coral);border-radius:2px;margin-bottom:1.5rem"></div>
+        <div class="field-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+          <div class="fc" id="fc-gigc" onclick="toggleField('gigc')" style="grid-column:1/-1">
+            <div class="fc-head"><div class="fc-icon" style="background:rgba(79,176,198,.08)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.06)"/><circle cx="24" cy="24" r="8" stroke="#4FB0C6" stroke-width="2" opacity=".4"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sea);font-weight:700;letter-spacing:.08em;text-transform:uppercase">UT Austin · Career &amp; Life Design</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Global Impact Graduate Consultant</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">2025–Present</p></div><span class="fc-chev">›</span></div>
+            <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:12px">Operationalized Stanford's <span class="iw" style="color:var(--sun)">Life Design<span class="ip"><span class="ip-l">Framework</span>Bill Burnett &amp; Dave Evans' design thinking approach applied to career and life planning.</span></span> framework into a 12-week cohort. Newsletter (500+ subscribers), interview tools, visa guides.</p><div style="display:flex;gap:6px;flex-wrap:wrap"><a href="/interview-instinct.html" class="fc-link" style="color:var(--sea);background:rgba(79,176,198,.06);border:1px solid rgba(79,176,198,.12)">Interview Instinct →</a><a href="/iwg-handout-v10.html" class="fc-link" style="color:var(--coral);background:rgba(232,93,117,.06);border:1px solid rgba(232,93,117,.12)">HIVE Handout →</a><a href="/curiosity-cabinet.html" class="fc-link" style="color:var(--sun);background:rgba(242,201,76,.08);border:1px solid rgba(242,201,76,.15)">Curiosity Cabinet →</a></div></div>
+          </div>
+          <div class="fc" id="fc-dasique" onclick="toggleField('dasique')">
+            <div class="fc-head"><div class="fc-icon" style="background:rgba(232,93,117,.06)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 4l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z" stroke="#E85D75" stroke-width="2.5" fill="rgba(232,93,117,.06)" stroke-linejoin="round"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--coral);font-weight:700;letter-spacing:.08em;text-transform:uppercase">Dasique · Seoul</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Global Marketing Intern</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">Summer 2025</p></div><span class="fc-chev">›</span></div>
+            <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:10px">Localized <span class="iw" style="color:var(--coral)">Olive Young Global<span class="ip"><span class="ip-l">Brand</span>Korea's leading health &amp; beauty platform, expanding globally via CJ Group.</span></span> pages (<span style="color:var(--sun);font-weight:700">+20% intl engagement</span>). <span class="iw" data-tech>GTM<span class="ip"><span class="ip-l">Strategy</span>Go-To-Market — the plan for launching products into new markets and customer segments.</span></span> research. 100+ SKU analytics across <span class="iw">APAC<span class="ip"><span class="ip-l">Region</span>Asia-Pacific — primary expansion markets including Japan, SEA, and Greater China.</span></span>.</p><div style="display:flex;gap:4px;flex-wrap:wrap"><span class="fc-tag" style="color:var(--coral);background:rgba(232,93,117,.06)">Localization</span><span class="fc-tag" style="color:var(--sea);background:rgba(79,176,198,.06)">GTM Research</span><span class="fc-tag" style="color:var(--sun);background:rgba(242,201,76,.08)">APAC</span></div></div>
+          </div>
+          <div class="fc" id="fc-ra" onclick="toggleField('ra')">
+            <div class="fc-head"><div class="fc-icon" style="background:rgba(242,201,76,.06)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 6v36M6 24h36" stroke="#F2C94C" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="#F2C94C" stroke-width="2" fill="rgba(242,201,76,.06)"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sun);font-weight:700;letter-spacing:.08em;text-transform:uppercase">UT School of Nursing</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Research Assistant</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">2023–2025 · 18 months</p></div><span class="fc-chev">›</span></div>
+            <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:10px"><span class="iw" data-tech style="color:var(--sea)">AI-based<span class="ip"><span class="ip-l">Approach</span>Machine learning models for personalized pain assessment and adaptive intervention delivery.</span></span> pain management, <span class="iw">lifestyle interventions<span class="ip"><span class="ip-l">Method</span>Behavior-change programs targeting diet, exercise, and stress management for chronic conditions.</span></span>, depressive symptom reduction in Asian American women.</p><div style="display:flex;gap:4px;flex-wrap:wrap"><span class="fc-tag" style="color:var(--sea);background:rgba(79,176,198,.06)">AI &amp; Health</span><span class="fc-tag" style="color:var(--coral);background:rgba(232,93,117,.06)">Mixed Methods</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDY NOTES -->
+      <div class="panel" id="p-notes" style="display:none;padding:2.5rem 3rem;max-width:880px;margin:0 auto">
+        <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-bottom:6px">Scholarly Archive</p>
+        <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:6px">Where I've studied</h2>
+        <div style="width:40px;height:3px;background:var(--sea);border-radius:2px;margin-bottom:1.5rem"></div>
+
+        <!-- === DEGREE CARDS === -->
+        <div class="degree-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:.5rem">
+          <!-- MA Card -->
+          <div style="padding:1.6rem 1.8rem;border-radius:28px;background:var(--deep);color:#fff;box-shadow:0 8px 32px rgba(13,59,102,.12),inset 0 1px 0 rgba(79,176,198,.15);position:relative;overflow:hidden">
+            <!-- Decorative corner flourish -->
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="position:absolute;top:-8px;right:-8px;opacity:.08"><circle cx="60" cy="20" r="40" stroke="#4FB0C6" stroke-width="1.5"/><circle cx="60" cy="20" r="25" stroke="#4FB0C6" stroke-width="1"/><circle cx="60" cy="20" r="12" stroke="#4FB0C6" stroke-width=".8"/></svg>
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:8px">
+              <div style="width:28px;height:28px;border-radius:8px;background:rgba(232,93,117,.15);display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#E85D75" stroke-width="2" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" stroke="#E85D75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" stroke="#E85D75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <p style="font-family:var(--sm);font-size:9px;color:var(--coral);font-weight:700;letter-spacing:.08em">MA · IN PROGRESS</p>
+            </div>
+            <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:2px;line-height:1.25">Advertising<br><span style="font-size:.85rem;font-weight:600;color:rgba(255,255,255,.65);font-style:italic">(Thesis Track)</span></h3>
+            <p style="font-family:var(--sm);font-size:9px;color:var(--sea-l);opacity:.5;margin-bottom:10px">Moody College of Communication · 2025–2027</p>
+            <p style="font-size:.85rem;color:rgba(153,191,213,.6);line-height:1.55;margin-bottom:12px"><span style="color:var(--sun);font-weight:700">Health communication</span>, behavioral science, intervention design.</p>
+            <!-- Focus Areas -->
+            <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px">
+              <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(79,176,198,.12);color:var(--sea-l);letter-spacing:.04em">Persuasion</span>
+              <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(242,201,76,.12);color:var(--sun);letter-spacing:.04em">Wise Interventions</span>
+              <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(232,93,117,.12);color:var(--peach);letter-spacing:.04em">Causal Inference</span>
+            </div>
+            <!-- Semester Progress -->
+            <div style="position:relative">
+              <p style="font-family:var(--sm);font-size:8px;color:rgba(153,191,213,.4);margin-bottom:5px;display:flex;justify-content:space-between"><span>Semester 2 of 4</span><span>Spring 2026</span></p>
+              <div style="height:4px;border-radius:2px;background:rgba(79,176,198,.12);overflow:hidden">
+                <div style="width:50%;height:100%;border-radius:2px;background:linear-gradient(90deg,var(--sea),var(--coral));transition:width 1s var(--eo)"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-top:4px">
+                <span style="font-family:var(--sm);font-size:7px;color:rgba(153,191,213,.35)">FA25</span>
+                <span style="font-family:var(--sm);font-size:7px;color:var(--sea-l);font-weight:700">SP26</span>
+                <span style="font-family:var(--sm);font-size:7px;color:rgba(153,191,213,.25)">FA26</span>
+                <span style="font-family:var(--sm);font-size:7px;color:rgba(153,191,213,.25)">SP27</span>
+              </div>
+            </div>
+          </div>
+          <!-- BS Card -->
+          <div style="padding:1.6rem 1.8rem;border-radius:28px;background:var(--card);border:1.5px solid rgba(79,176,198,.12);box-shadow:0 4px 16px rgba(13,59,102,.03);position:relative;overflow:hidden">
+            <!-- Decorative corner flourish -->
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" style="position:absolute;top:-6px;right:-6px;opacity:.06"><circle cx="50" cy="20" r="35" stroke="var(--deep)" stroke-width="1.5"/><circle cx="50" cy="20" r="20" stroke="var(--deep)" stroke-width="1"/></svg>
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:8px">
+              <div style="width:28px;height:28px;border-radius:8px;background:rgba(107,184,76,.1);display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#6BB84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#6BB84C" stroke-width="2"/></svg></div>
+              <p style="font-family:var(--sm);font-size:9px;color:var(--sage);font-weight:700;letter-spacing:.08em">BS · COMPLETED</p>
+            </div>
+            <h3 style="font-size:1.2rem;font-weight:800;color:var(--deep);margin-bottom:2px;line-height:1.25">Advertising</h3>
+            <p style="font-family:var(--sm);font-size:9px;color:var(--txt3);margin-bottom:10px">UT Austin · Graduated 2025</p>
+            <div style="display:flex;align-items:baseline;gap:.5rem;margin-bottom:10px">
+              <span style="font-family:var(--sm);font-size:1.4rem;font-weight:800;color:var(--deep)">3.88</span>
+              <span style="font-family:var(--sm);font-size:9px;color:var(--txt3);font-weight:600">/ 4.0 GPA</span>
+            </div>
+            <!-- Honors -->
+            <div style="padding:.7rem .9rem;border-radius:14px;background:rgba(242,201,76,.06);border:1px solid rgba(242,201,76,.12);margin-bottom:10px">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 4.8L20 7.6l-4 3.9 1 5.5L12 14.4 7 17l1-5.5-4-3.9 5.6-.8L12 2z" stroke="#F2C94C" stroke-width="2" fill="rgba(242,201,76,.2)" stroke-linejoin="round"/></svg>
+                <span style="font-family:var(--sm);font-size:8px;font-weight:700;color:var(--sun);letter-spacing:.06em">DEAN'S LIST HONORS</span>
+              </div>
+              <p style="font-family:var(--sm);font-size:8px;color:var(--txt3);line-height:1.5">Fall 2022 – Fall 2025 (7 consecutive semesters)</p>
+            </div>
+            <!-- Foundation Tags -->
+            <div style="display:flex;gap:5px;flex-wrap:wrap">
+              <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(79,176,198,.06);color:var(--sea);letter-spacing:.04em">Consumer Psychology</span>
+              <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(232,93,117,.05);color:var(--coral);letter-spacing:.04em">Research Methods</span>
+              <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(13,59,102,.05);color:var(--txt2);letter-spacing:.04em">Media Strategy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- === JOURNEY CONNECTOR === -->
+        <div style="display:flex;align-items:center;gap:1rem;margin:1rem 0 1.5rem;padding:0 .5rem">
+          <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(79,176,198,.15),rgba(232,93,117,.15),transparent)"></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M2 12h20M12 2v20" stroke="var(--sea)" stroke-width="1.5" stroke-linecap="round" opacity=".3"/></svg>
+            <span style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)">Current Semester</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M2 12h20M12 2v20" stroke="var(--sea)" stroke-width="1.5" stroke-linecap="round" opacity=".3"/></svg>
+          </div>
+          <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(232,93,117,.15),rgba(79,176,198,.15),transparent)"></div>
+        </div>
+
+        <!-- === COURSE PICKER === -->
+        <p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:10px">Spring 2026 Coursework — pick to explore</p>
+        <div style="display:flex;gap:1rem;margin-bottom:1.8rem;flex-wrap:wrap">
+          <!-- ADV Avatar -->
+          <div class="spec course-avatar" data-c="adv" id="ca-adv" style="background:rgba(232,93,117,.05);color:#E85D75;width:120px;height:120px;position:relative" onclick="pickCourse('adv')">
+            <div style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--coral);opacity:.5"></div>
+            <svg width="36" height="36" viewBox="0 0 48 48" fill="none"><path d="M8 40V16l16-10 16 10v24" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.06)"/><path d="M18 40V28h12v12" stroke="#E85D75" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="spec-lbl" style="font-size:9.5px">ADV<br>382J</span>
+            <span style="font-family:var(--sm);font-size:6.5px;color:var(--txt3);opacity:.6;position:absolute;bottom:8px;letter-spacing:.04em">Persuasion</span>
+          </div>
+          <!-- MKT Avatar -->
+          <div class="spec course-avatar" data-c="mkt" id="ca-mkt" style="background:rgba(79,176,198,.05);color:#4FB0C6;width:120px;height:120px;position:relative" onclick="pickCourse('mkt')">
+            <div style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--sea);opacity:.5"></div>
+            <svg width="36" height="36" viewBox="0 0 48 48" fill="none"><rect x="6" y="22" width="8" height="18" rx="2" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.06)"/><rect x="20" y="14" width="8" height="26" rx="2" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.06)"/><rect x="34" y="8" width="8" height="32" rx="2" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.06)"/></svg>
+            <span class="spec-lbl" style="font-size:9.5px">MKT<br>397</span>
+            <span style="font-family:var(--sm);font-size:6.5px;color:var(--txt3);opacity:.6;position:absolute;bottom:8px;letter-spacing:.04em">Quant Mktg</span>
+          </div>
+          <!-- EDP Avatar -->
+          <div class="spec course-avatar" data-c="edp" id="ca-edp" style="background:rgba(242,201,76,.05);color:#F2C94C;width:120px;height:120px;position:relative" onclick="pickCourse('edp')">
+            <div style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--sun);opacity:.5"></div>
+            <svg width="36" height="36" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#F2C94C" stroke-width="2.5" fill="rgba(242,201,76,.06)"/><path d="M14 42c0-6 4-10 10-10s10 4 10 10" stroke="#F2C94C" stroke-width="2.5" stroke-linecap="round"/></svg>
+            <span class="spec-lbl" style="font-size:9.5px">EDP<br>382C</span>
+            <span style="font-family:var(--sm);font-size:6.5px;color:var(--txt3);opacity:.6;position:absolute;bottom:8px;letter-spacing:.04em">Wise Intrvn</span>
+          </div>
+        </div>
+
+        <!-- === EXPANDED COURSE PANELS === -->
+
+        <!-- ADV 382J Panel -->
+        <div id="cp-adv" class="cp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:rgba(232,93,117,.02);border:1.5px solid rgba(232,93,117,.12);border-radius:24px;margin-bottom:1.5rem">
+          <!-- Header -->
+          <div style="display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1rem">
+            <div style="width:44px;height:44px;border-radius:14px;background:rgba(232,93,117,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><path d="M8 40V16l16-10 16 10v24" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.04)"/><path d="M18 40V28h12v12" stroke="#E85D75" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="flex:1">
+              <h3 style="font-size:1.2rem;font-weight:800;color:var(--deep);line-height:1.2">Persuasion Theory</h3>
+              <p style="font-family:var(--sm);font-size:9px;color:var(--coral);font-weight:600;margin-top:2px">ADV 382J · Spring 2026</p>
+            </div>
+            <span class="fc-tag" style="color:var(--coral);background:rgba(232,93,117,.08);font-size:7.5px;flex-shrink:0">Graduate Seminar</span>
+          </div>
+          <!-- Description -->
+          <p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:14px"><span class="iw" style="color:var(--coral)">Dual-process models<span class="ip"><span class="ip-l">Theory</span>Frameworks (ELM, HSM) explaining two routes of persuasion — central (effortful) and peripheral (heuristic).</span></span> (ELM, HSM), <span class="iw">narrative persuasion<span class="ip"><span class="ip-l">Concept</span>Using stories to transport audiences past counter-arguing, enabling attitude and belief change.</span></span>, and <span class="iw">message framing<span class="ip"><span class="ip-l">Technique</span>Presenting information as gains or losses to shift how people evaluate health decisions.</span></span> as applied to health communication contexts. This course is the theoretical backbone of my thesis work — understanding <em>how</em> and <em>why</em> messages change minds.</p>
+          <!-- Key Topics Grid -->
+          <div class="topic-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(232,93,117,.04);border:1px solid rgba(232,93,117,.08)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em;margin-bottom:3px">DUAL-PROCESS MODELS</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">ELM, HSM, and when central vs. peripheral routes dominate</p>
+            </div>
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(232,93,117,.04);border:1px solid rgba(232,93,117,.08)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em;margin-bottom:3px">NARRATIVE TRANSPORT</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">How stories bypass resistance and reshape health beliefs</p>
+            </div>
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(232,93,117,.04);border:1px solid rgba(232,93,117,.08)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em;margin-bottom:3px">MESSAGE FRAMING</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Gain vs. loss frames in preventive health communication</p>
+            </div>
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(232,93,117,.04);border:1px solid rgba(232,93,117,.08)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em;margin-bottom:3px">RESISTANCE &amp; REACTANCE</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Why some messages backfire and how to anticipate it</p>
+            </div>
+          </div>
+          <!-- Thesis Connection -->
+          <div style="padding:.8rem 1rem;border-radius:14px;background:linear-gradient(135deg,rgba(232,93,117,.04),rgba(242,201,76,.04));border-left:3px solid var(--coral);margin-bottom:14px">
+            <p style="font-family:var(--sm);font-size:8px;font-weight:700;color:var(--coral);letter-spacing:.08em;margin-bottom:4px">THESIS CONNECTION</p>
+            <p style="font-size:.85rem;color:var(--txt2);line-height:1.6">How can culturally-adapted message framing reduce <span class="iw">self-silencing<span class="ip"><span class="ip-l">Key Construct</span>Suppressing one's needs and voice to maintain relational harmony — prevalent in collectivist cultural contexts.</span></span> in Korean American women seeking mental health support?</p>
+          </div>
+          <!-- Tags + Link -->
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+            <div style="display:flex;gap:5px;flex-wrap:wrap">
+              <span class="fc-tag" style="color:var(--coral);background:rgba(232,93,117,.06)">Health Comm</span>
+              <span class="fc-tag" style="color:var(--sun);background:rgba(242,201,76,.06)">Attitude Change</span>
+              <span class="fc-tag" style="color:var(--sea);background:rgba(79,176,198,.06)">Social Influence</span>
+            </div>
+            <a href="/adv382j-guide/" class="fc-link" style="color:var(--coral);background:rgba(232,93,117,.06);border:1px solid rgba(232,93,117,.12)">Course Guide &#8594;</a>
+          </div>
+        </div></div>
+
+        <!-- MKT 397 Panel -->
+        <div id="cp-mkt" class="cp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:rgba(79,176,198,.02);border:1.5px solid rgba(79,176,198,.12);border-radius:24px;margin-bottom:1.5rem">
+          <!-- Header -->
+          <div style="display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1rem">
+            <div style="width:44px;height:44px;border-radius:14px;background:rgba(79,176,198,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect x="6" y="22" width="8" height="18" rx="2" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.04)"/><rect x="20" y="14" width="8" height="26" rx="2" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.04)"/><rect x="34" y="8" width="8" height="32" rx="2" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.04)"/></svg></div>
+            <div style="flex:1">
+              <h3 style="font-size:1.2rem;font-weight:800;color:var(--deep);line-height:1.2">[PhD] Quantitative Marketing</h3>
+              <p style="font-family:var(--sm);font-size:9px;color:var(--sea);font-weight:600;margin-top:2px">MKT 397 · Prof. Rex Du · Spring 2026</p>
+            </div>
+            <span class="fc-tag" style="color:var(--sea);background:rgba(79,176,198,.08);font-size:7.5px;flex-shrink:0">PhD Level</span>
+          </div>
+          <!-- Description -->
+          <p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:14px">Empirics-first methodology. <span class="iw" data-tech style="color:var(--sea)">Causal inference<span class="ip"><span class="ip-l">Method</span>Statistical techniques (DiD, IV, RDD) to establish cause-and-effect from observational data.</span></span>, <span class="iw" data-tech>structural models<span class="ip"><span class="ip-l">Method</span>Economic models of decision processes — modeling why consumers choose, not just what they choose.</span></span>, and econometric methods applied to consumer behavior. Learning to think like a quantitative researcher — to let the data structure reveal the story rather than imposing one.</p>
+          <!-- Key Topics Grid -->
+          <div class="topic-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(79,176,198,.04);border:1px solid rgba(79,176,198,.08)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--sea);letter-spacing:.06em;margin-bottom:3px">CAUSAL INFERENCE</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">DiD, IV, RDD — isolating treatment effects in observational data</p>
+            </div>
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(79,176,198,.04);border:1px solid rgba(79,176,198,.08)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--sea);letter-spacing:.06em;margin-bottom:3px">STRUCTURAL MODELS</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Modeling decision processes rather than just correlations</p>
+            </div>
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(79,176,198,.04);border:1px solid rgba(79,176,198,.08)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--sea);letter-spacing:.06em;margin-bottom:3px">ECONOMETRIC METHODS</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">MLE, GMM, and Bayesian approaches to marketing problems</p>
+            </div>
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(79,176,198,.04);border:1px solid rgba(79,176,198,.08)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--sea);letter-spacing:.06em;margin-bottom:3px">CONSUMER BEHAVIOR</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Choice models, brand switching, and demand estimation</p>
+            </div>
+          </div>
+          <!-- Thesis Connection -->
+          <div style="padding:.8rem 1rem;border-radius:14px;background:linear-gradient(135deg,rgba(79,176,198,.04),rgba(107,184,76,.04));border-left:3px solid var(--sea);margin-bottom:14px">
+            <p style="font-family:var(--sm);font-size:8px;font-weight:700;color:var(--sea);letter-spacing:.08em;margin-bottom:4px">WHY THIS MATTERS</p>
+            <p style="font-size:.85rem;color:var(--txt2);line-height:1.6">Building the quantitative rigor to design experiments that measure real intervention effects — not just survey responses but behavioral change.</p>
+          </div>
+          <!-- Tags + Link -->
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+            <div style="display:flex;gap:5px;flex-wrap:wrap">
+              <span class="fc-tag" style="color:var(--sea);background:rgba(79,176,198,.06)">Econometrics</span>
+              <span class="fc-tag" style="color:var(--coral);background:rgba(232,93,117,.06)">Causal Design</span>
+              <span class="fc-tag" style="color:var(--sun);background:rgba(242,201,76,.06)">Consumer Choice</span>
+            </div>
+            <a href="/mkt397/" class="fc-link" style="color:var(--sea);background:rgba(79,176,198,.06);border:1px solid rgba(79,176,198,.12)">Research Log &#8594;</a>
+          </div>
+        </div></div>
+
+        <!-- EDP 382C Panel -->
+        <div id="cp-edp" class="cp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:rgba(242,201,76,.02);border:1.5px solid rgba(242,201,76,.15);border-radius:24px;margin-bottom:1.5rem">
+          <!-- Header -->
+          <div style="display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1rem">
+            <div style="width:44px;height:44px;border-radius:14px;background:rgba(242,201,76,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#F2C94C" stroke-width="2.5" fill="rgba(242,201,76,.04)"/><path d="M14 42c0-6 4-10 10-10s10 4 10 10" stroke="#F2C94C" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+            <div style="flex:1">
+              <h3 style="font-size:1.2rem;font-weight:800;color:var(--deep);line-height:1.2">[PhD] Psychologically Wise Interventions</h3>
+              <p style="font-family:var(--sm);font-size:9px;color:var(--sun);font-weight:600;margin-top:2px">EDP 382C · Dr. Patricia Chen · Spring 2026</p>
+            </div>
+            <span class="fc-tag" style="color:#c9a620;background:rgba(242,201,76,.1);font-size:7.5px;flex-shrink:0">PhD Level</span>
+          </div>
+          <!-- Description -->
+          <p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:14px"><span class="iw" style="color:var(--sun)">Growth mindset<span class="ip"><span class="ip-l">Dweck</span>The belief that abilities can be developed through effort, reshaping how people respond to challenge.</span></span>, <span class="iw">belonging<span class="ip"><span class="ip-l">Walton &amp; Cohen</span>Brief interventions that normalize adversity and build social connection in academic settings.</span></span>, <span class="iw">stress reappraisal<span class="ip"><span class="ip-l">Crum Lab</span>Reframing the stress response as enhancing rather than debilitating — changing physiology through belief.</span></span>, and <span class="iw">self-affirmation<span class="ip"><span class="ip-l">Cohen &amp; Sherman</span>Values-affirmation exercises that buffer identity threat and reduce achievement gaps.</span></span> as scalable intervention levers. This is where I learn to design the smallest possible cognitive shift that redirects self-defeating patterns into self-enhancing ones.</p>
+          <!-- Key Topics Grid -->
+          <div class="topic-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(242,201,76,.04);border:1px solid rgba(242,201,76,.1)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.06em;margin-bottom:3px">GROWTH MINDSET</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Dweck's framework: how beliefs about ability shape resilience</p>
+            </div>
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(242,201,76,.04);border:1px solid rgba(242,201,76,.1)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.06em;margin-bottom:3px">BELONGING INTERVENTIONS</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Walton &amp; Cohen's social-belonging intervention and its replications</p>
+            </div>
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(242,201,76,.04);border:1px solid rgba(242,201,76,.1)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.06em;margin-bottom:3px">STRESS REAPPRAISAL</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Crum's mindset science: reframing stress as enhancing, not debilitating</p>
+            </div>
+            <div style="padding:.6rem .8rem;border-radius:12px;background:rgba(242,201,76,.04);border:1px solid rgba(242,201,76,.1)">
+              <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:#c9a620;letter-spacing:.06em;margin-bottom:3px">SELF-AFFIRMATION</p>
+              <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Values-affirmation to buffer identity threat in academic settings</p>
+            </div>
+          </div>
+          <!-- Thesis Connection -->
+          <div style="padding:.8rem 1rem;border-radius:14px;background:linear-gradient(135deg,rgba(242,201,76,.04),rgba(232,93,117,.04));border-left:3px solid var(--sun);margin-bottom:14px">
+            <p style="font-family:var(--sm);font-size:8px;font-weight:700;color:#c9a620;letter-spacing:.08em;margin-bottom:4px">THESIS CONNECTION</p>
+            <p style="font-size:.85rem;color:var(--txt2);line-height:1.6">Can a psychologically wise intervention reframe help-seeking from weakness to strength in cultures that emphasize relational harmony?</p>
+          </div>
+          <!-- Key Scholars -->
+          <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(242,201,76,.05);border:1px solid rgba(242,201,76,.1)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#F2C94C" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#F2C94C" stroke-width="2" stroke-linecap="round"/></svg>
+              <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Yeager &amp; Walton</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(242,201,76,.05);border:1px solid rgba(242,201,76,.1)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#F2C94C" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#F2C94C" stroke-width="2" stroke-linecap="round"/></svg>
+              <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Dweck</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(242,201,76,.05);border:1px solid rgba(242,201,76,.1)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#F2C94C" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#F2C94C" stroke-width="2" stroke-linecap="round"/></svg>
+              <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Crum</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(242,201,76,.05);border:1px solid rgba(242,201,76,.1)">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#F2C94C" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#F2C94C" stroke-width="2" stroke-linecap="round"/></svg>
+              <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Cohen &amp; Sherman</span>
+            </div>
+          </div>
+          <!-- Tags + Link -->
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+            <div style="display:flex;gap:5px;flex-wrap:wrap">
+              <span class="fc-tag" style="color:#c9a620;background:rgba(242,201,76,.06)">Wise Interventions</span>
+              <span class="fc-tag" style="color:var(--coral);background:rgba(232,93,117,.06)">Mindset Science</span>
+              <span class="fc-tag" style="color:var(--sea);background:rgba(79,176,198,.06)">Belonging</span>
+            </div>
+            <a href="/edp382c/" class="fc-link" style="color:#c9a620;background:rgba(242,201,76,.06);border:1px solid rgba(242,201,76,.15)">Course Portfolio &#8594;</a>
+          </div>
+        </div></div>
+
+        <!-- === ACADEMIC REFLECTION === -->
+        <div style="padding:1rem 1.4rem;border-left:4px solid var(--sea);background:rgba(79,176,198,.03);border-radius:0 20px 20px 0;margin-top:.5rem">
+          <p style="font-size:1rem;font-style:italic;color:var(--deep);line-height:1.6;font-weight:500">Each course is a different lens on the same question: how do we design interventions that work <strong style="color:var(--coral)">with</strong> people's psychology — not against it?</p>
+        </div>
+
+      </div>
+
+      <!-- THE ORCHARD -->
+      <div class="panel" id="p-orchard" style="display:none;padding:2.5rem 3rem;max-width:880px;margin:0 auto;position:relative">
+        <canvas id="fgCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.35"></canvas>
+        <div style="position:relative;z-index:1">
+        <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-bottom:6px">Beyond Research</p>
+        <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:4px">The Orchard</h2>
+        <p style="font-size:.9rem;color:var(--txt2);line-height:1.5;margin-bottom:4px;font-style:italic">Where research roots meet the soil of lived practice.</p>
+        <div style="width:40px;height:3px;background:var(--peach);border-radius:2px;margin-bottom:1.5rem"></div>
+
+        <!-- === GREEN APPLE LOGIC BLOG CARD === -->
+        <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="ap" style="display:block;padding:1.6rem 1.8rem;margin-bottom:1.5rem;border-radius:24px;text-decoration:none;color:var(--deep);background:linear-gradient(135deg,rgba(107,184,76,.06),rgba(253,252,245,.5));border:2px solid rgba(107,184,76,.15);position:relative;overflow:hidden">
+          <!-- Subtle decorative leaf pattern -->
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style="position:absolute;right:-20px;bottom:-20px;opacity:.04"><path d="M60 10C60 10 90 30 90 60S60 110 60 110S30 90 30 60S60 10 60 10Z" stroke="#6BB84C" stroke-width="2"/><path d="M60 10V110" stroke="#6BB84C" stroke-width="1.5"/><path d="M35 35Q60 60 85 35" stroke="#6BB84C" stroke-width="1"/><path d="M35 60Q60 80 85 60" stroke="#6BB84C" stroke-width="1"/><path d="M40 85Q60 95 80 85" stroke="#6BB84C" stroke-width="1"/></svg>
+          <div style="display:flex;align-items:center;gap:1rem;position:relative;z-index:1">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="flex-shrink:0"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" fill="rgba(107,184,76,.06)"/></svg>
+            <div style="flex:1">
+              <p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-bottom:3px">Design Principle</p>
+              <h3 style="font-size:1.15rem;font-weight:800;margin-bottom:3px">Green Apple Logic</h3>
+              <p style="font-size:.85rem;color:var(--txt2);line-height:1.5">Healthy choices feel natural — not prescribed. A blog exploring how we design environments where well-being is the path of least resistance.</p>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:12px;background:rgba(107,184,76,.08);border:1px solid rgba(107,184,76,.15);flex-shrink:0"><span style="font-family:var(--sm);font-size:9px;font-weight:700;color:#6BB84C">Visit Blog</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="#6BB84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </a>
+
+        <!-- === CURRENTLY SECTION === -->
+        <div class="currently-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:1.5rem">
+          <div style="padding:.8rem 1rem;border-radius:16px;background:rgba(107,184,76,.04);border:1px solid rgba(107,184,76,.1)">
+            <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:4px">Currently Reading</p>
+            <p style="font-size:.82rem;font-weight:700;color:var(--deep);line-height:1.35"><em>Core Awareness</em></p>
+            <p style="font-family:var(--sm);font-size:8px;color:var(--txt3)">Liz Koch</p>
+          </div>
+          <div style="padding:.8rem 1rem;border-radius:16px;background:rgba(232,93,117,.03);border:1px solid rgba(232,93,117,.08)">
+            <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);margin-bottom:4px">Currently Practicing</p>
+            <p style="font-size:.82rem;font-weight:700;color:var(--deep);line-height:1.35">Reformer Pilates</p>
+            <p style="font-family:var(--sm);font-size:8px;color:var(--txt3)">3x per week</p>
+          </div>
+          <div style="padding:.8rem 1rem;border-radius:16px;background:rgba(79,176,198,.04);border:1px solid rgba(79,176,198,.1)">
+            <p style="font-family:var(--sm);font-size:7.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sea);margin-bottom:4px">Currently Exploring</p>
+            <p style="font-size:.82rem;font-weight:700;color:var(--deep);line-height:1.35">Stress Reappraisal</p>
+            <p style="font-family:var(--sm);font-size:8px;color:var(--txt3)">Crum Lab research</p>
+          </div>
+        </div>
+
+        <!-- === PILL MORPH TABS === -->
+        <div id="pillTabs" style="max-width:720px">
+          <div id="pt-bar" style="position:relative;display:inline-flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(13,59,102,.06);backdrop-filter:blur(8px);border:1px solid rgba(13,59,102,.06);margin-bottom:1.5rem">
+            <div id="pt-pill" style="position:absolute;top:4px;bottom:4px;border-radius:999px;background:linear-gradient(90deg,rgba(107,184,76,.15),rgba(79,176,198,.12));box-shadow:0 6px 20px rgba(13,59,102,.06);border:1px solid rgba(255,255,255,.3);transition:left .35s var(--spring),width .35s var(--spring);pointer-events:none"></div>
+            <div id="pt-glow" style="position:absolute;top:0;bottom:0;border-radius:999px;filter:blur(16px);opacity:.25;background:linear-gradient(90deg,#6BB84C,#4FB0C6);mix-blend-mode:multiply;transition:left .35s var(--spring),width .35s var(--spring);pointer-events:none"></div>
+            <button class="pt-btn pt-on" data-pt="reading" onclick="pillTab('reading')" style="position:relative;z-index:2;padding:8px 18px;border-radius:999px;border:none;background:none;cursor:pointer;font-family:var(--st);font-size:12.5px;font-weight:600;color:var(--deep);transition:color .3s;white-space:nowrap"><svg width="13" height="13" viewBox="0 0 48 48" fill="none" style="vertical-align:-1px;margin-right:4px"><rect x="8" y="6" width="28" height="36" rx="3" stroke="currentColor" stroke-width="3" fill="none"/><path d="M16 16h12M16 24h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>Reading</button>
+            <button class="pt-btn" data-pt="pilates" onclick="pillTab('pilates')" style="position:relative;z-index:2;padding:8px 18px;border-radius:999px;border:none;background:none;cursor:pointer;font-family:var(--st);font-size:12.5px;font-weight:600;color:var(--txt3);transition:color .3s;white-space:nowrap"><svg width="13" height="13" viewBox="0 0 48 48" fill="none" style="vertical-align:-1px;margin-right:4px"><circle cx="24" cy="12" r="6" stroke="currentColor" stroke-width="3"/><path d="M24 18v14M16 26l8 6 8-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 42h12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>Pilates</button>
+            <button class="pt-btn" data-pt="mindbody" onclick="pillTab('mindbody')" style="position:relative;z-index:2;padding:8px 18px;border-radius:999px;border:none;background:none;cursor:pointer;font-family:var(--st);font-size:12.5px;font-weight:600;color:var(--txt3);transition:color .3s;white-space:nowrap"><svg width="13" height="13" viewBox="0 0 48 48" fill="none" style="vertical-align:-1px;margin-right:4px"><circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="2.5" fill="none"/><path d="M24 14c-3 4-3 8 0 10s3 6 0 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Mind-Body</button>
+          </div>
+
+          <!-- READING PANEL -->
+          <div class="pt-panel" id="ptp-reading" style="animation:di .4s var(--eo) forwards"><div style="padding:1.8rem 2rem;background:var(--card);border:1.5px solid var(--bdr);border-radius:24px">
+            <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:1rem">
+              <div style="width:44px;height:44px;border-radius:14px;background:rgba(107,184,76,.08);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="28" height="36" rx="3" stroke="#6BB84C" stroke-width="3" fill="rgba(107,184,76,.06)"/><path d="M16 16h12M16 24h8" stroke="#6BB84C" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+              <div style="flex:1"><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep)">Saturday Reading Group</h3><p style="font-family:var(--sm);font-size:9px;color:var(--sage);font-weight:600">Weekly Practice · Mind-Body Connection</p></div>
+              <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;padding:3px 10px;border-radius:8px;background:rgba(107,184,76,.08);color:#6BB84C;letter-spacing:.06em">ACTIVE</span>
+            </div>
+            <p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:1rem">A weekly ritual of slow reading and deep conversation. We explore the <span class="iw" style="color:var(--sage)">mind-body connection<span class="ip"><span class="ip-l">Philosophy</span>The principle that mental states and physical states are deeply intertwined — thought shapes tissue, and tissue shapes thought.</span></span> through carefully chosen texts — reading not just for knowledge, but for transformation. Each book becomes a lens through which to see our own <span class="iw">embodied experience<span class="ip"><span class="ip-l">Concept</span>Knowledge gained through bodily sensation and movement, not just abstract reasoning.</span></span> differently.</p>
+            <!-- Book Shelf -->
+            <div style="margin-bottom:1rem">
+              <p style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px">Reading Shelf</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <div style="display:flex;align-items:center;gap:8px;padding:.5rem .8rem;border-radius:12px;background:rgba(107,184,76,.04);border:1px solid rgba(107,184,76,.1)">
+                  <div style="width:28px;height:38px;border-radius:4px;background:linear-gradient(135deg,#6BB84C,#4d8a3a);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="1.5" stroke="#fff" stroke-width="1.5"/><path d="M9 8h6M9 12h4" stroke="#fff" stroke-width="1" stroke-linecap="round"/></svg></div>
+                  <div><p style="font-size:.8rem;font-weight:700;color:var(--deep);line-height:1.2"><em>Core Awareness</em></p><p style="font-family:var(--sm);font-size:7.5px;color:var(--txt3)">Liz Koch</p><p style="font-family:var(--sm);font-size:7px;color:var(--sage);font-weight:700">CURRENT</p></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:.5rem .8rem;border-radius:12px;background:rgba(79,176,198,.03);border:1px solid rgba(79,176,198,.08)">
+                  <div style="width:28px;height:38px;border-radius:4px;background:linear-gradient(135deg,#4FB0C6,#367d8f);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="1.5" stroke="#fff" stroke-width="1.5"/><path d="M9 8h6M9 12h4" stroke="#fff" stroke-width="1" stroke-linecap="round"/></svg></div>
+                  <div><p style="font-size:.8rem;font-weight:700;color:var(--deep);line-height:1.2"><em>The Body Keeps the Score</em></p><p style="font-family:var(--sm);font-size:7.5px;color:var(--txt3)">Bessel van der Kolk</p></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:.5rem .8rem;border-radius:12px;background:rgba(242,201,76,.04);border:1px solid rgba(242,201,76,.1)">
+                  <div style="width:28px;height:38px;border-radius:4px;background:linear-gradient(135deg,#F2C94C,#c9a620);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="1.5" stroke="#fff" stroke-width="1.5"/><path d="M9 8h6M9 12h4" stroke="#fff" stroke-width="1" stroke-linecap="round"/></svg></div>
+                  <div><p style="font-size:.8rem;font-weight:700;color:var(--deep);line-height:1.2"><em>Mindset</em></p><p style="font-family:var(--sm);font-size:7.5px;color:var(--txt3)">Carol Dweck</p></div>
+                </div>
+              </div>
+            </div>
+            <!-- Research Connection -->
+            <div style="padding:.9rem 1.1rem;border-radius:16px;background:linear-gradient(135deg,rgba(107,184,76,.05),rgba(242,201,76,.04));border:1px solid rgba(107,184,76,.12)">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#6BB84C" stroke-width="2" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" stroke="#6BB84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="font-family:var(--sm);font-size:8px;font-weight:700;color:#6BB84C;letter-spacing:.06em">RESEARCH ↔ PRACTICE BRIDGE</span>
+              </div>
+              <p style="font-size:.85rem;color:var(--txt2);line-height:1.65">Weekly reading directly informs thesis work on embodied cognition and stress responses. Koch's somatic approach to the psoas connects to Crum's research on how bodily awareness shapes stress mindsets — lived experience as data.</p>
+            </div>
+          </div></div>
+
+          <!-- PILATES PANEL -->
+          <div class="pt-panel" id="ptp-pilates" style="display:none"><div style="padding:1.8rem 2rem;background:var(--card);border:1.5px solid var(--bdr);border-radius:24px">
+            <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:1rem">
+              <div style="width:44px;height:44px;border-radius:14px;background:rgba(232,93,117,.06);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="12" r="6" stroke="#E85D75" stroke-width="3" fill="rgba(232,93,117,.06)"/><path d="M24 18v14M16 26l8 6 8-6" stroke="#E85D75" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 42h12" stroke="#E85D75" stroke-width="3" stroke-linecap="round"/></svg></div>
+              <div style="flex:1"><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep)">Pilates Instructor</h3><p style="font-family:var(--sm);font-size:9px;color:var(--coral);font-weight:600">Certified Instructor · Embodied Practice</p></div>
+              <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;padding:3px 10px;border-radius:8px;background:rgba(232,93,117,.06);color:var(--coral);letter-spacing:.06em">CERTIFIED</span>
+            </div>
+            <p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:1rem">Movement is not just exercise — it is a research method. Teaching Pilates has given me a unique vantage point: I witness how physical awareness transforms mental patterns. Every client who discovers their breath can regulate their <span class="iw">nervous system<span class="ip"><span class="ip-l">Biology</span>The autonomic nervous system — sympathetic (fight-or-flight) and parasympathetic (rest-and-digest) branches that Pilates breath work directly modulates.</span></span> is a small experiment in <em><span class="iw">psychologically wise<span class="ip"><span class="ip-l">Yeager &amp; Walton 2020</span>Interventions that are brief, precise, and work with — not against — people's existing psychological processes.</span></span></em> embodiment.</p>
+            <!-- Practice Dimensions -->
+            <div class="practice-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem">
+              <div style="padding:.7rem .9rem;border-radius:14px;background:rgba(232,93,117,.03);border:1px solid rgba(232,93,117,.08)">
+                <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="#E85D75" stroke-width="2"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="#E85D75" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em">BREATH WORK</span>
+                </div>
+                <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Lateral breathing patterns that activate the parasympathetic system</p>
+              </div>
+              <div style="padding:.7rem .9rem;border-radius:14px;background:rgba(232,93,117,.03);border:1px solid rgba(232,93,117,.08)">
+                <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M4 20L12 4l8 16" stroke="#E85D75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 14h10" stroke="#E85D75" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em">ALIGNMENT</span>
+                </div>
+                <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Neutral spine, pelvic floor engagement — physical metaphors for psychological balance</p>
+              </div>
+              <div style="padding:.7rem .9rem;border-radius:14px;background:rgba(232,93,117,.03);border:1px solid rgba(232,93,117,.08)">
+                <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10" stroke="#E85D75" stroke-width="2" stroke-linecap="round"/><path d="M16 4l2 4 4-2" stroke="#E85D75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em">PROPRIOCEPTION</span>
+                </div>
+                <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Sensing where your body is in space — the foundation of interoceptive awareness</p>
+              </div>
+              <div style="padding:.7rem .9rem;border-radius:14px;background:rgba(232,93,117,.03);border:1px solid rgba(232,93,117,.08)">
+                <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M4 12c0-4.4 3.6-8 8-8M20 12c0 4.4-3.6 8-8 8" stroke="#E85D75" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="#E85D75" stroke-width="1.5"/></svg>
+                  <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--coral);letter-spacing:.06em">FLOW STATE</span>
+                </div>
+                <p style="font-size:.8rem;color:var(--txt2);line-height:1.45">Controlled movement as a gateway to mindful presence and cognitive reset</p>
+              </div>
+            </div>
+            <!-- Research Connection -->
+            <div style="padding:.9rem 1.1rem;border-radius:16px;background:linear-gradient(135deg,rgba(232,93,117,.04),rgba(242,201,76,.04));border:1px solid rgba(232,93,117,.1)">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#E85D75" stroke-width="2" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" stroke="#E85D75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="font-family:var(--sm);font-size:8px;font-weight:700;color:var(--coral);letter-spacing:.06em">CRUM LAB CONNECTION</span>
+              </div>
+              <p style="font-size:.85rem;color:var(--txt2);line-height:1.65">Alia Crum's research shows that beliefs about stress shape physiological outcomes. In the studio, I see this in real time: when clients shift from "exercise is punishment" to "movement is care," their bodies respond differently. This is the micro-level version of the intervention design I study.</p>
+            </div>
+          </div></div>
+
+          <!-- MIND-BODY PANEL -->
+          <div class="pt-panel" id="ptp-mindbody" style="display:none"><div style="padding:1.8rem 2rem;background:var(--card);border:1.5px solid var(--bdr);border-radius:24px">
+            <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:1rem">
+              <div style="width:44px;height:44px;border-radius:14px;background:rgba(79,176,198,.06);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="#4FB0C6" stroke-width="2.5" fill="rgba(79,176,198,.06)"/><path d="M24 14c-3 4-3 8 0 10s3 6 0 10" stroke="#4FB0C6" stroke-width="2" stroke-linecap="round"/></svg></div>
+              <div style="flex:1"><h3 style="font-size:1.15rem;font-weight:800;color:var(--deep)">Mind-Body Integration</h3><p style="font-family:var(--sm);font-size:9px;color:var(--sea);font-weight:600">Philosophy · Where It All Converges</p></div>
+              <span style="font-family:var(--sm);font-size:7.5px;font-weight:700;padding:3px 10px;border-radius:8px;background:rgba(79,176,198,.06);color:var(--sea);letter-spacing:.06em">CORE BELIEF</span>
+            </div>
+            <p style="font-size:.95rem;line-height:1.75;color:var(--txt2);margin-bottom:1rem">This is the thread that ties everything together. <span class="iw" data-tech style="color:var(--sea)">Neuroplasticity<span class="ip"><span class="ip-l">Neuroscience</span>The brain's ability to reorganize itself by forming new neural connections throughout life — the biological basis of learning and adaptation.</span></span> meets <span class="iw">embodied cognition<span class="ip"><span class="ip-l">Varela et al.</span>The theory that cognitive processes are shaped by the body's interactions with its environment — thinking is not disembodied.</span></span>. The body is not separate from the mind; it is the mind's first laboratory. Every intervention I design acknowledges that beliefs are not just cognitive — they are <span style="color:var(--sea);font-weight:700">felt in the body</span>.</p>
+            <!-- Integration Map -->
+            <div style="padding:1rem 1.2rem;border-radius:16px;background:rgba(79,176,198,.03);border:1px solid rgba(79,176,198,.1);margin-bottom:1rem">
+              <p style="font-family:var(--sm);font-size:8px;font-weight:700;color:var(--sea);letter-spacing:.1em;margin-bottom:10px">HOW THE THREADS CONNECT</p>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div style="width:6px;height:6px;border-radius:50%;background:var(--sage);flex-shrink:0"></div>
+                  <p style="font-size:.82rem;color:var(--txt2);line-height:1.5"><strong style="color:#6BB84C">Reading</strong> builds theoretical vocabulary for embodied experience</p>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding-left:16px">
+                  <div style="width:1px;height:12px;background:rgba(79,176,198,.2);flex-shrink:0;margin-left:-13px;margin-right:6px"></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div style="width:6px;height:6px;border-radius:50%;background:var(--coral);flex-shrink:0"></div>
+                  <p style="font-size:.82rem;color:var(--txt2);line-height:1.5"><strong style="color:var(--coral)">Pilates</strong> provides the physical practice ground for those theories</p>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding-left:16px">
+                  <div style="width:1px;height:12px;background:rgba(79,176,198,.2);flex-shrink:0;margin-left:-13px;margin-right:6px"></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div style="width:6px;height:6px;border-radius:50%;background:var(--sea);flex-shrink:0"></div>
+                  <p style="font-size:.82rem;color:var(--txt2);line-height:1.5"><strong style="color:var(--sea)">Research</strong> formalizes lived insight into scalable intervention design</p>
+                </div>
+              </div>
+            </div>
+            <!-- Key Thinkers -->
+            <div style="margin-bottom:1rem">
+              <p style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px">Intellectual Roots</p>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(79,176,198,.05);border:1px solid rgba(79,176,198,.1)">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#4FB0C6" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#4FB0C6" stroke-width="2" stroke-linecap="round"/></svg>
+                  <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Crum · Mindset Science</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(79,176,198,.05);border:1px solid rgba(79,176,198,.1)">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#4FB0C6" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#4FB0C6" stroke-width="2" stroke-linecap="round"/></svg>
+                  <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Damasio · Somatic Markers</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(79,176,198,.05);border:1px solid rgba(79,176,198,.1)">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#4FB0C6" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#4FB0C6" stroke-width="2" stroke-linecap="round"/></svg>
+                  <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Koch · Somatic Practice</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:10px;background:rgba(79,176,198,.05);border:1px solid rgba(79,176,198,.1)">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#4FB0C6" stroke-width="2"/><path d="M6 20c0-3 3-5 6-5s6 2 6 5" stroke="#4FB0C6" stroke-width="2" stroke-linecap="round"/></svg>
+                  <span style="font-family:var(--sm);font-size:8px;color:var(--txt2)">Varela · Enactivism</span>
+                </div>
+              </div>
+            </div>
+            <!-- Research Connection -->
+            <div style="padding:.9rem 1.1rem;border-radius:16px;background:linear-gradient(135deg,rgba(79,176,198,.04),rgba(107,184,76,.04));border:1px solid rgba(79,176,198,.12)">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#4FB0C6" stroke-width="2" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" stroke="#4FB0C6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="font-family:var(--sm);font-size:8px;font-weight:700;color:var(--sea);letter-spacing:.06em">THE INTEGRATION</span>
+              </div>
+              <p style="font-size:.85rem;color:var(--txt2);line-height:1.65">Adaptive systems reshape neural pathways and health outcomes. The body-mind loop is not a metaphor — it is a mechanism. My research asks: if we can change how people <em>feel</em> about stress in their bodies, can we change how they <em>respond</em> to health challenges in their lives?</p>
+            </div>
+          </div></div>
+        </div>
+
+        <!-- === PERSONAL REFLECTION === -->
+        <div style="margin-top:1.5rem;padding:1.2rem 1.5rem;border-radius:20px;background:linear-gradient(135deg,rgba(107,184,76,.03),rgba(247,160,136,.03));border:1.5px solid rgba(107,184,76,.1);position:relative;overflow:hidden">
+          <!-- Subtle botanical corner -->
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" style="position:absolute;top:-4px;right:-4px;opacity:.06"><path d="M30 5C30 5 50 15 50 30S30 55 30 55" stroke="#6BB84C" stroke-width="1.5"/><path d="M30 5C30 5 10 15 10 30S30 55 30 55" stroke="#6BB84C" stroke-width="1.5"/><path d="M30 5V55" stroke="#6BB84C" stroke-width="1"/></svg>
+          <div style="display:flex;align-items:flex-start;gap:1rem">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px"><path d="M3 12c0-1 .6-6 6-6 2 0 3 1.5 3 3s-2 3-4 3c3 0 4-3 4-6" stroke="var(--sage)" stroke-width="2" stroke-linecap="round"/><path d="M12 12c0-1 .6-6 6-6 2 0 3 1.5 3 3s-2 3-4 3c3 0 4-3 4-6" stroke="var(--sage)" stroke-width="2" stroke-linecap="round"/></svg>
+            <div>
+              <p style="font-size:1rem;font-style:italic;color:var(--deep);line-height:1.65;font-weight:500">The orchard grows slowly. Each practice — reading, movement, reflection — is a season of tending. The fruit is not knowledge alone, but the kind of understanding that lives in the body and shows up in how we care for ourselves and others.</p>
+              <p style="font-family:var(--sm);font-size:8.5px;color:var(--txt3);margin-top:8px">-- Personal journal, January 2026</p>
+            </div>
+          </div>
+        </div>
+
+        </div><!-- end z-index wrapper -->
+      </div>
+
+    </div><!-- end cs -->
+  </div><!-- end main -->
+</div><!-- end dash -->
+
+<!-- CONTACT -->
+<div id="cO" style="position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(13,59,102,.3);backdrop-filter:blur(12px)" onclick="closeC()">
+  <div style="background:var(--cream);border-radius:24px;padding:1.8rem;max-width:320px;width:90%;position:relative;box-shadow:0 20px 56px rgba(13,59,102,.2);border:1px solid var(--bdr)" onclick="event.stopPropagation()">
+    <button onclick="closeC()" style="position:absolute;top:8px;right:10px;background:none;border:none;font-size:14px;cursor:pointer;color:var(--txt3)">✕</button>
+    <h3 style="font-size:1.2rem;font-weight:800;color:var(--deep);margin-bottom:4px">Let's connect</h3>
+    <p style="font-size:.85rem;color:var(--txt2);margin-bottom:12px;line-height:1.5">Research, collaboration, or tea.</p>
+    <div onclick="cpE()" style="font-family:var(--sm);font-size:.8rem;background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:.5rem .7rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;cursor:pointer"><span>bellakang@utexas.edu</span><span id="cpL" style="font-size:.55rem;color:var(--coral);font-weight:700">Copy</span></div>
+    <div style="display:flex;gap:.8rem"><a href="https://www.linkedin.com/in/bellakang017" target="_blank" style="font-size:.75rem;color:var(--txt2);text-decoration:none">LinkedIn ↗</a><a href="mailto:bellakang@utexas.edu" style="font-size:.75rem;color:var(--txt2);text-decoration:none">Mail ↗</a></div>
+  </div>
+</div>
+
+<!-- Blend Cursor -->
+<div id="blend-cursor"></div>
+
+<script>
+/* ── Blend Cursor ── */
+(function(){
+  const cur=document.getElementById('blend-cursor');
+  if(!cur||window.matchMedia('(max-width:900px)').matches)return;
+  let mx=0,my=0,cx=0,cy=0;
+  const lerp=.22;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  function tick(){cx+=(mx-cx)*lerp;cy+=(my-cy)*lerp;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(tick)}
+  tick();
+  const hoverEls='.spec,.sub-spec,.course-avatar,.fc,.pt-btn,.ap,.np,.fc-link,a,button,.iw,.gb-emoji-btn';
+  document.addEventListener('mouseover',e=>{if(e.target.closest(hoverEls))cur.classList.add('hover')});
+  document.addEventListener('mouseout',e=>{if(e.target.closest(hoverEls))cur.classList.remove('hover')});
+  document.addEventListener('mousedown',()=>{cur.classList.add('click')});
+  document.addEventListener('mouseup',()=>{cur.classList.remove('click')});
+  document.addEventListener('mouseleave',()=>{cur.style.opacity='0'});
+  document.addEventListener('mouseenter',()=>{cur.style.opacity='1'});
+})();
+
+/* ── Marginalia Positioning ── */
+function initMarginalia(){
+  document.querySelectorAll('.iw').forEach(iw=>{
+    if(iw._mInit)return;iw._mInit=true;
+    const ip=iw.querySelector('.ip');if(!ip)return;
+    iw.addEventListener('mouseenter',()=>{
+      ip.style.visibility='hidden';ip.style.display='block';
+      const r=iw.getBoundingClientRect();
+      let top=r.top-ip.offsetHeight-8;
+      let left=r.left+r.width/2-ip.offsetWidth/2;
+      if(top<8){top=r.bottom+8}
+      if(left<8)left=8;
+      if(left+ip.offsetWidth>window.innerWidth-8)left=window.innerWidth-ip.offsetWidth-8;
+      ip.style.left=left+'px';ip.style.top=top+'px';
+      ip.style.visibility='';ip.style.display='';
+    });
+  });
+}
+initMarginalia();
+new MutationObserver(()=>initMarginalia()).observe(document.body,{childList:true,subtree:true});
+
+/* ── Navigation ── */
+function go(id,btn){document.querySelectorAll('.np').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.panel').forEach(p=>p.style.display='none');const p=document.getElementById('p-'+id);p.style.display='block';p.style.animation='ps .5s var(--eo)';if(id==='orchard'){setTimeout(()=>pillMeasure(),50);initFlickerGrid()}else{stopFlickerGrid()}}
+function openC(){document.getElementById('cO').style.display='flex'}
+function closeC(){document.getElementById('cO').style.display='none'}
+function cpE(){navigator.clipboard.writeText('bellakang@utexas.edu');const l=document.getElementById('cpL');l.textContent='Copied!';setTimeout(()=>l.textContent='Copy',2000)}
+
+/* ── Cabinet: Lens toggle ── */
+let aS=null;
+function tS(id){
+  document.querySelectorAll('.spec:not(.course-avatar)').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.sp').forEach(p=>p.style.display='none');
+  if(aS===id){aS=null;return}
+  aS=id;
+  document.getElementById('s-'+id).classList.add('on');
+  const sp=document.getElementById('sp-'+id);
+  if(sp){sp.style.display='block'}
+}
+
+/* ── Lens sub-specimens ── */
+let aSub=null;
+function tSub(id){
+  document.querySelectorAll('.sub-spec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.ssp').forEach(p=>p.style.display='none');
+  if(aSub===id){aSub=null;return}
+  aSub=id;
+  document.getElementById('ss-'+id).classList.add('on');
+  document.getElementById('ssp-'+id).style.display='block';
+}
+
+/* ── Course picker ── */
+let aC=null;
+function pickCourse(id){document.querySelectorAll('.course-avatar').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.cp').forEach(p=>p.style.display='none');if(aC===id){aC=null;return}aC=id;document.getElementById('ca-'+id).classList.add('on');document.getElementById('cp-'+id).style.display='block'}
+
+/* ── Field cards ── */
+let aF=null;
+function toggleField(id){document.querySelectorAll('.fc').forEach(c=>c.classList.remove('fc-on'));if(aF===id){aF=null;return}aF=id;document.getElementById('fc-'+id).classList.add('fc-on')}
+
+/* ── Keyboard nav ── */
+document.addEventListener('keydown',e=>{const k={'1':'cabinet','2':'field','3':'notes','4':'orchard'};if(k[e.key]){const b=document.querySelector('.np[data-v="'+k[e.key]+'"]');if(b)go(k[e.key],b)}if(e.key==='Escape')closeC()});
+
+/* ── Pill Morph Tabs ── */
+let ptActive='reading';
+function pillMeasure(){
+  const bar=document.getElementById('pt-bar');const pill=document.getElementById('pt-pill');const glow=document.getElementById('pt-glow');
+  const btn=document.querySelector('.pt-btn[data-pt="'+ptActive+'"]');
+  if(!bar||!pill||!btn)return;
+  const bR=bar.getBoundingClientRect();const tR=btn.getBoundingClientRect();
+  const left=tR.left-bR.left;const width=tR.width;
+  pill.style.left=left+'px';pill.style.width=width+'px';
+  if(glow){glow.style.left=left+'px';glow.style.width=width+'px'}
+}
+function pillTab(id){
+  if(id===ptActive)return;ptActive=id;
+  document.querySelectorAll('.pt-btn').forEach(b=>{b.classList.remove('pt-on');b.style.color='var(--txt3)'});
+  const btn=document.querySelector('.pt-btn[data-pt="'+id+'"]');
+  if(btn){btn.classList.add('pt-on');btn.style.color='var(--deep)'}
+  const pill=document.getElementById('pt-pill');
+  if(pill){pill.style.transform='scaleY(1.08)';pill.style.borderRadius='24px';setTimeout(()=>{pill.style.transform='scaleY(1)';pill.style.borderRadius='999px'},180)}
+  pillMeasure();
+  document.querySelectorAll('.pt-panel').forEach(p=>{p.style.display='none'});
+  const panel=document.getElementById('ptp-'+id);
+  if(panel){panel.style.display='block';panel.style.animation='di .4s var(--eo) forwards'}
+}
+window.addEventListener('resize',pillMeasure);
+setTimeout(pillMeasure,100);
+
+/* ── Flickering Grid ── */
+let fgAnim=null;
+function initFlickerGrid(){
+  const c=document.getElementById('fgCanvas');if(!c)return;
+  const ctx=c.getContext('2d');if(!ctx)return;
+  const p=c.parentElement;if(!p)return;
+  const dpr=window.devicePixelRatio||1;
+  const sqSize=4,gap=7,flicker=0.25,maxOp=0.22;
+  const colors=['107,184,76','79,176,198','242,201,76','232,93,117'];
+  function resize(){const w=p.clientWidth,h=p.clientHeight;c.width=w*dpr;c.height=h*dpr;c.style.width=w+'px';c.style.height=h+'px'}
+  resize();
+  const ro=new ResizeObserver(resize);ro.observe(p);
+  let cols,rows,squares,sqColors;
+  function setup(){cols=Math.floor((c.width/dpr)/(sqSize+gap));rows=Math.floor((c.height/dpr)/(sqSize+gap));const len=cols*rows;squares=new Float32Array(len);sqColors=new Uint8Array(len);for(let i=0;i<len;i++){squares[i]=Math.random()*maxOp;sqColors[i]=Math.floor(Math.random()*colors.length)}}
+  setup();
+  let last=0;
+  function draw(t){const dt=(t-last)/1000;last=t;ctx.clearRect(0,0,c.width,c.height);for(let i=0;i<cols;i++){for(let j=0;j<rows;j++){const idx=i*rows+j;if(Math.random()<flicker*dt){squares[idx]=Math.random()*maxOp;if(Math.random()<0.05)sqColors[idx]=Math.floor(Math.random()*colors.length)}ctx.fillStyle='rgba('+colors[sqColors[idx]]+','+squares[idx]+')';ctx.fillRect(i*(sqSize+gap)*dpr,j*(sqSize+gap)*dpr,sqSize*dpr,sqSize*dpr)}}fgAnim=requestAnimationFrame(draw)}
+  fgAnim=requestAnimationFrame(draw);
+}
+function stopFlickerGrid(){if(fgAnim){cancelAnimationFrame(fgAnim);fgAnim=null}}
+
+/* ── Cool Mode: Confetti Burst (slowed) ── */
+const cmColors=['#6BB84C','#4FB0C6','#E85D75','#F2C94C','#f7a088','#0D3B66'];
+let burstThrottle=false;
+function coolBurst(x,y){
+  if(burstThrottle)return;
+  burstThrottle=true;setTimeout(()=>burstThrottle=false,400);
+  const count=8+Math.floor(Math.random()*5);
+  for(let i=0;i<count;i++){
+    const delay=i*35;
+    setTimeout(()=>{
+      const dot=document.createElement('div');const sz=4+Math.random()*6;
+      const col=cmColors[Math.floor(Math.random()*cmColors.length)];
+      const ang=Math.random()*Math.PI*2;const dist=30+Math.random()*50;
+      const dx=Math.cos(ang)*dist;const dy=Math.sin(ang)*dist-20;
+      const br=['50%','30%','4px'][Math.floor(Math.random()*3)];
+      dot.style.cssText='position:fixed;pointer-events:none;z-index:99999;border-radius:'+br+';width:'+sz+'px;height:'+sz+'px;background:'+col+';left:'+x+'px;top:'+y+'px;opacity:.8;transition:all 1.4s cubic-bezier(.16,1,.3,1);box-shadow:0 0 4px '+col;
+      document.body.appendChild(dot);
+      requestAnimationFrame(()=>{requestAnimationFrame(()=>{dot.style.transform='translate('+dx+'px,'+dy+'px) rotate('+(Math.random()*360)+'deg) scale(0)';dot.style.opacity='0'})});
+      setTimeout(()=>dot.remove(),1600);
+    },delay);
+  }
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('.spec,.sub-spec,.course-avatar,.fc,.pt-btn,.ap,.np,button:not(#gb-fab):not(.gb-emoji-btn)');
+  if(t)coolBurst(e.clientX,e.clientY);
+});
+
+/* ── Guestbook FAB ── */
+(function(){
+  const fab=document.createElement('button');fab.id='gb-fab';
+  fab.innerHTML='<span style="font-size:18px">💬</span>';
+  fab.style.cssText='position:fixed;bottom:24px;right:24px;z-index:9998;width:52px;height:52px;border-radius:50%;border:2px solid rgba(79,176,198,.2);background:var(--card);box-shadow:0 8px 32px rgba(13,59,102,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .4s cubic-bezier(.175,.885,.32,1.275)';
+  fab.title='Leave a reaction!';
+  fab.onmouseenter=()=>{fab.style.transform='scale(1.1) translateY(-2px)'};
+  fab.onmouseleave=()=>{fab.style.transform=''};
+  fab.onclick=()=>toggleGB();
+  document.body.appendChild(fab);
+  let fy=0,fd=1;function ff(){fy+=fd*.12;if(fy>4)fd=-1;if(fy<-4)fd=1;fab.style.transform='translateY('+fy+'px)';requestAnimationFrame(ff)}ff();
+
+  const gbHTML=`<div id="gb-modal" style="position:fixed;inset:0;z-index:10001;display:none;align-items:center;justify-content:center;background:rgba(13,59,102,.25);backdrop-filter:blur(10px)" onclick="if(event.target===this)toggleGB()"><div style="background:var(--cream);border-radius:28px;padding:1.8rem;max-width:380px;width:92%;position:relative;box-shadow:0 24px 64px rgba(13,59,102,.18);border:1.5px solid rgba(79,176,198,.1)" onclick="event.stopPropagation()"><button onclick="toggleGB()" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:16px;cursor:pointer;color:var(--txt3)">✕</button><div style="text-align:center;margin-bottom:1.2rem"><p style="font-size:1.6rem;margin-bottom:4px">🌱</p><h3 style="font-family:var(--sf);font-size:1.15rem;font-weight:800;color:var(--deep)">Leave a Seed</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3);margin-top:2px">How does this portfolio make you feel?</p></div><div style="display:flex;justify-content:center;gap:8px;margin-bottom:1.2rem"><button class="gb-emoji-btn" data-emoji="🍎" onclick="gbReact(this)" style="width:48px;height:48px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);cursor:pointer;font-size:22px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span>🍎</span><span class="gb-cnt" style="font-family:var(--sm);font-size:8px;color:var(--txt3);font-weight:700">0</span></button><button class="gb-emoji-btn" data-emoji="🌿" onclick="gbReact(this)" style="width:48px;height:48px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);cursor:pointer;font-size:22px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span>🌿</span><span class="gb-cnt" style="font-family:var(--sm);font-size:8px;color:var(--txt3);font-weight:700">0</span></button><button class="gb-emoji-btn" data-emoji="✨" onclick="gbReact(this)" style="width:48px;height:48px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);cursor:pointer;font-size:22px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span>✨</span><span class="gb-cnt" style="font-family:var(--sm);font-size:8px;color:var(--txt3);font-weight:700">0</span></button><button class="gb-emoji-btn" data-emoji="💡" onclick="gbReact(this)" style="width:48px;height:48px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);cursor:pointer;font-size:22px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span>💡</span><span class="gb-cnt" style="font-family:var(--sm);font-size:8px;color:var(--txt3);font-weight:700">0</span></button><button class="gb-emoji-btn" data-emoji="🫶" onclick="gbReact(this)" style="width:48px;height:48px;border-radius:16px;border:1.5px solid var(--bdr);background:var(--card);cursor:pointer;font-size:22px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px"><span>🫶</span><span class="gb-cnt" style="font-family:var(--sm);font-size:8px;color:var(--txt3);font-weight:700">0</span></button></div><div id="gb-thanked" style="display:none;text-align:center;padding:.8rem;border-radius:16px;background:rgba(107,184,76,.06);margin-bottom:.8rem"><p style="font-size:.9rem;color:var(--deep);font-weight:700">Thank you for your seed! 🌱</p></div><div style="border-top:1px solid var(--bdr);padding-top:1rem;margin-top:.4rem"><p style="font-family:var(--sm);font-size:8.5px;color:var(--txt3);text-align:center;margin-bottom:8px">Want to connect? Drop your info below.</p><div style="display:flex;gap:6px"><input id="gb-input" type="text" placeholder="Name, email, or just say hi..." style="flex:1;padding:8px 12px;border-radius:12px;border:1.5px solid var(--bdr);background:var(--card);font-family:var(--sf);font-size:.85rem;color:var(--deep);outline:none" onfocus="this.style.borderColor='rgba(79,176,198,.4)'" onblur="this.style.borderColor='var(--bdr)'"><button onclick="gbSend()" style="padding:8px 16px;border-radius:12px;border:none;background:var(--sea);color:#fff;font-family:var(--sm);font-size:10px;font-weight:700;cursor:pointer">Send</button></div><div id="gb-sent-msg" style="display:none;text-align:center;margin-top:8px"><p style="font-family:var(--sm);font-size:9px;color:var(--sage)">Saved! Looking forward to connecting. 💚</p></div></div></div></div>`;
+  document.body.insertAdjacentHTML('beforeend',gbHTML);
+  const stored=JSON.parse(localStorage.getItem('gb-reactions')||'{}');
+  document.querySelectorAll('.gb-emoji-btn').forEach(btn=>{btn.querySelector('.gb-cnt').textContent=stored[btn.dataset.emoji]||0});
+})();
+function toggleGB(){const m=document.getElementById('gb-modal');m.style.display=m.style.display==='flex'?'none':'flex'}
+function gbReact(btn){const emoji=btn.dataset.emoji;const stored=JSON.parse(localStorage.getItem('gb-reactions')||'{}');stored[emoji]=(stored[emoji]||0)+1;localStorage.setItem('gb-reactions',JSON.stringify(stored));btn.querySelector('.gb-cnt').textContent=stored[emoji];btn.style.transform='scale(1.2)';setTimeout(()=>btn.style.transform='',300);document.getElementById('gb-thanked').style.display='block';const r=btn.getBoundingClientRect();coolBurst(r.left+r.width/2,r.top+r.height/2)}
+function gbSend(){const input=document.getElementById('gb-input');const val=input.value.trim();if(!val)return;const msgs=JSON.parse(localStorage.getItem('gb-messages')||'[]');msgs.push({text:val,time:new Date().toISOString()});localStorage.setItem('gb-messages',JSON.stringify(msgs));input.value='';document.getElementById('gb-sent-msg').style.display='block';setTimeout(()=>document.getElementById('gb-sent-msg').style.display='none',3000)}
+</script>
+</body>
+</html>
