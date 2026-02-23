@@ -7,9 +7,9 @@
 <link rel="icon" type="image/png" href="images/9.png">
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--deep:#0D3B66;--sea:#4FB0C6;--sea-l:#99bfd5;--coral:#E85D75;--peach:#f7a088;--sun:#F2C94C;--cream:#FDFCF5;--sage:rgba(107,184,76,.8);--txt:#0D3B66;--txt2:#3a6585;--txt3:#7a9bb5;--glass:rgba(255,255,255,.55);--glassB:rgba(255,255,255,.2);--card:#fff;--bdr:rgba(13,59,102,.06);--sf:'Crimson Pro',Georgia,serif;--st:'Crimson Text',serif;--sm:'JetBrains Mono',monospace;--spring:cubic-bezier(.175,.885,.32,1.275);--eo:cubic-bezier(.16,1,.3,1)}
+:root{--deep:#0D3B66;--sea:#4FB0C6;--sea-l:#99bfd5;--coral:#E85D75;--peach:#f7a088;--sun:#F2C94C;--cream:#FDFCF5;--sage:rgba(107,184,76,.8);--txt:#0D3B66;--txt2:#3a6585;--txt3:#7a9bb5;--glass:rgba(255,255,255,.55);--glassB:rgba(255,255,255,.2);--card:#fff;--bdr:rgba(13,59,102,.06);--sf:'Crimson Pro',Georgia,serif;--st:'Crimson Text',serif;--sm:'JetBrains Mono',monospace;--spring:cubic-bezier(.175,.885,.32,1.275);--eo:cubic-bezier(.16,1,.3,1);--snap:cubic-bezier(.4,0,.2,1);--drift:cubic-bezier(.25,.46,.45,.94)}
 *{margin:0;padding:0;box-sizing:border-box}html,body{height:100%;overflow:hidden}
-body{font-family:var(--sf);color:var(--txt);background:var(--cream);-webkit-font-smoothing:antialiased;cursor:none}
+body{font-family:var(--sf);color:var(--txt);background:var(--cream);-webkit-font-smoothing:antialiased;cursor:none}body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:99997;opacity:.018;background:repeating-conic-gradient(rgba(0,0,0,.03) 0% 25%,transparent 0% 50%) 0 0/2px 2px;mix-blend-mode:multiply}
 a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cursor:none}
 #blend-cursor{position:fixed;top:0;left:0;width:18px;height:18px;border-radius:50%;background:rgba(79,176,198,.55);mix-blend-mode:difference;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .25s var(--eo),height .25s var(--eo),background .3s,opacity .25s}
 #blend-cursor.hover{width:44px;height:44px;background:rgba(232,93,117,.45)}
@@ -22,16 +22,24 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
 .iw{position:relative;display:inline;color:var(--coral);font-weight:700;border-bottom:2px solid transparent;transition:border-color .35s var(--eo);cursor:help;z-index:50}.iw:hover{border-bottom-color:var(--coral)}.iw[data-tech]:hover{border-bottom-color:var(--sea);color:var(--sea);font-family:var(--sm);font-size:.93em}
 .ip{position:fixed;width:max-content;max-width:280px;padding:10px 14px;background:var(--deep);color:var(--cream);font-family:var(--sm);font-size:11px;font-weight:400;line-height:1.55;border-radius:12px;box-shadow:0 10px 40px rgba(13,59,102,.22);opacity:0;pointer-events:none;transition:opacity .3s var(--eo),transform .4s var(--spring);z-index:10000;transform:translateY(6px) scale(.94)}.iw:hover .ip{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}.ip-l{display:block;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sea-l);margin-bottom:4px;font-weight:600}
-.spec{width:110px;height:110px;border-radius:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;position:relative;flex-shrink:0;border:2.5px solid transparent;transition:all .4s var(--spring);box-shadow:0 2px 12px rgba(13,59,102,.03)}.spec:hover{transform:translateY(-5px) scale(1.04);box-shadow:0 10px 32px rgba(13,59,102,.07)}.spec.on{border-color:var(--coral);box-shadow:0 10px 36px rgba(232,93,117,.1);animation:breathe 3s ease-in-out infinite}.spec svg{transition:filter .5s,transform .4s var(--spring)}.spec:hover svg{transform:scale(1.08) rotate(2deg)}.spec.on svg,.spec:hover svg{filter:drop-shadow(0 0 8px currentColor)}.spec-lbl{font-family:var(--st);font-size:10.5px;font-weight:600;color:var(--txt2);text-align:center;line-height:1.15;letter-spacing:.02em}
+.spec{width:110px;height:110px;border-radius:28px 32px 26px 34px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;position:relative;flex-shrink:0;border:2.5px solid transparent;transition:all .4s var(--spring);box-shadow:0 2px 12px rgba(13,59,102,.03)}.spec:hover{box-shadow:0 10px 32px rgba(13,59,102,.07)}.spec.on{border-color:var(--coral);box-shadow:0 10px 36px rgba(232,93,117,.1);animation:breathe 3s ease-in-out infinite}.spec svg{transition:filter .5s,transform .4s var(--spring)}.spec:hover svg{transform:scale(1.08) rotate(2deg)}.spec.on svg,.spec:hover svg{filter:drop-shadow(0 0 8px currentColor)}.spec-lbl{font-family:var(--st);font-size:10.5px;font-weight:600;color:var(--txt2);text-align:center;line-height:1.15;letter-spacing:.02em}
+#s-lens{transform:rotate(-.8deg)}#s-lens:hover{transform:rotate(-.8deg) translateY(-5px) scale(1.04)}
+#s-exp{transform:rotate(.5deg);width:106px;height:114px;border-radius:24px 28px 32px 20px}#s-exp:hover{transform:rotate(.5deg) translateY(-4px) scale(1.03)}#s-exp .spec-lbl{font-size:11px;letter-spacing:.01em}
+#s-study{transform:rotate(-.3deg);width:108px;height:112px;border-left:3px solid rgba(242,201,76,.12)}#s-study:hover{transform:rotate(-.3deg) translateY(-5px) scale(1.04)}
+#s-orch{transform:rotate(.7deg);width:112px;height:106px;border-radius:36px 28px 34px 24px}#s-orch:hover{transform:rotate(.7deg) translateY(-3px) scale(1.05)}#s-orch .spec-lbl{font-size:10px;letter-spacing:.04em}
+.spec-hint{font-family:var(--sm);font-size:7px;color:var(--txt3);opacity:0;transform:translateY(4px);transition:all .3s var(--drift);position:absolute;bottom:-18px;white-space:nowrap;letter-spacing:.04em}.spec:hover .spec-hint{opacity:.7;transform:translateY(0)}
+.spec-action{position:absolute;bottom:8px;right:8px;opacity:.12;transition:opacity .3s var(--drift)}.spec:hover .spec-action{opacity:.45}
 .course-avatar.on{animation:breathe 3s ease-in-out infinite}.course-avatar[data-c="adv"].on{border-color:var(--coral);box-shadow:0 10px 36px rgba(232,93,117,.1)}.course-avatar[data-c="mkt"].on{border-color:var(--sea);box-shadow:0 10px 36px rgba(79,176,198,.1)}.course-avatar[data-c="edp"].on{border-color:var(--sun);box-shadow:0 10px 36px rgba(242,201,76,.12)}
-.ap{transition:all .45s var(--spring)}.ap:hover{box-shadow:0 16px 48px rgba(107,184,76,.1)!important;transform:translateY(-3px);border-color:rgba(107,184,76,.3)!important}
+.ap{transition:all .5s var(--drift)}.ap:hover{box-shadow:3px 10px 36px rgba(107,184,76,.12)!important;transform:rotate(-.4deg) translateY(-2px);border-color:rgba(107,184,76,.3)!important}
 .cs::-webkit-scrollbar{width:3px}.cs::-webkit-scrollbar-track{background:transparent}.cs::-webkit-scrollbar-thumb{background:var(--sea-l);border-radius:2px}
 .np{display:inline-flex;align-items:center;gap:4px;font-family:var(--st);font-size:13px;font-weight:500;background:none;border:none;cursor:pointer;padding:8px 0;transition:all .3s var(--eo);white-space:nowrap;text-decoration:none}.np.on{font-weight:700;color:var(--deep);text-decoration:underline;text-decoration-color:var(--coral);text-underline-offset:4px;text-decoration-thickness:2px}.np:not(.on){color:var(--txt3)}
-.fc{border-radius:24px;border:1.5px solid var(--bdr);background:var(--card);transition:all .4s var(--spring);cursor:pointer;overflow:hidden}.fc:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(13,59,102,.06)}.fc.fc-on{border-color:var(--sea);box-shadow:0 8px 32px rgba(79,176,198,.08)}.fc-head{padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1rem}.fc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.fc-body{display:none;padding:0 1.6rem 1.4rem}.fc.fc-on .fc-body{display:block;animation:di .4s var(--eo) forwards}.fc-tag{font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:6px;display:inline-block}.fc-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--sm);font-size:9.5px;font-weight:700;padding:6px 14px;border-radius:10px;text-decoration:none;transition:all .3s var(--spring)}.fc-link:hover{transform:translateY(-1px)}.fc-chev{transition:transform .3s var(--spring);font-size:14px;font-weight:700;color:var(--txt3)}.fc.fc-on .fc-chev{transform:rotate(90deg);color:var(--sea)}
+.fc{border-radius:22px;border:1.5px solid var(--bdr);background:var(--card);transition:all .4s var(--snap);cursor:pointer;overflow:hidden}.fc:nth-child(odd){border-radius:20px 24px 22px 18px}.fc:nth-child(even){border-radius:24px 18px 26px 20px}.fc:nth-child(1):hover{transform:translateY(-4px) rotate(-.3deg);box-shadow:0 12px 36px rgba(13,59,102,.06)}.fc:nth-child(2):hover{transform:translateY(-2px) scale(1.01);box-shadow:0 10px 28px rgba(13,59,102,.05)}.fc:nth-child(3):hover{transform:translateX(3px) translateY(-2px);box-shadow:0 8px 32px rgba(13,59,102,.06)}.fc.fc-on{border-color:var(--sea);box-shadow:0 8px 32px rgba(79,176,198,.08)}.fc-head{padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1rem}.fc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.fc-body{display:none;padding:0 1.6rem 1.4rem}.fc.fc-on .fc-body{display:block;animation:di .4s var(--eo) forwards}.fc-tag{font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:6px;display:inline-block}.fc-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--sm);font-size:9.5px;font-weight:700;padding:6px 14px;border-radius:10px;text-decoration:none;transition:all .3s var(--snap)}.fc-link:hover{transform:translateY(-1px)}.fc-chev{transition:transform .3s var(--spring);font-size:14px;font-weight:700;color:var(--txt3)}.fc.fc-on .fc-chev{transform:rotate(90deg);color:var(--sea)}
 .pt-btn:hover{color:var(--deep)!important}.pt-on{color:var(--deep)!important}
+.lucky-note{position:fixed;padding:10px 14px;background:#fef9e7;border:1px solid rgba(242,201,76,.25);border-radius:2px 12px 2px 12px;font-family:var(--st);font-size:13px;font-style:italic;color:var(--deep);box-shadow:2px 3px 8px rgba(13,59,102,.06);opacity:0;transition:opacity .5s ease;z-index:10000;max-width:260px;line-height:1.5}.lucky-note.show{opacity:1}.lucky-attr{display:block;font-family:var(--sm);font-size:8px;color:var(--txt3);margin-top:4px;font-style:normal;letter-spacing:.06em}
+.recent-post{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;background:var(--card);border:1px solid var(--bdr);text-decoration:none;transition:all .3s var(--snap)}.recent-post:hover{transform:translateX(4px);border-color:rgba(107,184,76,.2)}
 /* sub-specimens inside Lens */
-.sub-spec{width:90px;height:90px;border-radius:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:2px solid transparent;transition:all .4s var(--spring);box-shadow:0 2px 10px rgba(13,59,102,.02)}.sub-spec:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 8px 24px rgba(13,59,102,.06)}.sub-spec.on{border-color:var(--sea);box-shadow:0 8px 28px rgba(79,176,198,.1)}.sub-spec svg{transition:all .4s var(--spring)}.sub-spec:hover svg{transform:scale(1.08)}.sub-spec .spec-lbl{font-size:9px}
-@media(max-width:900px){.dash{grid-template-columns:1fr!important}.bcol{display:none!important}.fairy{display:none}.spec{width:86px;height:86px;border-radius:24px}.sub-spec{width:72px;height:72px;border-radius:20px}.hero{font-size:1.5rem!important}.ip{display:none!important}.field-grid{grid-template-columns:1fr!important}#pt-bar{flex-wrap:wrap;border-radius:20px}.currently-grid{grid-template-columns:1fr!important}.topic-grid{grid-template-columns:1fr!important}.degree-grid{grid-template-columns:1fr!important}.practice-grid{grid-template-columns:1fr!important}body,a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cursor:auto!important}#blend-cursor{display:none!important}}
+.sub-spec{width:90px;height:90px;border-radius:22px 26px 20px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:2px solid transparent;transition:all .35s var(--drift);box-shadow:0 2px 10px rgba(13,59,102,.02)}.sub-spec:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 8px 24px rgba(13,59,102,.06)}.sub-spec.on{border-color:var(--sea);box-shadow:0 8px 28px rgba(79,176,198,.1)}.sub-spec svg{transition:all .4s var(--spring)}.sub-spec:hover svg{transform:scale(1.08)}.sub-spec .spec-lbl{font-size:9px}
+@media(max-width:900px){.dash{grid-template-columns:1fr!important}.bcol{display:none!important}.fairy{display:none}.spec{width:86px;height:86px;border-radius:24px}.sub-spec{width:72px;height:72px;border-radius:20px}.hero{font-size:1.5rem!important}.ip{display:none!important}.field-grid{grid-template-columns:1fr!important}#pt-bar{flex-wrap:wrap;border-radius:20px}.currently-grid{grid-template-columns:1fr!important}.topic-grid{grid-template-columns:1fr!important}.degree-grid{grid-template-columns:1fr!important}.practice-grid{grid-template-columns:1fr!important}body,a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cursor:auto!important}#blend-cursor{display:none!important}.spec-hint,.spec-action{display:none!important}.lucky-note{max-width:200px;font-size:12px}body::before{display:none}}
 </style>
 </head>
 <body>
@@ -48,7 +56,7 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
         <button class="np on" data-v="cabinet" onclick="go('cabinet',this)"><svg width="14" height="14" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="10" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/><line x1="29" y1="29" x2="38" y2="38" stroke="#4FB0C6" stroke-width="3" stroke-linecap="round"/></svg> Cabinet</button>
         <button class="np" data-v="field" onclick="go('field',this)">Experience</button>
         <button class="np" data-v="notes" onclick="go('notes',this)">Study Notes</button>
-        <button class="np" data-v="orchard" onclick="go('orchard',this)"><svg width="14" height="14" viewBox="0 0 48 48" fill="none"><path d="M24 42s-12-9-12-20c0-5 3-8 7-8 2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 4 0 7 3 7 8 0 11-12 20-12 20z" stroke="#6BB84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> The Orchard</button>
+        <button class="np" data-v="orchard" onclick="go('orchard',this)"><svg width="14" height="14" viewBox="0 0 48 48" fill="none"><path d="M24 42s-12-9-12-20c0-5 3-8 7-8 2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 4 0 7 3 7 8 0 11-12 20-12 20z" stroke="#6BB84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> The Orchard <span style="font-family:var(--sm);font-size:8px;color:var(--sage);font-weight:600;opacity:.7">(Blog)</span></button>
       </div>
       <div style="display:flex;gap:.9rem;align-items:center"><a href="https://www.linkedin.com/in/bellakang017" target="_blank" style="font-family:var(--sm);font-size:9.5px;color:var(--txt3);text-decoration:none">LinkedIn ↗</a><button onclick="openC()" style="font-family:var(--sm);font-size:9.5px;font-weight:700;padding:6px 14px;background:var(--coral);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .3s var(--spring)" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">CONTACT</button></div>
     </nav>
@@ -62,14 +70,14 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
         </header>
         <!-- 4 Specimen Icons -->
         <div class="si s5" style="display:flex;gap:1.2rem;margin-bottom:2rem;flex-wrap:wrap">
-          <div class="spec" id="s-lens" style="background:rgba(79,176,198,.06);color:#4FB0C6" onclick="tS('lens')"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="12" stroke="#4FB0C6" stroke-width="3.5" fill="rgba(79,176,198,.08)"/><line x1="30" y1="30" x2="40" y2="40" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round"/></svg><span class="spec-lbl">Analytical<br>Lens</span></div>
-          <div class="spec" id="s-exp" style="background:rgba(232,93,117,.04);color:#E85D75" onclick="go('field',document.querySelector('[data-v=field]'))"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M18 6h12M20 6v16l-8 14a4 4 0 003.5 6h17a4 4 0 003.5-6l-8-14V6" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.06)"/></svg><span class="spec-lbl">Expe-<br>rience</span></div>
-          <div class="spec" id="s-study" style="background:rgba(242,201,76,.06);color:#F2C94C" onclick="go('notes',document.querySelector('[data-v=notes]'))"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="5" stroke="#F2C94C" stroke-width="3" fill="rgba(242,201,76,.08)"/><line x1="24" y1="15" x2="24" y2="38" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/><path d="M24 38c-6 0-10-4-12-8M24 38c6 0 10-4 12-8" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/></svg><span class="spec-lbl">Study<br>Notes</span></div>
-          <div class="spec" id="s-orch" style="background:rgba(107,184,76,.06);color:#6BB84C" onclick="go('orchard',document.querySelector('[data-v=orchard]'))"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(107,184,76,.06)"/></svg><span class="spec-lbl">The<br>Orchard</span></div>
+          <div class="spec" id="s-lens" style="background:rgba(79,176,198,.06);color:#4FB0C6" onclick="tS('lens')"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="12" stroke="#4FB0C6" stroke-width="3.5" fill="rgba(79,176,198,.08)"/><line x1="30" y1="30" x2="40" y2="40" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round"/></svg><span class="spec-lbl">Analytical<br>Lens</span><svg class="spec-action" width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span class="spec-hint">research identity</span></div>
+          <div class="spec" id="s-exp" style="background:rgba(232,93,117,.04);color:#E85D75" onclick="go('field',document.querySelector('[data-v=field]'))"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M18 6h12M20 6v16l-8 14a4 4 0 003.5 6h17a4 4 0 003.5-6l-8-14V6" stroke="#E85D75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(232,93,117,.06)"/></svg><span class="spec-lbl">Expe-<br>rience</span><svg class="spec-action" width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span class="spec-hint">where I've worked</span></div>
+          <div class="spec" id="s-study" style="background:rgba(242,201,76,.06);color:#F2C94C" onclick="go('notes',document.querySelector('[data-v=notes]'))"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="10" r="5" stroke="#F2C94C" stroke-width="3" fill="rgba(242,201,76,.08)"/><line x1="24" y1="15" x2="24" y2="38" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/><path d="M24 38c-6 0-10-4-12-8M24 38c6 0 10-4 12-8" stroke="#F2C94C" stroke-width="3" stroke-linecap="round"/></svg><span class="spec-lbl">Study<br>Notes</span><svg class="spec-action" width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span class="spec-hint">courses &amp; degrees</span></div>
+          <div class="spec" id="s-orch" style="background:rgba(107,184,76,.06);color:#6BB84C" onclick="go('orchard',document.querySelector('[data-v=orchard]'))"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(107,184,76,.06)"/></svg><span class="spec-lbl">The<br>Orchard</span><svg class="spec-action" width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span class="spec-hint">blog &amp; journal</span></div>
         </div>
         <!-- Lens expanded: 3 sub-specimens -->
         <div id="sp-lens" class="sp" style="display:none">
-          <div class="di" style="padding:1.8rem 2rem;background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glassB);border-radius:28px;margin-bottom:1.8rem">
+          <div class="di" style="padding:1.8rem 2rem;background:rgba(253,252,245,.94);border:1px solid rgba(13,59,102,.06);border-radius:28px;margin-bottom:1.8rem">
             <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:1rem"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="12" stroke="#4FB0C6" stroke-width="3.5" fill="rgba(79,176,198,.08)"/><line x1="30" y1="30" x2="40" y2="40" stroke="#4FB0C6" stroke-width="3.5" stroke-linecap="round"/></svg><div><h3 style="font-size:1.2rem;font-weight:800;color:var(--deep)">The Lens</h3><p style="font-family:var(--sm);font-size:9px;color:var(--sea);letter-spacing:.1em;text-transform:uppercase;font-weight:600">Research Identity</p></div></div>
             <!-- 3 sub-spec buttons -->
             <div style="display:flex;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap">
@@ -390,25 +398,48 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
       <div class="panel" id="p-orchard" style="display:none;padding:2.5rem 3rem;max-width:880px;margin:0 auto;position:relative">
         <canvas id="fgCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.35"></canvas>
         <div style="position:relative;z-index:1">
-        <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-bottom:6px">Beyond Research</p>
-        <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:4px">The Orchard</h2>
-        <p style="font-size:.9rem;color:var(--txt2);line-height:1.5;margin-bottom:4px;font-style:italic">Where research roots meet the soil of lived practice.</p>
+        <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-bottom:6px">Blog &amp; Journal</p>
+        <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:4px">The Orchard <span style="font-family:var(--sm);font-size:11px;font-weight:600;color:var(--txt3);vertical-align:middle;margin-left:6px;letter-spacing:.08em;padding:2px 8px;background:rgba(107,184,76,.08);border-radius:6px">BLOG</span></h2>
+        <p style="font-size:.9rem;color:var(--txt2);line-height:1.5;margin-bottom:4px">Where I write about research, practice, and everything between.</p>
         <div style="width:40px;height:3px;background:var(--peach);border-radius:2px;margin-bottom:1.5rem"></div>
 
         <!-- === GREEN APPLE LOGIC BLOG CARD === -->
-        <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="ap" style="display:block;padding:1.6rem 1.8rem;margin-bottom:1.5rem;border-radius:24px;text-decoration:none;color:var(--deep);background:linear-gradient(135deg,rgba(107,184,76,.06),rgba(253,252,245,.5));border:2px solid rgba(107,184,76,.15);position:relative;overflow:hidden">
-          <!-- Subtle decorative leaf pattern -->
-          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style="position:absolute;right:-20px;bottom:-20px;opacity:.04"><path d="M60 10C60 10 90 30 90 60S60 110 60 110S30 90 30 60S60 10 60 10Z" stroke="#6BB84C" stroke-width="2"/><path d="M60 10V110" stroke="#6BB84C" stroke-width="1.5"/><path d="M35 35Q60 60 85 35" stroke="#6BB84C" stroke-width="1"/><path d="M35 60Q60 80 85 60" stroke="#6BB84C" stroke-width="1"/><path d="M40 85Q60 95 80 85" stroke="#6BB84C" stroke-width="1"/></svg>
-          <div style="display:flex;align-items:center;gap:1rem;position:relative;z-index:1">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="flex-shrink:0"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" fill="rgba(107,184,76,.06)"/></svg>
-            <div style="flex:1">
-              <p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-bottom:3px">Design Principle</p>
-              <h3 style="font-size:1.15rem;font-weight:800;margin-bottom:3px">Green Apple Logic</h3>
-              <p style="font-size:.85rem;color:var(--txt2);line-height:1.5">Healthy choices feel natural — not prescribed. A blog exploring how we design environments where well-being is the path of least resistance.</p>
+        <div style="margin-bottom:1.8rem">
+          <p style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px">Featured Blog</p>
+          <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="ap" style="display:block;padding:1.8rem 2rem;border-radius:20px 24px 22px 18px;text-decoration:none;color:var(--deep);background:var(--card);border:2px solid rgba(107,184,76,.2);position:relative;overflow:hidden">
+            <div style="display:flex;align-items:flex-start;gap:1.2rem;position:relative;z-index:1">
+              <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,rgba(107,184,76,.12),rgba(79,176,198,.08));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><path d="M24 42s-14-10-14-22c0-6 4-10 8-10 3 0 5 2 6 4 1-2 3-4 6-4 4 0 8 4 8 10 0 12-14 22-14 22z" stroke="#6BB84C" stroke-width="3" stroke-linecap="round" fill="rgba(107,184,76,.06)"/></svg>
+              </div>
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                  <span style="font-family:var(--sm);font-size:8px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(107,184,76,.1);color:#6BB84C;letter-spacing:.06em">ACTIVE BLOG</span>
+                  <span style="font-family:var(--sm);font-size:8px;color:var(--txt3)">Updated weekly</span>
+                </div>
+                <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;line-height:1.3">Green Apple Logic</h3>
+                <p style="font-size:.88rem;color:var(--txt2);line-height:1.55;margin-bottom:10px">Exploring how we design environments where healthy choices feel natural — not prescribed.</p>
+                <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:12px">
+                  <div style="display:flex;align-items:center;gap:6px"><span style="font-family:var(--sm);font-size:7px;color:var(--txt3);min-width:48px">Feb 2026</span><span style="width:3px;height:3px;border-radius:50%;background:var(--sage)"></span><span style="font-family:var(--st);font-size:12px;color:var(--deep);font-weight:600">On stress as signal, not symptom</span></div>
+                  <div style="display:flex;align-items:center;gap:6px"><span style="font-family:var(--sm);font-size:7px;color:var(--txt3);min-width:48px">Jan 2026</span><span style="width:3px;height:3px;border-radius:50%;background:var(--sage);opacity:.6"></span><span style="font-family:var(--st);font-size:12px;color:var(--txt2)">The psoas and the problem of self-silencing</span></div>
+                </div>
+                <div style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:10px;background:rgba(107,184,76,.08);border:1px solid rgba(107,184,76,.15)"><span style="font-family:var(--sm);font-size:10px;font-weight:700;color:#6BB84C">Read the blog</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="#6BB84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              </div>
             </div>
-            <div style="display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:12px;background:rgba(107,184,76,.08);border:1px solid rgba(107,184,76,.15);flex-shrink:0"><span style="font-family:var(--sm);font-size:9px;font-weight:700;color:#6BB84C">Visit Blog</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="#6BB84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+        </div>
+
+        <!-- === RECENT WRITING === -->
+        <div style="margin-bottom:1.8rem">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+            <p style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)">Recent Writing</p>
+            <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" style="font-family:var(--sm);font-size:8px;color:var(--sage);text-decoration:none;font-weight:600">View all posts &#8594;</a>
           </div>
-        </a>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="recent-post"><span style="font-family:var(--sm);font-size:8px;color:var(--txt3);min-width:50px">Feb 15</span><span style="font-family:var(--st);font-size:13px;color:var(--deep);font-weight:600;flex:1">On stress as signal, not symptom</span><span style="font-family:var(--sm);font-size:7px;padding:2px 6px;border-radius:4px;background:rgba(107,184,76,.06);color:var(--sage)">mind-body</span></a>
+            <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="recent-post"><span style="font-family:var(--sm);font-size:8px;color:var(--txt3);min-width:50px">Jan 28</span><span style="font-family:var(--st);font-size:13px;color:var(--deep);font-weight:600;flex:1">The psoas and the problem of self-silencing</span><span style="font-family:var(--sm);font-size:7px;padding:2px 6px;border-radius:4px;background:rgba(232,93,117,.06);color:var(--coral)">research</span></a>
+            <a href="https://bellakang017.github.io/appleproject.joo/" target="_blank" class="recent-post"><span style="font-family:var(--sm);font-size:8px;color:var(--txt3);min-width:50px">Jan 12</span><span style="font-family:var(--st);font-size:13px;color:var(--deep);font-weight:600;flex:1">Reading as somatic practice</span><span style="font-family:var(--sm);font-size:7px;padding:2px 6px;border-radius:4px;background:rgba(79,176,198,.06);color:var(--sea)">reading</span></a>
+          </div>
+        </div>
 
         <!-- === CURRENTLY SECTION === -->
         <div class="currently-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:1.5rem">
@@ -430,6 +461,7 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
         </div>
 
         <!-- === PILL MORPH TABS === -->
+        <p style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:10px">Deep Dives &mdash; Practice Journal</p>
         <div id="pillTabs" style="max-width:720px">
           <div id="pt-bar" style="position:relative;display:inline-flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(13,59,102,.06);backdrop-filter:blur(8px);border:1px solid rgba(13,59,102,.06);margin-bottom:1.5rem">
             <div id="pt-pill" style="position:absolute;top:4px;bottom:4px;border-radius:999px;background:linear-gradient(90deg,rgba(107,184,76,.15),rgba(79,176,198,.12));box-shadow:0 6px 20px rgba(13,59,102,.06);border:1px solid rgba(255,255,255,.3);transition:left .35s var(--spring),width .35s var(--spring);pointer-events:none"></div>
@@ -772,10 +804,59 @@ function coolBurst(x,y){
     },delay);
   }
 }
-document.addEventListener('click',e=>{
-  const t=e.target.closest('.spec,.sub-spec,.course-avatar,.fc,.pt-btn,.ap,.np,button:not(#gb-fab):not(.gb-emoji-btn)');
-  if(t)coolBurst(e.clientX,e.clientY);
-});
+/* confetti scoped to guestbook + easter eggs only */
+
+/* ── Easter Eggs: Lucky Quotes ── */
+const luckyQuotes=[
+  {text:"Research is formalized curiosity. It is poking and prying with a purpose.",attr:"Zora Neale Hurston"},
+  {text:"Between stimulus and response there is a space. In that space is our power to choose.",attr:"Viktor Frankl"},
+  {text:"Today's confusion is tomorrow's thesis chapter.",attr:"3am note"},
+  {text:"Not all who wander are lost — some are just running mixed methods.",attr:"lab whiteboard"},
+  {text:"The body is not a thing we have, but a way we are.",attr:"studio note"},
+  {text:"She believed she could, so she researched the conditions under which belief leads to action.",attr:"advisor feedback"},
+  {text:"What if the message isn't wrong — just early?",attr:"thesis draft margin"},
+  {text:"Slowly, then all at once.",attr:"reading group"},
+  {text:"The psoas knows things the prefrontal cortex forgot.",attr:"movement journal"},
+  {text:"If you want to go fast, go alone. If you want to go far, go together.",attr:"African proverb"}
+];
+let lastQIdx=-1;
+function rndQuote(){let i;do{i=Math.floor(Math.random()*luckyQuotes.length)}while(i===lastQIdx&&luckyQuotes.length>1);lastQIdx=i;return luckyQuotes[i]}
+function showLuckyNote(anchor,pos){
+  document.querySelectorAll('.lucky-note').forEach(n=>n.remove());
+  const q=rndQuote(),note=document.createElement('div');
+  note.className='lucky-note';
+  note.style.transform='rotate('+(Math.random()*6-3).toFixed(1)+'deg)';
+  note.innerHTML=q.text+'<span class="lucky-attr">— '+q.attr+'</span>';
+  document.body.appendChild(note);
+  const r=anchor.getBoundingClientRect();
+  if(pos==='below'){note.style.left=Math.min(r.left,window.innerWidth-270)+'px';note.style.top=(r.bottom+10)+'px'}
+  else if(pos==='right'){note.style.left=(r.right+10)+'px';note.style.top=r.top+'px'}
+  else if(pos==='above'){note.style.left=Math.min(r.left,window.innerWidth-270)+'px';note.style.top=(r.top-80)+'px'}
+  requestAnimationFrame(()=>note.classList.add('show'));
+  setTimeout(()=>{note.classList.remove('show');setTimeout(()=>note.remove(),600)},5000);
+}
+function showFullScreenQuote(){
+  const q=rndQuote(),ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:99998;display:flex;align-items:center;justify-content:center;background:rgba(13,59,102,.85);backdrop-filter:blur(20px);opacity:0;transition:opacity .6s ease;flex-direction:column;gap:12px;cursor:pointer';
+  ov.innerHTML='<p style="font-family:var(--st);font-size:1.5rem;color:var(--cream);text-align:center;max-width:460px;line-height:1.6;font-style:italic">\u201C'+q.text+'\u201D</p><p style="font-family:var(--sm);font-size:10px;color:var(--sea-l);letter-spacing:.12em">\u2014 '+q.attr+'</p>';
+  document.body.appendChild(ov);
+  requestAnimationFrame(()=>{ov.style.opacity='1'});
+  coolBurst(window.innerWidth/2,window.innerHeight/2);
+  const dismiss=()=>{ov.style.opacity='0';setTimeout(()=>ov.remove(),700)};
+  setTimeout(dismiss,4000);ov.onclick=dismiss;
+}
+/* EE1: Triple-click hero */
+(function(){let cc=0,ct;const hero=document.querySelector('.hero');if(!hero)return;hero.addEventListener('click',()=>{cc++;clearTimeout(ct);ct=setTimeout(()=>cc=0,400);if(cc>=3){cc=0;showLuckyNote(hero,'below')}})})();
+/* EE2: 3-second hover on profile photo */
+(function(){let ht;const img=document.querySelector('.portrait img');if(!img)return;img.addEventListener('mouseenter',()=>{ht=setTimeout(()=>showLuckyNote(img,'right'),3000)});img.addEventListener('mouseleave',()=>clearTimeout(ht))})();
+/* EE3: Type "bella" on keyboard */
+(function(){let buf='';document.addEventListener('keydown',e=>{if(document.activeElement.tagName==='INPUT'||document.activeElement.tagName==='TEXTAREA')return;buf+=e.key.toLowerCase();if(buf.length>12)buf=buf.slice(-12);if(buf.includes('bella')){buf='';showFullScreenQuote()}})})();
+/* EE4: Click the Experience decorative line */
+(function(){const lines=document.querySelectorAll('[style*="width:40px;height:3px"]');lines.forEach(line=>{line.style.cursor='pointer';line.addEventListener('click',e=>{e.stopPropagation();showLuckyNote(line,'below')})})})();
+/* EE5: Overscroll at bottom of panel */
+(function(){const cs=document.querySelector('.cs');if(!cs)return;let atBottom=false;cs.addEventListener('scroll',()=>{atBottom=cs.scrollTop+cs.clientHeight>=cs.scrollHeight-2});cs.addEventListener('wheel',e=>{if(atBottom&&e.deltaY>0){const q=rndQuote(),msg=document.createElement('div');msg.style.cssText='position:fixed;bottom:12px;left:50%;transform:translateX(-50%) translateY(20px);font-family:var(--st);font-size:12px;font-style:italic;color:var(--txt2);background:var(--card);padding:8px 16px;border-radius:20px;box-shadow:0 4px 16px rgba(13,59,102,.08);border:1px solid var(--bdr);opacity:0;transition:all .4s ease;z-index:9999;white-space:nowrap';msg.textContent='\u201C'+q.text.slice(0,60)+(q.text.length>60?'...':'')+'\u201D';document.body.appendChild(msg);requestAnimationFrame(()=>{msg.style.opacity='1';msg.style.transform='translateX(-50%) translateY(0)'});setTimeout(()=>{msg.style.opacity='0';msg.style.transform='translateX(-50%) translateY(20px)';setTimeout(()=>msg.remove(),500)},3500);atBottom=false}},{passive:true})})();
+/* EE6: Double-click vertical "Moody College" text */
+(function(){const vt=document.querySelector('.vert.si.s3');if(!vt)return;vt.style.cursor='pointer';vt.addEventListener('dblclick',e=>{e.preventDefault();vt.style.color='var(--sun)';vt.style.transition='color .3s';setTimeout(()=>vt.style.color='',1500);showLuckyNote(vt,'right')})})();
 
 /* ── Guestbook FAB ── */
 (function(){
