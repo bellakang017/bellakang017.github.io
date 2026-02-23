@@ -52,10 +52,24 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
 .m-aside{display:block!important;margin-top:10px;padding:10px 14px;border-radius:12px;background:rgba(196,167,108,.04);border-left:3px solid rgba(196,167,108,.15)}
 /* Mobile panel padding + readability */
 .panel{padding:1.5rem 1.2rem!important}.panel p{font-size:1rem!important;line-height:1.8!important}.fc-body p{font-size:.94rem!important}
+/* Mobile capsule tabs */
+.sn-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.sn-tabs::-webkit-scrollbar{display:none}.sn-tab{font-size:9.5px!important;padding:8px 14px!important}.sn-stat{font-size:8px!important;padding:4px 8px!important}
+.lotus-decor{width:36px!important;opacity:.06!important}
 }
 /* Focus states + scroll progress */
 .np:focus-visible,.fc:focus-visible,.spec:focus-visible,.pt-btn:focus-visible,.mw-btn:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 .scroll-progress{position:absolute;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--sea),var(--coral));border-radius:0 1px 1px 0;z-index:21;transition:width .15s linear;width:0}
+/* Study Notes: capsule tabs + lotus */
+.sn-tabs{display:flex;align-items:center;gap:4px;padding:4px;background:rgba(61,50,40,.04);border-radius:14px;margin-bottom:1.8rem;position:relative;overflow:hidden}
+.sn-tab{position:relative;z-index:1;font-family:var(--sm);font-size:10.5px;font-weight:600;padding:10px 20px;border-radius:10px;border:none;background:none;cursor:pointer;color:var(--txt3);transition:color .3s var(--eo);white-space:nowrap;letter-spacing:.02em}
+.sn-tab.sn-on{color:var(--deep);font-weight:700}
+.sn-pill{position:absolute;height:calc(100% - 8px);top:4px;border-radius:10px;background:var(--card);box-shadow:0 2px 10px rgba(61,50,40,.07);transition:left .4s cubic-bezier(.4,0,.2,1),width .4s cubic-bezier(.4,0,.2,1);z-index:0;border:1px solid rgba(122,154,109,.08)}
+.sn-stat{display:inline-flex;align-items:center;gap:5px;font-family:var(--sm);font-size:9px;font-weight:700;padding:5px 12px;border-radius:10px;letter-spacing:.04em}
+.lotus-decor{position:absolute;transition:all .8s var(--drift);cursor:default;pointer-events:auto;z-index:2;filter:drop-shadow(0 2px 8px rgba(61,50,40,.06))}
+.lotus-decor:hover{opacity:.4!important;transform:scale(1.1)}
+.sn-quote-overlay{position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;background:rgba(61,50,40,.85);backdrop-filter:blur(20px);opacity:0;transition:opacity .6s ease;pointer-events:none;cursor:pointer}
+.sn-quote-overlay.show{opacity:1;pointer-events:auto}
+@keyframes sn-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 </style>
 </head>
 <body>
@@ -158,10 +172,25 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
       </div>
 
       <!-- STUDY NOTES -->
-      <div class="panel" id="p-notes" style="display:none;padding:2.5rem 3rem;max-width:880px;margin:0 auto">
-        <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-bottom:6px">Scholarly Archive</p>
-        <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:6px">Where I've studied</h2>
-        <div style="width:40px;height:3px;background:var(--sea);border-radius:2px;margin-bottom:2rem"></div>
+      <div class="panel" id="p-notes" style="display:none;padding:2.5rem 3rem;max-width:880px;margin:0 auto;position:relative">
+        <!-- Lotus decorations (아가씨-inspired botanical accents) -->
+        <img src="images/lotus-pink.png" alt="" class="lotus-decor" id="lotus-pink" style="width:56px;top:1.5rem;right:2rem;opacity:.1" title="">
+        <img src="images/lotus-blue.png" alt="" class="lotus-decor" id="lotus-blue" style="width:48px;bottom:3rem;left:1.5rem;opacity:.08" title="">
+
+        <!-- Above-fold identity banner -->
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap">
+          <div>
+            <p style="font-family:var(--sm);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-bottom:6px">Scholarly Archive</p>
+            <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:8px;line-height:1.2">Where I've studied</h2>
+            <p style="font-size:.9rem;color:var(--txt2);line-height:1.5;max-width:420px">MA Advertising (Thesis Track) at Moody College, researching how culturally-adapted health messages change behavior.</p>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-self:center">
+            <span class="sn-stat" style="background:rgba(196,167,108,.1);color:var(--sun)"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 4.8L20 7.6l-4 3.9 1 5.5L12 14.4 7 17l1-5.5-4-3.9 5.6-.8L12 2z" stroke="#C4A76C" stroke-width="2" fill="rgba(196,167,108,.2)" stroke-linejoin="round"/></svg>3.88 / 4.0</span>
+            <span class="sn-stat" style="background:rgba(122,154,109,.08);color:var(--sea)">Dean's List &times;7</span>
+            <span class="sn-stat" style="background:rgba(196,145,138,.06);color:var(--coral)">Moody College</span>
+          </div>
+        </div>
+        <div style="width:40px;height:3px;border-radius:2px;margin-bottom:2rem;background:linear-gradient(90deg,var(--sea),var(--sun))"></div>
 
         <!-- === DEGREE CARDS === -->
         <div class="degree-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:.5rem">
@@ -230,45 +259,23 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
 
         <!-- === JOURNEY CONNECTOR === -->
         <div style="display:flex;align-items:center;gap:1rem;margin:1rem 0 1.5rem;padding:0 .5rem">
-          <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(122,154,109,.15),rgba(196,145,138,.15),transparent)"></div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M2 12h20M12 2v20" stroke="var(--sea)" stroke-width="1.5" stroke-linecap="round" opacity=".3"/></svg>
-            <span style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)">Current Semester</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M2 12h20M12 2v20" stroke="var(--sea)" stroke-width="1.5" stroke-linecap="round" opacity=".3"/></svg>
-          </div>
-          <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(196,145,138,.15),rgba(122,154,109,.15),transparent)"></div>
+          <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(122,154,109,.15),rgba(196,167,108,.12),transparent)"></div>
+          <span style="font-family:var(--sm);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3)">Spring 2026 Coursework</span>
+          <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(196,167,108,.12),rgba(122,154,109,.15),transparent)"></div>
         </div>
 
-        <!-- === COURSE PICKER === -->
-        <p style="font-family:var(--sm);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:10px">Spring 2026 Coursework — pick to explore</p>
-        <div style="display:flex;gap:1rem;margin-bottom:1.8rem;flex-wrap:wrap">
-          <!-- ADV Avatar -->
-          <div class="spec course-avatar" data-c="adv" id="ca-adv" style="background:rgba(196,145,138,.05);color:#C4918A;width:120px;height:120px;position:relative" onclick="pickCourse('adv')">
-            <div style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--coral);opacity:.5"></div>
-            <svg width="36" height="36" viewBox="0 0 48 48" fill="none"><path d="M8 40V16l16-10 16 10v24" stroke="#C4918A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(196,145,138,.06)"/><path d="M18 40V28h12v12" stroke="#C4918A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="spec-lbl" style="font-size:9.5px">ADV<br>382J</span>
-            <span style="font-family:var(--sm);font-size:6.5px;color:var(--txt3);opacity:.6;position:absolute;bottom:8px;letter-spacing:.04em">Persuasion</span>
-          </div>
-          <!-- MKT Avatar -->
-          <div class="spec course-avatar" data-c="mkt" id="ca-mkt" style="background:rgba(122,154,109,.05);color:#7A9A6D;width:120px;height:120px;position:relative" onclick="pickCourse('mkt')">
-            <div style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--sea);opacity:.5"></div>
-            <svg width="36" height="36" viewBox="0 0 48 48" fill="none"><rect x="6" y="22" width="8" height="18" rx="2" stroke="#7A9A6D" stroke-width="2.5" fill="rgba(122,154,109,.06)"/><rect x="20" y="14" width="8" height="26" rx="2" stroke="#7A9A6D" stroke-width="2.5" fill="rgba(122,154,109,.06)"/><rect x="34" y="8" width="8" height="32" rx="2" stroke="#7A9A6D" stroke-width="2.5" fill="rgba(122,154,109,.06)"/></svg>
-            <span class="spec-lbl" style="font-size:9.5px">MKT<br>397</span>
-            <span style="font-family:var(--sm);font-size:6.5px;color:var(--txt3);opacity:.6;position:absolute;bottom:8px;letter-spacing:.04em">Quant Mktg</span>
-          </div>
-          <!-- EDP Avatar -->
-          <div class="spec course-avatar" data-c="edp" id="ca-edp" style="background:rgba(196,167,108,.05);color:#C4A76C;width:120px;height:120px;position:relative" onclick="pickCourse('edp')">
-            <div style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--sun);opacity:.5"></div>
-            <svg width="36" height="36" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#C4A76C" stroke-width="2.5" fill="rgba(196,167,108,.06)"/><path d="M14 42c0-6 4-10 10-10s10 4 10 10" stroke="#C4A76C" stroke-width="2.5" stroke-linecap="round"/></svg>
-            <span class="spec-lbl" style="font-size:9.5px">EDP<br>382C</span>
-            <span style="font-family:var(--sm);font-size:6.5px;color:var(--txt3);opacity:.6;position:absolute;bottom:8px;letter-spacing:.04em">Wise Intrvn</span>
-          </div>
+        <!-- === CAPSULE TAB NAVIGATION === -->
+        <div class="sn-tabs" id="sn-tabs">
+          <div class="sn-pill" id="sn-pill"></div>
+          <button class="sn-tab sn-on" data-sn="adv" onclick="snTab('adv')">Persuasion Theory</button>
+          <button class="sn-tab" data-sn="mkt" onclick="snTab('mkt')">Quantitative Marketing</button>
+          <button class="sn-tab" data-sn="edp" onclick="snTab('edp')">Wise Interventions</button>
         </div>
 
-        <!-- === EXPANDED COURSE PANELS === -->
+        <!-- === COURSE PANELS === -->
 
         <!-- ADV 382J Panel -->
-        <div id="cp-adv" class="cp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:rgba(196,145,138,.02);border:1.5px solid rgba(196,145,138,.12);border-radius:24px;margin-bottom:1.5rem">
+        <div id="cp-adv" class="cp snp"><div class="di" style="padding:1.8rem 2rem;background:rgba(196,145,138,.02);border:1.5px solid rgba(196,145,138,.12);border-radius:24px;margin-bottom:1.5rem">
           <!-- Header -->
           <div style="display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1rem">
             <div style="width:44px;height:44px;border-radius:14px;background:rgba(196,145,138,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><path d="M8 40V16l16-10 16 10v24" stroke="#C4918A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="rgba(196,145,138,.04)"/><path d="M18 40V28h12v12" stroke="#C4918A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -316,7 +323,7 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
         </div></div>
 
         <!-- MKT 397 Panel -->
-        <div id="cp-mkt" class="cp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:rgba(122,154,109,.02);border:1.5px solid rgba(122,154,109,.12);border-radius:24px;margin-bottom:1.5rem">
+        <div id="cp-mkt" class="cp snp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:rgba(122,154,109,.02);border:1.5px solid rgba(122,154,109,.12);border-radius:24px;margin-bottom:1.5rem">
           <!-- Header -->
           <div style="display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1rem">
             <div style="width:44px;height:44px;border-radius:14px;background:rgba(122,154,109,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect x="6" y="22" width="8" height="18" rx="2" stroke="#7A9A6D" stroke-width="2.5" fill="rgba(122,154,109,.04)"/><rect x="20" y="14" width="8" height="26" rx="2" stroke="#7A9A6D" stroke-width="2.5" fill="rgba(122,154,109,.04)"/><rect x="34" y="8" width="8" height="32" rx="2" stroke="#7A9A6D" stroke-width="2.5" fill="rgba(122,154,109,.04)"/></svg></div>
@@ -364,7 +371,7 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
         </div></div>
 
         <!-- EDP 382C Panel -->
-        <div id="cp-edp" class="cp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:rgba(196,167,108,.02);border:1.5px solid rgba(196,167,108,.15);border-radius:24px;margin-bottom:1.5rem">
+        <div id="cp-edp" class="cp snp" style="display:none"><div class="di" style="padding:1.8rem 2rem;background:rgba(196,167,108,.02);border:1.5px solid rgba(196,167,108,.15);border-radius:24px;margin-bottom:1.5rem">
           <!-- Header -->
           <div style="display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1rem">
             <div style="width:44px;height:44px;border-radius:14px;background:rgba(196,167,108,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="#C4A76C" stroke-width="2.5" fill="rgba(196,167,108,.04)"/><path d="M14 42c0-6 4-10 10-10s10 4 10 10" stroke="#C4A76C" stroke-width="2.5" stroke-linecap="round"/></svg></div>
@@ -431,8 +438,9 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
         </div></div>
 
         <!-- === ACADEMIC REFLECTION === -->
-        <div style="padding:1rem 1.4rem;border-left:4px solid var(--sea);background:rgba(122,154,109,.03);border-radius:0 20px 20px 0;margin-top:.5rem">
-          <p style="font-size:1rem;font-style:italic;color:var(--deep);line-height:1.6;font-weight:500">Each course is a different lens on the same question: how do we design interventions that work <strong style="color:var(--coral)">with</strong> people's psychology — not against it?</p>
+        <div style="padding:1.2rem 1.5rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--sea),var(--sun)) 1;background:linear-gradient(135deg,rgba(122,154,109,.03),rgba(196,167,108,.02));border-radius:0 20px 20px 0;margin-top:.5rem;position:relative">
+          <p style="font-size:1rem;font-style:italic;color:var(--deep);line-height:1.65;font-weight:500">Each course is a different lens on the same question: how do we design interventions that work <strong style="color:var(--coral)">with</strong> people's psychology — not against it?</p>
+          <p style="font-family:var(--sm);font-size:7.5px;color:var(--txt3);margin-top:6px;letter-spacing:.06em">Bella Kang · Spring 2026</p>
         </div>
         <!-- Mobile: Continue to next section -->
         <div class="m-next" style="display:none" onclick="go('orchard',document.querySelector('[data-v=orchard]'))"><p style="font-family:var(--sm);font-size:8px;color:var(--txt3);letter-spacing:.08em;margin-bottom:4px">CONTINUE EXPLORING</p><p style="font-size:1rem;font-weight:700;color:var(--deep)">The Orchard &rarr;</p><p style="font-size:.78rem;color:var(--txt2);margin-top:2px;font-style:italic">"Where I write about what I'm learning"</p></div>
@@ -983,6 +991,81 @@ function mwGo(id){
   sessionStorage.setItem('mw-seen','1');
   go(id,document.querySelector('.np[data-v="'+id+'"]'));
 }
+
+/* ── Study Notes: Capsule Tabs ── */
+let snActive='adv';
+function snPillMeasure(){
+  const bar=document.getElementById('sn-tabs');const pill=document.getElementById('sn-pill');
+  const btn=document.querySelector('.sn-tab[data-sn="'+snActive+'"]');
+  if(!bar||!pill||!btn)return;
+  const bR=bar.getBoundingClientRect();const tR=btn.getBoundingClientRect();
+  pill.style.left=(tR.left-bR.left)+'px';pill.style.width=tR.width+'px';
+}
+function snTab(id){
+  if(id===snActive)return;snActive=id;
+  document.querySelectorAll('.sn-tab').forEach(b=>b.classList.remove('sn-on'));
+  document.querySelector('.sn-tab[data-sn="'+id+'"]').classList.add('sn-on');
+  snPillMeasure();
+  document.querySelectorAll('.snp').forEach(p=>{p.style.display='none'});
+  const panel=document.getElementById('cp-'+id);
+  if(panel){panel.style.display='block';panel.style.animation='di .4s var(--eo) forwards'}
+}
+/* Measure pill on load and resize */
+setTimeout(snPillMeasure,200);
+window.addEventListener('resize',snPillMeasure);
+/* ── Lotus Easter Eggs: Literary Quotes ── */
+const litQuotes=[
+  {text:"One cannot think well, love well, sleep well, if one has not dined well.",attr:"Virginia Woolf, A Room of One's Own"},
+  {text:"I have been and still am a seeker, but I have ceased to question stars and books; I have begun to listen to the teaching my blood whispers to me.",attr:"Hermann Hesse, Demian"},
+  {text:"Becoming is better than being.",attr:"Carol Dweck, Mindset"},
+  {text:"The only way to do great work is to love what you do.",attr:"Steve Jobs"},
+  {text:"You must not ever stop being whimsical. And you must not, ever, give anyone else the responsibility for your life.",attr:"Mary Oliver"},
+  {text:"Every flower must grow through dirt.",attr:"Laurie Jean Sennott"},
+  {text:"What is to give light must endure burning.",attr:"Viktor Frankl"},
+  {text:"The mind is not a vessel to be filled, but a fire to be kindled.",attr:"Plutarch"}
+];
+let lastLitIdx=-1;
+function rndLit(){let i;do{i=Math.floor(Math.random()*litQuotes.length)}while(i===lastLitIdx&&litQuotes.length>1);lastLitIdx=i;return litQuotes[i]}
+function showLitQuote(){
+  const existing=document.querySelector('.sn-quote-overlay');if(existing)existing.remove();
+  const q=rndLit(),ov=document.createElement('div');
+  ov.className='sn-quote-overlay';
+  ov.innerHTML='<div style="max-width:440px;text-align:center"><p style="font-family:var(--st);font-size:1.4rem;color:var(--cream);line-height:1.65;font-style:italic;margin-bottom:12px">\u201C'+q.text+'\u201D</p><p style="font-family:var(--sm);font-size:9px;color:var(--sea-l);letter-spacing:.1em">\u2014 '+q.attr+'</p></div>';
+  document.body.appendChild(ov);
+  requestAnimationFrame(()=>{ov.classList.add('show')});
+  coolBurst(window.innerWidth/2,window.innerHeight/2);
+  const dismiss=()=>{ov.classList.remove('show');setTimeout(()=>ov.remove(),700)};
+  setTimeout(dismiss,4500);ov.onclick=dismiss;
+}
+/* Lotus hover easter egg (3-second hold) */
+(function(){
+  let hoverTimer=null;
+  ['lotus-pink','lotus-blue'].forEach(id=>{
+    const el=document.getElementById(id);if(!el)return;
+    el.addEventListener('mouseenter',()=>{hoverTimer=setTimeout(showLitQuote,3000)});
+    el.addEventListener('mouseleave',()=>{clearTimeout(hoverTimer)});
+    /* Mobile: double-tap */
+    let lastTap=0;
+    el.addEventListener('touchend',e=>{
+      const now=Date.now();
+      if(now-lastTap<400){e.preventDefault();showLitQuote()}
+      lastTap=now;
+    });
+  });
+})();
+/* Hook into go() for Study Notes: pill measure + probabilistic quote */
+(function(){
+  const origSnGo=go;
+  go=function(id,btn){origSnGo(id,btn);
+    if(id==='notes'){
+      setTimeout(snPillMeasure,80);
+      if(Math.random()<0.15&&!sessionStorage.getItem('sn-quote-shown')){
+        sessionStorage.setItem('sn-quote-shown','1');
+        setTimeout(showLitQuote,1200);
+      }
+    }
+  };
+})();
 </script>
 </body>
 </html>
