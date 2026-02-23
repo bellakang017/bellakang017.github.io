@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" href="images/9.png">
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--deep:#3D3228;--sea:#7A9A6D;--sea-l:#A8BFA0;--coral:#C4918A;--peach:#D4B5A0;--sun:#C4A76C;--cream:#FAF7F2;--sage:#7A9A6D;--txt:#3D3228;--txt2:#6B5E53;--txt3:#8F8378;--glass:rgba(255,255,255,.55);--glassB:rgba(255,255,255,.2);--card:#FFFDF8;--bdr:rgba(61,50,40,.08);--sf:'Crimson Pro',Georgia,serif;--st:'Crimson Text',serif;--sm:'JetBrains Mono',monospace;--spring:cubic-bezier(.175,.885,.32,1.275);--eo:cubic-bezier(.16,1,.3,1);--snap:cubic-bezier(.4,0,.2,1);--drift:cubic-bezier(.25,.46,.45,.94)}
+:root{--deep:#3D3228;--sea:#7A9A6D;--sea-l:#A8BFA0;--coral:#C4918A;--peach:#D4B5A0;--sun:#C4A76C;--cream:#FAF7F2;--sage:#7A9A6D;--txt:#3D3228;--txt2:#6B5E53;--txt3:#8F8378;--glass:rgba(255,255,255,.55);--glassB:rgba(255,255,255,.2);--card:#FFFDF8;--bdr:rgba(61,50,40,.08);--sf:'Crimson Pro',Georgia,serif;--st:'Crimson Text',serif;--sm:'JetBrains Mono',monospace;--spring:cubic-bezier(.175,.885,.32,1.275);--eo:cubic-bezier(.16,1,.3,1);--snap:cubic-bezier(.4,0,.2,1);--drift:cubic-bezier(.25,.46,.45,.94);--ruby:#A23B4D;--ruby-l:#C25567;--ruby-bg:rgba(162,59,77,.06);--ruby-bdr:rgba(162,59,77,.15);--gold:#B8943B;--gold-l:#D4AD52;--gold-bg:rgba(184,148,59,.06);--gold-bdr:rgba(184,148,59,.15);--gold-line:rgba(184,148,59,.25)}
 *{margin:0;padding:0;box-sizing:border-box}html,body{height:100%;overflow:hidden}
 body{font-family:var(--sf);color:var(--txt);background:var(--cream);-webkit-font-smoothing:antialiased;cursor:none}body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:99997;opacity:.018;background:repeating-conic-gradient(rgba(0,0,0,.03) 0% 25%,transparent 0% 50%) 0 0/2px 2px;mix-blend-mode:multiply}
 a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cursor:none}
@@ -71,6 +71,131 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
 .sn-quote-overlay{position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;background:rgba(61,50,40,.85);backdrop-filter:blur(20px);opacity:0;transition:opacity .6s ease;pointer-events:none;cursor:pointer}
 .sn-quote-overlay.show{opacity:1;pointer-events:auto}
 @keyframes sn-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ============================================
+   DESKTOP REDESIGN — Sparkling Gold + Ruby
+   ============================================ */
+@media(min-width:901px){
+/* --- Color overrides --- */
+::selection{background:rgba(162,59,77,.12)}
+
+/* --- Layout: hide old sidebar, show summary panel --- */
+.dash{grid-template-columns:340px 1fr!important;overflow:hidden}
+.bcol{display:none!important}
+.desk-summary{display:flex!important;flex-direction:column;height:100vh;overflow-y:auto;padding:2.5rem 2rem;background:var(--deep);border-right:1px solid rgba(184,148,59,.12);z-index:10;position:sticky;top:0}
+.desk-main{display:flex;flex-direction:column;height:100vh;overflow:hidden;position:relative}
+
+/* --- Summary Panel Styles --- */
+.ds-identity{text-align:center;margin-bottom:1.5rem}
+.ds-photo{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid rgba(162,59,77,.35);box-shadow:0 8px 32px rgba(162,59,77,.15),0 0 0 6px rgba(184,148,59,.08);margin-bottom:1rem;transition:all .5s var(--spring)}
+.ds-photo:hover{transform:scale(1.05);box-shadow:0 12px 40px rgba(162,59,77,.2),0 0 0 8px rgba(184,148,59,.12)}
+.ds-name{font-family:var(--sf);font-size:1.8rem;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.02em}
+.ds-accent{color:var(--gold-l);font-style:italic}
+.ds-title{font-family:var(--sm);font-size:10px;color:var(--ruby-l);font-weight:600;letter-spacing:.06em;margin-top:6px}
+.ds-affil{font-family:var(--sm);font-size:8.5px;color:rgba(168,191,160,.45);letter-spacing:.08em;margin-top:4px;text-transform:uppercase}
+.ds-divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold-line),transparent);margin:1.2rem 0}
+
+/* Stats grid */
+.ds-stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.ds-stat{text-align:center;padding:.6rem .4rem;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.ds-stat-val{font-family:var(--sm);font-size:1.3rem;font-weight:800;color:var(--gold-l);display:block;line-height:1.2}
+.ds-stat-lbl{font-family:var(--sm);font-size:7.5px;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase}
+
+/* Thesis */
+.ds-thesis{padding:.8rem;border-radius:12px;background:rgba(162,59,77,.06);border:1px solid rgba(162,59,77,.1)}
+.ds-thesis-label{font-family:var(--sm);font-size:7.5px;font-weight:700;color:var(--ruby-l);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.ds-thesis-text{font-family:var(--st);font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.55;font-style:italic}
+
+/* Section nav */
+.ds-nav{display:flex;flex-direction:column;gap:2px;margin-top:.5rem}
+.ds-nav-item{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;font-family:var(--sm);font-size:10px;font-weight:600;color:rgba(255,255,255,.4);text-decoration:none;transition:all .3s var(--eo);cursor:pointer;letter-spacing:.04em}
+.ds-nav-item:hover{color:rgba(255,255,255,.7);background:rgba(255,255,255,.04)}
+.ds-nav-item.ds-active{color:var(--gold-l);background:rgba(184,148,59,.08)}
+.ds-nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.15);transition:all .3s var(--eo);flex-shrink:0}
+.ds-nav-item.ds-active .ds-nav-dot{background:var(--ruby);box-shadow:0 0 8px rgba(162,59,77,.4)}
+
+/* Contact */
+.ds-contact{display:flex;gap:.6rem;align-items:center}
+.ds-link{font-family:var(--sm);font-size:9px;color:rgba(255,255,255,.4);text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.08);transition:all .3s var(--eo);flex:1;text-align:center}
+.ds-link:hover{color:var(--gold-l);border-color:var(--gold-bdr)}
+.ds-cta{font-family:var(--sm);font-size:9px;font-weight:700;padding:6px 14px;background:var(--ruby);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .3s var(--spring);flex:1}
+.ds-cta:hover{background:var(--ruby-l);transform:translateY(-1px);box-shadow:0 4px 16px rgba(162,59,77,.25)}
+
+/* --- All panels visible simultaneously --- */
+.panel{display:block!important;max-width:100%!important;animation:none!important}
+.panel+.panel{margin-top:0}
+
+/* Hide top nav tabs + mobile elements on desktop */
+nav .m-id{display:none!important}
+.m-next{display:none!important}
+.m-proof{display:none!important}
+.m-aside{display:none!important}
+#m-welcome{display:none!important}
+
+/* Desktop nav bar: simplified with ruby accent */
+nav{border-bottom-color:var(--ruby-bdr)!important}
+nav button.np.on{color:var(--ruby)}
+nav button.np.on::after{background:var(--ruby)!important}
+
+/* --- Section overline labels: ruby --- */
+.panel>p:first-child{color:var(--ruby)!important}
+
+/* Scroll progress: gold-ruby gradient */
+.scroll-progress{background:linear-gradient(90deg,var(--gold),var(--ruby))!important}
+
+/* --- EXPERIENCE: Timeline Layout --- */
+.desk-exp-stats{display:grid!important;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:2rem;padding:1.2rem 1.5rem;border-radius:20px;background:linear-gradient(135deg,var(--ruby-bg),var(--gold-bg));border:1px solid var(--gold-bdr)}
+.des-stat{text-align:center}
+.des-val{font-family:var(--sm);font-size:1.5rem;font-weight:800;color:var(--ruby);display:block;line-height:1.2}
+.des-lbl{font-family:var(--sm);font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);display:block;margin-top:2px}
+
+/* Filter bar */
+.filter-bar{display:flex!important;align-items:center;gap:.5rem;margin-bottom:1.5rem;padding:.4rem .5rem;background:rgba(61,50,40,.03);border-radius:12px}
+.filter-label{font-family:var(--sm);font-size:8px;font-weight:700;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase;padding:0 .5rem}
+.filter-btn{font-family:var(--sm);font-size:9px;font-weight:600;padding:5px 12px;border-radius:8px;border:1px solid transparent;background:none;color:var(--txt3);cursor:pointer;transition:all .25s var(--eo)}
+.filter-btn:hover{color:var(--ruby);background:var(--ruby-bg)}
+.filter-btn.filter-active{color:var(--ruby);background:var(--ruby-bg);border-color:var(--ruby-bdr)}
+
+/* Timeline: vertical line + dots */
+.field-grid{grid-template-columns:1fr!important;gap:0!important;position:relative;padding-left:3rem!important}
+.field-grid::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--ruby),var(--gold),var(--ruby-bg));border-radius:1px}
+.fc{grid-column:1/-1!important;position:relative;border-radius:24px!important;margin-bottom:.8rem}
+.fc::before{content:'';position:absolute;left:-2.3rem;top:2rem;width:10px;height:10px;border-radius:50%;background:var(--ruby);border:2px solid var(--cream);box-shadow:0 0 0 2px var(--ruby-bdr);z-index:2}
+.fc .fc-body{display:block!important;animation:none!important}
+.fc .fc-chev{display:none!important}
+.fc-head{padding:1.5rem 2rem .5rem!important}
+.fc .fc-body{padding:0 2rem 1.5rem!important}
+.fc:hover{border-color:var(--ruby-bdr)!important;box-shadow:0 12px 32px rgba(162,59,77,.05)!important}
+
+/* --- STUDY NOTES: 3-column course grid --- */
+#sn-tabs{display:none!important}
+.snp{display:block!important}
+.course-grid-desktop{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-items:start}
+.course-grid-desktop .snp .di{padding:1.4rem 1.5rem!important;border-radius:20px!important}
+.course-grid-desktop .snp h3{font-size:1.05rem!important}
+/* Key highlights stack in narrow columns */
+.course-grid-desktop .snp [style*="display:flex;gap:8px;margin-bottom"]{flex-direction:column!important}
+.course-grid-desktop .snp [style*="flex:1;min-width:200px"]{min-width:0!important}
+
+/* --- Typography Scale --- */
+.hero{font-size:clamp(2rem,3vw,2.8rem)!important}
+
+/* Section gold dividers between panels */
+.panel::after{content:'';display:block;height:1px;background:linear-gradient(90deg,transparent,var(--gold-line),transparent);margin-top:2.5rem}
+.panel:last-child::after{display:none}
+
+/* --- Sparkle Effects --- */
+/* Ruby glow on CTA hover */
+nav button[onclick*="openC"]:hover,.ds-cta:hover{box-shadow:0 4px 20px rgba(162,59,77,.2)}
+/* Gold accent on stat numbers */
+.sn-stat{border:1px solid var(--gold-bdr)}
+/* Interactive words: ruby hover */
+.iw:hover{border-color:var(--ruby)!important;color:var(--ruby)!important}
+
+/* Blend cursor: ruby/gold */
+#blend-cursor.hover{background:rgba(162,59,77,.45)!important}
+#blend-cursor.click{background:rgba(184,148,59,.5)!important}
+}
 </style>
 </head>
 <body>
@@ -94,7 +219,41 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
     <h1 class="vert si s2" style="font-family:var(--sf);font-size:2.1rem;font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1;transform:rotate(180deg);flex:1;display:flex;align-items:center;z-index:2">Bella <span style="color:var(--sun);font-style:italic">Kang</span></h1>
     <p class="vert si s3" style="font-family:var(--sm);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:var(--sea-l);opacity:.4;transform:rotate(180deg);z-index:2;margin-top:.5rem">Moody College · Thesis Track</p>
   </aside>
-  <div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;position:relative">
+  <!-- Desktop Summary Panel (hidden by default, shown via desktop CSS) -->
+  <div class="desk-summary" id="desk-summary" style="display:none">
+    <div class="ds-identity">
+      <img src="images/profile.jpg" alt="Bella Kang" class="ds-photo">
+      <h1 class="ds-name">Bella <span class="ds-accent">Kang</span></h1>
+      <p class="ds-title">MA Advertising <span style="opacity:.6">(Thesis Track)</span></p>
+      <p class="ds-affil">Moody College of Communication &middot; UT Austin</p>
+    </div>
+    <div class="ds-divider"></div>
+    <div class="ds-stats">
+      <div class="ds-stat"><span class="ds-stat-val">3.88</span><span class="ds-stat-lbl">GPA</span></div>
+      <div class="ds-stat"><span class="ds-stat-val">7&times;</span><span class="ds-stat-lbl">Dean's List</span></div>
+      <div class="ds-stat"><span class="ds-stat-val">3</span><span class="ds-stat-lbl">Roles</span></div>
+      <div class="ds-stat"><span class="ds-stat-val">3</span><span class="ds-stat-lbl">PhD Courses</span></div>
+    </div>
+    <div class="ds-divider"></div>
+    <div class="ds-thesis">
+      <p class="ds-thesis-label">Thesis Question</p>
+      <p class="ds-thesis-text">How do culturally-adapted messages reduce self-silencing in Korean American women seeking mental health support?</p>
+    </div>
+    <div class="ds-divider"></div>
+    <nav class="ds-nav">
+      <a class="ds-nav-item ds-active" data-section="cabinet" onclick="deskNav('cabinet')"><span class="ds-nav-dot"></span>Cabinet</a>
+      <a class="ds-nav-item" data-section="field" onclick="deskNav('field')"><span class="ds-nav-dot"></span>Experience</a>
+      <a class="ds-nav-item" data-section="notes" onclick="deskNav('notes')"><span class="ds-nav-dot"></span>Study Notes</a>
+      <a class="ds-nav-item" data-section="orchard" onclick="deskNav('orchard')"><span class="ds-nav-dot"></span>Orchard</a>
+    </nav>
+    <div style="margin-top:auto;padding-top:1.5rem">
+      <div class="ds-contact">
+        <a href="https://www.linkedin.com/in/bellakang017" target="_blank" class="ds-link">LinkedIn &nearr;</a>
+        <button onclick="openC()" class="ds-cta">Contact</button>
+      </div>
+    </div>
+  </div>
+  <div class="desk-main" style="display:flex;flex-direction:column;height:100vh;overflow:hidden;position:relative">
     <div style="position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden"><div class="fairy" style="left:8%;top:15%;width:60px;height:60px;background:radial-gradient(circle,rgba(122,154,109,.06) 0%,transparent 70%);animation:fd 18s ease-in-out infinite"></div><div class="fairy" style="left:75%;top:10%;width:80px;height:80px;background:radial-gradient(circle,rgba(196,145,138,.04) 0%,transparent 70%);animation:fd 22s ease-in-out 3s infinite"></div><div class="fairy" style="left:45%;top:70%;width:50px;height:50px;background:radial-gradient(circle,rgba(196,167,108,.05) 0%,transparent 70%);animation:fd 20s ease-in-out 6s infinite"></div></div>
     <nav style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(253,252,245,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);z-index:20;flex-shrink:0">
       <!-- Mobile identity bar -->
@@ -155,16 +314,31 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
         <h2 style="font-size:1.7rem;font-weight:800;color:var(--deep);margin-bottom:6px">Where I've worked</h2>
         <div style="width:40px;height:3px;border-radius:2px;margin-bottom:.8rem;background:linear-gradient(90deg,var(--coral),var(--sun))"></div>
         <p style="font-size:.9rem;color:var(--txt2);line-height:1.5;margin-bottom:1.8rem">3 roles across research, health tech, and global marketing.</p>
+        <!-- Desktop: filter bar (hidden on mobile) -->
+        <div class="filter-bar" id="filter-bar" style="display:none">
+          <span class="filter-label">Filter</span>
+          <button class="filter-btn filter-active" data-filter="all" onclick="filterItems('all')">All</button>
+          <button class="filter-btn" data-filter="research" onclick="filterItems('research')">Research</button>
+          <button class="filter-btn" data-filter="health-comm" onclick="filterItems('health-comm')">Health Comm</button>
+          <button class="filter-btn" data-filter="marketing" onclick="filterItems('marketing')">Marketing</button>
+        </div>
+        <!-- Desktop: experience summary stats (hidden on mobile) -->
+        <div class="desk-exp-stats" style="display:none">
+          <div class="des-stat"><span class="des-val">3</span><span class="des-lbl">Roles</span></div>
+          <div class="des-stat"><span class="des-val">18+</span><span class="des-lbl">Months Research</span></div>
+          <div class="des-stat"><span class="des-val">500+</span><span class="des-lbl">Newsletter Subs</span></div>
+          <div class="des-stat"><span class="des-val">+20%</span><span class="des-lbl">Intl Engagement</span></div>
+        </div>
         <div class="field-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
-          <div class="fc" id="fc-gigc" onclick="toggleField('gigc')" style="grid-column:1/-1">
+          <div class="fc" id="fc-gigc" data-tags="career,design,life-design" onclick="toggleField('gigc')" style="grid-column:1/-1">
             <div class="fc-head"><div class="fc-icon" style="background:rgba(122,154,109,.08)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#7A9A6D" stroke-width="2.5" fill="rgba(122,154,109,.06)"/><circle cx="24" cy="24" r="8" stroke="#7A9A6D" stroke-width="2" opacity=".4"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sea);font-weight:700;letter-spacing:.08em;text-transform:uppercase">UT Austin · Career &amp; Life Design</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Global Impact Graduate Consultant</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">2025–Present</p><p class="fc-hint">Life Design cohort · Newsletter 500+ subs · Interview tools</p></div><span class="fc-chev">›</span></div>
             <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:12px">Operationalized Stanford's <span class="iw" style="color:var(--sun)">Life Design<span class="ip"><span class="ip-l">Framework</span>Bill Burnett &amp; Dave Evans' design thinking approach applied to career and life planning.</span></span> framework into a 12-week cohort. Newsletter (500+ subscribers), interview tools, visa guides.</p><div style="display:flex;gap:6px;flex-wrap:wrap"><a href="/interview-instinct.html" class="fc-link" style="color:var(--sea);background:rgba(122,154,109,.06);border:1px solid rgba(122,154,109,.12)">Interview Instinct →</a><a href="/iwg-handout-v10.html" class="fc-link" style="color:var(--coral);background:rgba(196,145,138,.06);border:1px solid rgba(196,145,138,.12)">HIVE Handout →</a><a href="/curiosity-cabinet.html" class="fc-link" style="color:var(--sun);background:rgba(196,167,108,.08);border:1px solid rgba(196,167,108,.15)">Curiosity Cabinet →</a></div></div>
           </div>
-          <div class="fc" id="fc-dasique" onclick="toggleField('dasique')">
+          <div class="fc" id="fc-dasique" data-tags="marketing,global,beauty" onclick="toggleField('dasique')">
             <div class="fc-head"><div class="fc-icon" style="background:rgba(196,145,138,.06)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 4l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z" stroke="#C4918A" stroke-width="2.5" fill="rgba(196,145,138,.06)" stroke-linejoin="round"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--coral);font-weight:700;letter-spacing:.08em;text-transform:uppercase">Dasique · Seoul</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Global Marketing Intern</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">Summer 2025</p><p class="fc-hint">+20% intl engagement · 100+ SKU analytics · APAC</p></div><span class="fc-chev">›</span></div>
             <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:10px">Localized <span class="iw" style="color:var(--coral)">Olive Young Global<span class="ip"><span class="ip-l">Brand</span>Korea's leading health &amp; beauty platform, expanding globally via CJ Group.</span></span> pages (<span style="color:var(--sun);font-weight:700">+20% intl engagement</span>). <span class="iw" data-tech>GTM<span class="ip"><span class="ip-l">Strategy</span>Go-To-Market — the plan for launching products into new markets and customer segments.</span></span> research. 100+ SKU analytics across <span class="iw">APAC<span class="ip"><span class="ip-l">Region</span>Asia-Pacific — primary expansion markets including Japan, SEA, and Greater China.</span></span>.</p><div style="display:flex;gap:4px;flex-wrap:wrap"><span class="fc-tag" style="color:var(--coral);background:rgba(196,145,138,.06)">Localization</span><span class="fc-tag" style="color:var(--sea);background:rgba(122,154,109,.06)">GTM Research</span><span class="fc-tag" style="color:var(--sun);background:rgba(196,167,108,.08)">APAC</span></div></div>
           </div>
-          <div class="fc" id="fc-ra" onclick="toggleField('ra')">
+          <div class="fc" id="fc-ra" data-tags="research,health-comm,ai" onclick="toggleField('ra')">
             <div class="fc-head"><div class="fc-icon" style="background:rgba(196,167,108,.06)"><svg width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 6v36M6 24h36" stroke="#C4A76C" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="#C4A76C" stroke-width="2" fill="rgba(196,167,108,.06)"/></svg></div><div style="flex:1"><p style="font-family:var(--sm);font-size:8.5px;color:var(--sun);font-weight:700;letter-spacing:.08em;text-transform:uppercase">UT School of Nursing</p><h3 style="font-size:1.1rem;font-weight:800;color:var(--deep);line-height:1.25">Research Assistant</h3><p style="font-family:var(--sm);font-size:9px;color:var(--txt3)">2023–2025 · 18 months</p><p class="fc-hint">AI pain management · Mixed methods · Asian American health</p></div><span class="fc-chev">›</span></div>
             <div class="fc-body"><p style="font-size:.92rem;color:var(--txt2);line-height:1.7;margin-bottom:10px"><span class="iw" data-tech style="color:var(--sea)">AI-based<span class="ip"><span class="ip-l">Approach</span>Machine learning models for personalized pain assessment and adaptive intervention delivery.</span></span> pain management, <span class="iw">lifestyle interventions<span class="ip"><span class="ip-l">Method</span>Behavior-change programs targeting diet, exercise, and stress management for chronic conditions.</span></span>, depressive symptom reduction in Asian American women.</p><div style="display:flex;gap:4px;flex-wrap:wrap"><span class="fc-tag" style="color:var(--sea);background:rgba(122,154,109,.06)">AI &amp; Health</span><span class="fc-tag" style="color:var(--coral);background:rgba(196,145,138,.06)">Mixed Methods</span></div></div>
           </div>
@@ -275,6 +449,7 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
         </div>
 
         <!-- === COURSE PANELS === -->
+        <div class="course-grid-desktop">
 
         <!-- ADV 382J Panel -->
         <div id="cp-adv" class="cp snp"><div class="di" style="padding:1.8rem 2rem;background:rgba(196,145,138,.02);border:1.5px solid rgba(196,145,138,.12);border-radius:24px;margin-bottom:1.5rem">
@@ -398,6 +573,7 @@ a,button,.spec,.sub-spec,.fc,.pt-btn,.ap,.np,.iw,.course-avatar,.gb-emoji-btn{cu
             </div>
           </div>
         </div></div>
+        </div><!-- /course-grid-desktop -->
 
         <!-- === ACADEMIC REFLECTION === -->
         <div style="padding:1.2rem 1.5rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--sea),var(--sun)) 1;background:linear-gradient(135deg,rgba(122,154,109,.03),rgba(196,167,108,.02));border-radius:0 20px 20px 0;margin-top:.5rem;position:relative">
@@ -721,11 +897,41 @@ new MutationObserver(()=>initMarginalia()).observe(document.body,{childList:true
 
 /* ── Navigation ── */
 const navOrder=['cabinet','field','notes','orchard'];
-function go(id,btn){document.querySelectorAll('.np').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.panel').forEach(p=>p.style.display='none');const p=document.getElementById('p-'+id);p.style.display='block';p.style.animation='ps .5s var(--eo)';if(id==='orchard'){setTimeout(()=>pillMeasure(),50);initFlickerGrid()}else{stopFlickerGrid()}
-/* Update mobile progress dots */
-document.querySelectorAll('.m-dot').forEach(d=>d.classList.remove('on'));const ad=document.querySelector('.m-dot[data-v="'+id+'"]');if(ad)ad.classList.add('on');const mc=document.querySelector('.m-counter');if(mc)mc.textContent=(navOrder.indexOf(id)+1)+'/4';
-/* Scroll to top on mobile */
-const cs=document.querySelector('.cs');if(cs)cs.scrollTop=0;
+const isDesk=()=>window.matchMedia('(min-width:901px)').matches;
+function go(id,btn){
+  document.querySelectorAll('.np').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  if(isDesk()){
+    /* Desktop: scroll to section, all panels already visible */
+    const p=document.getElementById('p-'+id);
+    const cs=document.querySelector('.cs');
+    if(p&&cs){cs.scrollTo({top:p.offsetTop,behavior:'smooth'})}
+    /* Update summary nav */
+    document.querySelectorAll('.ds-nav-item').forEach(n=>n.classList.remove('ds-active'));
+    const navItem=document.querySelector('.ds-nav-item[data-section="'+id+'"]');
+    if(navItem)navItem.classList.add('ds-active');
+    /* Init orchard effects if visible */
+    if(id==='orchard'){setTimeout(()=>pillMeasure(),50);initFlickerGrid()}
+  }else{
+    /* Mobile: toggle panels */
+    document.querySelectorAll('.panel').forEach(p=>p.style.display='none');
+    const p=document.getElementById('p-'+id);
+    p.style.display='block';p.style.animation='ps .5s var(--eo)';
+    if(id==='orchard'){setTimeout(()=>pillMeasure(),50);initFlickerGrid()}else{stopFlickerGrid()}
+  }
+  /* Update mobile progress dots */
+  document.querySelectorAll('.m-dot').forEach(d=>d.classList.remove('on'));
+  const ad=document.querySelector('.m-dot[data-v="'+id+'"]');if(ad)ad.classList.add('on');
+  const mc=document.querySelector('.m-counter');if(mc)mc.textContent=(navOrder.indexOf(id)+1)+'/4';
+  const cs=document.querySelector('.cs');if(cs&&!isDesk())cs.scrollTop=0;
+}
+/* Desktop summary nav click */
+function deskNav(id){
+  const p=document.getElementById('p-'+id);
+  if(p){const cs=document.querySelector('.cs');if(cs){cs.scrollTo({top:p.offsetTop,behavior:'smooth'})}}
+  document.querySelectorAll('.ds-nav-item').forEach(n=>n.classList.remove('ds-active'));
+  const navItem=document.querySelector('.ds-nav-item[data-section="'+id+'"]');
+  if(navItem)navItem.classList.add('ds-active');
 }
 /* ── Scroll progress bar ── */
 (function(){const cs=document.querySelector('.cs');const bar=document.getElementById('scroll-progress');if(!cs||!bar)return;cs.addEventListener('scroll',function(){const pct=this.scrollTop/(this.scrollHeight-this.clientHeight)*100;bar.style.width=Math.min(pct,100)+'%'})})();
@@ -763,7 +969,7 @@ function pickCourse(id){document.querySelectorAll('.course-avatar').forEach(s=>s
 
 /* ── Field cards ── */
 let aF=null;
-function toggleField(id){document.querySelectorAll('.fc').forEach(c=>c.classList.remove('fc-on'));if(aF===id){aF=null;return}aF=id;document.getElementById('fc-'+id).classList.add('fc-on')}
+function toggleField(id){if(isDesk())return;document.querySelectorAll('.fc').forEach(c=>c.classList.remove('fc-on'));if(aF===id){aF=null;return}aF=id;document.getElementById('fc-'+id).classList.add('fc-on')}
 
 /* ── Keyboard nav ── */
 document.addEventListener('keydown',e=>{const k={'1':'cabinet','2':'field','3':'notes','4':'orchard'};if(k[e.key]){const b=document.querySelector('.np[data-v="'+k[e.key]+'"]');if(b)go(k[e.key],b)}if(e.key==='Escape')closeC()});
@@ -1032,6 +1238,60 @@ function showLitQuote(){
     }
   };
 })();
+
+/* ── Desktop: Scroll Spy for summary nav ── */
+(function(){
+  if(!isDesk())return;
+  const cs=document.querySelector('.cs');
+  if(!cs)return;
+  const panels=document.querySelectorAll('.panel');
+  const navItems=document.querySelectorAll('.ds-nav-item');
+  cs.addEventListener('scroll',function(){
+    let current='cabinet';
+    panels.forEach(p=>{
+      if(p.offsetTop-cs.scrollTop<cs.clientHeight/3){
+        current=p.id.replace('p-','');
+      }
+    });
+    navItems.forEach(n=>n.classList.remove('ds-active'));
+    const active=document.querySelector('.ds-nav-item[data-section="'+current+'"]');
+    if(active)active.classList.add('ds-active');
+  });
+  /* Desktop init: show all panels, init orchard lazily */
+  panels.forEach(p=>{p.style.display='block';p.style.animation='none'});
+  /* Lazy init flicker grid when orchard scrolls into view */
+  const orchardPanel=document.getElementById('p-orchard');
+  if(orchardPanel&&window.IntersectionObserver){
+    const obs=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){initFlickerGrid();obs.unobserve(orchardPanel)}
+      });
+    },{root:cs,threshold:0.1});
+    obs.observe(orchardPanel);
+  }
+  /* Init pill tabs for orchard */
+  setTimeout(()=>pillMeasure(),200);
+})();
+
+/* ── Desktop: Filter system ── */
+function filterItems(tag){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('filter-active'));
+  document.querySelector('.filter-btn[data-filter="'+tag+'"]').classList.add('filter-active');
+  document.querySelectorAll('.fc[data-tags]').forEach(item=>{
+    if(tag==='all'||item.dataset.tags.includes(tag)){
+      item.style.display='';item.style.animation='si .4s var(--eo) forwards';
+    }else{
+      item.style.display='none';
+    }
+  });
+}
+
+/* ── Desktop: resize handler ── */
+window.addEventListener('resize',function(){
+  if(isDesk()){
+    document.querySelectorAll('.panel').forEach(p=>{p.style.display='block';p.style.animation='none'});
+  }
+});
 </script>
 </body>
 </html>
